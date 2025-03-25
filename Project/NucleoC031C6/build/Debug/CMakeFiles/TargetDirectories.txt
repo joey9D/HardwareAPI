@@ -1,5 +1,0 @@
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/NucleoC031C6/build/Debug/CMakeFiles/NucleoC031C6.dir
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/NucleoC031C6/build/Debug/CMakeFiles/edit_cache.dir
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/NucleoC031C6/build/Debug/CMakeFiles/rebuild_cache.dir
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/NucleoC031C6/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/NucleoC031C6/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir
