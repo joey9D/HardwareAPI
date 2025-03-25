@@ -15,8 +15,8 @@ target_compile_definitions(stm32cubemx INTERFACE
 
 target_include_directories(stm32cubemx INTERFACE
     ../../Core/Inc
-    ../../Drivers/STM32C0xx_HAL_Driver/Inc
-    ../../Drivers/STM32C0xx_HAL_Driver/Inc/Legacy
+    ../../Drivers/stm32c0xx-hal-driver/Inc
+    ../../Drivers/stm32c0xx-hal-driver/Inc/Legacy
     ../../Drivers/BSP/STM32C0xx_Nucleo
     ../../Drivers/CMSIS/Device/ST/STM32C0xx/Include
     ../../Drivers/CMSIS/Include
@@ -26,25 +26,25 @@ target_sources(stm32cubemx INTERFACE
     ../../Core/Src/main.c
     ../../Core/Src/stm32c0xx_it.c
     ../../Core/Src/stm32c0xx_hal_msp.c
-    ../../Drivers/BSP/STM32C0xx_Nucleo/stm32c0xx_nucleo.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_usart_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_cortex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_rcc.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_rcc_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_gpio.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_dma.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_dma_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_pwr.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_pwr_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_exti.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_tim.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_tim_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_usart.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_uart_ex.c
-    ../../Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_uart.c
+    ../../Drivers/BSP/stm32c0xx-nucleo-bsp/stm32c0xx_nucleo.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_usart_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_cortex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_rcc.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_rcc_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_flash.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_flash_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_gpio.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_dma.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_dma_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_pwr.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_pwr_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_exti.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_tim.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_tim_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_usart.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_uart_ex.c
+    ../../Drivers/stm32c0xx-hal-driver/Src/stm32c0xx_hal_uart.c
     ../../Core/Src/system_stm32c0xx.c
     ../../Core/Src/sysmem.c
     ../../Core/Src/syscalls.c

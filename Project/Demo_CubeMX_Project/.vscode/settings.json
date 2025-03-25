@@ -4,5 +4,8 @@
         "stm32c0xx_hal.h": "c",
         "stm32c0xx_ll_system.h": "c",
         "stm32c0xx_hal_conf.h": "c"
-    }
+    },
+    "C_Cpp.default.includePath": [
+        "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\Demo_CubeMX_Project\\Drivers\\BSP\\stm32c0xx-nucleo-bsp"
+    ]
 }
