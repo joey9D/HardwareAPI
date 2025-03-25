@@ -1,4 +1,6 @@
-Creating an API for embedded development involves several best practices to ensure it is effective and reusable. Here are some key tips:
+# Creating an API for embedded development involves several best practices to ensure it is effective and reusable  
+
+Here are some key tips:
 
 - Start with a draft API and expect it to evolve over time. Typically, an API stabilizes after three to four projects, with minimal changes in subsequent iterations.
 - When designing an API for multiple microcontroller vendors, examine the same peripheral across different microcontrollers and list both common and uncommon features. Common features should be included in the API, while uncommon features can be implemented as extensions if necessary.
