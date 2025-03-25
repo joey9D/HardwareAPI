@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "stm32c0xx_hal.h": "c",
+        "stm32c0xx_ll_system.h": "c",
+        "stm32c0xx_hal_conf.h": "c"
+    }
+}
