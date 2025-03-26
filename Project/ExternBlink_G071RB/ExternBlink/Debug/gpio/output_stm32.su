@@ -1,0 +1,4 @@
+../gpio/output_base.h:14:7:constexpr Output_base::Output_base()	16	static
+../gpio/output_stm32.cpp:11:1:Output_stm32::Output_stm32(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, GPIO_TypeDef*, bool)	48	static
+../gpio/output_stm32.cpp:24:6:virtual void Output_stm32::setPinOutput(bool)	32	static
+../gpio/output_stm32.cpp:42:6:virtual void Output_stm32::toggle()	16	static

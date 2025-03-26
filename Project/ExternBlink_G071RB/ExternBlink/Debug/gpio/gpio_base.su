@@ -1,0 +1,5 @@
+../gpio/gpio_base.cpp:12:1:GPIO_base::GPIO_base(uint32_t, uint32_t, bool)	24	static
+../gpio/gpio_base.cpp:16:1:GPIO_base::~GPIO_base()	16	static
+../gpio/gpio_base.cpp:19:10:uint32_t GPIO_base::getPin() const	16	static
+../gpio/gpio_base.cpp:24:10:uint32_t GPIO_base::getMode() const	16	static
+../gpio/gpio_base.cpp:29:6:bool GPIO_base::isPinInverted() const	16	static

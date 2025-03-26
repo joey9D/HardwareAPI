@@ -1,0 +1,8 @@
+../Core/Src/main.cpp:69:5:int main()	1
+../Core/Src/main.cpp:121:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:162:13:void MX_USART2_UART_Init()	5
+../Core/Src/main.cpp:210:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:251:5:int getButtonState()	1
+../Core/Src/main.cpp:256:6:void pushButton()	2
+../Core/Src/main.cpp:266:6:void toggleLED()	1
+../Core/Src/main.cpp:277:6:void Error_Handler()	1
