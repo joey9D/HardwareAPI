@@ -7,6 +7,13 @@
 
 RM := rm -rf
 
+# Add the include directories
+CFLAGS += -I../Drivers/STM32G0xx_HAL_Driver/Inc
+CFLAGS += -I../Core/Inc
+CFLAGS += -I../gpio
+CFLAGS += -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include
+CFLAGS += -I../Drivers/CMSIS/Include
+
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include gpio/subdir.mk
@@ -86,33 +93,33 @@ main-build: ExternBlink.elf secondary-outputs
 
 # Tool invocations
 ExternBlink.elf ExternBlink.map: $(OBJS) $(USER_OBJS) C:\Users\jan.kristel\STM32CubeIDE\Thesis\ExternBlink\STM32G071RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "ExternBlink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\jan.kristel\STM32CubeIDE\Thesis\ExternBlink\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ExternBlink.map" -Wl,--gc-sections -static  -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-	@echo 'Finished building target: $@'
-	@echo ' '
+    arm-none-eabi-g++ -o "ExternBlink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\jan.kristel\STM32CubeIDE\Thesis\ExternBlink\STM32G071RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ExternBlink.map" -Wl,--gc-sections -static  -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+    @echo 'Finished building target: $@'
+    @echo ' '
 
 default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-size  $(EXECUTABLES)
-	@echo 'Finished building: $@'
-	@echo ' '
+    arm-none-eabi-size  $(EXECUTABLES)
+    @echo 'Finished building: $@'
+    @echo ' '
 
 ExternBlink.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ExternBlink.list"
-	@echo 'Finished building: $@'
-	@echo ' '
+    arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ExternBlink.list"
+    @echo 'Finished building: $@'
+    @echo ' '
 
 # Other Targets
 clean:
-	-$(RM) ExternBlink.elf ExternBlink.list ExternBlink.map default.size.stdout
-	-@echo ' '
+    -$(RM) ExternBlink.elf ExternBlink.list ExternBlink.map default.size.stdout
+    -@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
-	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
-	@exit 2
+    @echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+    @exit 2
 
 warn-no-linker-script-specified:
-	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+    @echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 

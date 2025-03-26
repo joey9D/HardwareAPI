@@ -54,8 +54,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/jan.kristel/STM32CubeIDE/Thesis/ExternBlink/Core/Src",
-      "program": "c:/Users/jan.kristel/STM32CubeIDE/Thesis/ExternBlink/Core/Src/build/Debug/outDebug",
+      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/Core/Src",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/Core/Src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

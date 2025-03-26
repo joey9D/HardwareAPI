@@ -40,7 +40,10 @@
   "C_Cpp_Runner.includePaths": [
     "${workspaceFolder}/**",
     "${workspaceFolder}/Core/Inc/**",
-    "${workspaceFolder}/gpio/**"
+    "${workspaceFolder}/gpio/**",
+    "${workspaceFolder}/Drivers/**",
+    "${workspaceFolder}/Drivers/STM32G0xx_HAL_Driver/**",
+    "${workspaceFolder}/Drivers/STM32G0xx_HAL_Driver/Inc/**"
   ],
   "C_Cpp_Runner.includeSearch": [
     "*",
