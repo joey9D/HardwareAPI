@@ -2,60 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Build & Debug Microcontroller - ST-Link",
-      "cwd": "${workspaceFolder}",
-      "type": "cortex-debug",
-      "executable": "${command:cmake.launchTargetPath}",
-      "request": "launch",
-      "servertype": "stlink",
-      "device": "STM32G071RBTx",
-      "interface": "swd",
-      "serialNumber": "",
-      "runToEntryPoint": "main",
-      "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32G071.svd",
-      "v1": false,
-      "serverpath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-      "stm32cubeprogrammer": "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
-      "stlinkPath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-      "armToolchainPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin",
-      "gdbPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
-      "serverArgs": [
-        "-m",
-        "0"
-      ]
-    },
-    {
-      "name": "Attach to Microcontroller - ST-Link",
-      "cwd": "${workspaceFolder}",
-      "type": "cortex-debug",
-      "executable": "${command:cmake.launchTargetPath}",
-      "request": "attach",
-      "servertype": "stlink",
-      "device": "STM32G071RBTx",
-      "interface": "swd",
-      "serialNumber": "",
-      "runToEntryPoint": "main",
-      "svdFile": "${config:STM32VSCodeExtension.cubeCLT.path}/STMicroelectronics_CMSIS_SVD/STM32G071.svd",
-      "v1": false,
-      "serverpath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-      "stm32cubeprogrammer": "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
-      "stlinkPath": "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-      "armToolchainPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin",
-      "gdbPath": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
-      "serverArgs": [
-        "-m",
-        "0"
-      ]
-    },
-    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/Core/Src",
-      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/Core/Src/build/Debug/outDebug",
+      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
