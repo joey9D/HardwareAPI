@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink",
-      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/build/Debug/outDebug",
+      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/app",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/app/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

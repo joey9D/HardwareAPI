@@ -11,7 +11,8 @@
 
 //#include "gpio_base.h"
 
-class Output_base {
+class Output_base
+{
 	protected:
 		bool _oldPinState = true;
 	public:
