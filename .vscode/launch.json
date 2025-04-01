@@ -3,11 +3,22 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "node",
+      "type": "cppdbg",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1",
-      "program": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1/build/Debug/outDebug"
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Timer",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Timer/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }
