@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
-
+###############################################################
+# NOTE:
+#
+# Depending on OS, varibale might ber case-sensitive.
+# Make sure to use the correct case for the variables.
+###############################################################
 find_program(CMAKE_ASM_COMPILER NAMES arm-none-eabi-gcc)
 find_program(CMAKE_C_COMPILER NAMES arm-none-eabi-gcc)
 find_program(CMAKE_CXX_COMPILER NAMES arm-none-eabi-g++)
@@ -19,7 +24,10 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(MCU_FAMILY STM32G0)
 set(MCU_MODEL STM32G071RB)
 set(CPU_ARCH cortex-m0plus)
+
+set(FLOAT_ABI soft) # depending on mcu
 set(FPU_TYPE none)
+
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/mcu_drivers/${MCU_FAMIILY}/CMSIS/Device/ST/${MCU_FAMILY}xx/Source/linker/${MCU_MODEL}_FLASH.ld)
 
 set(DEBUGGER JLINK) # JLINK, OPENOCD
@@ -39,7 +47,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_compile_options(
     -mcpu=${CPU_ARCH}
-    -mfloat-abi=soft # depending on mcu, if fpu is supported
+    -mfloat-abi=${FLOAT_ABI} # depending on mcu, if fpu is supported
     #-mfpu=fpv4-sp-d16
     -mthumb
     -ffunction-sections
@@ -101,8 +109,8 @@ add_executable(${CMAKE_PORJECT_NAME}
 ##############################################################
 target_link_options(${CMAKE_PROJECT_NAME} PRIVATE
     -mcpu=${CPU_ARCH}
-    -mfloat-abi=hard
-    -mfpu=fpv4-sp-d16
+    -mfloat-abi=${FLOAT_ABI}
+    -mfpu=${FPU_TYPE}
     -Wl,--gc-sections
     -specs=nano.specs
     -specs=nosys.specs
