@@ -6,8 +6,8 @@
       "type": "node",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1",
-      "program": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1/build/Debug/outDebug"
+      "cwd": "/Users/joey/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink",
+      "program": "/Users/joey/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/build/Debug/outDebug"
     }
   ]
 }
