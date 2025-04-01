@@ -3,22 +3,11 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
+      "type": "node",
       "request": "launch",
       "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink",
-      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ExternBlink_G071RB/ExternBlink/build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
+      "cwd": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1",
+      "program": "/Users/joey/Documents/Programmieren/Cpp_Udemy/UdemyCpp/CodingProject1/build/Debug/outDebug"
     }
   ]
 }
