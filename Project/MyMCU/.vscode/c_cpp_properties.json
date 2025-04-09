@@ -1,23 +1,46 @@
+// Win settings
+// {
+//   "configurations": [
+//     {
+//       "name": "windows-gcc-x64",
+//       "includePath": [
+//         "${workspaceFolder}/**",
+//         "C:\\Users\\jan.kristel\\STM32CubeIDE\\Thesis\\ExternBlink\\Core\\Inc",
+//         "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\gpio",
+//         "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\CMSIS\\Device\\ST\\STM32G0xx\\Include",
+//         "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\CMSIS\\Include",
+//         "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\STM32G0xx_HAL_Driver\\Inc"
+//       ],
+//       "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+//       "cStandard": "${default}",
+//       "cppStandard": "${default}",
+//       "intelliSenseMode": "windows-gcc-x64",
+//       "compilerArgs": [
+//         ""
+//       ]
+//     }
+//   ],
+//   "version": 4
+// }
+
+
+// Mac settings
 {
-  "configurations": [
-    {
-      "name": "windows-gcc-x64",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "C:\\Users\\jan.kristel\\STM32CubeIDE\\Thesis\\ExternBlink\\Core\\Inc",
-        "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\gpio",
-        "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\CMSIS\\Device\\ST\\STM32G0xx\\Include",
-        "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\CMSIS\\Include",
-        "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ExternBlink_G071RB\\ExternBlink\\Drivers\\STM32G0xx_HAL_Driver\\Inc"
-      ],
-      "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
-    }
-  ],
-  "version": 4
-}
+    "configurations": [
+      {
+        "name": "macos-gcc-arm64",
+        "includePath": [
+          "${workspaceFolder}/**"
+        ],
+        "compilerPath": "/opt/homebrew/bin/gcc",
+        "cStandard": "c11",
+        "cppStandard": "c++23",
+        "intelliSenseMode": "macos-gcc-arm64",
+        "compilerArgs": [
+          ""
+        ]
+      }
+    ],
+    "version": 4
+  }
+  
