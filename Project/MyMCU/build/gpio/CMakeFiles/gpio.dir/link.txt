@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libgpio.a CMakeFiles/gpio.dir/gpio_print.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libgpio.a
