@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/cmake_install.cmake",
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/basic/cmake_install.cmake",
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/gpio/cmake_install.cmake",
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/app/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
