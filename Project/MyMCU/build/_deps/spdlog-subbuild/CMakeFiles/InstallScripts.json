@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -23,7 +23,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 #####################
 option(
     ENABLE_TESTING
-    "Enable a Unit Testing Build" ON
+    "Enable a Unit Testing Build" OFF # ON/OFF
 )
 
 #####################
@@ -38,8 +38,8 @@ set(APP_LIBRARY_NAME app)
 ##########################
 # INCLUDE CMAKE MODULES #
 ##########################
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DI}/cmake/")
-include(AddGitSubmodule)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+#include(AddGitSubmodule)
 include(FetchContent)
 include(Docs)
 

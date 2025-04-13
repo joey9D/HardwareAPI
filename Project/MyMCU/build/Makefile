@@ -117,6 +117,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named COMMAND
+
+# Build rule for target.
+COMMAND: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 COMMAND
+.PHONY : COMMAND
+
+# fast build rule for target.
+COMMAND/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMAND.dir/build.make CMakeFiles/COMMAND.dir/build
+.PHONY : COMMAND/fast
+
+#=============================================================================
+# Target rules for targets named spdlog
+
+# Build rule for target.
+spdlog: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spdlog
+.PHONY : spdlog
+
+# fast build rule for target.
+spdlog/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/spdlog-build/CMakeFiles/spdlog.dir/build.make _deps/spdlog-build/CMakeFiles/spdlog.dir/build
+.PHONY : spdlog/fast
+
+#=============================================================================
 # Target rules for targets named gpio
 
 # Build rule for target.
@@ -150,8 +176,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... COMMAND"
 	@echo "... MainExe"
 	@echo "... gpio"
+	@echo "... spdlog"
 .PHONY : help
 
 

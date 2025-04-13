@@ -1,7 +1,10 @@
 include(Catch)
 
 set(TEST_MAIN "unit_tests")
-set(TEST_SOURCES "main.cpp")
+set(TEST_SOURCES
+    "test_gpio.cpp"
+    "test_basic.cpp"
+)
 set(TEST_INCLUDES "./")
 
 add_executable(
@@ -19,7 +22,6 @@ target_link_libraries(
     ${TEST_MAIN}
     PUBLIC
 #   LIBRARY_NAME
-    ${APP_LIBRARY_NAME}
     Catch2::Catch2WithMain
 )
 
