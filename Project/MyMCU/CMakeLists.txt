@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
+#####################
+# SET PROJECT NAME#
+#####################
 set(PROJECT_NAME My_MCU_Lib)
 
 project(
@@ -8,21 +11,33 @@ project(
     LANGUAGES C CXX ASM
 )
 
+##########################
+# SET LANGUAGE SETTINGS #
+##########################
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+#####################
+# ENABLE TESTING#
+#####################
 option(
     ENABLE_TESTING
     "Enable a Unit Testing Build" ON
 )
 
+#####################
+# SET VARIABLES #
+#####################
 set(EXECUTABLE_NAME MainExe)
 #set(LIBRARY_NAME Library)
 set(BASIC_LIBRARY_NAME basic)
 set(GPIO_LIBRARY_NAME gpio)
 set(APP_LIBRARY_NAME app)
 
+##########################
+# INCLUDE CMAKE MODULES #
+##########################
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DI}/cmake/")
 include(AddGitSubmodule)
 include(FetchContent)
@@ -64,7 +79,9 @@ if(ENABLE_TESTING)
     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 endif()
 
-
+#####################
+# ADD SUBDIR #
+#####################
 add_subdirectory(${BASIC_LIBRARY_NAME})
 add_subdirectory(${GPIO_LIBRARY_NAME})
 add_subdirectory(${APP_LIBRARY_NAME})
