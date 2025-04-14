@@ -31,6 +31,7 @@ option(
 #####################
 set(EXECUTABLE_NAME MainExe)
 #set(LIBRARY_NAME Library)
+set(PERIPH_HEADER_LIBRARY_NAME periph)
 set(BASIC_LIBRARY_NAME basic)
 set(GPIO_LIBRARY_NAME gpio)
 set(APP_LIBRARY_NAME app)
@@ -82,6 +83,7 @@ endif()
 #####################
 # ADD SUBDIR #
 #####################
+add_subdirectory(${PERIPH_HEADER_LIBRARY_NAME})
 add_subdirectory(${BASIC_LIBRARY_NAME})
 add_subdirectory(${GPIO_LIBRARY_NAME})
 add_subdirectory(${APP_LIBRARY_NAME})
