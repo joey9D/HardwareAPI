@@ -5,7 +5,7 @@
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/spdlog-build/cmake_install.cmake",
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-build/cmake_install.cmake",
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-build/include/cmake_install.cmake",
-		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/periph/cmake_install.cmake",
+		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/core/cmake_install.cmake",
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/basic/cmake_install.cmake",
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/gpio/cmake_install.cmake",
 		"/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/app/cmake_install.cmake"

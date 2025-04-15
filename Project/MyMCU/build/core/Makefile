@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/CMakeFiles /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/periph//CMakeFiles/progress.marks
-	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 periph/all
+	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/CMakeFiles /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/core//CMakeFiles/progress.marks
+	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 periph/clean
+	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,12 +103,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 periph/preinstall
+	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 periph/preinstall
+	cd /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core/preinstall
 .PHONY : preinstall/fast
 
 # clear depends

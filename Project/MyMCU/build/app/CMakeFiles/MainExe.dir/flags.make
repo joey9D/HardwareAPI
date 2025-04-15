@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/app/. -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/basic/. -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/periph -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/gpio/.
+CXX_INCLUDES = -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/app/. -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/basic/. -I/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/gpio/.
 
 CXX_FLAGSarm64 = -O3 -DNDEBUG -std=c++17 -arch arm64
 

@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/P
 # The main recursive "all" target.
 all: _deps/spdlog-build/all
 all: _deps/cxxopts-build/all
-all: periph/all
+all: core/all
 all: basic/all
 all: gpio/all
 all: app/all
@@ -74,7 +74,7 @@ all: app/all
 # The main recursive "codegen" target.
 codegen: _deps/spdlog-build/codegen
 codegen: _deps/cxxopts-build/codegen
-codegen: periph/codegen
+codegen: core/codegen
 codegen: basic/codegen
 codegen: gpio/codegen
 codegen: app/codegen
@@ -83,7 +83,7 @@ codegen: app/codegen
 # The main recursive "preinstall" target.
 preinstall: _deps/spdlog-build/preinstall
 preinstall: _deps/cxxopts-build/preinstall
-preinstall: periph/preinstall
+preinstall: core/preinstall
 preinstall: basic/preinstall
 preinstall: gpio/preinstall
 preinstall: app/preinstall
@@ -93,7 +93,7 @@ preinstall: app/preinstall
 clean: CMakeFiles/COMMAND.dir/clean
 clean: _deps/spdlog-build/clean
 clean: _deps/cxxopts-build/clean
-clean: periph/clean
+clean: core/clean
 clean: basic/clean
 clean: gpio/clean
 clean: app/clean
@@ -195,6 +195,25 @@ basic/clean:
 .PHONY : basic/clean
 
 #=============================================================================
+# Directory level rules for directory core
+
+# Recursive "all" directory target.
+core/all:
+.PHONY : core/all
+
+# Recursive "codegen" directory target.
+core/codegen:
+.PHONY : core/codegen
+
+# Recursive "preinstall" directory target.
+core/preinstall:
+.PHONY : core/preinstall
+
+# Recursive "clean" directory target.
+core/clean:
+.PHONY : core/clean
+
+#=============================================================================
 # Directory level rules for directory gpio
 
 # Recursive "all" directory target.
@@ -212,25 +231,6 @@ gpio/preinstall:
 # Recursive "clean" directory target.
 gpio/clean: gpio/CMakeFiles/gpio.dir/clean
 .PHONY : gpio/clean
-
-#=============================================================================
-# Directory level rules for directory periph
-
-# Recursive "all" directory target.
-periph/all:
-.PHONY : periph/all
-
-# Recursive "codegen" directory target.
-periph/codegen:
-.PHONY : periph/codegen
-
-# Recursive "preinstall" directory target.
-periph/preinstall:
-.PHONY : periph/preinstall
-
-# Recursive "clean" directory target.
-periph/clean:
-.PHONY : periph/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/COMMAND.dir

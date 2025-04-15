@@ -8,8 +8,8 @@
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-build/CMakeFiles/rebuild_cache.dir
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-build/include/CMakeFiles/edit_cache.dir
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-build/include/CMakeFiles/rebuild_cache.dir
-/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/periph/CMakeFiles/edit_cache.dir
-/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/periph/CMakeFiles/rebuild_cache.dir
+/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/core/CMakeFiles/edit_cache.dir
+/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/core/CMakeFiles/rebuild_cache.dir
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/basic/CMakeFiles/edit_cache.dir
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/basic/CMakeFiles/rebuild_cache.dir
 /Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/gpio/CMakeFiles/gpio.dir
