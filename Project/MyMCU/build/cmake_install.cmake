@@ -49,6 +49,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/periph/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/Users/joey/Documents/Programmieren/HardwareAPI/HardwareAPI/Project/MyMCU/build/basic/cmake_install.cmake")
 endif()
 

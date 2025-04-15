@@ -34,7 +34,7 @@
         ],
         "compilerPath": "/opt/homebrew/bin/gcc",
         "cStandard": "c11",
-        "cppStandard": "c++23",
+        "cppStandard": "c++17",
         "intelliSenseMode": "macos-gcc-arm64",
         "compilerArgs": [
           ""
@@ -43,4 +43,3 @@
     ],
     "version": 4
   }
-  
