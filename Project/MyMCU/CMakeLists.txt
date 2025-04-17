@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
-#####################
+##########################
 # SET PROJECT NAME#
-#####################
+##########################
 set(PROJECT_NAME My_MCU_Lib)
 
 project(
@@ -18,17 +18,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-#####################
+##########################
 # ENABLE TESTING#
-#####################
+##########################
 option(
     ENABLE_TESTING
     "Enable a Unit Testing Build" OFF # ON/OFF
 )
 
-#####################
+##########################
 # SET VARIABLES #
-#####################
+##########################
 set(EXECUTABLE_NAME MainExe)
 #set(LIBRARY_NAME Library)
 set(CORE_LIBRARY_NAME core)
@@ -45,9 +45,9 @@ set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(FetchContent)
 include(Docs)
 
-#####################
+##########################
 # LOGGING #
-#####################
+##########################
 FetchContent_Declare(
     spdlog
     GIT_REPOSITORY https://github.com/gabime/spdlog.git
@@ -56,9 +56,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(spdlog)
 
-#####################
+##########################
 # CLI ARGUMENTS #
-#####################
+##########################
 FetchContent_Declare(
     cxxopts
     GIT_REPOSITORY https://github.com/jarro2783/cxxopts.git
@@ -67,9 +67,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(cxxopts)
 
-#####################
+##########################
 # TESTING #
-#####################
+##########################
 if(ENABLE_TESTING)
     FetchContent_Declare(
         Catch2
@@ -81,9 +81,9 @@ if(ENABLE_TESTING)
     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 endif()
 
-#####################
+##########################
 # ADD SUBDIR #
-#####################
+##########################
 add_subdirectory(${CORE_LIBRARY_NAME})
 add_subdirectory(${BASIC_LIBRARY_NAME})
 add_subdirectory(${GPIO_LIBRARY_NAME})
@@ -95,7 +95,7 @@ if(ENABLE_TESTING)
 endif()
 
 
-#####################
+##########################
 # SELECT TARGET SRC #
-#####################
+##########################
 target_sources()
