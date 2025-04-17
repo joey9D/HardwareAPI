@@ -34,6 +34,7 @@ set(EXECUTABLE_NAME MainExe)
 set(CORE_LIBRARY_NAME core)
 set(BASIC_LIBRARY_NAME basic)
 set(GPIO_LIBRARY_NAME gpio)
+set(MCU_DRIVERS_LIBRARY_NAME mcu_drivers)
 set(APP_LIBRARY_NAME app)
 
 ##########################
@@ -92,3 +93,9 @@ if(ENABLE_TESTING)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+
+#####################
+# SELECT TARGET SRC #
+#####################
+target_sources()
