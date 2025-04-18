@@ -1,12 +1,12 @@
 #pragma once
 
-#include "periph/timer_stm32f0.hpp"
+#include "periph/timer_stm32c0.hpp"
 #include "rcc.hpp"
 #include "stm32f0xx.h"
 
 namespace periph::timer_hw_mapping
 {
-constexpr TIM_TypeDef *const timer[timer_stm32f0::timers] =
+constexpr TIM_TypeDef *const timer[timer_stm32c0::timers] =
 {
     TIM1,
 #if defined(STM32F031x6) || defined(STM32F038xx) || defined(STM32F042x6) || \
@@ -46,7 +46,7 @@ constexpr TIM_TypeDef *const timer[timer_stm32f0::timers] =
     TIM17
 };
 
-constexpr uint32_t rcc_en[timer_stm32f0::timers] =
+constexpr uint32_t rcc_en[timer_stm32c0::timers] =
 {
     RCC_APB2ENR_TIM1EN,
 #if defined(STM32F031x6) || defined(STM32F038xx) || defined(STM32F042x6) || \
@@ -87,14 +87,14 @@ constexpr uint32_t rcc_en[timer_stm32f0::timers] =
     RCC_APB2ENR_TIM16EN, RCC_APB2ENR_TIM17EN
 };
 
-constexpr volatile uint32_t *rcc_en_reg[timer_stm32f0::timers] =
+constexpr volatile uint32_t *rcc_en_reg[timer_stm32c0::timers] =
 {
     &RCC->APB2ENR, &RCC->APB1ENR, &RCC->APB1ENR, nullptr, nullptr, &RCC->APB1ENR,
     &RCC->APB1ENR, nullptr, nullptr, nullptr, nullptr, nullptr,
     nullptr, &RCC->APB1ENR, &RCC->APB2ENR, &RCC->APB2ENR, &RCC->APB2ENR
 };
 
-constexpr rcc::clk_source rcc_src[timer_stm32f0::timers] =
+constexpr rcc::clk_source rcc_src[timer_stm32c0::timers] =
 {
     rcc::clk_source::apb2,
     rcc::clk_source::apb1,
@@ -115,7 +115,7 @@ constexpr rcc::clk_source rcc_src[timer_stm32f0::timers] =
     rcc::clk_source::apb2
 };
 
-constexpr IRQn_Type irqn[timer_stm32f0::timers] =
+constexpr IRQn_Type irqn[timer_stm32c0::timers] =
 {
     TIM1_CC_IRQn,
 #if defined(STM32F031x6) || defined(STM32F038xx) || defined(STM32F042x6) || \

@@ -1,10 +1,10 @@
 #include <cassert>
-#include "periph/gpio_stm32f0.hpp"
+#include "periph/gpio_stm32c0.hpp"
 #include "gpio_hw_mapping.hpp"
 
 using namespace periph;
 
-gpio_stm32f0::gpio_stm32f0(enum port port, uint8_t pin, enum mode mode, bool state):
+gpio_stm32c0::gpio_stm32c0(enum port port, uint8_t pin, enum mode mode, bool state):
     _port(port),
     _pin(pin),
     _mode(mode)
@@ -14,10 +14,10 @@ gpio_stm32f0::gpio_stm32f0(enum port port, uint8_t pin, enum mode mode, bool sta
 
     RCC->AHBENR |= gpio_hw_mapping::rcc_en[static_cast<uint8_t>(port)];
 
-    gpio_stm32f0::mode(mode, state);
+    gpio_stm32c0::mode(mode, state);
 }
 
-gpio_stm32f0::~gpio_stm32f0()
+gpio_stm32c0::~gpio_stm32c0()
 {
     GPIO_TypeDef *gpio = gpio_hw_mapping::gpio[static_cast<uint8_t>(_port)];
 
@@ -28,7 +28,7 @@ gpio_stm32f0::~gpio_stm32f0()
     gpio->MODER |= GPIO_MODER_MODER0 << (_pin * 2);
 }
 
-void gpio_stm32f0::set(bool state)
+void gpio_stm32c0::set(bool state)
 {
     assert(_mode == mode::digital_output || _mode == mode::open_drain);
 
@@ -36,21 +36,21 @@ void gpio_stm32f0::set(bool state)
         1 << (state ? _pin : _pin + 16); // TODO: Use GPIO_BSRR_BR0_Pos instead of 16
 }
 
-void gpio_stm32f0::toggle()
+void gpio_stm32c0::toggle()
 {
     assert(_mode == mode::digital_output || _mode == mode::open_drain);
 
     gpio_hw_mapping::gpio[static_cast<uint8_t>(_port)]->ODR ^= 1 << _pin;
 }
 
-bool gpio_stm32f0::get() const
+bool gpio_stm32c0::get() const
 {
     assert(_mode != mode::analog && _mode != mode::alternate_function);
 
     return gpio_hw_mapping::gpio[static_cast<uint8_t>(_port)]->IDR & (1 << _pin);
 }
 
-void gpio_stm32f0::mode(enum mode mode, bool state)
+void gpio_stm32c0::mode(enum mode mode, bool state)
 {
     _mode = mode;
     GPIO_TypeDef *gpio = gpio_hw_mapping::gpio[static_cast<uint8_t>(_port)];

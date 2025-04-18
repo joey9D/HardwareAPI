@@ -1,6 +1,6 @@
 #pragma once
 
-#include "periph/gpio_stm32f0.hpp"
+#include "periph/gpio_stm32c0.hpp"
 #include "stm32f0xx.h"
 
 namespace periph::gpio_hw_mapping

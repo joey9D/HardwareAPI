@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include "stm32f0xx.h"
-#include "system_stm32f0xx.h"
+#include "system_stm32c0xx.h"
 #include "core_cm0.h"
 
 namespace periph
@@ -17,7 +17,7 @@ public:
         apb1,
         apb2
     };
-    
+
     enum class reset_reason : uint8_t
     {
         low_power,
@@ -27,28 +27,28 @@ public:
         option_byte_loader,
         unknown
     };
-    
+
     static void init()
     {
         // Save the previous reset reason
         csr = RCC->CSR;
-        
+
         // Clear the reset reason
         RCC->CSR |= RCC_CSR_RMVF;
     }
-    
+
     // Get frequency of specific clock source in Hz
     static uint32_t frequency(clk_source clk_source)
     {
         uint32_t tmp = (RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos;
         uint32_t ahb_presc = ahb_prescallers[tmp];
-        
+
         tmp = (RCC->CFGR & RCC_CFGR_PPRE) >> RCC_CFGR_PPRE_Pos;
         uint32_t apb_presc = apb_prescallers[tmp];
-        
+
         SystemCoreClockUpdate();
         uint32_t frequency = SystemCoreClock;
-        
+
         switch(clk_source)
         {
             case clk_source::ahb:
@@ -57,7 +57,7 @@ public:
                     frequency /= ahb_presc;
                 }
                 break;
-            
+
             case clk_source::apb1:
             case clk_source::apb2:
                 if(ahb_presc > 0)
@@ -72,13 +72,13 @@ public:
         }
         return frequency;
     }
-    
+
     // Reset MCU
     static void reset()
     {
         NVIC_SystemReset();
     }
-    
+
     // Get reason of previous reset
     static reset_reason reset_reason()
     {
@@ -86,7 +86,7 @@ public:
         {
             init();
         }
-        
+
         if(csr & RCC_CSR_PORRSTF || csr & RCC_CSR_LPWRRSTF)
         {
             return reset_reason::low_power;
@@ -109,12 +109,12 @@ public:
         }
         return reset_reason::unknown;
     }
-    
+
 private:
     rcc() {}
-    
+
     static uint32_t csr;
-    
+
     // Converting CFGR[7:4] HPRE value to prescaller
     static constexpr uint32_t ahb_prescallers[16] =
     {
@@ -128,7 +128,7 @@ private:
         256,                    // 14  AHB prescaller 256
         512                     // 15  AHB prescaller 512
     };
-    
+
     // Converting CFGR[12:10] PPRE1 value to prescaller
     static constexpr uint32_t apb_prescallers[8] =
     {
