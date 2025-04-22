@@ -1,3 +1,5 @@
+set(CMSIS_LIBRARY_NAME "cmsis")
+
 add_library(periph_stm32c0 STATIC
     src/assert.c
     src/fault_handlers.c
@@ -14,10 +16,10 @@ target_include_directories(periph_stm32c0 PUBLIC
     include
 )
 
-add_subdirectory(CMSIS)
+add_subdirectory(${CMSIS_LIBRARY_NAME})
 
 target_link_libraries(periph_stm32c0
     PRIVATE
         periph
-        cmsis
+        ${CMSIS_LIBRARY_NAME}
 )

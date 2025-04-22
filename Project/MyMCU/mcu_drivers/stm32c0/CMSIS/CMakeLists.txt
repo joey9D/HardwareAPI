@@ -1,4 +1,3 @@
-set(CMSIS_LIBRARY_NAME "cmsis")
 set(CMSIS_DSP_LIBRARY_NAME "cmsis_dsp")
 set(CMSIS_NN_LIBRARY_NAME "cmsis_nn")
 
