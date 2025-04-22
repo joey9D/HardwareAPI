@@ -12,7 +12,7 @@ gpio_stm32c0::gpio_stm32c0(enum port port, uint8_t pin, enum mode mode, bool sta
     assert(gpio_hw_mapping::gpio[static_cast<uint8_t>(port)]);
     assert(pin < gpio_hw_mapping::pins);
 
-    RCC->AHBENR |= gpio_hw_mapping::rcc_en[static_cast<uint8_t>(port)];
+    RCC->IOPENR |= gpio_hw_mapping::rcc_en[static_cast<uint8_t>(port)];
 
     gpio_stm32c0::mode(mode, state);
 }
