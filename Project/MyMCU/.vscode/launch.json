@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/app",
-      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/app/build/Debug/outDebug",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/app/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

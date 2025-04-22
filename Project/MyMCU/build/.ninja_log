@@ -1,0 +1,14 @@
+# ninja log v5
+83	8404	7670118258124707	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.obj	e27af98e73fa4aaf
+97	8577	7670118259687287	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.obj	5115bdf3131033f5
+112	10579	7670118278192360	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.obj	cbd7dc46f0534231
+63	18901	7670118362747316	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.obj	4a4a06fa3aeb36d0
+47	19319	7670118363216097	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.obj	c4bc010681022252
+10581	19450	7670118363372362	gpio/CMakeFiles/gpio.dir/gpio_pin_debouncer.cpp.obj	f422ef16583e5a14
+8578	22447	7670118397518325	gpio/CMakeFiles/gpio.dir/gpio_print.cpp.obj	6de3821e02a0968e
+22447	30077	7670118473660651	gpio/libgpio.a	2f05690e60a70f07
+18908	30905	7670118482279037	app/CMakeFiles/MainExe.dir/main.cpp.obj	c111a49f42d71cdc
+8418	32613	7670118501591962	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.obj	e203259f8bdb328e
+30906	33627	7670118511996987	app/MainExe.exe	f699231c97c0f637
+29	34345	7670118519040987	_deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.obj	8c32f0d2ac050495
+34347	35542	7670118531228503	_deps/spdlog-build/libspdlog.a	d7086e63af73f919

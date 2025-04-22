@@ -143,10 +143,11 @@
             "inheritDefault": "visible"
         },
         "ctest": {
-            "statusBarVisibility": "visible",
+            "statusBarVisibility": "hidden",
             "inheritDefault": "icon"
         },
     },
+    "cmake.generator": "Ninja",
     "doxdocgen.file.fileTemplate": "@file {name}",
     "doxdocgen.cpp.tparamTemplate": "@tparam {param} ",
     "doxdocgen.generic.briefTemplate": "@brief {text}",

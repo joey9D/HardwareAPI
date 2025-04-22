@@ -1,0 +1,21 @@
+# ninja log v5
+8	211	7670117839215851	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-mkdir	5a5ca1e5af1fc3f4
+8	211	7670117839215851	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-mkdir	5a5ca1e5af1fc3f4
+213	7183	7670117908896681	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-download	ab8c11171098bff4
+213	7183	7670117908896681	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-download	ab8c11171098bff4
+7185	7744	0	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-update	34e63894646317e5
+7185	7744	0	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-update	34e63894646317e5
+7744	7943	7670117916447069	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-patch	b65873930951fdae
+7744	7943	7670117916447069	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-patch	b65873930951fdae
+7943	8751	7670117924471515	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-configure	41574665dca63ef0
+7943	8751	7670117924471515	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-configure	41574665dca63ef0
+8751	9227	7670117929197887	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-build	c52d1333846286d9
+8751	9227	7670117929197887	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-build	c52d1333846286d9
+9227	9470	7670117931697918	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-install	1bcbd0e65e25d732
+9227	9470	7670117931697918	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-install	1bcbd0e65e25d732
+9470	9715	7670117934236898	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-test	865fc7440d5ea97b
+9470	9715	7670117934236898	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-test	865fc7440d5ea97b
+9715	10013	7670117937205654	CMakeFiles/spdlog-populate-complete	362ab200e719bff7
+9715	10013	7670117937205654	spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-done	362ab200e719bff7
+9715	10013	7670117937205654	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate-complete	362ab200e719bff7
+9715	10013	7670117937205654	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/spdlog-subbuild/spdlog-populate-prefix/src/spdlog-populate-stamp/spdlog-populate-done	362ab200e719bff7
