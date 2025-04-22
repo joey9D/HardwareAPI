@@ -1,5 +1,3 @@
-set(CMSIS_DSP_LIBRARY_NAME "cmsis_dsp")
-
 add_library(CMSIS_DSP_LIBRARY_NAME
     STATIC
         Source/BasicMathFunctions/arm_abs_f32.c

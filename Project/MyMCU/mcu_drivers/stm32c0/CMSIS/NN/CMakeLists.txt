@@ -1,5 +1,3 @@
-set(CMSIS_NN_LIBRARY_NAME "cmsis_nn")
-
 add_library(${CMSIS_NN_LIBRARY_NAME}
     STATIC
         Source/ActivationFunctions/arm_nn_activations_q15.c
@@ -38,4 +36,9 @@ add_library(${CMSIS_NN_LIBRARY_NAME}
 target_include_directories(${CMSIS_NN_LIBRARY_NAME}
     PRIVATE
         Include
+)
+
+target_link_libraries(${CMSIS_NN_LIBRARY_NAME}
+    PUBLIC
+        "${CMSIS_DSP_LIBRARY_NAME}"
 )
