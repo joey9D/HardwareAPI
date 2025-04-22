@@ -35,13 +35,15 @@ set(BASIC_LIBRARY_NAME basic)
 set(CORE_LIBRARY_NAME core)
 set(GPIO_LIBRARY_NAME gpio)
 set(MCU_DRIVERS_LIBRARY_NAME mcu_drivers)
+# set(I2C_LIBRARY_NAME i2c)
+# set(SPI_LIBRARY_NAME spi)
+# set(UART_LIBRARY_NAME uart)
 set(APP_LIBRARY_NAME app)
 
 ####################################
 # INCLUDE CMAKE MODULES #
 ####################################
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
-#include(AddGitSubmodule)
 include(FetchContent)
 include(Docs)
 
