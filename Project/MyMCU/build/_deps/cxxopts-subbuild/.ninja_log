@@ -1,0 +1,21 @@
+# ninja log v5
+6	178	7670177870280515	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-mkdir	50f78d757978f71b
+6	178	7670177870280515	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-mkdir	50f78d757978f71b
+180	5808	7670177926447015	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-download	f8b068e118610de6
+180	5808	7670177926447015	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-download	f8b068e118610de6
+5810	6263	0	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-update	89489b712e38496b
+5810	6263	0	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-update	89489b712e38496b
+6264	6419	7670177932579762	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-patch	39f0c51ee3825406
+6264	6419	7670177932579762	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-patch	39f0c51ee3825406
+6419	6576	7670177934142313	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-configure	b64734fee7e4cb8b
+6419	6576	7670177934142313	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-configure	b64734fee7e4cb8b
+6577	6737	7670177935861081	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-build	4cce6a026d0fe23e
+6577	6737	7670177935861081	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-build	4cce6a026d0fe23e
+6737	6901	7670177937462508	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-install	fba20f0c727fce82
+6737	6901	7670177937462508	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-install	fba20f0c727fce82
+6901	7062	7670177939025067	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-test	2fd5366130022a22
+6901	7062	7670177939025067	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-test	2fd5366130022a22
+7062	7305	7670177941525087	CMakeFiles/cxxopts-populate-complete	4d8d1a7994b9c66e
+7062	7305	7670177941525087	cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-done	4d8d1a7994b9c66e
+7062	7305	7670177941525087	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/CMakeFiles/cxxopts-populate-complete	4d8d1a7994b9c66e
+7062	7305	7670177941525087	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/MyMCU/build/_deps/cxxopts-subbuild/cxxopts-populate-prefix/src/cxxopts-populate-stamp/cxxopts-populate-done	4d8d1a7994b9c66e
