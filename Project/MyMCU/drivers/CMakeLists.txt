@@ -1,3 +1,7 @@
+# NOTE:
+# This driver directory is/(should be) only temporary.
+# Will be changed/removed in the future.
+
 set(DRIVERS_SOURCES
     "dataflash.cpp"
     "dht.cpp"
