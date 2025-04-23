@@ -1,6 +1,6 @@
 #pragma once
 
-#include "periph/timer.hpp"
+#include "timer.h"
 
 namespace periph { class timer_stm32c0; }
 // For internal use only! (called from ISR)
