@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include "stm32f0xx.h"
+#include "stm32c0xx.h"
 #include "system_stm32c0xx.h"
 #include "core_cm0.h"
 
@@ -31,10 +31,10 @@ public:
     static void init()
     {
         // Save the previous reset reason
-        csr = RCC->CSR;
+        csr = RCC->CSR2;
 
         // Clear the reset reason
-        RCC->CSR |= RCC_CSR_RMVF;
+        RCC->CSR2 |= RCC_CSR2_RMVF;
     }
 
     // Get frequency of specific clock source in Hz
@@ -87,23 +87,23 @@ public:
             init();
         }
 
-        if(csr & RCC_CSR_PORRSTF || csr & RCC_CSR_LPWRRSTF)
+        if(csr & RCC_CSR2_PWRRSTF || csr & RCC_CSR2_LPWRRSTF)
         {
             return reset_reason::low_power;
         }
-        else if(csr & RCC_CSR_PINRSTF)
+        else if(csr & RCC_CSR2_PINRSTF)
         {
             return reset_reason::external;
         }
-        else if(csr & RCC_CSR_SFTRSTF)
+        else if(csr & RCC_CSR2_SFTRSTF)
         {
             return reset_reason::internal;
         }
-        else if(csr & RCC_CSR_IWDGRSTF || csr & RCC_CSR_WWDGRSTF)
+        else if(csr & RCC_CSR2_IWDGRSTF || csr & RCC_CSR2_WWDGRSTF)
         {
             return reset_reason::wdt;
         }
-        else if(csr & RCC_CSR_OBLRSTF)
+        else if(csr & RCC_CSR2_OBLRSTF)
         {
             return reset_reason::option_byte_loader;
         }
