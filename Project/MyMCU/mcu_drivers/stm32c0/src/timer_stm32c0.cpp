@@ -163,10 +163,7 @@ extern "C" void TIM1_CC_IRQHandler(void)
     tim_irq_hndlr(obj_list[0]);
 }
 
-#if defined(STM32F031x6) || defined(STM32F038xx) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F071xB) || defined(STM32F072xB) || defined(STM32F078xx) || \
-    defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(STM32C051xx) || defined(STM32C071xx) || defined(STM32C091xx) || defined(STM32C092xx)
 extern "C" void TIM2_IRQHandler(void)
 {
     tim_irq_hndlr(obj_list[1]);
@@ -178,38 +175,12 @@ extern "C" void TIM3_IRQHandler(void)
     tim_irq_hndlr(obj_list[2]);
 }
 
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F070xB)
-extern "C" void TIM6_IRQHandler(void)
-{
-    tim_irq_hndlr(obj_list[5]);
-}
-#elif defined(STM32F051x8) || defined(STM32F058xx) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
-extern "C" void TIM6_DAC_IRQHandler(void)
-{
-    tim_irq_hndlr(obj_list[5]);
-}
-#endif
-
-#if defined(STM32F030xC) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
-extern "C" void TIM7_IRQHandler(void)
-{
-    tim_irq_hndlr(obj_list[6]);
-}
-#endif
-
 extern "C" void TIM14_IRQHandler(void)
 {
     tim_irq_hndlr(obj_list[13]);
 }
 
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F051x8) || \
-    defined(STM32F058xx) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(STM32C091xx) || defined(STM32C092xx)
 extern "C" void TIM15_IRQHandler(void)
 {
     tim_irq_hndlr(obj_list[14]);

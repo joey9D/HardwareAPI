@@ -17,8 +17,9 @@ namespace periph::timer_hw_mapping
         TIM3,
         // TIM4 - TIM13 are not available in STM32C0xx
         nullptr, nullptr, nullptr, nullptr, nullptr,
-        nullptr, nullptr, nullptr, nullptr, nullptr TIM14,
-#if defined(STM32C051xx) || defined(STM32C071xx) || defined(STM32C091xx) || defined(STM32C092xx)
+        nullptr, nullptr, nullptr, nullptr, nullptr,
+        TIM14,
+        #if defined(STM32C091xx) || defined(STM32C092xx)
         TIM15,
 #else
         nullptr,
@@ -46,7 +47,7 @@ namespace periph::timer_hw_mapping
         0, // TIM11
         0, // TIM12
         0, // TIM13
-        RCC_APBENR1_TIM14EN,
+        RCC_APBENR2_TIM14EN,
 #if defined(STM32C091xx) || defined(STM32C092xx)
         RCC_APBENR2_TIM15EN,
 #else
@@ -118,11 +119,12 @@ namespace periph::timer_hw_mapping
         static_cast<IRQn_Type>(0), // TIM12_IRQn
         static_cast<IRQn_Type>(0), // TIM13_IRQn
         TIM14_IRQn,
-#if defined(STM32C051xx) || defined(STM32C071xx) || defined(STM32C091xx) || defined(STM32C092xx)
+        #if defined(STM32C091xx) || defined(STM32C092xx)
         TIM15_IRQn,
 #else
         static_cast<IRQn_Type>(0),
 #endif
-        TIM16_IRQn, TIM17_IRQn
+        TIM16_IRQn,
+        TIM17_IRQn
     };
 } // namespace periph::timer_hw_mapping
