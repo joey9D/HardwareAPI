@@ -9,26 +9,28 @@ namespace periph::gpio_hw_mapping
     constexpr auto pins = 16; // The total number of pins in port
 
     constexpr GPIO_TypeDef *const gpio[ports] =
-        {
-            GPIOA, GPIOB, GPIOC,
+    {
+        GPIOA, GPIOB, GPIOC,
 #if defined(STM32C031xx) || defined(STM32C051xx) || defined(STM32C071xx) || \
     defined(STM32C091xx) || defined(STM32C092xx)
-            GPIOD,
+        GPIOD,
 #else
-            nullptr,
+        nullptr,
 #endif
-            GPIOF};
+        GPIOF
+    };
 
     constexpr uint32_t rcc_en[ports] =
-        {
-            RCC_IOPENR_GPIOAEN,
-            RCC_IOPENR_GPIOBEN,
-            RCC_IOPENR_GPIOCEN,
+    {
+        RCC_IOPENR_GPIOAEN,
+        RCC_IOPENR_GPIOBEN,
+        RCC_IOPENR_GPIOCEN,
 #if defined(STM32C031xx) || defined(STM32C051xx) || defined(STM32C071xx) || \
     defined(STM32C091xx) || defined(STM32C092xx)
-            RCC_IOPENR_GPIODEN,
+        RCC_IOPENR_GPIODEN,
 #else
-            0,
+        0,
 #endif
-            RCC_IOPENR_GPIOFEN};
+        RCC_IOPENR_GPIOFEN
+    };
 } // namespace periph::gpio_hw_mapping
