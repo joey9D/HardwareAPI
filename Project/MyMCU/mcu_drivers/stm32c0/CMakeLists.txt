@@ -1,6 +1,7 @@
 set(CMSIS_LIBRARY_NAME "cmsis")
+set(STM32C0_SRC "src")
 
-add_library(periph_stm32c0
+add_library(${STM32C0_SRC}
     STATIC
         src/assert.c
         src/fault_handlers.c
@@ -13,13 +14,13 @@ add_library(periph_stm32c0
         src/wdt.cpp
 )
 
-target_include_directories(periph_stm32c0 PUBLIC
+target_include_directories( PUBLIC
     include
 )
 
 add_subdirectory(${CMSIS_LIBRARY_NAME})
 
-target_link_libraries(periph_stm32c0
+target_link_libraries(${STM32C0_SRC}
     PRIVATE
         periph
         ${CMSIS_LIBRARY_NAME}
