@@ -1,9 +1,10 @@
-#include "periph/systick.hpp"
+#include "periph/systick.h"
 #include "rcc.hpp"
-#include "stm32f0xx.h"
+#include "stm32c0xx.h"
 #include "core_cm0.h"
-#include "FreeRTOS.h"
-#include "task.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
+#include "FreeRTOSConfig.h"
 
 using namespace periph;
 
