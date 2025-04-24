@@ -1,4 +1,4 @@
-set(CMAKE_ASM_COMPILER "C:/msys64/ucrt64/bin/cc.exe")
+set(CMAKE_ASM_COMPILER "C:/msys64/ucrt64/bin/gcc.exe")
 set(CMAKE_ASM_COMPILER_ARG1 "")
 set(CMAKE_AR "C:/msys64/ucrt64/bin/ar.exe")
 set(CMAKE_ASM_COMPILER_AR "C:/msys64/ucrt64/bin/gcc-ar.exe")

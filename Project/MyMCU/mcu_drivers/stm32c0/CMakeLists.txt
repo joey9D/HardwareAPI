@@ -14,7 +14,7 @@ add_library(${STM32C0_SRC}
         src/wdt.cpp
 )
 
-target_include_directories( PUBLIC
+target_include_directories(${STM32C0_SRC} PUBLIC
     include
 )
 

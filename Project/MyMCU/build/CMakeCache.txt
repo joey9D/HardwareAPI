@@ -21,7 +21,7 @@ CMAKE_ADDR2LINE:FILEPATH=C:/msys64/ucrt64/bin/addr2line.exe
 CMAKE_AR:FILEPATH=C:/msys64/ucrt64/bin/ar.exe
 
 //ASM compiler
-CMAKE_ASM_COMPILER:FILEPATH=C:/msys64/ucrt64/bin/cc.exe
+CMAKE_ASM_COMPILER:FILEPATH=C:/msys64/ucrt64/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -50,7 +50,7 @@ CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 CMAKE_BUILD_TYPE:STRING=Release
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=C:/msys64/ucrt64/bin/c++.exe
+CMAKE_CXX_COMPILER:STRING=C:/msys64/ucrt64/bin/g++.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -79,7 +79,7 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 CMAKE_CXX_STANDARD_LIBRARIES:STRING=-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=C:/msys64/ucrt64/bin/cc.exe
+CMAKE_C_COMPILER:STRING=C:/msys64/ucrt64/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
