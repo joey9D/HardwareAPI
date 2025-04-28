@@ -16,7 +16,9 @@
       ".clang*": "yaml",
       "*.hpp.in": "cpp",
       "*.in": "cpp",
-      "cstdint": "cpp"
+      "cstdint": "cpp",
+      "random": "cpp",
+      "stm32c0xx.h": "c"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,

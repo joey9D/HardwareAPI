@@ -1,8 +1,8 @@
 #pragma once
 
-#include "periph/gpio.hpp"
+#include "gpio/gpio.h"
 #include "periph/spi.hpp"
-#include "periph/exti.hpp"
+#include "core/exti.hpp"
 #include "periph/timer.hpp"
 #include "FreeRTOS.h"
 #include "semphr.h"
@@ -19,15 +19,15 @@ public:
         tx_max_retries = -2,
         no_response    = -3
     };
-    
+
     enum class dev {NRF24L01, NRF24L01_PLUS};
-    
+
     nrf24l01(periph::spi &spi, periph::gpio &cs, periph::gpio &ce,
         periph::exti &exti, periph::timer &timer, enum dev dev = dev::NRF24L01_PLUS);
     ~nrf24l01();
-    
+
     enum res init();
-    
+
     // 250 kbps datarate available only for nrf24l01+
     enum class datarate : uint8_t {_250_kbps, _1_Mbps, _2_Mbps};
     enum class pwr : uint8_t {_0_dBm, _6_dBm, _12_dBm, _18_dBm};
@@ -37,7 +37,7 @@ public:
         _2000_US, _2250_US, _2500_US, _2750_US, _3000_US, _3250_US,
         _3500_US, _3750_US, _4000_US
     };
-    
+
     static constexpr auto pipes = 6;
     static constexpr auto fifo_size = 32;
 #pragma pack(push, 1)
@@ -79,7 +79,7 @@ public:
 #pragma pack(pop)
     enum res get_config(config_t &config);
     enum res set_config(config_t &config);
-    
+
     struct packet_t
     {
         uint8_t pipe;
@@ -89,7 +89,7 @@ public:
     /**
      * @brief Read packet.
      * @note This method changes nrf24l01 mode from power-down to rx.
-     * 
+     *
      * @param packet Packet to receive.
      * @param ack Ack payload to be transmitted after reception. Don't
      * forget to specify ack size (ack->size) and pipe index (ack->pipe) for
@@ -98,11 +98,11 @@ public:
      * @return int8_t Error code. @see @ref res_t
      */
     enum res read(packet_t &packet, packet_t *ack = nullptr);
-    
+
     /**
      * @brief Write data buffer.
      * @note This method changes nrf24l01 mode from power-down to tx.
-     * 
+     *
      * @param buff Pointer to data buffer.
      * @param size Size of data buffer. It must match the payload size on
      * receiving side or use dynamic payload size.
@@ -114,7 +114,7 @@ public:
      */
     enum res write(void *buff, size_t size, packet_t *ack = nullptr,
         bool is_continuous_tx = false);
-    
+
     /**
      * @brief Go to power down mode.
      * Usually this method shouldn't be used in common workflow. Power down
@@ -123,19 +123,19 @@ public:
      * actions is planned.
      * Power down mode is automatically activated when none of the rx pipes
      * are opened.
-     * 
+     *
      * @return int8_t Error code. @see @ref res_t
      */
     enum res power_down();
-    
+
     // Delete copy constructor and copy assignment operator
     nrf24l01(const nrf24l01&) = delete;
     nrf24l01& operator=(const nrf24l01&) = delete;
-    
+
     // Delete move constructor and move assignment operator
     nrf24l01(nrf24l01&&) = delete;
     nrf24l01& operator=(nrf24l01&&) = delete;
-    
+
 private:
     enum class reg : uint8_t
     {
@@ -168,7 +168,7 @@ private:
     };
     enum res read_reg(reg reg, void *data, size_t size = 1);
     enum res write_reg(reg reg, void *data, size_t size = 1);
-    
+
     enum class instruction : uint8_t
     {
         R_REGISTER         = 0x00,
@@ -187,22 +187,22 @@ private:
     enum res exec_instruction(instruction instruction);
     enum res exec_instruction_with_read(instruction instruction, void *buff, size_t size);
     enum res exec_instruction_with_write(instruction instruction, void *buff, size_t size);
-    
+
     enum class mode { PWR_DOWN, STANDBY_1, TX, RX };
     enum res set_mode(mode mode);
-    
+
     bool is_config_valid(config_t &config);
     enum res ack_payload(bool enable);
-    
+
     void delay(std::chrono::microseconds timeout);
-    
+
     periph::spi &spi;
     periph::gpio &cs, &ce;
     periph::exti &exti;
     periph::timer &timer;
     TaskHandle_t task;
     SemaphoreHandle_t api_lock;
-    
+
     struct
     {
         enum dev dev;

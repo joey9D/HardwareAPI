@@ -10,12 +10,13 @@ add_library(${STM32C0_SRC}
         src/spi_stm32c0.cpp
         src/systick.cpp
         src/timer_stm32c0.cpp
-        src/usart_stm32c0.cpp
+        src/uart_stm32c0.cpp
         src/wdt.cpp
 )
 
-target_include_directories(${STM32C0_SRC} PUBLIC
-    include
+target_include_directories(${STM32C0_SRC}
+    PUBLIC
+        include
 )
 
 add_subdirectory(${CMSIS_LIBRARY_NAME})

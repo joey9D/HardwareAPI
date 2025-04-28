@@ -2,7 +2,7 @@
 #include "periph/spi_stm32c0.hpp"
 #include "rcc.hpp"
 #include "gpio_hw_mapping.hpp"
-#include "stm32f0xx.h"
+#include "stm32c0xx.h"
 #include "core_cm0.h"
 
 using namespace periph;
@@ -14,10 +14,10 @@ static spi_stm32c0 *obj_list[spis];
 constexpr SPI_TypeDef *const spi_regs[spis] =
 {
     SPI1,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx) || defined(stm32c091xC) || defined(stm32c098xx)
     SPI2
 #else
     nullptr
@@ -27,10 +27,10 @@ constexpr SPI_TypeDef *const spi_regs[spis] =
 constexpr IRQn_Type irqn[spis] =
 {
     SPI1_IRQn,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx) || defined(stm32c091xC) || defined(stm32c098xx)
     SPI2_IRQn
 #else
     static_cast<IRQn_Type>(0)
@@ -40,10 +40,10 @@ constexpr IRQn_Type irqn[spis] =
 constexpr uint32_t rcc_en[spis] =
 {
     RCC_APB2ENR_SPI1EN,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx) || defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB1ENR_SPI2EN
 #else
     0
@@ -53,10 +53,10 @@ constexpr uint32_t rcc_en[spis] =
 constexpr uint32_t rcc_rst[spis] =
 {
     RCC_APB2RSTR_SPI1RST,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx) || defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB1RSTR_SPI2RST
 #else
     0
@@ -423,8 +423,8 @@ void spi_stm32c0::remap_dma(uint8_t spi, dma_stm32c0 &dma)
 {
     auto ch = dma.channel();
 
-#if defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx)
+#if defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx)
     if((ch == 3 || ch == 4) && spi == 1)
     {
         SYSCFG->CFGR1 &= ~SYSCFG_CFGR1_SPI2_DMA_RMP;
@@ -433,7 +433,7 @@ void spi_stm32c0::remap_dma(uint8_t spi, dma_stm32c0 &dma)
     {
         SYSCFG->CFGR1 |= SYSCFG_CFGR1_SPI2_DMA_RMP;
     }
-#elif defined(STM32F091xC) || defined(STM32F098xx)
+#elif defined(stm32c091xC) || defined(stm32c098xx)
 #error Not implemented. Need to change DMA1_CSELR: "DMAx channel selection registers"
 #endif
 }
@@ -544,10 +544,10 @@ extern "C" void spi_irq_hndlr(periph::spi_stm32c0 *obj)
         }
         obj->irq_res = spi::res::ok;
     }
-#if defined(STM32F031x6) || defined(STM32F038xx) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F071xB) || defined(STM32F072xB) || defined(STM32F078xx) || \
-    defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c031x6) || defined(stm32c038xx) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c071xB) || defined(stm32c072xB) || defined(stm32c078xx) || \
+    defined(stm32c091xC) || defined(stm32c098xx)
     else if((spi_reg->CR2 & SPI_CR2_ERRIE) && (sr & (SPI_SR_UDR | SPI_SR_MODF | SPI_SR_OVR)))
 #else
     else if((spi_reg->CR2 & SPI_CR2_ERRIE) && (sr & (SPI_SR_MODF | SPI_SR_OVR)))
@@ -583,10 +583,10 @@ extern "C" void SPI1_IRQHandler(void)
     spi_irq_hndlr(obj_list[0]);
 }
 
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx) || defined(stm32c091xC) || defined(stm32c098xx)
 extern "C" void SPI2_IRQHandler(void)
 {
     spi_irq_hndlr(obj_list[1]);

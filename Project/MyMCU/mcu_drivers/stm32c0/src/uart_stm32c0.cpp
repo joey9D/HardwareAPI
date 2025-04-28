@@ -3,7 +3,7 @@
 #include "periph/uart_stm32c0.hpp"
 #include "rcc.hpp"
 #include "gpio_hw_mapping.hpp"
-#include "stm32f0xx.h"
+#include "stm32c0xx.h"
 #include "core_cm0.h"
 
 using namespace periph;
@@ -17,28 +17,28 @@ static uart_stm32c0 *obj_list[uarts];
 constexpr USART_TypeDef *const uart_regs[uarts] =
 {
     USART1,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     USART2,
 #else
     nullptr,
 #endif
-#if defined(STM32F030xC) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     USART3, USART4,
 #else
     nullptr, nullptr,
 #endif
-#if defined(STM32F030xC) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c091xC) || defined(stm32c098xx)
     USART5, USART6,
 #else
     nullptr, nullptr,
 #endif
-#if defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c091xC) || defined(stm32c098xx)
     USART7, USART8
 #else
     nullptr, nullptr
@@ -48,33 +48,33 @@ constexpr USART_TypeDef *const uart_regs[uarts] =
 constexpr IRQn_Type irqn_num[uarts] =
 {
     USART1_IRQn,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     USART2_IRQn,
 #else
     static_cast<IRQn_Type>(0),
 #endif
-#if defined(STM32F030xC)
+#if defined(stm32c030xC)
     USART3_6_IRQn, USART3_6_IRQn,
-#elif defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || \
-    defined(STM32F078xx)
+#elif defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || \
+    defined(stm32c078xx)
     USART3_4_IRQn, USART3_4_IRQn,
-#elif defined(STM32F091xC) || defined(STM32F098xx)
+#elif defined(stm32c091xC) || defined(stm32c098xx)
     USART3_8_IRQn, USART3_8_IRQn,
 #else
     static_cast<IRQn_Type>(0), static_cast<IRQn_Type>(0),
 #endif
-#if defined(STM32F030xC)
+#if defined(stm32c030xC)
     USART3_6_IRQn, USART3_6_IRQn,
-#elif defined(STM32F091xC) || defined(STM32F098xx)
+#elif defined(stm32c091xC) || defined(stm32c098xx)
     USART3_8_IRQn, USART3_8_IRQn,
 #else
     static_cast<IRQn_Type>(0), static_cast<IRQn_Type>(0),
 #endif
-#if defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c091xC) || defined(stm32c098xx)
     USART3_8_IRQn, USART3_8_IRQn
 #else
     static_cast<IRQn_Type>(0), static_cast<IRQn_Type>(0)
@@ -84,28 +84,28 @@ constexpr IRQn_Type irqn_num[uarts] =
 constexpr uint32_t rcc_en[uarts] =
 {
     RCC_APB2ENR_USART1EN,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     RCC_APB1ENR_USART2EN,
 #else
     0,
 #endif
-#if defined(STM32F030xC) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     RCC_APB1ENR_USART3EN, RCC_APB1ENR_USART4EN,
 #else
     0, 0,
 #endif
-#if defined(STM32F030xC) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB1ENR_USART5EN, RCC_APB2ENR_USART6EN,
 #else
     0, 0,
 #endif
-#if defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB2ENR_USART7EN, RCC_APB2ENR_USART8EN
 #else
     0, 0
@@ -115,28 +115,28 @@ constexpr uint32_t rcc_en[uarts] =
 constexpr uint32_t rcc_rst[uarts] =
 {
     RCC_APB2RSTR_USART1RST,
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     RCC_APB1RSTR_USART2RST,
 #else
     0,
 #endif
-#if defined(STM32F030xC) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
     RCC_APB1RSTR_USART3RST, RCC_APB1RSTR_USART4RST,
 #else
     0, 0,
 #endif
-#if defined(STM32F030xC) || defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c030xC) || defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB1RSTR_USART5RST, RCC_APB2RSTR_USART6RST,
 #else
     0, 0,
 #endif
-#if defined(STM32F091xC) || defined(STM32F098xx)
+#if defined(stm32c091xC) || defined(stm32c098xx)
     RCC_APB2RSTR_USART7RST, RCC_APB2RSTR_USART8RST
 #else
     0, 0
@@ -403,8 +403,8 @@ void uart_stm32c0::gpio_af_init(gpio_stm32c0 &gpio)
 
 void uart_stm32c0::remap_dma(uint8_t uart, dma_stm32c0 &dma)
 {
-#if defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx)
+#if defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx)
     switch(dma.channel())
     {
         case 1:
@@ -465,7 +465,7 @@ void uart_stm32c0::remap_dma(uint8_t uart, dma_stm32c0 &dma)
 
         default: assert(0);
     }
-#elif defined(STM32F091xC) || defined(STM32F098xx)
+#elif defined(stm32c091xC) || defined(stm32c098xx)
 #error Not implemented. Need to change DMA1_CSELR: "DMAx channel selection registers"
 #else
     switch(dma.channel())
@@ -617,18 +617,18 @@ extern "C" void USART1_IRQHandler(void)
     uart_irq_hndlr(obj_list[0]);
 }
 
-#if defined(STM32F030x8) || defined(STM32F030xC) || defined(STM32F042x6) || \
-    defined(STM32F048xx) || defined(STM32F051x8) || defined(STM32F058xx) || \
-    defined(STM32F070x6) || defined(STM32F070xB) || defined(STM32F071xB) || \
-    defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F091xC) || \
-    defined(STM32F098xx)
+#if defined(stm32c030x8) || defined(stm32c030xC) || defined(stm32c042x6) || \
+    defined(stm32c048xx) || defined(stm32c051x8) || defined(stm32c058xx) || \
+    defined(stm32c070x6) || defined(stm32c070xB) || defined(stm32c071xB) || \
+    defined(stm32c072xB) || defined(stm32c078xx) || defined(stm32c091xC) || \
+    defined(stm32c098xx)
 extern "C" void USART2_IRQHandler(void)
 {
     uart_irq_hndlr(obj_list[1]);
 }
 #endif
 
-#if defined(STM32F030xC)
+#if defined(stm32c030xC)
 extern "C" void USART3_6_IRQHandler(void)
 {
     for(uint8_t i = 2; i <= 5; i++)
@@ -645,7 +645,7 @@ extern "C" void USART3_6_IRQHandler(void)
         }
     }
 }
-#elif defined(STM32F070xB) || defined(STM32F071xB) || defined(STM32F072xB) || defined(STM32F078xx)
+#elif defined(stm32c070xB) || defined(stm32c071xB) || defined(stm32c072xB) || defined(stm32c078xx)
 extern "C" void USART3_4_IRQHandler(void)
 {
     for(uint8_t i = 2; i <= 3; i++)
@@ -662,7 +662,7 @@ extern "C" void USART3_4_IRQHandler(void)
         }
     }
 }
-#elif defined(STM32F091xC) || defined(STM32F098xx)
+#elif defined(stm32c091xC) || defined(stm32c098xx)
 extern "C" void USART3_8_IRQHandler(void)
 {
     for(uint8_t i = 2; i <= 7; i++)

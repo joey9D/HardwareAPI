@@ -1,4 +1,4 @@
-#include "periph/systick.h"
+#include "core/systick.h"
 #include "rcc.hpp"
 #include "stm32c0xx.h"
 #include "core_cm0.h"

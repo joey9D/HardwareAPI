@@ -2,12 +2,16 @@
 
 int main()
 {
-    std::uint32_t val_a = 5;
-    std::uint32_t val_b = 10;
+    periph::systick::init();
 
-    std::uint32_t res = basic_add(val_a, val_b);
-    std::cout << "Cmake res = " << res << std::endl;
+    periph::gpio_stm32c0 led(periph::gpio_stm32c0::port::a, 9, periph::gpio::mode::digital_output);
 
-    gpio_print();
+    while(1)
+    {
+        led.toggle();
+        // TODO: implement delay function to avoid using FreeRTOS task/delay etc..
+        // delay(1000);
+    }
+
     return 0;
 }

@@ -2,9 +2,9 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
-#include "periph/gpio.hpp"
+#include "gpio/gpio.h"
 #include "periph/timer.hpp"
-#include "periph/exti.hpp"
+#include "core/exti.hpp"
 
 namespace drv
 {
@@ -19,27 +19,27 @@ public:
         read_error   = -3,
         line_busy    = -4
     };
-    
+
     singlewire(periph::gpio &gpio, periph::timer &timer, periph::exti &exti);
     ~singlewire();
-    
+
     enum res read(uint8_t *buff, uint16_t size);
-    
+
     // Delete copy constructor and copy assignment operator
     singlewire(const singlewire&) = delete;
     singlewire& operator=(const singlewire&) = delete;
-    
+
     // Delete move constructor and move assignment operator
     singlewire(singlewire&&) = delete;
     singlewire& operator=(singlewire&&) = delete;
-    
+
 private:
     periph::gpio &gpio;
     periph::timer &timer;
     periph::exti &exti;
     TaskHandle_t task;
     res res;
-    
+
     enum state
     {
         request,
@@ -55,14 +55,14 @@ private:
         std::chrono::microseconds(40),    // wait_response_start
         std::chrono::microseconds(95),    // wait_response_end
         std::chrono::microseconds(95),    // wait_bit_start_low
-        
+
         /* Normally this timeout should be 50 us, but DHT22 keeps the data line low
         for 67 us after each byte. Therefore, increase this timeout to avoid res::read_error
         */
         std::chrono::microseconds(67),    // wait_bit_start_high
         std::chrono::microseconds(35)     // wait_bit_check
     };
-    
+
     struct
     {
         enum state state;

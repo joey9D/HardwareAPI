@@ -1,7 +1,7 @@
 #include <cassert>
-#include "periph/exti_stm32c0.hpp"
+#include "core/exti_stm32c0.hpp"
 #include "gpio_hw_mapping.hpp"
-#include "stm32f0xx.h"
+#include "stm32c0xx.h"
 #include "core_cm0.h"
 
 using namespace periph;

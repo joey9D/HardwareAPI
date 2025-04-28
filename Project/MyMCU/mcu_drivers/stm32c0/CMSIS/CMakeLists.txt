@@ -1,5 +1,5 @@
-set(CMSIS_DSP_LIBRARY_NAME "cmsis_dsp")
-set(CMSIS_NN_LIBRARY_NAME "cmsis_nn")
+set(CMSIS_DSP_LIBRARY_NAME "dsp")
+set(CMSIS_NN_LIBRARY_NAME "nn")
 
 add_library(cmsis STATIC
     Device/ST/STM32C0xx/Source/system_stm32c0xx.c
@@ -17,5 +17,5 @@ target_include_directories(cmsis
 #         HSE_VALUE=
 # )
 
-add_subdirectory(CMSIS_DSP_LIBRARY_NAME)
-add_subdirectory(CMSIS_NN_LIBRARY_NAME)
+add_subdirectory(${CMSIS_DSP_LIBRARY_NAME})
+add_subdirectory(${CMSIS_NN_LIBRARY_NAME})
