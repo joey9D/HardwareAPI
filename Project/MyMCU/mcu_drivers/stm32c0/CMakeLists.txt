@@ -22,7 +22,8 @@ target_include_directories(${STM32C0_SRC}
 add_subdirectory(${CMSIS_LIBRARY_NAME})
 
 target_link_libraries(${STM32C0_SRC}
-    PRIVATE
+    PUBLIC
         periph
         ${CMSIS_LIBRARY_NAME}
+        ${CORE_LIBRARY_NAME}
 )

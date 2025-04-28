@@ -1,5 +1,5 @@
 #include <cassert>
-#include "core/exti_stm32c0.hpp"
+#include "periph/exti_stm32c0.hpp"
 #include "gpio_hw_mapping.hpp"
 #include "stm32c0xx.h"
 #include "core_cm0.h"

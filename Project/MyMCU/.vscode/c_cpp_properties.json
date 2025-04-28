@@ -4,7 +4,8 @@
     {
       "name": "windows-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/mcu_drivers/stm32c0/CMSIS/Device/ST/STM32C0xx/Include"
       ],
       "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
       "cStandard": "${default}",
@@ -25,7 +26,8 @@
 //       {
 //         "name": "macos-gcc-arm64",
 //         "includePath": [
-//           "${workspaceFolder}/**"
+//           "${workspaceFolder}/**",
+//           "${workspaceFolder}/mcu_drivers/stm32c0/CMSIS/Device/ST/STM32C0xx/Include"
 //         ],
 //         "compilerPath": "/opt/homebrew/bin/gcc",
 //         "cStandard": "c11",

@@ -6,7 +6,7 @@ add_library(cmsis STATIC
 )
 
 target_include_directories(cmsis
-    PRIVATE
+    PUBLIC
         Core/Include
         Device/ST/STM32C0xx/Include
 )
