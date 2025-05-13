@@ -1,9 +1,22 @@
 cmake_minimum_required(VERSION 3.22)
 
+find_program(CMAKE_ASM_COMPILER NAMES arm-none-eabi-gcc)
+find_program(CMAKE_C_COMPILER NAMES arm-none-eabi-gcc)
+find_program(CMAKE_CXX_COMPILER NAMES arm-none-eabi-g++)
+find_program(CMAKE_LINKER NAMES arm-none-eabi-g++)
+find_program(CMAKE_OBJCOPY NAMES arm-none-eabi-objcopy)
+find_program(CMAKE_SIZE NAMES arm-none-eabi-size)
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
 ####################################
 # SET PROJECT NAME#
 ####################################
 set(PROJECT_NAME My_MCU_Lib)
+# set(PROJECT_NAME stm32c0)
+# set(PROJECT_NAME stm32g0)
+# set(PROJECT_NAME esp32_c6)
 
 project(
     ${PROJECT_NAME}
@@ -34,7 +47,6 @@ set(EXECUTABLE_NAME MainExe)
 set(BASIC_LIBRARY basic)
 set(CORE_LIBRARY core)
 set(GPIO_LIBRARY gpio)
-set(MCU_DRIVERS_LIBRARY mcu_drivers/stm32c0)
 # set(I2C_LIBRARY i2c)
 # set(SPI_LIBRARY spi)
 # set(UART_LIBRARY uart)
@@ -48,26 +60,21 @@ include(FetchContent)
 include(Docs)
 
 ####################################
-# LOGGING #
+# CONFIGURE TARGET #
 ####################################
-# FetchContent_Declare(
-#     spdlog
-#     GIT_REPOSITORY https://github.com/gabime/spdlog.git
-#     GIT_TAG v1.15.2
-#     GIT_SHALLOW TRUE
-# )
-# FetchContent_MakeAvailable(spdlog)
+set(MCU_DRIVERS_LIBRARY mcu_drivers/stm32c0)
+target_sources(cmsis PRIVATE ${MCU_DRIVERS_LIBRARY}/stm32c0/CMSIS/Device/ST/STM32C0xx/Source/startup_stm32c031xx.s)
 
-####################################
-# CLI ARGUMENTS #
-####################################
-# FetchContent_Declare(
-#     cxxopts
-#     GIT_REPOSITORY https://github.com/jarro2783/cxxopts.git
-#     GIT_TAG v3.2.0
-#     GIT_SHALLOW TRUE
-# )
-# FetchContent_MakeAvailable(cxxopts)
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE
+    -mcpu=cortex-m4
+    -mfloat-abi=hard
+    -mfpu=fpv4-sp-d16
+    -Wl,--gc-sections
+    -specs=nano.specs
+    -specs=nosys.specs
+    -Wl,-Map=${CMAKE_PROJECT_NAME}.map,--cref
+    -T${CMAKE_CURRENT_SOURCE_DIR}/${MCU_DRIVERS_LIBRARY}/CMSIS/Device/ST/STM32C0xx/Source/linker/STM32C031C6TX_FLASHgit a.ld
+)
 
 ####################################
 # TESTING #
@@ -96,9 +103,3 @@ add_subdirectory(${APP_LIBRARY})
 #     enable_testing()
 #     add_subdirectory(tests)
 # endif()
-
-
-####################################
-# SELECT TARGET SRC #
-####################################
-#target_sources()

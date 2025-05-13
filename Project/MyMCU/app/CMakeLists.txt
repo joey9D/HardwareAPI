@@ -8,4 +8,5 @@ target_link_libraries(${EXECUTABLE_NAME} PUBLIC
     ${BASIC_LIBRARY}
     ${GPIO_LIBRARY}
     ${CORE_LIBRARY}
+    ${MCU_DRIVERS_LIBRARY}
 )
