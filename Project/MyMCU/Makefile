@@ -9,3 +9,17 @@ dependency:
 prepare:
 	rm -rf build
 	mkdir build
+
+
+BUILD_DIR ?= build
+BUILD_TYPE ?= Debug
+
+all:
+	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+	cmake --build $(BUILD_DIR) --target $@
+
+flash erase reset debug:
+	cmake --build $(BUILD_DIR) --target $@
+
+clean:
+	@cmake -E rm -rf $(BUILD_DIR)
