@@ -2,7 +2,7 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 #include "periph/timer.hpp"
 #include "core/exti.hpp"
 

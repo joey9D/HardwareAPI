@@ -1,5 +1,5 @@
 #include <cassert>
-#include "gpio_pin_debouncer.h"
+#include "gpio_pin_debouncer.hpp"
 
 using namespace drv;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 #include "periph/spi.hpp"
 #include "core/exti.hpp"
 #include "periph/timer.hpp"

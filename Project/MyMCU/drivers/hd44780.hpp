@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdarg>
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 #include "periph/timer.hpp"
 #include "FreeRTOS.h"
 #include "semphr.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <functional>
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 
 namespace drv
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <chrono>
-#include "gpio.h"
+#include "gpio.hpp"
 
 namespace drv
 {

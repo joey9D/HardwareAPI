@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sd_cid_csd_reg.hpp"
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 #include "FreeRTOS.h"
 #include "semphr.h"
 
