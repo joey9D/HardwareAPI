@@ -1,19 +1,9 @@
-set(GPIO_SOURCES
+add_library(${GPIO_LIBRARY} STATIC
     "gpio_print.cpp"
     "gpio_pin_debouncer.cpp"
 )
 
-set(GPIO_HEADERS
-    "gpio.h"
-    "gpio_print.h"
-    "gpio_pin_debouncer.h"
-)
-
-add_library(${GPIO_LIBRARY_NAME} STATIC
-    ${GPIO_SOURCES}
-    ${GPIO_HEADERS}
-)
-
-target_include_directories(${GPIO_LIBRARY_NAME} PUBLIC
-    "./"
+target_include_directories(${GPIO_LIBRARY} PUBLIC
+#    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${PROJECT_SOURCE_DIR}
 )

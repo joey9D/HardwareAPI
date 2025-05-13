@@ -1,4 +1,4 @@
-add_library(${CMSIS_NN_LIBRARY_NAME}
+add_library(${CMSIS_NN_LIBRARY}
     STATIC
         Source/ActivationFunctions/arm_nn_activations_q15.c
         Source/ActivationFunctions/arm_nn_activations_q7.c
@@ -33,12 +33,12 @@ add_library(${CMSIS_NN_LIBRARY_NAME}
         Source/SoftmaxFunctions/arm_softmax_q7.c
 )
 
-target_include_directories(${CMSIS_NN_LIBRARY_NAME}
+target_include_directories(${CMSIS_NN_LIBRARY}
     PRIVATE
         Include
 )
 
-target_link_libraries(${CMSIS_NN_LIBRARY_NAME}
+target_link_libraries(${CMSIS_NN_LIBRARY}
     PUBLIC
-        "${CMSIS_DSP_LIBRARY_NAME}"
+        "${CMSIS_DSP_LIBRARY}"
 )

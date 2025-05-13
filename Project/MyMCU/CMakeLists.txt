@@ -31,14 +31,14 @@ option(
 ####################################
 #set(LIBRARY_NAME Library)
 set(EXECUTABLE_NAME MainExe)
-set(BASIC_LIBRARY_NAME basic)
-set(CORE_LIBRARY_NAME core)
-set(GPIO_LIBRARY_NAME gpio)
-set(MCU_DRIVERS_LIBRARY_NAME mcu_drivers)
-# set(I2C_LIBRARY_NAME i2c)
-# set(SPI_LIBRARY_NAME spi)
-# set(UART_LIBRARY_NAME uart)
-set(APP_LIBRARY_NAME app)
+set(BASIC_LIBRARY basic)
+set(CORE_LIBRARY core)
+set(GPIO_LIBRARY gpio)
+set(MCU_DRIVERS_LIBRARY mcu_drivers/stm32c0)
+# set(I2C_LIBRARY i2c)
+# set(SPI_LIBRARY spi)
+# set(UART_LIBRARY uart)
+set(APP_LIBRARY app)
 
 ####################################
 # INCLUDE CMAKE MODULES #
@@ -86,11 +86,11 @@ include(Docs)
 ####################################
 # ADD SUBDIR #
 ####################################
-add_subdirectory(${CORE_LIBRARY_NAME})
-add_subdirectory(${BASIC_LIBRARY_NAME})
-add_subdirectory(${GPIO_LIBRARY_NAME})
-add_subdirectory(${MCU_DRIVERS_LIBRARY_NAME})
-add_subdirectory(${APP_LIBRARY_NAME})
+add_subdirectory(${CORE_LIBRARY})
+add_subdirectory(${BASIC_LIBRARY})
+add_subdirectory(${GPIO_LIBRARY})
+add_subdirectory(${MCU_DRIVERS_LIBRARY})
+add_subdirectory(${APP_LIBRARY})
 # if(ENABLE_TESTING)
 #     include(CTest)
 #     enable_testing()

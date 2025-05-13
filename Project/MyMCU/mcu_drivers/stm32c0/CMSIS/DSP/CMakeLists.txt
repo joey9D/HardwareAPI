@@ -1,4 +1,4 @@
-add_library(CMSIS_DSP_LIBRARY_NAME
+add_library(CMSIS_DSP_LIBRARY
     STATIC
         Source/BasicMathFunctions/arm_abs_f32.c
         Source/BasicMathFunctions/arm_abs_q15.c
@@ -274,7 +274,7 @@ add_library(CMSIS_DSP_LIBRARY_NAME
         Source/TransformFunctions/arm_rfft_q31.c
 )
 
-target_include_directories(CMSIS_DSP_LIBRARY_NAME
+target_include_directories(CMSIS_DSP_LIBRARY
     PRIVATE
         Include
 )

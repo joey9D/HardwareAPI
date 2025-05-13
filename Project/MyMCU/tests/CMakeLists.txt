@@ -21,7 +21,7 @@ target_include_directories(
 target_link_libraries(
     ${TEST_MAIN}
     PUBLIC
-#   LIBRARY_NAME
+#   LIBRARY
     basic
     gpio
     Catch2::Catch2WithMain

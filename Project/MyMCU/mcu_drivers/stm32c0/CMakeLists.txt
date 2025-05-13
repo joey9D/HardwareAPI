@@ -1,4 +1,4 @@
-set(CMSIS_LIBRARY_NAME "cmsis")
+set(CMSIS_LIBRARY "cmsis")
 set(STM32C0_SRC "src")
 
 add_library(${STM32C0_SRC}
@@ -19,11 +19,14 @@ target_include_directories(${STM32C0_SRC}
         include
 )
 
-add_subdirectory(${CMSIS_LIBRARY_NAME})
+add_subdirectory(${CMSIS_LIBRARY})
 
 target_link_libraries(${STM32C0_SRC}
+    PRIVATE
+        ${GPIO_LIBRARY}
+
     PUBLIC
         periph
-        ${CMSIS_LIBRARY_NAME}
-        ${CORE_LIBRARY_NAME}
+        ${CMSIS_LIBRARY}
+        ${CORE_LIBRARY}
 )
