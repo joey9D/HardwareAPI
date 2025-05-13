@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gpio/gpio.h"
+#include "gpio/gpio.hpp"
 
 namespace periph
 {

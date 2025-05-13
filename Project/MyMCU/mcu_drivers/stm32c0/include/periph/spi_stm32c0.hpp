@@ -1,6 +1,6 @@
 #pragma once
 
-#include "periph/spi.hpp"
+#include "spi/spi.hpp"
 #include "dma_stm32c0.hpp"
 #include "gpio_stm32c0.hpp"
 #include "FreeRTOS.h"
