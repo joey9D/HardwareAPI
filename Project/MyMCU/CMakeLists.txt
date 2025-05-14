@@ -13,8 +13,8 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 ####################################
 # SET PROJECT NAME#
 ####################################
-set(PROJECT_NAME My_MCU_Lib)
-# set(PROJECT_NAME stm32c0)
+# set(PROJECT_NAME My_MCU_Lib) # Project name needs to be mcu specific
+set(PROJECT_NAME stm32c0)
 # set(PROJECT_NAME stm32g0)
 # set(PROJECT_NAME esp32_c6)
 
@@ -27,7 +27,7 @@ project(
 ####################################
 # SET LANGUAGE SETTINGS #
 ####################################
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -47,6 +47,8 @@ set(EXECUTABLE_NAME MainExe)
 set(BASIC_LIBRARY basic)
 set(CORE_LIBRARY core)
 set(GPIO_LIBRARY gpio)
+set(MCU_FAMILY stm32c0)
+set(MCU_DRIVERS_LIBRARY mcu_drivers/${MCU_FAMILY})
 # set(I2C_LIBRARY i2c)
 # set(SPI_LIBRARY spi)
 # set(UART_LIBRARY uart)
@@ -60,20 +62,19 @@ include(FetchContent)
 include(Docs)
 
 ####################################
-# CONFIGURE TARGET #
+# COMPILE OPTIONS #
 ####################################
-set(MCU_DRIVERS_LIBRARY mcu_drivers/stm32c0)
-target_sources(cmsis PRIVATE ${MCU_DRIVERS_LIBRARY}/stm32c0/CMSIS/Device/ST/STM32C0xx/Source/startup_stm32c031xx.s)
-
-target_link_options(${CMAKE_PROJECT_NAME} PRIVATE
-    -mcpu=cortex-m4
-    -mfloat-abi=hard
-    -mfpu=fpv4-sp-d16
-    -Wl,--gc-sections
-    -specs=nano.specs
-    -specs=nosys.specs
-    -Wl,-Map=${CMAKE_PROJECT_NAME}.map,--cref
-    -T${CMAKE_CURRENT_SOURCE_DIR}/${MCU_DRIVERS_LIBRARY}/CMSIS/Device/ST/STM32C0xx/Source/linker/STM32C031C6TX_FLASHgit a.ld
+add_compile_options(
+    -mcpu=cortex-m0plus
+#    -mfloat-abi=hard
+#    -mfpu=fpv4-sp-d16
+    -mthumb
+    -ffunction-sections
+    -fdata-sections
+    $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
+    $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
+    $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
+    $<$<COMPILE_LANGUAGE:CXX>:-fno-use-cxa-atexit>
 )
 
 ####################################
@@ -81,17 +82,17 @@ target_link_options(${CMAKE_PROJECT_NAME} PRIVATE
 ####################################
 # if(ENABLE_TESTING)
 #     FetchContent_Declare(
-#         Catch2
-#         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-#         GIT_TAG v3.8.1
-#         GIT_SHALLOW TRUE
-#     )
-#     FetchContent_MakeAvailable(Catch2)
-#     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
-# endif()
+    #         Catch2
+    #         GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+    #         GIT_TAG v3.8.1
+    #         GIT_SHALLOW TRUE
+    #     )
+    #     FetchContent_MakeAvailable(Catch2)
+    #     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+    # endif()
 
-####################################
-# ADD SUBDIR #
+    ####################################
+    # ADD SUBDIR #
 ####################################
 add_subdirectory(${CORE_LIBRARY})
 add_subdirectory(${BASIC_LIBRARY})
@@ -103,3 +104,7 @@ add_subdirectory(${APP_LIBRARY})
 #     enable_testing()
 #     add_subdirectory(tests)
 # endif()
+
+# Add targets for flashing, erasing, resetting and debugging
+set(JLINK_PARAMS -device STM32C031C6 -if SWD)
+include(debug_probes/jlink.cmake)
