@@ -3,7 +3,7 @@
 #include "rcc.hpp"
 #include "gpio_hw_mapping.hpp"
 #include "stm32c0xx.h"
-#include "core_cm0.h"
+#include "core_cm0plus.h"
 
 using namespace periph;
 

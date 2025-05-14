@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include "gpio.hpp"
+#include "gpio/gpio.hpp"
 
 namespace periph
 {

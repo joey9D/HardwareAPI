@@ -4,7 +4,7 @@
 #include "timer_hw_mapping.hpp"
 #include "rcc.hpp"
 #include "stm32c0xx.h"
-#include "core_cm0.h"
+#include "core_cm0plus.h"
 
 using namespace periph;
 

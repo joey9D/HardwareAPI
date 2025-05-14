@@ -5,7 +5,7 @@ BUILD_TYPE ?= Debug
 
 all:
 	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
-	cmake --build $(BUILD_DIR) --target $@
+	cmake --build $(BUILD_DIR) -j
 
 flash erase reset debug:
 	cmake --build $(BUILD_DIR) --target $@

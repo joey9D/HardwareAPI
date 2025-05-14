@@ -3,7 +3,7 @@
 #include <cstdint>
 #include "stm32c0xx.h"
 #include "system_stm32c0xx.h"
-#include "core_cm0.h"
+#include "core_cm0plus.h"
 
 namespace periph
 {

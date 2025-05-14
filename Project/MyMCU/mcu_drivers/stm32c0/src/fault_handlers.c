@@ -1,5 +1,5 @@
 #include "stm32c0xx.h"
-#include "core_cm0.h"
+#include "core_cm0plus.h"
 //#include "FreeRTOS.h"
 
 void HardFault_Handler()

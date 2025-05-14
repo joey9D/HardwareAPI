@@ -64,6 +64,8 @@ include(Docs)
 ####################################
 # COMPILE OPTIONS #
 ####################################
+add_compile_definitions(STM32C031xx)
+
 add_compile_options(
     -mcpu=cortex-m0plus
 #    -mfloat-abi=hard
