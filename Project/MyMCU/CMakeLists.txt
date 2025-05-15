@@ -118,11 +118,12 @@ add_subdirectory(${MCU_DRIVERS_LIBRARY})
 # set(UART_LIBRARY uart)
 
 # MAIN EXECUTABLE #
-set(EXECUTABLE_NAME MainExe)
+set(EXECUTABLE_NAME ${PROJECT_NAME})
 set(APP_LIBRARY app)
 add_subdirectory(${APP_LIBRARY})
 
 
 # Add targets for flashing, erasing, resetting and debugging
-set(JLINK_PARAMS -device STM32C031C6 -if SWD)
-include(debug_probes/jlink.cmake)
+# set(JLINK_PARAMS -device STM32C031C6 -if SWD)
+# include(debug_probes/jlink.cmake)
+include(debug_probes/st-link.cmake)

@@ -1,0 +1,1463 @@
+Archive member included to satisfy reference by file (symbol)
+
+mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                              app/CMakeFiles/stm32c0.dir/main.cpp.obj (periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool))
+mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                              app/CMakeFiles/stm32c0.dir/main.cpp.obj (periph::systick::init())
+mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                              mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj) (__assert_func)
+mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                              mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj) (SystemCoreClock)
+mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                              (Reset_Handler)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+                              mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj) (operator delete(void*, unsigned int))
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o) (operator delete(void*))
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+                              mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj) (__aeabi_uidiv)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+                              mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj) (__aeabi_lmul)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o (exit)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o) (free)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o) (_malloc_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o) (__malloc_lock)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o) (__stdio_exit_handler)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o) (_fwalk_sglue)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o) (__sread)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o (memset)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o) (_close_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o) (errno)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o) (_impure_ptr)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o) (_lseek_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o) (_read_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o) (_sbrk_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o) (_write_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o (__libc_init_array)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o) (__retarget_lock_init_recursive)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o) (_free_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o) (_fflush_r)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o) (_close)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o) (_lseek)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o) (_read)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o) (_sbrk)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o) (_write)
+C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o) (_exit)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .rodata.all_implied_fbits
+                0x00000000       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .data.__dso_handle
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text          0x00000000       0x80 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .ARM.extab     0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .ARM.exidx     0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .debug_line_str
+                0x00000000       0xd2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .ARM.attributes
+                0x00000000       0x1b C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+ .text          0x00000000        0x0 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .data          0x00000000        0x0 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .bss           0x00000000        0x0 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .text._ZL20__gthread_key_deletei
+                0x00000000       0x12 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedIjEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedImEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedIyEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt39__is_implicitly_default_constructible_vItE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPKcE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleINSt8__format10_Sink_iterIcEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implINSt8__format10_Sink_iterIcEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleINSt8__format10_Sink_iterIwEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implINSt8__format10_Sink_iterIwEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIPcEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIPcEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIPwEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIPwEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleISt13_Bit_iteratorEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implISt13_Bit_iteratorEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleISt19_Bit_const_iteratorEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implISt19_Bit_const_iteratorEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPNSt6chrono9time_zone5_ImplEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt39__is_implicitly_default_constructible_vISt14default_deleteINSt6chrono9time_zone5_ImplEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx1000000000EEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx1EEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt12__is_ratio_vISt5ratioILx31556952ELx1EEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx2629746EEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES1_E
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEES1_E
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIjEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIjEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1000000000ELx1EEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPKwE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIPKcEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIPKcEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIPKwEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIPKwEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIbEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIiEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIjEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIxEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIyEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIfEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIdEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIeEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIPKwEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerISt17basic_string_viewIwSt11char_traitsIwEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIPKvEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerIPKcEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__format24__is_formattable_integerISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEESt6vectorE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPwNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPwNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIiEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIiEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleIPKDiEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implIPKDiEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleINSt9__unicode13_Utf_iteratorIDicPKDiS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implINSt9__unicode13_Utf_iteratorIDicPKDiS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail14__destructibleINSt9__unicode13_Utf_iteratorIcDiPKcS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .rodata._ZNSt8__detail19__destructible_implINSt9__unicode13_Utf_iteratorIcDiPKcS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .group         0x00000000       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .text          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .data          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .bss           0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZN6periph15gpio_hw_mappingL5portsE
+                0x00000000        0x4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZN6periph15gpio_hw_mappingL4pinsE
+                0x00000000        0x4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZL19GPIO_BSRR_BR_OFFSET
+                0x00000000        0x4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0xc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .group         0x00000000        0x8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .data          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .bss           0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZL20__gthread_key_deletei
+                0x00000000       0x12 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._Z17xTaskGetTickCountv
+                0x00000000       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZN6periph7systick3getEv
+                0x00000000       0x34 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZN6periph7systick8get_pastENSt6chrono8durationIxSt5ratioILx1ELx1000000EEEE
+                0x00000000       0x38 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chrono8durationIxSt5ratioILx1ELx1000EEEC2ImvEERKT_
+                0x00000000       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chrono8durationIxSt5ratioILx1ELx1000000EEEC2IxS1_ILx1ELx1000EEvEERKNS0_IT_T0_EE
+                0x00000000       0x34 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chrono13duration_castINS_8durationIxSt5ratioILx1ELx1000000EEEExS2_ILx1ELx1000EEEENSt9enable_ifIXsrNS_13__is_durationIT_EE5valueES8_E4typeERKNS1_IT0_T1_EE
+                0x00000000       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNKSt6chrono8durationIxSt5ratioILx1ELx1000EEE5countEv
+                0x00000000       0x18 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chrono20__duration_cast_implINS_8durationIxSt5ratioILx1ELx1000000EEEES2_ILx1000ELx1EExLb0ELb1EE6__castIxS2_ILx1ELx1000EEEES4_RKNS1_IT_T0_EE
+                0x00000000       0x3a mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chronomiIxSt5ratioILx1ELx1000EExS1_ILx1ELx1000000EEEENSt11common_typeIJNS_8durationIT_T0_EENS5_IT1_T2_EEEE4typeERKS8_RKSB_
+                0x00000000       0x60 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNKSt6chrono8durationIxSt5ratioILx1ELx1000000EEE5countEv
+                0x00000000       0x18 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZNSt6chrono8durationIxSt5ratioILx1ELx1000000EEEC2IxvEERKT_
+                0x00000000       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedIjEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedImEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail30__integer_to_chars_is_unsignedIyEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt39__is_implicitly_default_constructible_vItE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPKcE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPcSt4spanIcLj4294967295EEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleINSt8__format10_Sink_iterIcEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implINSt8__format10_Sink_iterIcEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implISt16reverse_iteratorIN9__gnu_cxx17__normal_iteratorIPwSt4spanIwLj4294967295EEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleINSt8__format10_Sink_iterIwEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implINSt8__format10_Sink_iterIwEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIPcEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIPcEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIPwEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIPwEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleISt13_Bit_iteratorEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implISt13_Bit_iteratorEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleISt19_Bit_const_iteratorEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implISt19_Bit_const_iteratorEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPNSt6chrono9time_zone5_ImplEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt39__is_implicitly_default_constructible_vISt14default_deleteINSt6chrono9time_zone5_ImplEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx1000000000EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx1EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPcNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx31556952ELx1EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx2629746EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1ELx1000EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1000000ELx1EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt12__is_ratio_vISt5ratioILx1000000000ELx1EEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES1_E
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEES1_E
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIjEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIjEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt39__is_implicitly_default_constructible_vIPKwE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIPKcEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIPKcEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIPKwEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIPKwEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIbEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIiEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIjEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIxEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIyEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIfEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIdEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIeEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIPKwEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerISt17basic_string_viewIwSt11char_traitsIwEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIPKvEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerIPKcEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__format24__is_formattable_integerISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEESt6vectorE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIN9__gnu_cxx17__normal_iteratorIPwNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIN9__gnu_cxx17__normal_iteratorIPwNSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZSt22__is_specialization_ofINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIiEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIiEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleIPKDiEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implIPKDiEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleINSt9__unicode13_Utf_iteratorIDicPKDiS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implINSt9__unicode13_Utf_iteratorIDicPKDiS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implISt17basic_string_viewIcSt11char_traitsIcEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail14__destructibleINSt9__unicode13_Utf_iteratorIcDiPKcS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .rodata._ZNSt8__detail19__destructible_implINSt9__unicode13_Utf_iteratorIcDiPKcS4_NS1_5_ReplEEEEE
+                0x00000000        0x1 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .data          0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .bss           0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .text          0x00000000        0x0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .data          0x00000000        0x0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .bss           0x00000000        0x0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .rodata.APBPrescTable
+                0x00000000       0x20 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .text          0x00000000       0x14 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+ .data          0x00000000        0x0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+ .bss           0x00000000        0x0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .text.__muldi3
+                0x00000000       0x5c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .debug_frame   0x00000000       0x34 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .text.exit     0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .debug_frame   0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .text.malloc   0x00000000       0x14 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .text.sbrk_aligned
+                0x00000000       0x44 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .text._malloc_r
+                0x00000000      0x100 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .bss.__malloc_sbrk_start
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.std      0x00000000       0x6c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.stdio_exit_handler
+                0x00000000       0x1c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.cleanup_stdio
+                0x00000000       0x3c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__fp_lock
+                0x00000000       0x18 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__fp_unlock
+                0x00000000       0x18 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.global_stdio_init.part.0
+                0x00000000       0x3c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__sfp_lock_acquire
+                0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__sfp_lock_release
+                0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__sfp    0x00000000       0xa8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__sinit  0x00000000       0x30 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__fp_lock_all
+                0x00000000       0x1c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text.__fp_unlock_all
+                0x00000000       0x1c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .data.__sglue  0x00000000        0xc C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .bss.__stdio_exit_handler
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .text._fwalk_sglue
+                0x00000000       0x38 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .debug_frame   0x00000000       0x34 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text.__sread  0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text.__seofread
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text.__swrite
+                0x00000000       0x38 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text.__sseek  0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text.__sclose
+                0x00000000        0xc C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .debug_frame   0x00000000       0x90 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .text.memset   0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .text._close_r
+                0x00000000       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .text._reclaim_reent
+                0x00000000       0xd4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .bss.errno     0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .text._lseek_r
+                0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .text._read_r  0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .text._sbrk_r  0x00000000       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .text._write_r
+                0x00000000       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .debug_frame   0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_init
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_init_recursive
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_close
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_close_recursive
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_acquire
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_try_acquire
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_try_acquire_recursive
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text.__retarget_lock_release
+                0x00000000        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___arc4random_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___dd_hash_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___tz_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___env_recursive_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___at_quick_exit_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___atexit_recursive_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .bss.__lock___sfp_recursive_mutex
+                0x00000000        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .text.__sflush_r
+                0x00000000      0x114 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .text._fflush_r
+                0x00000000       0x56 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .text.fflush   0x00000000       0x30 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .debug_frame   0x00000000       0x68 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .text._close   0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .gnu.warning._close
+                0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .text._lseek   0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .gnu.warning._lseek
+                0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .text._read    0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .gnu.warning._read
+                0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .text._sbrk    0x00000000       0x1c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .bss.heap_end.0
+                0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .text._write   0x00000000       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .gnu.warning._write
+                0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .text._exit    0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .debug_frame   0x00000000       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .ARM.attributes
+                0x00000000       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .rodata.all_implied_fbits
+                0x00000000       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .eh_frame      0x00000000        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .text          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+ .data          0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+ .bss           0x00000000        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00003000         xrw
+FLASH            0x08000000         0x00008000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+LOAD app/CMakeFiles/stm32c0.dir/main.cpp.obj
+LOAD gpio/libgpio.a
+LOAD mcu_drivers/stm32c0/libstm32c0_src.a
+LOAD gpio/libgpio.a
+LOAD mcu_drivers/stm32c0/CMSIS/libcmsis.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libm.a
+START GROUP
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libc_nano.a
+END GROUP
+START GROUP
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libc_nano.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a
+END GROUP
+START GROUP
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libc_nano.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a
+END GROUP
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+                0x20003000                        _estack = (ORIGIN (RAM) + LENGTH (RAM))
+                0x00000200                        _Min_Heap_Size = 0x200
+                0x00000400                        _Min_Stack_Size = 0x400
+
+.isr_vector     0x08000000       0xc0
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000       0xc0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x08000000                g_pfnVectors
+                0x080000c0                        . = ALIGN (0x4)
+
+.text           0x080000c0      0xb0c
+                0x080000c0                        . = ALIGN (0x4)
+ *(.text)
+ .text          0x080000c0      0x114 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+                0x080000c0                __aeabi_uidiv
+                0x080000c0                __udivsi3
+                0x080001cc                __aeabi_uidivmod
+ .text          0x080001d4        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+                0x080001d4                __aeabi_idiv0
+                0x080001d4                __aeabi_ldiv0
+ *(.text*)
+ .text.deregister_tm_clones
+                0x080001d8       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text.register_tm_clones
+                0x080001f8       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text.__do_global_dtors_aux
+                0x08000220       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text.frame_dummy
+                0x0800024c       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .text.main     0x08000270       0x24 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+                0x08000270                main
+ .text._ZNK6periph12gpio_stm32c04modeEv
+                0x08000294       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000294                periph::gpio_stm32c0::mode() const
+ .text._ZNK6periph12gpio_stm32c03pinEv
+                0x080002a8       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002a8                periph::gpio_stm32c0::pin() const
+ .text._ZN6periph4gpioC2Ev
+                0x080002bc       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002bc                periph::gpio::gpio()
+                0x080002bc                periph::gpio::gpio()
+ .text._ZN6periph4gpioD2Ev
+                0x080002d8       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002d8                periph::gpio::~gpio()
+                0x080002d8                periph::gpio::~gpio()
+ .text._ZN6periph4gpioD0Ev
+                0x080002f4       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002f4                periph::gpio::~gpio()
+ .text._ZN6periph12gpio_stm32c0C2ENS0_4portEhNS_4gpio4modeEb
+                0x08000318       0xc4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000318                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
+                0x08000318                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
+ .text._ZN6periph12gpio_stm32c0D2Ev
+                0x080003dc       0x64 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080003dc                periph::gpio_stm32c0::~gpio_stm32c0()
+                0x080003dc                periph::gpio_stm32c0::~gpio_stm32c0()
+ .text._ZN6periph12gpio_stm32c0D0Ev
+                0x08000440       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000440                periph::gpio_stm32c0::~gpio_stm32c0()
+ .text._ZN6periph12gpio_stm32c03setEb
+                0x08000464       0x74 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000464                periph::gpio_stm32c0::set(bool)
+ .text._ZN6periph12gpio_stm32c06toggleEv
+                0x080004d8       0x68 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080004d8                periph::gpio_stm32c0::toggle()
+ .text._ZNK6periph12gpio_stm32c03getEv
+                0x08000540       0x5c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000540                periph::gpio_stm32c0::get() const
+ .text._ZN6periph12gpio_stm32c04modeENS_4gpio4modeEb
+                0x0800059c      0x194 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x0800059c                periph::gpio_stm32c0::mode(periph::gpio::mode, bool)
+ .text.__NVIC_SetPriority
+                0x08000730       0xdc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text.SysTick_Config
+                0x0800080c       0x48 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .text._ZN6periph3rcc9frequencyENS0_10clk_sourceE
+                0x08000854       0xbc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000854                periph::rcc::frequency(periph::rcc::clk_source)
+ .text.SysTick_Handler
+                0x08000910       0x18 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000910                SysTick_Handler
+ .text._ZN6periph7systick4initEv
+                0x08000928       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000928                periph::systick::init()
+ .text.__assert_func
+                0x08000954       0x10 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                0x08000954                __assert_func
+ .text.SystemInit
+                0x08000964       0x18 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x08000964                SystemInit
+ .text.SystemCoreClockUpdate
+                0x0800097c       0xc0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x0800097c                SystemCoreClockUpdate
+ .text.Reset_Handler
+                0x08000a3c       0x50 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x08000a3c                Reset_Handler
+ .text.Default_Handler
+                0x08000a8c        0x2 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x08000a8c                TIM1_CC_IRQHandler
+                0x08000a8c                HardFault_Handler
+                0x08000a8c                PendSV_Handler
+                0x08000a8c                NMI_Handler
+                0x08000a8c                I2C1_IRQHandler
+                0x08000a8c                DMAMUX1_IRQHandler
+                0x08000a8c                SPI1_IRQHandler
+                0x08000a8c                EXTI2_3_IRQHandler
+                0x08000a8c                ADC1_IRQHandler
+                0x08000a8c                TIM17_IRQHandler
+                0x08000a8c                RTC_IRQHandler
+                0x08000a8c                TIM16_IRQHandler
+                0x08000a8c                TIM3_IRQHandler
+                0x08000a8c                EXTI4_15_IRQHandler
+                0x08000a8c                RCC_IRQHandler
+                0x08000a8c                DMA1_Channel1_IRQHandler
+                0x08000a8c                Default_Handler
+                0x08000a8c                TIM14_IRQHandler
+                0x08000a8c                EXTI0_1_IRQHandler
+                0x08000a8c                SVC_Handler
+                0x08000a8c                WWDG_IRQHandler
+                0x08000a8c                DMA1_Channel2_3_IRQHandler
+                0x08000a8c                USART2_IRQHandler
+                0x08000a8c                FLASH_IRQHandler
+                0x08000a8c                USART1_IRQHandler
+                0x08000a8c                TIM1_BRK_UP_TRG_COM_IRQHandler
+ .text._ZdlPvj  0x08000a8e        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+                0x08000a8e                operator delete(void*, unsigned int)
+ .text._ZdlPv   0x08000a96        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+                0x08000a96                operator delete(void*)
+ *fill*         0x08000a9e        0x2 
+ .text.free     0x08000aa0       0x14 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+                0x08000aa0                free
+ .text.__malloc_lock
+                0x08000ab4       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x08000ab4                __malloc_lock
+ .text.__malloc_unlock
+                0x08000ac4       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x08000ac4                __malloc_unlock
+ .text.__libc_init_array
+                0x08000ad4       0x48 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+                0x08000ad4                __libc_init_array
+ .text.__retarget_lock_acquire_recursive
+                0x08000b1c        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x08000b1c                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_release_recursive
+                0x08000b1e        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x08000b1e                __retarget_lock_release_recursive
+ .text._free_r  0x08000b20       0x94 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                0x08000b20                _free_r
+ *(.glue_7)
+ .glue_7        0x08000bb4        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x08000bb4        0x0 linker stubs
+ *(.eh_frame)
+ .eh_frame      0x08000bb4        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ *(.init)
+ .init          0x08000bb4        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x08000bb4                _init
+ .init          0x08000bb8        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+ *(.fini)
+ .fini          0x08000bc0        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x08000bc0                _fini
+ .fini          0x08000bc4        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+                0x08000bcc                        . = ALIGN (0x4)
+                0x08000bcc                        _etext = .
+
+.vfp11_veneer   0x08000bcc        0x0
+ .vfp11_veneer  0x08000bcc        0x0 linker stubs
+
+.v4_bx          0x08000bcc        0x0
+ .v4_bx         0x08000bcc        0x0 linker stubs
+
+.iplt           0x08000bcc        0x0
+ .iplt          0x08000bcc        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+
+.rodata         0x08000bcc      0x338
+                0x08000bcc                        . = ALIGN (0x4)
+ *(.rodata)
+ .rodata        0x08000bcc      0x20b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ *(.rodata*)
+ *fill*         0x08000dd7        0x1 
+ .rodata._ZN6periph15gpio_hw_mappingL4gpioE
+                0x08000dd8       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZN6periph15gpio_hw_mappingL6rcc_enE
+                0x08000dec       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZN6periph12gpio_stm32c04modeENS_4gpio4modeEb
+                0x08000e00       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata._ZTVN6periph12gpio_stm32c0E
+                0x08000e14       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e14                vtable for periph::gpio_stm32c0
+ .rodata._ZTVN6periph4gpioE
+                0x08000e3c       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e3c                vtable for periph::gpio
+ .rodata._ZN6periph3rcc15ahb_prescallersE
+                0x08000e64       0x40 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000e64                periph::rcc::ahb_prescallers
+ .rodata._ZN6periph3rcc15apb_prescallersE
+                0x08000ea4       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000ea4                periph::rcc::apb_prescallers
+ .rodata.AHBPrescTable
+                0x08000ec4       0x40 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x08000ec4                AHBPrescTable
+                0x08000f04                        . = ALIGN (0x4)
+
+.ARM.extab      0x08000f04        0x0
+                0x08000f04                        . = ALIGN (0x4)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x08000f04                        . = ALIGN (0x4)
+
+.ARM            0x08000f04        0x0
+                0x08000f04                        . = ALIGN (0x4)
+                0x08000f04                        __exidx_start = .
+ *(.ARM.exidx*)
+                0x08000f04                        __exidx_end = .
+                0x08000f04                        . = ALIGN (0x4)
+
+.preinit_array  0x08000f04        0x0
+                0x08000f04                        . = ALIGN (0x4)
+                0x08000f04                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array*)
+                0x08000f04                        PROVIDE (__preinit_array_end = .)
+                0x08000f04                        . = ALIGN (0x4)
+
+.init_array     0x08000f04        0x4
+                0x08000f04                        . = ALIGN (0x4)
+                0x08000f04                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array*)
+ .init_array    0x08000f04        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x08000f08                        PROVIDE (__init_array_end = .)
+                0x08000f08                        . = ALIGN (0x4)
+
+.fini_array     0x08000f08        0x4
+                0x08000f08                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array*)
+ .fini_array    0x08000f08        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                [!provide]                        PROVIDE (__fini_array_end = .)
+                0x08000f0c                        . = ALIGN (0x4)
+                0x08000f0c                        _sidata = LOADADDR (.data)
+
+.rel.dyn        0x08000f0c        0x0
+ .rel.iplt      0x08000f0c        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+
+.data           0x20000000       0x54 load address 0x08000f0c
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sdata = .
+ *(.data)
+ *(.data*)
+ .data.SystemCoreClock
+                0x20000000        0x4 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x20000000                SystemCoreClock
+ .data._impure_ptr
+                0x20000004        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+                0x20000004                _impure_ptr
+ .data._impure_data
+                0x20000008       0x4c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+                0x20000008                _impure_data
+ *(.RamFunc)
+ *(.RamFunc*)
+                0x20000054                        . = ALIGN (0x4)
+                0x20000054                        _edata = .
+
+.tm_clone_table
+                0x20000054        0x0 load address 0x08000f60
+ .tm_clone_table
+                0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .tm_clone_table
+                0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+
+.igot.plt       0x20000054        0x0 load address 0x08000f60
+ .igot.plt      0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x20000054                        . = ALIGN (0x4)
+
+.bss            0x20000054      0x160 load address 0x08000f60
+                0x20000054                        _sbss = .
+                0x20000054                        __bss_start__ = _sbss
+ *(.bss)
+ *(.bss*)
+ .bss.completed.1
+                0x20000054        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ *fill*         0x20000055        0x3 
+ .bss.object.0  0x20000058       0x18 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .bss._ZN12_GLOBAL__N_1L15systick_counterE
+                0x20000070        0x4 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .bss.__malloc_free_list
+                0x20000074        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                0x20000074                __malloc_free_list
+ .bss.__sf      0x20000078      0x138 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                0x20000078                __sf
+ .bss.__lock___malloc_recursive_mutex
+                0x200001b0        0x1 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x200001b0                __lock___malloc_recursive_mutex
+ *(COMMON)
+                0x200001b4                        . = ALIGN (0x4)
+ *fill*         0x200001b1        0x3 
+                0x200001b4                        _ebss = .
+                0x200001b4                        __bss_end__ = _ebss
+
+._user_heap_stack
+                0x200001b4      0x604 load address 0x08000f60
+                0x200001b8                        . = ALIGN (0x8)
+ *fill*         0x200001b4        0x4 
+                0x200001b8                        PROVIDE (end = .)
+                [!provide]                        PROVIDE (_end = .)
+                0x200003b8                        . = (. + _Min_Heap_Size)
+ *fill*         0x200001b8      0x200 
+                0x200007b8                        . = (. + _Min_Stack_Size)
+ *fill*         0x200003b8      0x400 
+                0x200007b8                        . = ALIGN (0x8)
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.ARM.attributes
+                0x00000000       0x28
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1e C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+ .ARM.attributes
+                0x0000001e       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x2c app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .ARM.attributes
+                0x00000076       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .ARM.attributes
+                0x000000a2       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .ARM.attributes
+                0x000000ce       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .ARM.attributes
+                0x000000fa       0x2c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .ARM.attributes
+                0x00000126       0x22 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+ .ARM.attributes
+                0x00000148       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .ARM.attributes
+                0x00000174       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .ARM.attributes
+                0x000001a0       0x1e C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x000001be       0x1e C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000001dc       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .ARM.attributes
+                0x00000208       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .ARM.attributes
+                0x00000234       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .ARM.attributes
+                0x00000260       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .ARM.attributes
+                0x0000028c       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+ .ARM.attributes
+                0x000002b8       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .ARM.attributes
+                0x000002e4       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .ARM.attributes
+                0x00000310       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+ .ARM.attributes
+                0x0000033c       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+ .ARM.attributes
+                0x00000368       0x1e C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+OUTPUT(app\stm32c0.elf elf32-littlearm)
+LOAD linker stubs
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libc.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libm.a
+LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a
+
+.debug_info     0x00000000    0x139a2
+ .debug_info    0x00000000     0x8c73 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_info    0x00008c73      0xe96 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_info    0x00009b09     0x9a72 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_info    0x0001357b       0x8f mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_info    0x0001360a      0x368 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_info    0x00013972       0x30 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.debug_abbrev   0x00000000     0x1f28
+ .debug_abbrev  0x00000000      0xb45 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_abbrev  0x00000b45      0x4bb mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_abbrev  0x00001000      0xd86 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_abbrev  0x00001d86       0x67 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_abbrev  0x00001ded      0x117 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_abbrev  0x00001f04       0x24 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.debug_aranges  0x00000000      0x1b0
+ .debug_aranges
+                0x00000000       0x28 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_aranges
+                0x00000028       0x78 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_aranges
+                0x000000a0       0xa0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_aranges
+                0x00000140       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_aranges
+                0x00000160       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_aranges
+                0x00000188       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.debug_rnglists
+                0x00000000      0x12b
+ .debug_rnglists
+                0x00000000       0x19 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_rnglists
+                0x00000019       0x57 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_rnglists
+                0x00000070       0x75 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_rnglists
+                0x000000e5       0x13 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_rnglists
+                0x000000f8       0x1a mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_rnglists
+                0x00000112       0x19 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.debug_line     0x00000000     0x1d89
+ .debug_line    0x00000000      0x7ae app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_line    0x000007ae      0x6b9 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_line    0x00000e67      0xb3d mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_line    0x000019a4       0x93 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_line    0x00001a37      0x2d5 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_line    0x00001d0c       0x7d mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.debug_str      0x00000000     0xc390
+ .debug_str     0x00000000     0xc390 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+                               0xb145 (size before relaxing)
+ .debug_str     0x0000c390      0xa4b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_str     0x0000c390     0xc078 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_str     0x0000c390      0x150 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_str     0x0000c390      0x31c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_str     0x0000c390       0xed mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+
+.comment        0x00000000       0x45
+ .comment       0x00000000       0x45 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .comment       0x00000045       0x46 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .comment       0x00000045       0x46 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .comment       0x00000045       0x46 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+
+.debug_frame    0x00000000      0x808
+ .debug_frame   0x00000000       0x50 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_frame   0x00000050      0x190 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_frame   0x000001e0      0x22c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_frame   0x0000040c       0x30 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_frame   0x0000043c       0x4c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_frame   0x00000488       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .debug_frame   0x000004b0       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .debug_frame   0x000004d8       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .debug_frame   0x000004f8       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .debug_frame   0x00000538       0x50 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .debug_frame   0x00000588       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .debug_frame   0x000005c8      0x138 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .debug_frame   0x00000700       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .debug_frame   0x0000072c       0xb0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .debug_frame   0x000007dc       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+
+.debug_line_str
+                0x00000000      0x19a
+ .debug_line_str
+                0x00000000      0x19a mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                                 0xd1 (size before relaxing)
+ .debug_line_str
+                0x0000019a       0xc9 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .debug_line_str
+                0x0000019a       0xc9 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+
+Cross Reference Table
+
+Symbol                                            File
+ADC1_IRQHandler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+AHBPrescTable                                     mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+APBPrescTable                                     mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+DMA1_Channel1_IRQHandler                          mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+DMA1_Channel2_3_IRQHandler                        mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+DMAMUX1_IRQHandler                                mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+Default_Handler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+EXTI0_1_IRQHandler                                mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+EXTI2_3_IRQHandler                                mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+EXTI4_15_IRQHandler                               mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+FLASH_IRQHandler                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+HardFault_Handler                                 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+I2C1_IRQHandler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+NMI_Handler                                       mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+PendSV_Handler                                    mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+RCC_IRQHandler                                    mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+RTC_IRQHandler                                    mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+Reset_Handler                                     mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+SPI1_IRQHandler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+SVC_Handler                                       mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+SysTick_Handler                                   mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+SystemCoreClock                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+SystemCoreClockUpdate                             mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+SystemInit                                        mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM14_IRQHandler                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM16_IRQHandler                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM17_IRQHandler                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM1_BRK_UP_TRG_COM_IRQHandler                    mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM1_CC_IRQHandler                                mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+TIM3_IRQHandler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+USART1_IRQHandler                                 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+USART2_IRQHandler                                 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+WWDG_IRQHandler                                   mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_ITM_deregisterTMCloneTable                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+_ITM_registerTMCloneTable                         C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+__TMC_END__                                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+__aeabi_idiv0                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+__aeabi_ldiv0                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
+__aeabi_lmul                                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+__aeabi_uidiv                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+                                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+__aeabi_uidivmod                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+__assert_func                                     mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+__bss_end__                                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+__bss_start__                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+__call_exitprocs                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+__cxa_pure_virtual                                mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+__deregister_frame_info                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+__dso_handle                                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+__fp_lock_all                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__fp_unlock_all                                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__init_array_end                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+__init_array_start                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+__libc_fini_array                                 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+__libc_init_array                                 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+                                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+__lock___arc4random_mutex                         C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__lock___at_quick_exit_mutex                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__lock___atexit_recursive_mutex                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__lock___dd_hash_mutex                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__lock___env_recursive_mutex                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__lock___malloc_recursive_mutex                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+__lock___sfp_recursive_mutex                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__lock___tz_mutex                                 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__malloc_free_list                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+__malloc_lock                                     C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+__malloc_sbrk_start                               C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+__malloc_unlock                                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+__muldi3                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_muldi3.o)
+__preinit_array_end                               C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+__preinit_array_start                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+__register_frame_info                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+__retarget_lock_acquire                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_acquire_recursive                 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+__retarget_lock_close                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_close_recursive                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_init                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_init_recursive                    C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__retarget_lock_release                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_release_recursive                 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+__retarget_lock_try_acquire                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__retarget_lock_try_acquire_recursive             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+__sclose                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__seofread                                        C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+__sf                                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+__sflush_r                                        C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+__sfp                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__sfp_lock_acquire                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__sfp_lock_release                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__sglue                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+__sinit                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+__sread                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__sseek                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__stack                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+__stdio_exit_handler                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+__swrite                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+__udivsi3                                         C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+_close                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+_close_r                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+_ebss                                             mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_edata                                            mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_estack                                           mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_exit                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(_exit.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+_fflush_r                                         C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+_fini                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+_free_r                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+_fwalk_sglue                                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fwalk.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+_impure_data                                      C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+_impure_ptr                                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-impure.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+_init                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+_lseek                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+_lseek_r                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+_mainCRTStartup                                   C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+_malloc_r                                         C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+_read                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+_read_r                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+_reclaim_reent                                    C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+_sbrk                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+_sbrk_r                                           C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+_sbss                                             mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_sdata                                            mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_sidata                                           mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+_stack_init                                       C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+_start                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+_write                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+_write_r                                          C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-stdio.o)
+atexit                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+end                                               C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(sbrk.o)
+errno                                             C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-reent.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(write.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(read.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(lseek.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libnosys.a(close.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-sbrkr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o)
+exit                                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-exit.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+fflush                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-fflush.o)
+free                                              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+g_pfnVectors                                      mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+hardware_init_hook                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+main                                              app/CMakeFiles/stm32c0.dir/main.cpp.obj
+                                                  mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+malloc                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+memset                                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-memset.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+operator delete(void*)                            C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+                                                  C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+operator delete(void*, unsigned int)              C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+                                                  mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio::gpio()                              mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio::gpio()                              mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio::~gpio()                             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio::~gpio()                             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio::~gpio()                             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::get() const                 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool) mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                                                  app/CMakeFiles/stm32c0.dir/main.cpp.obj
+periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool) mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::mode() const                mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::mode(periph::gpio::mode, bool) mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::pin() const                 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::set(bool)                   mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::toggle()                    mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                                                  app/CMakeFiles/stm32c0.dir/main.cpp.obj
+periph::gpio_stm32c0::~gpio_stm32c0()             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::~gpio_stm32c0()             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::gpio_stm32c0::~gpio_stm32c0()             mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+periph::rcc::ahb_prescallers                      mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::rcc::apb_prescallers                      mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::rcc::frequency(periph::rcc::clk_source)   mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::systick::get()                            mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::systick::get_past(std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::systick::init()                           mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                                                  app/CMakeFiles/stm32c0.dir/main.cpp.obj
+software_init_hook                                C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> > std::chrono::__duration_cast_impl<std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >, std::ratio<1000ll, 1ll>, long long, false, true>::__cast<long long, std::ratio<1ll, 1000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000ll> > const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >::count() const mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >::duration<long long, std::ratio<1ll, 1000ll>, void>(std::chrono::duration<long long, std::ratio<1ll, 1000ll> > const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >::duration<long long, std::ratio<1ll, 1000ll>, void>(std::chrono::duration<long long, std::ratio<1ll, 1000ll> > const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >::duration<long long, void>(long long const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >::duration<long long, void>(long long const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::count() const mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<unsigned long, void>(unsigned long const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::chrono::duration<long long, std::ratio<1ll, 1000ll> >::duration<unsigned long, void>(unsigned long const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::common_type<std::chrono::duration<long long, std::ratio<1ll, 1000ll> >, std::chrono::duration<long long, std::ratio<1ll, 1000000ll> > >::type std::chrono::operator-<long long, std::ratio<1ll, 1000ll>, long long, std::ratio<1ll, 1000000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000ll> > const&, std::chrono::duration<long long, std::ratio<1ll, 1000000ll> > const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+std::enable_if<std::chrono::__is_duration<std::chrono::duration<long long, std::ratio<1ll, 1000000ll> > >::value, std::chrono::duration<long long, std::ratio<1ll, 1000000ll> > >::type std::chrono::duration_cast<std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >, long long, std::ratio<1ll, 1000ll> >(std::chrono::duration<long long, std::ratio<1ll, 1000ll> > const&) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+vtable for periph::gpio                           mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+vtable for periph::gpio_stm32c0                   mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+xTaskGetTickCount()                               mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
