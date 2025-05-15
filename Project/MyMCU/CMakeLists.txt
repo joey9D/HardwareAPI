@@ -39,20 +39,6 @@ option(
     "Enable a Unit Testing Build" OFF # ON/OFF
 )
 
-####################################
-# SET VARIABLES #
-####################################
-#set(LIBRARY_NAME Library)
-set(EXECUTABLE_NAME MainExe)
-set(BASIC_LIBRARY basic)
-set(CORE_LIBRARY core)
-set(GPIO_LIBRARY gpio)
-set(MCU_FAMILY stm32c0)
-set(MCU_DRIVERS_LIBRARY mcu_drivers/${MCU_FAMILY})
-# set(I2C_LIBRARY i2c)
-# set(SPI_LIBRARY spi)
-# set(UART_LIBRARY uart)
-set(APP_LIBRARY app)
 
 ####################################
 # INCLUDE CMAKE MODULES #
@@ -64,12 +50,16 @@ include(Docs)
 ####################################
 # COMPILE OPTIONS #
 ####################################
+# MCU being used #
 add_compile_definitions(STM32C031xx)
+
+# RTOS #
+# add_compile_definitions(FREERTOS_USED)
 
 add_compile_options(
     -mcpu=cortex-m0plus
-#    -mfloat-abi=hard
-#    -mfpu=fpv4-sp-d16
+    #    -mfloat-abi=hard
+    #    -mfpu=fpv4-sp-d16
     -mthumb
     -ffunction-sections
     -fdata-sections
@@ -77,7 +67,8 @@ add_compile_options(
     $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-use-cxa-atexit>
-)
+    )
+
 
 ####################################
 # TESTING #
@@ -93,19 +84,44 @@ add_compile_options(
     #     list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
     # endif()
 
-    ####################################
-    # ADD SUBDIR #
+
 ####################################
-add_subdirectory(${CORE_LIBRARY})
-add_subdirectory(${BASIC_LIBRARY})
-add_subdirectory(${GPIO_LIBRARY})
-add_subdirectory(${MCU_DRIVERS_LIBRARY})
-add_subdirectory(${APP_LIBRARY})
+# INCLUDE SUBDIRECTORIES/LIBS #
+####################################
+#set(LIBRARY_NAME Library)
+
 # if(ENABLE_TESTING)
 #     include(CTest)
 #     enable_testing()
 #     add_subdirectory(tests)
 # endif()
+
+# CORE #
+set(CORE_LIBRARY core)
+add_subdirectory(${CORE_LIBRARY})
+
+# BASIC #
+set(BASIC_LIBRARY basic)
+add_subdirectory(${BASIC_LIBRARY})
+
+# GPIO #
+set(GPIO_LIBRARY gpio)
+add_subdirectory(${GPIO_LIBRARY})
+
+# MCU related #
+set(MCU_FAMILY stm32c0)
+set(MCU_DRIVERS_LIBRARY mcu_drivers/${MCU_FAMILY})
+add_subdirectory(${MCU_DRIVERS_LIBRARY})
+
+# set(I2C_LIBRARY i2c)
+# set(SPI_LIBRARY spi)
+# set(UART_LIBRARY uart)
+
+# MAIN EXECUTABLE #
+set(EXECUTABLE_NAME MainExe)
+set(APP_LIBRARY app)
+add_subdirectory(${APP_LIBRARY})
+
 
 # Add targets for flashing, erasing, resetting and debugging
 set(JLINK_PARAMS -device STM32C031C6 -if SWD)

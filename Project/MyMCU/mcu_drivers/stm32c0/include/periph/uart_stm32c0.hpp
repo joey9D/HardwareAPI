@@ -1,11 +1,11 @@
 #pragma once
 
-#include "periph/uart.hpp"
+#include "uart/uart.hpp"
 #include "dma_stm32c0.hpp"
 #include "gpio_stm32c0.hpp"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "semphr.h"
+// #include "FreeRTOS.h"
+// #include "task.h"
+// #include "semphr.h"
 
 namespace periph { class uart_stm32c0; }
 // For internal use only! (called from ISR)

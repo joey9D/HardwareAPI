@@ -18,7 +18,8 @@
       "*.in": "cpp",
       "cstdint": "cpp",
       "random": "cpp",
-      "stm32c0xx.h": "c"
+      "stm32c0xx.h": "c",
+      "iostream": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,

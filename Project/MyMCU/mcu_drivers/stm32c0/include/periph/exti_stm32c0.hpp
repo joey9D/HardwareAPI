@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/exti.hpp"
+#include "exti.hpp"
 #include "gpio_stm32c0.hpp"
 
 namespace periph { class exti_stm32c0; }

@@ -1,14 +1,14 @@
 add_executable(${EXECUTABLE_NAME} "main.cpp")
 
 target_include_directories(${EXECUTABLE_NAME} PUBLIC
-    "./"
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(${EXECUTABLE_NAME} PUBLIC
     ${BASIC_LIBRARY}
     ${GPIO_LIBRARY}
     ${CORE_LIBRARY}
-    ${MCU_DRIVERS_LIBRARY}
+    stm32c0_src # target_name
 )
 
 ####################################

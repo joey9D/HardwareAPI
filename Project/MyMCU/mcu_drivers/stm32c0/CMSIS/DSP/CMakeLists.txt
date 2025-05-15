@@ -277,4 +277,5 @@ add_library(CMSIS_DSP_LIBRARY
 target_include_directories(CMSIS_DSP_LIBRARY
     PRIVATE
         Include
+        ${CMAKE_CURRENT_SOURCE_DIR}/../Core/Include
 )

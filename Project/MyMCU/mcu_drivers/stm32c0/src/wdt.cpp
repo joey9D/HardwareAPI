@@ -1,5 +1,5 @@
 #include <cassert>
-#include "core/wdt.hpp"
+#include "wdt.hpp"
 #include "stm32c0xx.h"
 
 using namespace periph;

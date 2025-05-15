@@ -4,6 +4,5 @@ add_library(${GPIO_LIBRARY} STATIC
 )
 
 target_include_directories(${GPIO_LIBRARY} PUBLIC
-#    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )

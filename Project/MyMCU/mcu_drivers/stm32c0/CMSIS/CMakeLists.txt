@@ -17,5 +17,5 @@ target_include_directories(cmsis
 #         HSE_VALUE=
 # )
 
-add_subdirectory(${CMSIS_DSP_LIBRARY})
-add_subdirectory(${CMSIS_NN_LIBRARY})
+#add_subdirectory(${CMSIS_DSP_LIBRARY})
+#add_subdirectory(${CMSIS_NN_LIBRARY})
