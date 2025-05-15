@@ -19,7 +19,8 @@
       "cstdint": "cpp",
       "random": "cpp",
       "stm32c0xx.h": "c",
-      "iostream": "cpp"
+      "iostream": "cpp",
+      "bitset": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,

@@ -40,6 +40,16 @@ std::chrono::microseconds systick::get_past(std::chrono::microseconds timestamp)
     return std::chrono::milliseconds(xTaskGetTickCount()) - timestamp;
 }
 
+void systick::delay(uint32_t delay_ms)
+{
+    auto start = xTaskGetTickCount();
+
+    while((xTaskGetTickCount() - start) < delay_ms)
+    {
+
+    }
+}
+
 /* Implemented in FreeRTOS/port.c
 extern "C" void SysTick_Handler(void)
 {

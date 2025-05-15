@@ -14,6 +14,8 @@ public:
 
     static std::chrono::microseconds get_past(std::chrono::microseconds timestamp);
 
+    static void delay(uint32_t delay_ms);
+
 private:
     systick() {}
 };

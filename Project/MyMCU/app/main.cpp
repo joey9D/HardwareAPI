@@ -1,5 +1,8 @@
 #include "main.h"
 
+
+
+
 int main()
 {
     periph::systick::init();
@@ -9,8 +12,7 @@ int main()
     while(1)
     {
         led.toggle();
-        // TODO: implement delay function to avoid using FreeRTOS task/delay etc..
-        // delay(1000);
+        periph::systick::delay(1000);
     }
 
     return 0;

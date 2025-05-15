@@ -267,8 +267,6 @@ Discarded input sections
  .bss           0x00000000        0x0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .text._ZL20__gthread_key_deletei
                 0x00000000       0x12 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .text._Z17xTaskGetTickCountv
-                0x00000000       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .text._ZN6periph7systick3getEv
                 0x00000000       0x34 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .text._ZN6periph7systick8get_pastENSt6chrono8durationIxSt5ratioILx1ELx1000000EEEE
@@ -750,7 +748,7 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
                 0x08000000                g_pfnVectors
                 0x080000c0                        . = ALIGN (0x4)
 
-.text           0x080000c0      0xb0c
+.text           0x080000c0      0xb60
                 0x080000c0                        . = ALIGN (0x4)
  *(.text)
  .text          0x080000c0      0x114 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
@@ -769,222 +767,229 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
                 0x08000220       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .text.frame_dummy
                 0x0800024c       0x24 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
- .text.main     0x08000270       0x24 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .text.main     0x08000270       0x2e app/CMakeFiles/stm32c0.dir/main.cpp.obj
                 0x08000270                main
  .text._ZNK6periph12gpio_stm32c04modeEv
-                0x08000294       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000294                periph::gpio_stm32c0::mode() const
+                0x0800029e       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x0800029e                periph::gpio_stm32c0::mode() const
  .text._ZNK6periph12gpio_stm32c03pinEv
-                0x080002a8       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080002a8                periph::gpio_stm32c0::pin() const
+                0x080002b2       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002b2                periph::gpio_stm32c0::pin() const
+ *fill*         0x080002c6        0x2 
  .text._ZN6periph4gpioC2Ev
-                0x080002bc       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080002bc                periph::gpio::gpio()
-                0x080002bc                periph::gpio::gpio()
+                0x080002c8       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002c8                periph::gpio::gpio()
+                0x080002c8                periph::gpio::gpio()
  .text._ZN6periph4gpioD2Ev
-                0x080002d8       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080002d8                periph::gpio::~gpio()
-                0x080002d8                periph::gpio::~gpio()
+                0x080002e4       0x1c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080002e4                periph::gpio::~gpio()
+                0x080002e4                periph::gpio::~gpio()
  .text._ZN6periph4gpioD0Ev
-                0x080002f4       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080002f4                periph::gpio::~gpio()
+                0x08000300       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000300                periph::gpio::~gpio()
  .text._ZN6periph12gpio_stm32c0C2ENS0_4portEhNS_4gpio4modeEb
-                0x08000318       0xc4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000318                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
-                0x08000318                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
+                0x08000324       0xc4 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000324                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
+                0x08000324                periph::gpio_stm32c0::gpio_stm32c0(periph::gpio_stm32c0::port, unsigned char, periph::gpio::mode, bool)
  .text._ZN6periph12gpio_stm32c0D2Ev
-                0x080003dc       0x64 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080003dc                periph::gpio_stm32c0::~gpio_stm32c0()
-                0x080003dc                periph::gpio_stm32c0::~gpio_stm32c0()
+                0x080003e8       0x64 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080003e8                periph::gpio_stm32c0::~gpio_stm32c0()
+                0x080003e8                periph::gpio_stm32c0::~gpio_stm32c0()
  .text._ZN6periph12gpio_stm32c0D0Ev
-                0x08000440       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000440                periph::gpio_stm32c0::~gpio_stm32c0()
+                0x0800044c       0x24 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x0800044c                periph::gpio_stm32c0::~gpio_stm32c0()
  .text._ZN6periph12gpio_stm32c03setEb
-                0x08000464       0x74 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000464                periph::gpio_stm32c0::set(bool)
+                0x08000470       0x74 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000470                periph::gpio_stm32c0::set(bool)
  .text._ZN6periph12gpio_stm32c06toggleEv
-                0x080004d8       0x68 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x080004d8                periph::gpio_stm32c0::toggle()
+                0x080004e4       0x68 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080004e4                periph::gpio_stm32c0::toggle()
  .text._ZNK6periph12gpio_stm32c03getEv
-                0x08000540       0x5c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000540                periph::gpio_stm32c0::get() const
+                0x0800054c       0x5c mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x0800054c                periph::gpio_stm32c0::get() const
  .text._ZN6periph12gpio_stm32c04modeENS_4gpio4modeEb
-                0x0800059c      0x194 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x0800059c                periph::gpio_stm32c0::mode(periph::gpio::mode, bool)
+                0x080005a8      0x194 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x080005a8                periph::gpio_stm32c0::mode(periph::gpio::mode, bool)
  .text.__NVIC_SetPriority
-                0x08000730       0xdc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x0800073c       0xdc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .text.SysTick_Config
-                0x0800080c       0x48 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000818       0x48 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .text._ZN6periph3rcc9frequencyENS0_10clk_sourceE
-                0x08000854       0xbc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
-                0x08000854                periph::rcc::frequency(periph::rcc::clk_source)
+                0x08000860       0xbc mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000860                periph::rcc::frequency(periph::rcc::clk_source)
  .text.SysTick_Handler
-                0x08000910       0x18 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
-                0x08000910                SysTick_Handler
+                0x0800091c       0x18 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x0800091c                SysTick_Handler
  .text._ZN6periph7systick4initEv
-                0x08000928       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
-                0x08000928                periph::systick::init()
+                0x08000934       0x2c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000934                periph::systick::init()
+ .text._Z17xTaskGetTickCountv
+                0x08000960       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000960                xTaskGetTickCount()
+ .text._ZN6periph7systick5delayEm
+                0x08000974       0x34 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000974                periph::systick::delay(unsigned long)
  .text.__assert_func
-                0x08000954       0x10 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
-                0x08000954                __assert_func
+                0x080009a8       0x10 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                0x080009a8                __assert_func
  .text.SystemInit
-                0x08000964       0x18 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
-                0x08000964                SystemInit
+                0x080009b8       0x18 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x080009b8                SystemInit
  .text.SystemCoreClockUpdate
-                0x0800097c       0xc0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
-                0x0800097c                SystemCoreClockUpdate
+                0x080009d0       0xc0 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x080009d0                SystemCoreClockUpdate
  .text.Reset_Handler
-                0x08000a3c       0x50 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
-                0x08000a3c                Reset_Handler
+                0x08000a90       0x50 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x08000a90                Reset_Handler
  .text.Default_Handler
-                0x08000a8c        0x2 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
-                0x08000a8c                TIM1_CC_IRQHandler
-                0x08000a8c                HardFault_Handler
-                0x08000a8c                PendSV_Handler
-                0x08000a8c                NMI_Handler
-                0x08000a8c                I2C1_IRQHandler
-                0x08000a8c                DMAMUX1_IRQHandler
-                0x08000a8c                SPI1_IRQHandler
-                0x08000a8c                EXTI2_3_IRQHandler
-                0x08000a8c                ADC1_IRQHandler
-                0x08000a8c                TIM17_IRQHandler
-                0x08000a8c                RTC_IRQHandler
-                0x08000a8c                TIM16_IRQHandler
-                0x08000a8c                TIM3_IRQHandler
-                0x08000a8c                EXTI4_15_IRQHandler
-                0x08000a8c                RCC_IRQHandler
-                0x08000a8c                DMA1_Channel1_IRQHandler
-                0x08000a8c                Default_Handler
-                0x08000a8c                TIM14_IRQHandler
-                0x08000a8c                EXTI0_1_IRQHandler
-                0x08000a8c                SVC_Handler
-                0x08000a8c                WWDG_IRQHandler
-                0x08000a8c                DMA1_Channel2_3_IRQHandler
-                0x08000a8c                USART2_IRQHandler
-                0x08000a8c                FLASH_IRQHandler
-                0x08000a8c                USART1_IRQHandler
-                0x08000a8c                TIM1_BRK_UP_TRG_COM_IRQHandler
- .text._ZdlPvj  0x08000a8e        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
-                0x08000a8e                operator delete(void*, unsigned int)
- .text._ZdlPv   0x08000a96        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
-                0x08000a96                operator delete(void*)
- *fill*         0x08000a9e        0x2 
- .text.free     0x08000aa0       0x14 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
-                0x08000aa0                free
+                0x08000ae0        0x2 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x08000ae0                TIM1_CC_IRQHandler
+                0x08000ae0                HardFault_Handler
+                0x08000ae0                PendSV_Handler
+                0x08000ae0                NMI_Handler
+                0x08000ae0                I2C1_IRQHandler
+                0x08000ae0                DMAMUX1_IRQHandler
+                0x08000ae0                SPI1_IRQHandler
+                0x08000ae0                EXTI2_3_IRQHandler
+                0x08000ae0                ADC1_IRQHandler
+                0x08000ae0                TIM17_IRQHandler
+                0x08000ae0                RTC_IRQHandler
+                0x08000ae0                TIM16_IRQHandler
+                0x08000ae0                TIM3_IRQHandler
+                0x08000ae0                EXTI4_15_IRQHandler
+                0x08000ae0                RCC_IRQHandler
+                0x08000ae0                DMA1_Channel1_IRQHandler
+                0x08000ae0                Default_Handler
+                0x08000ae0                TIM14_IRQHandler
+                0x08000ae0                EXTI0_1_IRQHandler
+                0x08000ae0                SVC_Handler
+                0x08000ae0                WWDG_IRQHandler
+                0x08000ae0                DMA1_Channel2_3_IRQHandler
+                0x08000ae0                USART2_IRQHandler
+                0x08000ae0                FLASH_IRQHandler
+                0x08000ae0                USART1_IRQHandler
+                0x08000ae0                TIM1_BRK_UP_TRG_COM_IRQHandler
+ .text._ZdlPvj  0x08000ae2        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+                0x08000ae2                operator delete(void*, unsigned int)
+ .text._ZdlPv   0x08000aea        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+                0x08000aea                operator delete(void*)
+ *fill*         0x08000af2        0x2 
+ .text.free     0x08000af4       0x14 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+                0x08000af4                free
  .text.__malloc_lock
-                0x08000ab4       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x08000ab4                __malloc_lock
+                0x08000b08       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x08000b08                __malloc_lock
  .text.__malloc_unlock
-                0x08000ac4       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
-                0x08000ac4                __malloc_unlock
+                0x08000b18       0x10 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+                0x08000b18                __malloc_unlock
  .text.__libc_init_array
-                0x08000ad4       0x48 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
-                0x08000ad4                __libc_init_array
+                0x08000b28       0x48 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+                0x08000b28                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x08000b1c        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x08000b1c                __retarget_lock_acquire_recursive
+                0x08000b70        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x08000b70                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x08000b1e        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
-                0x08000b1e                __retarget_lock_release_recursive
- .text._free_r  0x08000b20       0x94 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
-                0x08000b20                _free_r
+                0x08000b72        0x2 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+                0x08000b72                __retarget_lock_release_recursive
+ .text._free_r  0x08000b74       0x94 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+                0x08000b74                _free_r
  *(.glue_7)
- .glue_7        0x08000bb4        0x0 linker stubs
+ .glue_7        0x08000c08        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08000bb4        0x0 linker stubs
+ .glue_7t       0x08000c08        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08000bb4        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .eh_frame      0x08000c08        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  *(.init)
- .init          0x08000bb4        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
-                0x08000bb4                _init
- .init          0x08000bb8        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+ .init          0x08000c08        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x08000c08                _init
+ .init          0x08000c0c        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
  *(.fini)
- .fini          0x08000bc0        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
-                0x08000bc0                _fini
- .fini          0x08000bc4        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
-                0x08000bcc                        . = ALIGN (0x4)
-                0x08000bcc                        _etext = .
+ .fini          0x08000c14        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x08000c14                _fini
+ .fini          0x08000c18        0x8 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtn.o
+                0x08000c20                        . = ALIGN (0x4)
+                0x08000c20                        _etext = .
 
-.vfp11_veneer   0x08000bcc        0x0
- .vfp11_veneer  0x08000bcc        0x0 linker stubs
+.vfp11_veneer   0x08000c20        0x0
+ .vfp11_veneer  0x08000c20        0x0 linker stubs
 
-.v4_bx          0x08000bcc        0x0
- .v4_bx         0x08000bcc        0x0 linker stubs
+.v4_bx          0x08000c20        0x0
+ .v4_bx         0x08000c20        0x0 linker stubs
 
-.iplt           0x08000bcc        0x0
- .iplt          0x08000bcc        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x08000c20        0x0
+ .iplt          0x08000c20        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x08000bcc      0x338
-                0x08000bcc                        . = ALIGN (0x4)
+.rodata         0x08000c20      0x338
+                0x08000c20                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08000bcc      0x20b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .rodata        0x08000c20      0x20b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  *(.rodata*)
- *fill*         0x08000dd7        0x1 
+ *fill*         0x08000e2b        0x1 
  .rodata._ZN6periph15gpio_hw_mappingL4gpioE
-                0x08000dd8       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e2c       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  .rodata._ZN6periph15gpio_hw_mappingL6rcc_enE
-                0x08000dec       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e40       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  .rodata._ZN6periph12gpio_stm32c04modeENS_4gpio4modeEb
-                0x08000e00       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e54       0x14 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  .rodata._ZTVN6periph12gpio_stm32c0E
-                0x08000e14       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000e14                vtable for periph::gpio_stm32c0
+                0x08000e68       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e68                vtable for periph::gpio_stm32c0
  .rodata._ZTVN6periph4gpioE
-                0x08000e3c       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
-                0x08000e3c                vtable for periph::gpio
+                0x08000e90       0x28 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+                0x08000e90                vtable for periph::gpio
  .rodata._ZN6periph3rcc15ahb_prescallersE
-                0x08000e64       0x40 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
-                0x08000e64                periph::rcc::ahb_prescallers
+                0x08000eb8       0x40 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000eb8                periph::rcc::ahb_prescallers
  .rodata._ZN6periph3rcc15apb_prescallersE
-                0x08000ea4       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
-                0x08000ea4                periph::rcc::apb_prescallers
+                0x08000ef8       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x08000ef8                periph::rcc::apb_prescallers
  .rodata.AHBPrescTable
-                0x08000ec4       0x40 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
-                0x08000ec4                AHBPrescTable
-                0x08000f04                        . = ALIGN (0x4)
+                0x08000f18       0x40 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x08000f18                AHBPrescTable
+                0x08000f58                        . = ALIGN (0x4)
 
-.ARM.extab      0x08000f04        0x0
-                0x08000f04                        . = ALIGN (0x4)
+.ARM.extab      0x08000f58        0x0
+                0x08000f58                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08000f04                        . = ALIGN (0x4)
+                0x08000f58                        . = ALIGN (0x4)
 
-.ARM            0x08000f04        0x0
-                0x08000f04                        . = ALIGN (0x4)
-                0x08000f04                        __exidx_start = .
+.ARM            0x08000f58        0x0
+                0x08000f58                        . = ALIGN (0x4)
+                0x08000f58                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08000f04                        __exidx_end = .
-                0x08000f04                        . = ALIGN (0x4)
+                0x08000f58                        __exidx_end = .
+                0x08000f58                        . = ALIGN (0x4)
 
-.preinit_array  0x08000f04        0x0
-                0x08000f04                        . = ALIGN (0x4)
-                0x08000f04                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x08000f58        0x0
+                0x08000f58                        . = ALIGN (0x4)
+                0x08000f58                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08000f04                        PROVIDE (__preinit_array_end = .)
-                0x08000f04                        . = ALIGN (0x4)
+                0x08000f58                        PROVIDE (__preinit_array_end = .)
+                0x08000f58                        . = ALIGN (0x4)
 
-.init_array     0x08000f04        0x4
-                0x08000f04                        . = ALIGN (0x4)
-                0x08000f04                        PROVIDE (__init_array_start = .)
+.init_array     0x08000f58        0x4
+                0x08000f58                        . = ALIGN (0x4)
+                0x08000f58                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08000f04        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x08000f08                        PROVIDE (__init_array_end = .)
-                0x08000f08                        . = ALIGN (0x4)
+ .init_array    0x08000f58        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x08000f5c                        PROVIDE (__init_array_end = .)
+                0x08000f5c                        . = ALIGN (0x4)
 
-.fini_array     0x08000f08        0x4
-                0x08000f08                        . = ALIGN (0x4)
+.fini_array     0x08000f5c        0x4
+                0x08000f5c                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08000f08        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+ .fini_array    0x08000f5c        0x4 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08000f0c                        . = ALIGN (0x4)
-                0x08000f0c                        _sidata = LOADADDR (.data)
+                0x08000f60                        . = ALIGN (0x4)
+                0x08000f60                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08000f0c        0x0
- .rel.iplt      0x08000f0c        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x08000f60        0x0
+ .rel.iplt      0x08000f60        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.data           0x20000000       0x54 load address 0x08000f0c
+.data           0x20000000       0x54 load address 0x08000f60
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -1004,17 +1009,17 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
                 0x20000054                        _edata = .
 
 .tm_clone_table
-                0x20000054        0x0 load address 0x08000f60
+                0x20000054        0x0 load address 0x08000fb4
  .tm_clone_table
                 0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x20000054        0x0 load address 0x08000f60
+.igot.plt       0x20000054        0x0 load address 0x08000fb4
  .igot.plt      0x20000054        0x0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
                 0x20000054                        . = ALIGN (0x4)
 
-.bss            0x20000054      0x160 load address 0x08000f60
+.bss            0x20000054      0x160 load address 0x08000fb4
                 0x20000054                        _sbss = .
                 0x20000054                        __bss_start__ = _sbss
  *(.bss)
@@ -1040,7 +1045,7 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
                 0x200001b4                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x200001b4      0x604 load address 0x08000f60
+                0x200001b4      0x604 load address 0x08000fb4
                 0x200001b8                        . = ALIGN (0x8)
  *fill*         0x200001b4        0x4 
                 0x200001b8                        PROVIDE (end = .)
@@ -1109,67 +1114,67 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
 LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libm.a
 LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a
 
-.debug_info     0x00000000    0x139a2
- .debug_info    0x00000000     0x8c73 app/CMakeFiles/stm32c0.dir/main.cpp.obj
- .debug_info    0x00008c73      0xe96 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
- .debug_info    0x00009b09     0x9a72 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .debug_info    0x0001357b       0x8f mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
- .debug_info    0x0001360a      0x368 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
- .debug_info    0x00013972       0x30 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+.debug_info     0x00000000    0x13a06
+ .debug_info    0x00000000     0x8c8b app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_info    0x00008c8b      0xe96 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_info    0x00009b21     0x9abe mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_info    0x000135df       0x8f mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_info    0x0001366e      0x368 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_info    0x000139d6       0x30 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
-.debug_abbrev   0x00000000     0x1f28
- .debug_abbrev  0x00000000      0xb45 app/CMakeFiles/stm32c0.dir/main.cpp.obj
- .debug_abbrev  0x00000b45      0x4bb mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
- .debug_abbrev  0x00001000      0xd86 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .debug_abbrev  0x00001d86       0x67 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
- .debug_abbrev  0x00001ded      0x117 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
- .debug_abbrev  0x00001f04       0x24 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+.debug_abbrev   0x00000000     0x1f58
+ .debug_abbrev  0x00000000      0xb5d app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_abbrev  0x00000b5d      0x4bb mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_abbrev  0x00001018      0xd9e mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_abbrev  0x00001db6       0x67 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_abbrev  0x00001e1d      0x117 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_abbrev  0x00001f34       0x24 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
-.debug_aranges  0x00000000      0x1b0
+.debug_aranges  0x00000000      0x1b8
  .debug_aranges
                 0x00000000       0x28 app/CMakeFiles/stm32c0.dir/main.cpp.obj
  .debug_aranges
                 0x00000028       0x78 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  .debug_aranges
-                0x000000a0       0xa0 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x000000a0       0xa8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .debug_aranges
-                0x00000140       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                0x00000148       0x20 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
  .debug_aranges
-                0x00000160       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x00000168       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
  .debug_aranges
-                0x00000188       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x00000190       0x28 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
 .debug_rnglists
-                0x00000000      0x12b
+                0x00000000      0x131
  .debug_rnglists
                 0x00000000       0x19 app/CMakeFiles/stm32c0.dir/main.cpp.obj
  .debug_rnglists
                 0x00000019       0x57 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
  .debug_rnglists
-                0x00000070       0x75 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                0x00000070       0x7b mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
  .debug_rnglists
-                0x000000e5       0x13 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+                0x000000eb       0x13 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
  .debug_rnglists
-                0x000000f8       0x1a mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+                0x000000fe       0x1a mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
  .debug_rnglists
-                0x00000112       0x19 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+                0x00000118       0x19 mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
-.debug_line     0x00000000     0x1d89
- .debug_line    0x00000000      0x7ae app/CMakeFiles/stm32c0.dir/main.cpp.obj
- .debug_line    0x000007ae      0x6b9 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
- .debug_line    0x00000e67      0xb3d mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .debug_line    0x000019a4       0x93 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
- .debug_line    0x00001a37      0x2d5 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
- .debug_line    0x00001d0c       0x7d mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+.debug_line     0x00000000     0x1dbc
+ .debug_line    0x00000000      0x7b2 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+ .debug_line    0x000007b2      0x6b9 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_line    0x00000e6b      0xb6c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_line    0x000019d7       0x93 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_line    0x00001a6a      0x2d5 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_line    0x00001d3f       0x7d mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
-.debug_str      0x00000000     0xc390
- .debug_str     0x00000000     0xc390 app/CMakeFiles/stm32c0.dir/main.cpp.obj
-                               0xb145 (size before relaxing)
- .debug_str     0x0000c390      0xa4b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
- .debug_str     0x0000c390     0xc078 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .debug_str     0x0000c390      0x150 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
- .debug_str     0x0000c390      0x31c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
- .debug_str     0x0000c390       0xed mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
+.debug_str      0x00000000     0xc3c0
+ .debug_str     0x00000000     0xc3c0 app/CMakeFiles/stm32c0.dir/main.cpp.obj
+                               0xb166 (size before relaxing)
+ .debug_str     0x0000c3c0      0xa4b mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
+ .debug_str     0x0000c3c0     0xc0a8 mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_str     0x0000c3c0      0x150 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_str     0x0000c3c0      0x31c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_str     0x0000c3c0       0xed mcu_drivers/stm32c0/CMSIS/libcmsis.a(startup_stm32c031xx.s.obj)
 
 .comment        0x00000000       0x45
  .comment       0x00000000       0x45 app/CMakeFiles/stm32c0.dir/main.cpp.obj
@@ -1179,22 +1184,22 @@ LOAD C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb
  .comment       0x00000045       0x46 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
  .comment       0x00000045       0x46 mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
 
-.debug_frame    0x00000000      0x808
+.debug_frame    0x00000000      0x828
  .debug_frame   0x00000000       0x50 app/CMakeFiles/stm32c0.dir/main.cpp.obj
  .debug_frame   0x00000050      0x190 mcu_drivers/stm32c0/libstm32c0_src.a(gpio_stm32c0.cpp.obj)
- .debug_frame   0x000001e0      0x22c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
- .debug_frame   0x0000040c       0x30 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
- .debug_frame   0x0000043c       0x4c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
- .debug_frame   0x00000488       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
- .debug_frame   0x000004b0       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
- .debug_frame   0x000004d8       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
- .debug_frame   0x000004f8       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
- .debug_frame   0x00000538       0x50 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
- .debug_frame   0x00000588       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
- .debug_frame   0x000005c8      0x138 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
- .debug_frame   0x00000700       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
- .debug_frame   0x0000072c       0xb0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
- .debug_frame   0x000007dc       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
+ .debug_frame   0x000001e0      0x24c mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+ .debug_frame   0x0000042c       0x30 mcu_drivers/stm32c0/libstm32c0_src.a(assert.c.obj)
+ .debug_frame   0x0000045c       0x4c mcu_drivers/stm32c0/CMSIS/libcmsis.a(system_stm32c0xx.c.obj)
+ .debug_frame   0x000004a8       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_ops.o)
+ .debug_frame   0x000004d0       0x28 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libstdc++_nano.a(del_op.o)
+ .debug_frame   0x000004f8       0x20 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000518       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-malloc.o)
+ .debug_frame   0x00000558       0x50 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mallocr.o)
+ .debug_frame   0x000005a8       0x40 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-mlock.o)
+ .debug_frame   0x000005e8      0x138 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-findfp.o)
+ .debug_frame   0x00000720       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-init.o)
+ .debug_frame   0x0000074c       0xb0 C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-lock.o)
+ .debug_frame   0x000007fc       0x2c C:/PROGRA~2/ARMGNU~1/14EFD8~1.2RE/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg_nano.a(libc_a-freer.o)
 
 .debug_line_str
                 0x00000000      0x19a
@@ -1442,6 +1447,8 @@ periph::gpio_stm32c0::~gpio_stm32c0()             mcu_drivers/stm32c0/libstm32c0
 periph::rcc::ahb_prescallers                      mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
 periph::rcc::apb_prescallers                      mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
 periph::rcc::frequency(periph::rcc::clk_source)   mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+periph::systick::delay(unsigned long)             mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
+                                                  app/CMakeFiles/stm32c0.dir/main.cpp.obj
 periph::systick::get()                            mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
 periph::systick::get_past(std::chrono::duration<long long, std::ratio<1ll, 1000000ll> >) mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
 periph::systick::init()                           mcu_drivers/stm32c0/libstm32c0_src.a(systick.cpp.obj)
