@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 3.22)
 
-find_program(CMAKE_ASM_COMPILER NAMES arm-none-eabi-gcc)
-find_program(CMAKE_C_COMPILER NAMES arm-none-eabi-gcc)
-find_program(CMAKE_CXX_COMPILER NAMES arm-none-eabi-g++)
-find_program(CMAKE_LINKER NAMES arm-none-eabi-g++)
-find_program(CMAKE_OBJCOPY NAMES arm-none-eabi-objcopy)
-find_program(CMAKE_SIZE NAMES arm-none-eabi-size)
-set(CMAKE_SYSTEM_NAME Generic)
-set(CMAKE_SYSTEM_PROCESSOR arm)
-set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+# find_program(CMAKE_ASM_COMPILER NAMES arm-none-eabi-gcc)
+# find_program(CMAKE_C_COMPILER NAMES arm-none-eabi-gcc)
+# find_program(CMAKE_CXX_COMPILER NAMES arm-none-eabi-g++)
+# find_program(CMAKE_LINKER NAMES arm-none-eabi-g++)
+# find_program(CMAKE_OBJCOPY NAMES arm-none-eabi-objcopy)
+# find_program(CMAKE_SIZE NAMES arm-none-eabi-size)
+# set(CMAKE_SYSTEM_NAME Generic)
+# set(CMAKE_SYSTEM_PROCESSOR arm)
+# set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-####################################
+# -----------------------------------------
 # SET PROJECT NAME#
-####################################
+# -----------------------------------------
 # set(PROJECT_NAME My_MCU_Lib) # Project name needs to be mcu specific
 set(PROJECT_NAME stm32c0)
 # set(PROJECT_NAME stm32g0)
@@ -24,32 +24,32 @@ project(
     LANGUAGES C CXX ASM
 )
 
-####################################
+# -----------------------------------------
 # SET LANGUAGE SETTINGS #
-####################################
+# -----------------------------------------
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-####################################
+# -----------------------------------------
 # ENABLE TESTING#
-####################################
+# -----------------------------------------
 option(
     ENABLE_TESTING
     "Enable a Unit Testing Build" OFF # ON/OFF
 )
 
 
-####################################
+# -----------------------------------------
 # INCLUDE CMAKE MODULES #
-####################################
+# -----------------------------------------
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(FetchContent)
 include(Docs)
 
-####################################
+# -----------------------------------------
 # COMPILE OPTIONS #
-####################################
+# -----------------------------------------
 # MCU being used #
 add_compile_definitions(STM32C031xx)
 
@@ -70,9 +70,9 @@ add_compile_options(
     )
 
 
-####################################
+# -----------------------------------------
 # TESTING #
-####################################
+# -----------------------------------------
 # if(ENABLE_TESTING)
 #     FetchContent_Declare(
     #         Catch2
@@ -85,9 +85,9 @@ add_compile_options(
     # endif()
 
 
-####################################
+# -----------------------------------------
 # INCLUDE SUBDIRECTORIES/LIBS #
-####################################
+# -----------------------------------------
 #set(LIBRARY_NAME Library)
 
 # if(ENABLE_TESTING)
