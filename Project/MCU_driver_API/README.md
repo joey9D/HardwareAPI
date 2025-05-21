@@ -52,9 +52,12 @@ int main()
 
 ## Wie wird gebuilded?
 
-Repo sollte hier schon geklont sein.
-
 ```bash
+# Repo should already be cloned at this point.
+# If not
+git clone git@github.com:joey9D/HardwareAPI.git
+cd HardwareAPI/Project/MCU_driver_API
+
 # make build directory
 make prepare
 
