@@ -1,0 +1,17 @@
+# ninja log v5
+38	853	7695330904614857	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/assert.c.obj	a9e12015501e7888
+58	1053	7695330906646961	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/fault_handlers.c.obj	30c5a9df3faecbca
+119	1641	7695330912596092	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/gpio_stm32c0.cpp.obj	6fcc3665003dca5b
+89	3858	7695330934740480	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/exti_stm32c0.cpp.obj	40e0dd7fa664d36d
+12	4104	7695330935453117	gpio/CMakeFiles/gpio.dir/gpio_print.cpp.obj	d45ed0558c697964
+4118	4550	7695330941652733	mcu_drivers/stm32c0/CMSIS/CMakeFiles/cmsis.dir/Device/ST/STM32C0xx/Source/startup_stm32c031xx.s.obj	a835a284a98a4550
+3912	6452	7695330960007937	mcu_drivers/stm32c0/CMSIS/CMakeFiles/cmsis.dir/Device/ST/STM32C0xx/Source/system_stm32c0xx.c.obj	3a535d3e5fad0024
+27	7601	7695330972199427	gpio/CMakeFiles/gpio.dir/gpio_pin_debouncer.cpp.obj	2a5efe245bbc8db7
+868	8873	7695330985314853	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/systick.cpp.obj	d2918e8eaee05860
+6515	8881	7695330985531858	mcu_drivers/stm32c0/CMSIS/libcmsis.a	9b55e5c2d91a5277
+7607	9007	7695330986826615	gpio/libgpio.a	da708fc4b6333e56
+1651	9470	7695330991313532	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/wdt.cpp.obj	6f8a665ec21a3116
+1092	9645	7695330993069568	mcu_drivers/stm32c0/CMakeFiles/stm32c0_src.dir/src/timer_stm32c0.cpp.obj	f6d93de9a40c53f2
+9647	9963	7695330996519161	mcu_drivers/stm32c0/libstm32c0_src.a	5fb5a5044dceade9
+4560	12152	7695331018304121	app/CMakeFiles/stm32c0.dir/main.cpp.obj	271ff45e37b78bf1
+12154	12838	7695331023136905	app/stm32c0.elf	b32ae6883844ffd6
