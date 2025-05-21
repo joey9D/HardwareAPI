@@ -39,7 +39,7 @@ int main()
 
 ```bash
 git clone https://github.com/joey9D/HardwareAPI.git
-cd HardwareAPI/Projects/MCU_driver_API
+cd HardwareAPI/Projects/MyMCU
 
 # make build directory
 make prepare
