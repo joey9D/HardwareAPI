@@ -2,8 +2,7 @@
 
 #include <cstdint>
 
-namespace periph
-{
+
 class GpioInterface
 {
 public:
@@ -16,10 +15,10 @@ public:
         alternate_function
     };
 
-    gpio() = default;
-    virtual ~gpio() = default;
+    GpioInterface() = default;
+    virtual ~GpioInterface() = default;
 
-    virtual void set(bool state) = 0;
+    virtual void setPin(bool state) = 0;
 
     virtual void toggle() = 0;
 
@@ -29,6 +28,5 @@ public:
 
     virtual enum mode mode() const = 0;
 
-    virtual uint8_t pin() const = 0;
+    virtual uint16_t getPin() const = 0;
 };
-} // namespace periph
