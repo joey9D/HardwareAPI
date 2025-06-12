@@ -4,7 +4,7 @@
 
 namespace periph
 {
-class gpio
+class GpioInterface
 {
 public:
     enum class mode : uint8_t
