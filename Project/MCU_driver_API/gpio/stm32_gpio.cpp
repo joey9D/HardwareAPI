@@ -37,15 +37,15 @@ STM32Gpio::Speed STM32Gpio::getSpeed() const {    return _speed;   }
 
 bool STM32Gpio::readPin() const
 {
-
+    return HAL_GPIO_ReadPin(getPort(), getPin());
 }
 
 void STM32Gpio::writePin(bool value) const
 {
-
+    HAL_GPIO_WritePin(getPort(), getPin(), value ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
 
 void STM32Gpio::togglePin() const
 {
-
+    HAL_GPIO_TogglePin(getPort(), getPin());
 }
