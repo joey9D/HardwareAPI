@@ -10,7 +10,7 @@ public:
     virtual ~GpioInterface() = default;
 
     virtual bool readPin() const = 0;
-    virtual void writePin(bool state) = 0;
+    virtual void writePin(bool value) = 0;
     virtual void tooglePin() = 0;
 
     virtual void setMode(Mode mode);
@@ -22,5 +22,4 @@ public:
     virtual Mode getMode() const;
     virtual Pull getPull() const;
     virtual Speed getSpeed() const;
-    virtual HAL_State getHALState() const;
 };

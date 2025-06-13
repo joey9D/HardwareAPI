@@ -82,8 +82,6 @@ public:
     Pull getPull() const;
     Speed getSpeed() const;
 
-    HAL_State getHALState() const;
-
     // Optional: Setter mit Typprüfung
     void setMode(Mode mode);
     void setPull(Pull pull);
@@ -91,8 +89,9 @@ public:
 
 
 
-    void readPin() const;
-    void writePin(bool state) const;
+    // gpio function abstraction for hal functions
+    bool readPin() const;
+    void writePin(bool value) const;
     void togglePin() const;
 
 
