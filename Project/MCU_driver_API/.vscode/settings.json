@@ -20,7 +20,8 @@
       "random": "cpp",
       "stm32c0xx.h": "c",
       "iostream": "cpp",
-      "bitset": "cpp"
+      "bitset": "cpp",
+      "compare": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,

@@ -6,27 +6,21 @@
 class GpioInterface
 {
 public:
-    enum class mode : uint8_t
-    {
-        digital_output,
-        open_drain,
-        digital_input,
-        analog,
-        alternate_function
-    };
-
     GpioInterface() = default;
     virtual ~GpioInterface() = default;
 
-    virtual void setPin(bool state) = 0;
+    virtual bool readPin() const = 0;
+    virtual void writePin(bool state) = 0;
+    virtual void tooglePin() = 0;
 
-    virtual void toggle() = 0;
+    virtual void setMode(Mode mode);
+    virtual void setPull(Pull pull);
+    virtual void setSpeed(Speed speed);
 
-    virtual void mode(mode mode, bool state = false) = 0;
-
-    virtual bool get() const = 0;
-
-    virtual enum mode mode() const = 0;
-
-    virtual uint16_t getPin() const = 0;
+    virtual uint16_t getPin() const =0;
+    virtual GPIO_TypeDef* getPort() const;
+    virtual Mode getMode() const;
+    virtual Pull getPull() const;
+    virtual Speed getSpeed() const;
+    virtual HAL_State getHALState() const;
 };
