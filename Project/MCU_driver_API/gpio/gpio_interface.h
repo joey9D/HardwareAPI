@@ -18,8 +18,8 @@ public:
     virtual void EXTI_Falling_Callback();
 
     virtual uint16_t getPin() const = 0;
-    virtual GPIO_TypeDef* getPort() const;
-    virtual Mode getMode() const;
-    virtual Pull getPull() const;
-    virtual Speed getSpeed() const;
+    virtual uint32_t getPort() const = 0;
+    virtual uint32_t getMode() const = 0;
+    virtual uint32_t getPull() const = 0;
+    virtual uint32_t getSpeed() const = 0;
 };

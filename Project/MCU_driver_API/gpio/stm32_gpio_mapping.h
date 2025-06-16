@@ -1,6 +1,6 @@
 #pragma once
 
-namespace stm32x0_gpio_mapping
+namespace stm32x0_gpio_mapping // namespace for x0 mcus
 {
 /**
  * Include all hw familz header files
@@ -19,16 +19,15 @@ constexpr auto pin_count = 16; /* 0 - 15 */
 #ifdef STM32C0
 constexpr GPIO_TypeDef *const gpio_port[port_count] =
 {
-    GPIOA, GPIOB, GPIOC
+    GPIOA, GPIOB, GPIOC,
 #if defined(STM32C031x4) || defined(STM32C031x6)
     GPIOD,
 #else
     nullptr,
 #endif
     nullptr, // port E is not listed in rm0490 stm32c0x1
-#endif
     GPIOF
-}
+};
 #endif /* end stm32c0 */
 
 /**
@@ -54,7 +53,7 @@ constexpr GPIO_TypeDef *const gpio[port_count] =
     nullptr,
 #endif
     GPIOF
-}
+};
 #endif /* end stm32f0 */
 
 
@@ -78,7 +77,7 @@ constexpr GPIO_TypeDef *const gpio[ports] =
     nullptr,
 #endif
     GPIOF
-}
+};
 #endif /* end stm32g0 */
 
 } /* end namespace */
