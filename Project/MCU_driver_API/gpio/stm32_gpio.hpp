@@ -1,6 +1,7 @@
 #pragma once
-
-#include "gpio_interface.hpp"
+#include <cassert>
+#include "stm32_gpio.hpp"
+#include "stm32_gpio_mapping.hpp"
 
 
 class STM32Gpio : public GpioInterface
@@ -70,17 +71,30 @@ public:
         Speed speed)
         : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed)
     {
-        // Initialize the GPIO pin here
+        assert(pin < stm32x0_gpio_mapping::pin_count);
+        assert(port < stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(port)]);
+
+        GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+        __HAL_RCC_GPIOC_CLK_ENABLE();
+        __HAL_RCC_GPIOF_CLK_ENABLE();
+        __HAL_RCC_GPIOA_CLK_ENABLE();
+
+        writePin();
+
+        GPIO_InitStruct.Pin = _pin;
     }
 
     ~SMT32Gpio9() = default;;
 
     // getter
-    uint16_t getPin() const;
-    GPIO_TypeDef* getPort() const;
-    Mode getMode() const;
-    Pull getPull() const;
-    Speed getSpeed() const;
+    uint16_t getPin() const {    return _pin;    }
+    GPIO_TypeDef* getPort() const {
+        return stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(_port)];
+    }
+    Mode getMode() const {    return _mode;   }
+    Pull getPull() const {    return _pull;   }
+    Speed getSpeed() const {    return _speed;   }
 
     // Optional: Setter mit Typprüfung
     void setMode(Mode mode);
@@ -90,9 +104,20 @@ public:
 
 
     // gpio function abstraction for hal functions
-    bool readPin() const;
-    void writePin(bool value) const;
-    void togglePin() const;
+    bool STM32Gpio::readPin() const
+    {
+        return HAL_GPIO_ReadPin(getPort(), getPin());
+    }
+
+    void STM32Gpio::writePin(bool value) const
+    {
+        HAL_GPIO_WritePin(getPort(), getPin(), value ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    }
+
+    void STM32Gpio::togglePin() const
+    {
+        HAL_GPIO_TogglePin(getPort(), getPin());
+    }
 
 
 private:
