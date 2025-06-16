@@ -12,12 +12,12 @@ public:
     virtual bool readPin() const = 0;
     virtual void writePin(bool value) = 0;
     virtual void tooglePin() = 0;
+    virtual bool lockPin() = 0;
+    virtual void EXTI_IRQHandler();
+    virtual void EXTI_Risising_Callback();
+    virtual void EXTI_Falling_Callback();
 
-    virtual void setMode(Mode mode);
-    virtual void setPull(Pull pull);
-    virtual void setSpeed(Speed speed);
-
-    virtual uint16_t getPin() const =0;
+    virtual uint16_t getPin() const = 0;
     virtual GPIO_TypeDef* getPort() const;
     virtual Mode getMode() const;
     virtual Pull getPull() const;
