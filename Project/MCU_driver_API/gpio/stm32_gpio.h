@@ -72,11 +72,11 @@ public:
     Speed speed);
     ~STM32Gpio() override;
 
-    [[nodiscard]] uint16_t getPin() const final;
-    [[nodiscard]] Port getPort() const final;
-    [[nodiscard]] Mode getMode() const final;
-    [[nodiscard]] Pull getPull() const final;
-    [[nodiscard]] Speed getSpeed() const final;
+    [[nodiscard]] uint16_t getPin() const;
+    [[nodiscard]] Port getPort() const;
+    [[nodiscard]] Mode getMode() const;
+    [[nodiscard]] Pull getPull() const;
+    [[nodiscard]] Speed getSpeed() const;
 
     [[nodiscard]] bool readPin() const final;
     void writePin(bool value) final;
