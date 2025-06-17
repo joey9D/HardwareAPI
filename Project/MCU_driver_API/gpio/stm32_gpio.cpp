@@ -1,4 +1,4 @@
-#include "stm32_gpio.hpp"
+#include "stm32_gpio.h"
 #include "stm32_gpio_mapping.hpp"
 #include "stm32c0xx_hal_gpio.h"
 
