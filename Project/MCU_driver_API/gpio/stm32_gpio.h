@@ -9,12 +9,12 @@ namespace stm32
 class STM32Gpio : public GpioInterface
 {
 public:
-    enum class Port
+    enum class Port : uint8_t
     {
         A, B, C, D, E, F
     };
 
-    enum class Mode
+    enum class Mode uint8_t
     {
         /*!< Input Floating Mode                                                 */
         Input = GPIO_MODE_INPUT,
@@ -69,8 +69,7 @@ public:
     Port port,
     Mode mode,
     Pull pull,
-    Speed speed)
-    : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed);
+    Speed speed);
     ~STM32Gpio() override;
 
     [[nodiscard]] uint16_t getPin() const final;
