@@ -1,15 +1,19 @@
-#pragma once
+#ifndef __STM32X0_GPIO_MAPPING_HPP
+#define __STM32X0_GPIO_MAPPING_HPP
 
-namespace stm32x0_gpio_mapping // namespace for x0 mcus
-{
-/**
- * Include all hw familz header files
- */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "stm32c0xx.h"
+
+
+#ifdef __cplusplus
+namespace stm32x0_gpio_mapping
+{
 
 constexpr auto port_count = 6; /* A, B, C, D, E, F */
 constexpr auto pin_count = 16; /* 0 - 15 */
-
 
 /**
  * @brief SMT32C0
@@ -29,6 +33,7 @@ constexpr GPIO_TypeDef *const gpio_port[port_count] =
     GPIOF
 };
 #endif /* end stm32c0 */
+
 
 /**
  * @brief SMT32F0
@@ -80,4 +85,12 @@ constexpr GPIO_TypeDef *const gpio[ports] =
 };
 #endif /* end stm32g0 */
 
-} /* end namespace */
+
+}
+#endif
+
+#ifdef __cplusplus
+}
+#endif /* extern "C" */
+
+#endif /* __STM32_GPIO_MAPPING_HPP */
