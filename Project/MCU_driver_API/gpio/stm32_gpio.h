@@ -12,7 +12,7 @@ extern "C" {
 #ifdef __cplusplus
 namespace stm32
 {
-class STM32Gpio : public GpioInterface
+class Gpio : public ::GpioInterface
 {
 public:
 	enum class Port : uint8_t
@@ -63,7 +63,7 @@ public:
 		Very_High = GPIO_SPEED_FREQ_VERY_HIGH,   /*!< Very high speed */
 	};
 
-	STM32Gpio(
+	Gpio(
 		uint16_t pin,
 	    Port port,
 	    Mode mode,
@@ -71,7 +71,7 @@ public:
 	    Speed speed
 	);
 
-	~STM32Gpio() = default;
+	~Gpio() = default;
 
 	[[nodiscard]] uint16_t getPin() const;
 	[[nodiscard]] Port getPort() const;
@@ -82,8 +82,8 @@ public:
 
 	[[nodiscard]] bool readPin() const final;
 	void writePin(bool value) final;
-	void togglePin() final;
-	bool lockPin() final;
+	void togglePin() const final;
+	bool lockPin() const final;
 
 private:
 	uint16_t _pin;
