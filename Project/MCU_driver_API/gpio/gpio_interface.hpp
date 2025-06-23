@@ -1,4 +1,8 @@
-#pragma once
+// #pragma once
+
+#ifndef __GPIO_INTERFACE_HPP
+#define __GPIO_INTERFACE_HPP
+
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -17,9 +21,11 @@ public:
 
     virtual bool readPin() const = 0;
     virtual void writePin(bool value) = 0;
-    virtual void togglePin() = 0;
-    virtual bool lockPin() = 0;
+    virtual void togglePin() const = 0;
+    virtual bool lockPin() const = 0;
 
 };
 
 #endif /* end cplusplus */
+
+#endif /* __GPIO_INTERFACE_HPP */

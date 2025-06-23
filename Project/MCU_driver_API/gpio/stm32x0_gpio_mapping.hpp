@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "stm32c0xx.h"
+// #include "stm32c0xx.h" /* braucht man den wirklich? Glaube nicht. */
 
 
 #ifdef __cplusplus

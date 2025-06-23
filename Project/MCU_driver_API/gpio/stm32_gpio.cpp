@@ -7,7 +7,7 @@
 #include "stm32_gpio.h"
 #include "stm32x0_gpio_mapping.hpp"
 
-#include "stm32c0xx_hal_gpio.h"
+
 
 //using namespace stm32;
 
@@ -36,10 +36,10 @@ stm32::Gpio::Gpio(
 	HAL_GPIO_Init(get_GPIO_TypeDef_port(),&GPIO_InitStruct);
 }
 
-stm32::Gpio::~Gpio()
-{
-	// default destructor
-}
+// stm32::Gpio::~Gpio()
+// {
+// 	// default destructor
+// }
 
 [[nodiscard]] uint16_t stm32::Gpio::getPin() const {    return _pin;    }
 [[nodiscard]] stm32::Gpio::Port stm32::Gpio::getPort() const {    return _port;   }

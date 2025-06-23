@@ -5,7 +5,8 @@
 extern "C" {
 #endif
 
-#include "stm32c0xx_hal_gpio.h"
+#include "stm32c0xx_hal.h"
+// #include "stm32c0xx_hal_gpio.h"
 #include "gpio_interface.h"
 #include "stm32x0_gpio_mapping.hpp"
 
