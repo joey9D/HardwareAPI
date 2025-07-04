@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "name": "macos-gcc-arm64",
+      "name": "windows-gcc-x64",
       "includePath": [
         "${workspaceFolder}/**"
       ],
@@ -13,8 +13,8 @@
       "windowsSdkVersion": "10.0.22621.0",
       "cStandard": "c11",
       "cppStandard": "c++23",
-      "intelliSenseMode": "macos-gcc-arm64",
-      "compilerPath": "/opt/homebrew/bin/gcc"
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe"
     }
   ],
   "version": 4

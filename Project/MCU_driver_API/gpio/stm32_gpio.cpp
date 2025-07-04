@@ -1,23 +1,28 @@
-//#ifdef __cplusplus
-//#include <cassert>
-//#else
+// #ifdef __cplusplus
+// #include <cassert>
+// #else
 #include <assert.h>
-//#endif
+#include <type_traits>
+// #endif
 
-#include "stm32_gpio.h"
+#include "stm32_gpio.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
+/**
+ * @brief Include the header files for the used hardware.
+ */
+#include "stm32c0xx_hal_gpio.h"
 
-
-//using namespace stm32;
+// using namespace stm32;
 
 stm32::Gpio::Gpio(
 	uint16_t pin,
 	Port port,
 	Mode mode,
 	Pull pull,
-	Speed speed)
-	: _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed)
+	Speed speed,
+	bool inverted)
+	: _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed), _invertedPin(inverted)
 {
 	assert(stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(port)]);
 	assert(stm32::Gpio::_pin < stm32x0_gpio_mapping::pin_count);
@@ -26,48 +31,86 @@ stm32::Gpio::Gpio(
 
 	clock_enable(_port);
 
-	writePin(0);
+	uint16_t pin_msk = (1UL << _pin);
 
-	GPIO_InitStruct.Pin = static_cast<uint32_t>(_pin);
+	if (_mode == Mode::Output_Push_Pull || _mode == Mode::Output_Open_Drain)
+	{
+		HAL_GPIO_WritePin(get_GPIO_TypeDef_port(), pin_msk, GPIO_PIN_RESET);
+	}
+
+	GPIO_InitStruct.Pin = pin_msk;
 	GPIO_InitStruct.Mode = static_cast<uint32_t>(_mode);
 	GPIO_InitStruct.Pull = static_cast<uint32_t>(_pull);
 	GPIO_InitStruct.Speed = static_cast<uint32_t>(_speed);
-//	GPIO_TypeDef *typedef_port = getGPIOTypeDef();
-	HAL_GPIO_Init(get_GPIO_TypeDef_port(),&GPIO_InitStruct);
+	//	GPIO_TypeDef *typedef_port = getGPIOTypeDef();
+	HAL_GPIO_Init(get_GPIO_TypeDef_port(), &GPIO_InitStruct);
 }
 
 // stm32::Gpio::~Gpio()
-// {
-// 	// default destructor
+//{
+//	// default destructor
 // }
-
-[[nodiscard]] uint16_t stm32::Gpio::getPin() const {    return _pin;    }
-[[nodiscard]] stm32::Gpio::Port stm32::Gpio::getPort() const {    return _port;   }
+/**
+ * @brief returns the bit mask of the used pin
+ */
+[[nodiscard]] uint16_t stm32::Gpio::getPin() const { return (1UL << _pin); }
+/**
+ * @brief returns the pin as an int
+ */
+[[nodiscard]] uint16_t stm32::Gpio::getPinNumber() const { return _pin; }
+[[nodiscard]] stm32::Gpio::Port stm32::Gpio::getPort() const { return _port; }
 [[nodiscard]] GPIO_TypeDef *stm32::Gpio::get_GPIO_TypeDef_port() const
 {
-	return stm32x0_gpio_mapping::gpio_port[static_cast<size_t>(stm32::Gpio::_port)];
+	//	return stm32x0_gpio_mapping::gpio_port[static_cast<size_t>(stm32::Gpio::_port)];
+	using PortIndex = std::underlying_type_t<decltype(_port)>;
+	return stm32x0_gpio_mapping::gpio_port[static_cast<PortIndex>(_port)];
 }
-[[nodiscard]] stm32::Gpio::Mode stm32::Gpio::getMode() const {    return _mode;   }
-[[nodiscard]] stm32::Gpio::Pull stm32::Gpio::getPull() const {    return _pull;   }
-[[nodiscard]] stm32::Gpio::Speed stm32::Gpio::getSpeed() const {    return _speed;   }
-
+[[nodiscard]] stm32::Gpio::Mode stm32::Gpio::getMode() const { return _mode; }
+[[nodiscard]] stm32::Gpio::Pull stm32::Gpio::getPull() const { return _pull; }
+[[nodiscard]] stm32::Gpio::Speed stm32::Gpio::getSpeed() const { return _speed; }
 
 [[nodiscard]] bool stm32::Gpio::readPin() const
 {
-    return HAL_GPIO_ReadPin(get_GPIO_TypeDef_port(), getPin());
+	return HAL_GPIO_ReadPin(get_GPIO_TypeDef_port(), getPin());
 }
 
-void stm32::Gpio::writePin(bool value)
+void stm32::Gpio::writePin(bool value) const
 {
-    HAL_GPIO_WritePin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin()), value ? GPIO_PIN_SET : GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin()), value ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+bool stm32::Gpio::isPinOn() const
+{
+	bool retval = false;
+
+	/**
+	 * @note eihter like this or using readPin(),
+	 * so that for future adjustments/portability you can just copy this whole function
+	 */
+	if (HAL_GPIO_ReadPin(get_GPIO_TypeDef_port(), getPin()) == GPIO_PIN_SET)
+	{
+		retval = true;
+	}
+
+	if (isPinInverted())
+	{
+		retval = !retval;
+	}
+
+	return retval;
+}
+
+bool stm32::Gpio::isPinInverted() const
+{
+	return _invertedPin;
 }
 
 void stm32::Gpio::togglePin() const
 {
-    HAL_GPIO_TogglePin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin()));
+	HAL_GPIO_TogglePin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin()));
 }
 
 bool stm32::Gpio::lockPin() const
 {
-    return static_cast<bool>(HAL_GPIO_LockPin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin())));
-};
+	return static_cast<bool>(HAL_GPIO_LockPin(get_GPIO_TypeDef_port(), static_cast<uint16_t>(getPin())));
+}

@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Timer",
-      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Timer/build/Debug/outDebug",
+      "cwd": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI",
+      "program": "c:/Users/jan.kristel/Documents/Thesis/HardwareAPI/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
