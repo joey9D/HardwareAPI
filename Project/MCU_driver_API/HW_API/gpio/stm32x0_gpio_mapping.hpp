@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-// #include "stm32c0xx.h" /* braucht man den wirklich? Glaube nicht. */
+//#include "stm32c0xx.h"
 
 
 #ifdef __cplusplus
@@ -67,7 +67,7 @@ constexpr GPIO_TypeDef *const gpio[port_count] =
  *
  */
 #ifdef STM32G0
-constexpr GPIO_TypeDef *const gpio[ports] =
+constexpr GPIO_TypeDef *const gpio_port[port_count] =
 {
     GPIOA, GPIOB, GPIOC,
 #if defined(STM32G070xx) || defined(STM32G071xx) || defined(STM32G081xx) || \
