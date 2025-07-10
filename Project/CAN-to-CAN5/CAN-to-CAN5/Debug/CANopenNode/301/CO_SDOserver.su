@@ -1,0 +1,11 @@
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNode/301/CO_ODinterface.h:343:1:OD_getIndex	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNode/301/CO_ODinterface.h:518:1:OD_get_u8	32	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNode/301/CO_ODinterface.h:530:1:OD_get_u32	32	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNode/301/CO_ODinterface.h:605:1:OD_set_u32	32	static
+../CANopenNode/301/CO_SDOserver.c:51:1:CO_SDO_receive	32	static
+../CANopenNode/301/CO_SDOserver.c:147:1:CO_SDOserver_init_canRxTx	64	static
+../CANopenNode/301/CO_SDOserver.c:254:1:CO_SDOserver_init	72	static
+../CANopenNode/301/CO_SDOserver.c:366:1:CO_SDOserver_initCallbackPre	24	static
+../CANopenNode/301/CO_SDOserver.c:398:1:validateAndWriteToOD	64	static,ignoring_inline_asm
+../CANopenNode/301/CO_SDOserver.c:510:1:readFromOd	72	static,ignoring_inline_asm
+../CANopenNode/301/CO_SDOserver.c:594:1:CO_SDOserver_process	128	static,ignoring_inline_asm

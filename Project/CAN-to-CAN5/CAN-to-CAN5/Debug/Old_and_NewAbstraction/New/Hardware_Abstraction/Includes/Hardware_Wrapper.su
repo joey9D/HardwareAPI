@@ -1,0 +1,26 @@
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:84:18:virtual void HardwareInterface::MasterNodesendCommand(int, int)	24	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:89:18:virtual bool HardwareInterface::getNMTinternalstate(int)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:95:18:virtual void HardwareInterface::setNMTinternalstate(int)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:99:18:virtual void HardwareInterface::RegisterMasterCallbacks()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:105:18:virtual void HardwareInterface::NodeStateHandler()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:150:17:virtual int HardwareInterface::initandSetFilters(const std::array<long unsigned int, 13>&)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:156:18:virtual void HardwareInterface::CANerrorHandler()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:161:18:virtual void HardwareInterface::RegisterCANInterruptCallback(CANInterruptCallback)	24	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:167:18:virtual bool HardwareInterface::allNodesBooted()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Factory.h:38:37:void __tcf_0()	8	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Factory.h:18:31:static HardwareInterface* HardwareFactory::Create()	8	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:6:22:void* CreateHardwareInstance()	8	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:11:10:void Hardware_Delay(HardwareInstance, uint32_t)	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:15:14:uint32_t Hardware_GetTick(HardwareInstance)	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:20:10:void Hardware_GPIO_SetMode(HardwareInstance, void*, uint8_t, int)	32	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:24:9:int Hardware_GPIO_Read(HardwareInstance, const PinInfo&)	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:28:10:void Hardware_GPIO_Write(HardwareInstance, const PinInfo&, int)	24	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:33:10:void Hardware_CAN_Init(HardwareInstance, uint8_t, uint32_t)	32	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:37:10:void Hardware_CAN_Send(HardwareInstance, uint8_t, uint32_t, uint8_t*, uint8_t)	40	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:41:9:int Hardware_CAN_Receive(HardwareInstance, uint8_t, uint32_t*, uint8_t*, uint8_t*)	40	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:46:10:void Hardware_Timer_Base_Start_IT(HardwareInstance, TIM_HandleTypeDef*)	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Wrapper.cpp:51:10:void System_Reset(HardwareInstance)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:202:13:HardwareInterface::~HardwareInterface()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:202:13:virtual HardwareInterface::~HardwareInterface()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/STM32G0_Hardware.h:20:7:STM32G0_Hardware::~STM32G0_Hardware()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/STM32G0_Hardware.h:20:7:virtual STM32G0_Hardware::~STM32G0_Hardware()	16	static

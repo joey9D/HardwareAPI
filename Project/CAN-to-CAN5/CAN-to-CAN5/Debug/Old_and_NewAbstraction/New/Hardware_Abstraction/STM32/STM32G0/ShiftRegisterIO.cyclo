@@ -1,0 +1,6 @@
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:7:6:void ShiftRegisterIO::init()	1
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:39:6:void ShiftRegisterIO::pulse(GPIO_TypeDef*, uint16_t)	1
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:48:6:void ShiftRegisterIO::writeOutputs(uint8_t)	2
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:65:9:uint8_t ShiftRegisterIO::readInputs()	3
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:91:6:void ShiftRegisterIO::setOutputBit(uint16_t, bool)	3
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/ShiftRegisterIO.cpp:101:6:bool ShiftRegisterIO::getInputBit(uint16_t) const	2

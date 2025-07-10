@@ -1,0 +1,10 @@
+../app/CiA417_Gateway.cpp:13:1:CiA417_Gateway::CiA417_Gateway()	1
+../app/CiA417_Gateway.cpp:19:1:CiA417_Gateway::~CiA417_Gateway()	1
+../app/CiA417_Gateway.cpp:19:1:virtual CiA417_Gateway::~CiA417_Gateway()	1
+../app/CiA417_Gateway.cpp:24:6:bool CiA417_Gateway::isOutputBfValid(const uint8_t&)	11
+../app/CiA417_Gateway.cpp:75:6:bool CiA417_Gateway::isOutputSfValid(const uint8_t&, const uint8_t&)	1
+../app/CiA417_Gateway.cpp:82:6:bool CiA417_Gateway::isInputBfValid(const uint8_t&)	8
+../app/CiA417_Gateway.cpp:121:6:bool CiA417_Gateway::isInputSfValid(const uint8_t&, const uint8_t&)	1
+../app/CiA417_Gateway.cpp:128:6:bool CiA417_Gateway::isLiftValid(const uint8_t&)	2
+../app/CiA417_Gateway.cpp:143:6:bool CiA417_Gateway::isFloorValid(const uint8_t&)	4
+../app/CiA417_Gateway.cpp:168:6:bool CiA417_Gateway::isDoorValid(const uint8_t&)	2

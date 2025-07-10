@@ -1,0 +1,19 @@
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/CiA417_VirtualIOMapping.h:35:10:bool CiA417_virtualIOMapping::operator!=(const CiA417_virtualIOMapping&) const	7
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/CiA417_VirtualIOMapping.h:104:37:const virtualIOMapping_data_t& CiA417_virtualIOMapping::get_virtualIOMapping() const	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/CiA417_VirtualIOMapping.h:106:10:void CiA417_virtualIOMapping::set_virtualIOMapping(const virtualIOMapping_data_t&)	1
+../app/helper_functions.cpp:8:25:virtualIOMapping_data_t HelperFunctions::getODInputFunctionMapping(uint8_t)	2
+../app/helper_functions.cpp:22:25:virtualIOMapping_data_t HelperFunctions::getODOutputFunctionMapping(uint8_t)	2
+../app/helper_functions.cpp:37:26:virtualIOMapping_data_t* HelperFunctions::getAddressODInputFunctionMapping(uint8_t)	2
+../app/helper_functions.cpp:50:26:virtualIOMapping_data_t* HelperFunctions::getAddressODOutputFunctionMapping(uint8_t)	2
+../app/helper_functions.cpp:63:6:void HelperFunctions::sendInputs()	2
+../app/helper_functions.cpp:75:6:void HelperFunctions::pollRecvOutputs()	3
+../app/helper_functions.cpp:89:6:static void HelperFunctions::static_callbackPdoVirtOMapData(void*)	2
+../app/helper_functions.cpp:96:6:static void HelperFunctions::static_callbackSdoVirtOMapData(void*)	2
+../app/helper_functions.cpp:103:6:void HelperFunctions::callbackPdoVirtOMapData(void*)	1
+../app/helper_functions.cpp:113:6:void HelperFunctions::callbackSdoVirtOMapData(void*)	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/CiA417_VirtualIOMapping.h:14:7:constexpr CiA417_virtualIOMapping& CiA417_virtualIOMapping::operator=(const CiA417_virtualIOMapping&)	1
+../app/helper_functions.cpp:120:6:void HelperFunctions::adoptVirtOMapData(virtualIOMapping_data_t&)	6
+../app/helper_functions.cpp:135:6:void HelperFunctions::writeInputMappingToOD(uint8_t, const libCOL_input_t&)	1
+../app/../basic/stack_fifo.h:93:14:bool Stack_Fifo<T, _len>::read(T&) [with T = virtualIOMapping_data; long unsigned int _len = 10]	3
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/c++/12.3.1/array:223:7:std::array<_Tp, _Nm>::value_type& std::array<_Tp, _Nm>::at(size_type) [with _Tp = virtualIOMapping_data; unsigned int _Nm = 10]	1
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/c++/12.3.1/array:60:7:static constexpr _Tp& std::__array_traits<_Tp, _Nm>::_S_ref(const _Tp (&)[_Nm], std::size_t) [with _Tp = virtualIOMapping_data; unsigned int _Nm = 10]	1

@@ -1,0 +1,13 @@
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:42:6:CO_CANsetConfigurationMode	2
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:56:6:CO_CANsetNormalMode	3
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:72:18:CO_CANmodule_init	8
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:207:6:CO_CANmodule_disable	3
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:220:18:CO_CANrxBufferInit	7
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:256:13:CO_CANtxBufferInit	4
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:281:16:prv_send_can_message	11
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:391:18:CO_CANsend	4
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:427:6:CO_CANclearPendingSyncPDOs	7
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:468:6:CO_CANmodule_process	5
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:560:13:prv_read_can_received_msg	18
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:666:6:HAL_FDCAN_RxFifo0Callback	2
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/CO_driver_STM32.c:704:6:HAL_FDCAN_TxBufferCompleteCallback	6

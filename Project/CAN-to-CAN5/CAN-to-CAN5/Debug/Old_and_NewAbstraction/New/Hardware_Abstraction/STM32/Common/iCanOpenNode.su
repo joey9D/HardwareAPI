@@ -1,0 +1,34 @@
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:84:18:virtual void HardwareInterface::MasterNodesendCommand(int, int)	24	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:89:18:virtual bool HardwareInterface::getNMTinternalstate(int)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:95:18:virtual void HardwareInterface::setNMTinternalstate(int)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:99:18:virtual void HardwareInterface::RegisterMasterCallbacks()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:105:18:virtual void HardwareInterface::NodeStateHandler()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:150:17:virtual int HardwareInterface::initandSetFilters(const std::array<long unsigned int, 13>&)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:156:18:virtual void HardwareInterface::CANerrorHandler()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:161:18:virtual void HardwareInterface::RegisterCANInterruptCallback(CANInterruptCallback)	24	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:167:18:virtual bool HardwareInterface::allNodesBooted()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Factory.h:38:37:void __tcf_0()	8	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Factory.h:18:31:static HardwareInterface* HardwareFactory::Create()	8	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:18:2:Timer::Timer()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:23:7:void Timer::startTime(uint32_t)	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:29:7:void Timer::stopTime()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:30:7:void Timer::resetTime()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:32:7:bool Timer::isTimeExpired()	32	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:46:11:uint32_t Timer::getCurrentDiffTime()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:47:19:const uint32_t& Timer::getExpiredDiffTime() const	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.h:17:2:constexpr iCanOpenNode::iCanOpenNode()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.h:18:10:iCanOpenNode::~iCanOpenNode()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.h:18:10:virtual iCanOpenNode::~iCanOpenNode()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.cpp:25:1:CanOpenNodeSTM32::CanOpenNodeSTM32()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.cpp:41:5:virtual int CanOpenNodeSTM32::canopen_app_init()	24	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.cpp:99:10:virtual uint32_t CanOpenNodeSTM32::canopen_app_resetCommunication()	88	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.cpp:212:9:virtual uint8_t CanOpenNodeSTM32::canopen_app_process()	40	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.cpp:242:6:virtual void CanOpenNodeSTM32::canopen_app_interrupt()	32	static,ignoring_inline_asm
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.h:89:10:CanOpenNodeSTM32::~CanOpenNodeSTM32()	16	static
+../Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/Common/iCanOpenNode.h:89:10:virtual CanOpenNodeSTM32::~CanOpenNodeSTM32()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:21:10:Timer::~Timer()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/CANopenNodeInterface/../basic/Timer.h:21:10:virtual Timer::~Timer()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:202:13:HardwareInterface::~HardwareInterface()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/Hardware_Interface.h:202:13:virtual HardwareInterface::~HardwareInterface()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/STM32G0_Hardware.h:20:7:STM32G0_Hardware::~STM32G0_Hardware()	16	static
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/STM32/STM32G0/STM32G0_Hardware.h:20:7:virtual STM32G0_Hardware::~STM32G0_Hardware()	16	static

@@ -1,0 +1,16 @@
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:100:1:T details::nullReturnFunction() [with T = void]	1
+../app/NKET_Protokoll.h:368:5:NKET_Protokoll::NKET_Protokoll()	1
+../app/NKET_Handler.h:37:17:void NKET_Handler::setinitState(uint8_t)	1
+../app/NKET_Handler.h:38:7:void NKET_Handler::setLastError(uint32_t)	1
+../app/NKET_Handler.cpp:3:1:NKET_Handler::NKET_Handler(HardwareInterface*)	1
+../app/NKET_Handler.cpp:9:6:bool NKET_Handler::initCAN()	3
+../app/NKET_Handler.cpp:29:6:bool NKET_Handler::isCANInitOk()	2
+../app/NKET_Handler.cpp:42:6:void NKET_Handler::initNKETStack()	2
+../app/NKET_Handler.cpp:55:6:void NKET_Handler::handleIncomingMessage(const uint8_t*, uint32_t)	24
+../app/NKET_Handler.cpp:152:6:void NKET_Handler::sendMessage(const uint8_t*, uint32_t)	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:160:31:) [with R = void; Args = {const unsigned char*, long unsigned int}]	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:624:39:) = &NKET_Handler::handleIncomingMessage; R = void; Args = {const unsigned char*, long unsigned int}]	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:186:31:) = &NKET_Handler::handleIncomingMessage; R = void; Args = {const unsigned char*, long unsigned int}]	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:168:19:)>::Trampoline, void*) [with R = void; Args = {const unsigned char*, long unsigned int}]	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:138:25:)>::DataPtr::ptr() const [with R = void; Args = {const unsigned char*, long unsigned int}]	1
+C:/Users/ketan.singh/Desktop/Microcontroller-Nucleo-G071RB/Mustercopy/CAN-to-CAN5/Old_and_NewAbstraction/New/Hardware_Abstraction/Includes/delegate/delegate.hpp:120:19:)>::DataPtr::DataPtr(void*) [with R = void; Args = {const unsigned char*, long unsigned int}]	1

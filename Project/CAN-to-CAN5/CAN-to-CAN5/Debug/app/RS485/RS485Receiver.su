@@ -1,0 +1,1 @@
+../app/RS485/RS485Receiver.cpp:4:6:static bool RS485Receiver::tryReceive(RS485Frame&)	32	static

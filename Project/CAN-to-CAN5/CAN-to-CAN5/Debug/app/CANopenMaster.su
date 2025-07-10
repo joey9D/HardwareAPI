@@ -1,0 +1,20 @@
+../app/CANopenMaster.h:61:17:void CANopenMaster::setState(CANopenMasterStates)	16	static
+../app/CiA417_CmdHandler.h:16:2:constexpr CiA417_CmdHandler::CiA417_CmdHandler()	16	static
+../app/CANopenMaster.cpp:4:1:CANopenMaster::CANopenMaster(HardwareInterface*)	16	static
+../app/CANopenMaster.cpp:13:6:bool CANopenMaster::initMaster()	24	static
+../app/CANopenMaster.cpp:34:6:void CANopenMaster::InitMasterStack()	16	static
+../app/CANopenMaster.cpp:46:6:void CANopenMaster::errorloop()	24	static,ignoring_inline_asm
+../app/CANopenMaster.cpp:56:6:bool CANopenMaster::isMasterInitOk()	16	static
+../app/CANopenMaster.cpp:72:20:HardwareInterface* CANopenMaster::getHardwareInterface()	16	static
+../app/CANopenMaster.cpp:78:20:CiA417_CmdHandler& CANopenMaster::getCiA417_CmdHandler()	16	static
+../app/CANopenMaster.cpp:84:6:void CANopenMaster::initialize()	16	static
+../app/CANopenMaster.cpp:98:6:void CANopenMaster::setinitState(uint8_t)	16	static
+../app/CANopenMaster.cpp:103:10:uint32_t CANopenMaster::getLastError()	16	static
+../app/CANopenMaster.cpp:108:6:void CANopenMaster::setLastError(uint32_t)	16	static
+../app/CANopenMaster.cpp:113:6:void CANopenMaster::setCallbackFunctions()	16	static
+../app/CANopenMaster.cpp:119:6:void CANopenMaster::process()	16	static
+../app/CANopenMaster.cpp:127:6:void CANopenMaster::timeHandler()	16	static
+../app/CANopenMaster.cpp:135:6:void CANopenMaster::errorHandler()	16	static
+../app/CANopenMaster.cpp:143:6:void CANopenMaster::MasterOperation()	16	static
+../app/CiA417_CmdHandler.h:17:10:CiA417_CmdHandler::~CiA417_CmdHandler()	16	static
+../app/CiA417_CmdHandler.h:17:10:virtual CiA417_CmdHandler::~CiA417_CmdHandler()	16	static

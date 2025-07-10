@@ -1,0 +1,63 @@
+../app/CiA417_CmdHandler.cpp:13:6:void CiA417_CmdHandler::switchCmdToAlternative(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:34:6:void CiA417_CmdHandler::execBf_callControllerCommand(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:49:6:void CiA417_CmdHandler::execBf_genericOutput(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:54:6:void CiA417_CmdHandler::execBf_hallCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:69:6:void CiA417_CmdHandler::execBf_lowPriorityHallCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:84:6:void CiA417_CmdHandler::execBf_highPriorityHallCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:99:6:void CiA417_CmdHandler::execBf_carCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:112:6:void CiA417_CmdHandler::execBf_lowPriorityCarCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:125:6:void CiA417_CmdHandler::execBf_highPriorityCarCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:138:6:void CiA417_CmdHandler::execBf_destinationCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:151:6:void CiA417_CmdHandler::execBf_lowPriorityDestinationCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:164:6:void CiA417_CmdHandler::execBf_highPriorityDestinationCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:177:6:void CiA417_CmdHandler::execBf_destinationFloorAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:190:6:void CiA417_CmdHandler::execBf_lowPriorityDestinationFloorAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:203:6:void CiA417_CmdHandler::execBf_highPriorityDestinationFloorAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:216:6:void CiA417_CmdHandler::execBf_specialFunctionAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:263:6:void CiA417_CmdHandler::execBf_accessCodeUploadAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:275:6:void CiA417_CmdHandler::execBf_speechConnectionAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:280:6:void CiA417_CmdHandler::execBf_areaMonitoringConnectionAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:285:6:void CiA417_CmdHandler::execBf_guestCallAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:297:6:void CiA417_CmdHandler::execBf_liftLightsAcknowledgement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:320:6:void CiA417_CmdHandler::execBf_positionIndication(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:332:6:void CiA417_CmdHandler::execBf_hallLantern(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:344:6:void CiA417_CmdHandler::execBf_directionIndication(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:364:6:void CiA417_CmdHandler::execBf_specialIndication(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:414:6:void CiA417_CmdHandler::execBf_arrivalIndication(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:426:6:void CiA417_CmdHandler::execBf_vocalFloorsAnnouncement(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:437:6:void CiA417_CmdHandler::execBf_vocalUserMessage(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:469:6:void CiA417_CmdHandler::execBf_musicPlayback(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:483:6:void CiA417_CmdHandler::execBf_miscellaneousOutputs(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:492:6:void CiA417_CmdHandler::execBf_singleFaultIndication(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:501:6:void CiA417_CmdHandler::execBf_nextStop(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:510:6:void CiA417_CmdHandler::execBf_positionIndicationBinary(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:519:6:void CiA417_CmdHandler::execBf_positionIndicationGray(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:528:6:void CiA417_CmdHandler::execBf_positionIndication7Segment(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:537:6:void CiA417_CmdHandler::execBf_vocalFloorsAnnouncementBinary(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:546:6:void CiA417_CmdHandler::execBf_vocalFloorsAnnouncementGray(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:555:6:void CiA417_CmdHandler::execOutputCmd(const virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:676:6:void CiA417_CmdHandler::execBf_LiftStatusInformationRequest(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:681:6:void CiA417_CmdHandler::execBf_generic(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:686:6:void CiA417_CmdHandler::execBf_hallStandard(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:691:6:void CiA417_CmdHandler::execBf_hallLowPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:696:6:void CiA417_CmdHandler::execBf_hallHighPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:701:6:void CiA417_CmdHandler::execBf_carCallStandard(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:706:6:void CiA417_CmdHandler::execBf_carCallLowPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:711:6:void CiA417_CmdHandler::execBf_carCallHighPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:716:6:void CiA417_CmdHandler::execBf_destinationCallStandard(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:721:6:void CiA417_CmdHandler::execBf_destinationCallLowPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:726:6:void CiA417_CmdHandler::execBf_destinationCallHighPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:731:6:void CiA417_CmdHandler::execBf_destinationFloorCallStandard(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:736:6:void CiA417_CmdHandler::execBf_destinationFloorCallLowPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:741:6:void CiA417_CmdHandler::execBf_destinationFloorCallHighPriority(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:746:6:void CiA417_CmdHandler::execBf_specialFunction(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:751:6:void CiA417_CmdHandler::execBf_accessCodeUpload(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:756:6:void CiA417_CmdHandler::execBf_speechConnectionRequest(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:761:6:void CiA417_CmdHandler::execBf_areaMonitoringConnectionRequest(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:766:6:void CiA417_CmdHandler::execBf_fireDetector(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:771:6:void CiA417_CmdHandler::execBf_inspectionControlCar(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:776:6:void CiA417_CmdHandler::execBf_floorSelector(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:781:6:void CiA417_CmdHandler::execBf_statusSafetyCircuitries(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:786:6:void CiA417_CmdHandler::execBf_guestCall(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:791:6:void CiA417_CmdHandler::execBf_liftLights(virtualIOMapping_data_t&)	16	static
+../app/CiA417_CmdHandler.cpp:796:6:void CiA417_CmdHandler::execInputCmd(virtualIOMapping_data_t&)	16	static

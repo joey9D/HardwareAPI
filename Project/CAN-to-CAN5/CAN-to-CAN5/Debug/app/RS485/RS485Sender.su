@@ -1,0 +1,5 @@
+../app/RS485/RS485Sender.cpp:7:6:static void RS485Sender::init(void*, void*, uint16_t)	24	static
+../app/RS485/RS485Sender.cpp:13:6:static void RS485Sender::setTX(bool)	16	static
+../app/RS485/RS485Sender.cpp:17:6:static bool RS485Sender::sendFrame(const RS485Frame&)	32	static
+../app/RS485/RS485Sender.cpp:27:6:static void RS485Sender::sendPoll(uint8_t)	16	static
+../app/RS485/RS485Sender.cpp:32:6:static void RS485Sender::sendLED(uint8_t, uint8_t, uint8_t, uint16_t)	32	static
