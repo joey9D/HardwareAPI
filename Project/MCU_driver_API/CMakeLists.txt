@@ -56,18 +56,18 @@ add_compile_definitions(STM32C031xx)
 # RTOS #
 # add_compile_definitions(FREERTOS_USED)
 
-add_compile_options(
-    -mcpu=cortex-m0plus
-    #    -mfloat-abi=hard
-    #    -mfpu=fpv4-sp-d16
-    -mthumb
-    -ffunction-sections
-    -fdata-sections
-    $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
-    $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
-    $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
-    $<$<COMPILE_LANGUAGE:CXX>:-fno-use-cxa-atexit>
-    )
+# add_compile_options(
+#     -mcpu=cortex-m0plus
+#     #    -mfloat-abi=hard
+#     #    -mfpu=fpv4-sp-d16
+#     -mthumb
+#     -ffunction-sections
+#     -fdata-sections
+#     $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
+#     $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
+#     $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
+#     $<$<COMPILE_LANGUAGE:CXX>:-fno-use-cxa-atexit>
+#     )
 
 
 # -----------------------------------------
@@ -96,26 +96,19 @@ add_compile_options(
 #     add_subdirectory(tests)
 # endif()
 
-# CORE #
-set(CORE_LIBRARY core)
-add_subdirectory(${CORE_LIBRARY})
-
-# BASIC #
-set(BASIC_LIBRARY basic)
-add_subdirectory(${BASIC_LIBRARY})
-
-# GPIO #
-set(GPIO_LIBRARY gpio)
-add_subdirectory(${GPIO_LIBRARY})
-
-# MCU related #
-set(MCU_FAMILY stm32c0)
-set(MCU_DRIVERS_LIBRARY mcu_drivers/${MCU_FAMILY})
-add_subdirectory(${MCU_DRIVERS_LIBRARY})
-
-# set(I2C_LIBRARY i2c)
-# set(SPI_LIBRARY spi)
-# set(UART_LIBRARY uart)
+# HW_API #
+set(HW_API_LIBRARY HW_API)
+add_subdirectory(HW_API)
+# libs as variables
+# set(BASIC_LIB ${HW_API_LIBRARY}/basic)
+set(CORE_LIB ${HW_API_LIBRARY}/core)
+set(DRIVERS_LIB ${HW_API_LIBRARY}/drivers)
+set(GPIO_LIB ${HW_API_LIBRARY}/gpio)
+# set(I2C_LIB ${HW_API_LIBRARY}/i2c)
+# set(SPI_LIB ${HW_API_LIBRARY}/spi)
+set(STM32_LIB ${HW_API_LIBRARY}/stm32)
+set(SYS_CLOCK_LIB ${HW_API_LIBRARY}/sys_clock)
+# set(UART_LIB ${HW_API_LIBRARY}/uart)
 
 # MAIN EXECUTABLE #
 set(EXECUTABLE_NAME ${PROJECT_NAME})
