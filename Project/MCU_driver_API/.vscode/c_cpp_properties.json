@@ -1,42 +1,54 @@
 // Win settings
-// {
-//   "configurations": [
-//     {
-//       "name": "windows-gcc-x64",
-//       "includePath": [
-//         "${workspaceFolder}/**",
-//         "${workspaceFolder}/mcu_drivers/stm32c0/CMSIS/Device/ST/STM32C0xx/Include"
-//       ],
-//       "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
-//       "cStandard": "${default}",
-//       "cppStandard": "${default}",
-//       "intelliSenseMode": "windows-gcc-x64",
-//       "compilerArgs": [
-//         ""
-//       ]
-//     }
-//   ],
-//   "version": 4
-// }
+{
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/HW_API/core",
+        "${workspaceFolder}/HW_API/drivers/stm32/c0/CMSIS/Include",
+        "${workspaceFolder}/HW_API/drivers/stm32/c0/CMSIS/Device/ST/STM32C0xx/Include",
+        "${workspaceFolder}/HW_API/drivers/stm32/c0/STM32C0xx_HAL_Driver/Inc",
+        "${workspaceFolder}/HW_API/drivers/stm32/c0/STM32C0xx_HAL_Driver/Inc/Legacy",
+        "${workspaceFolder}/HW_API/gpio",
+        "${workspaceFolder}/HW_API/sys_clock"
+      ],
+      "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerArgs": [
+        ""
+      ]
+    }
+  ],
+  "version": 4
+}
 
 
 // Mac settings
-{
-    "configurations": [
-      {
-        "name": "macos-gcc-arm64",
-        "includePath": [
-          "${workspaceFolder}/**",
-          "${workspaceFolder}/mcu_drivers/stm32c0/CMSIS/Device/ST/STM32C0xx/Include"
-        ],
-        "compilerPath": "/opt/homebrew/bin/gcc",
-        "cStandard": "c11",
-        "cppStandard": "c++17",
-        "intelliSenseMode": "macos-gcc-arm64",
-        "compilerArgs": [
-          ""
-        ]
-      }
-    ],
-    "version": 4
-  }
+// {
+//     "configurations": [
+//       {
+//         "name": "macos-gcc-arm64",
+//         "includePath": [
+//           "${workspaceFolder}/**",
+//           "${workspaceFolder}/HW_API/core",
+//           "${workspaceFolder}/HW_API/drivers/stm32/c0/CMSIS/Include",
+//           "${workspaceFolder}/HW_API/drivers/stm32/c0/CMSIS/Device/ST/STM32C0xx/Include",
+//           "${workspaceFolder}/HW_API/drivers/stm32/c0/STM32C0xx_HAL_Driver/Inc",
+//           "${workspaceFolder}/HW_API/drivers/stm32/c0/STM32C0xx_HAL_Driver/Inc/Legacy",
+//           "${workspaceFolder}/HW_API/gpio",
+//           "${workspaceFolder}/HW_API/sys_clock"
+//         ],
+//         "compilerPath": "/opt/homebrew/bin/gcc",
+//         "cStandard": "c11",
+//         "cppStandard": "c++17",
+//         "intelliSenseMode": "macos-gcc-arm64",
+//         "compilerArgs": [
+//           ""
+//         ]
+//       }
+//     ],
+//     "version": 4
+//   }
