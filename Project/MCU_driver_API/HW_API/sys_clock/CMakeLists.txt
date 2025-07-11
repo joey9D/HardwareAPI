@@ -1,8 +1,5 @@
-add_library(${GPIO_LIBRARY} STATIC
-    "gpio_print.cpp"
-    "gpio_pin_debouncer.cpp"
-)
+add_library(${SYS_CLOCK_LIB} sys_clock.cpp)
 
-target_include_directories(${GPIO_LIBRARY} PUBLIC
+target_include_directories(${SYS_CLOCK_LIB} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
