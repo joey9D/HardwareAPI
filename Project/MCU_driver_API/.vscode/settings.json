@@ -13,15 +13,16 @@
     "explorer.copyRelativePathSeparator": "/",
     "files.autoSave": "onFocusChange",
     "files.associations": {
-      ".clang*": "yaml",
-      "*.hpp.in": "cpp",
-      "*.in": "cpp",
-      "cstdint": "cpp",
-      "random": "cpp",
-      "stm32c0xx.h": "c",
-      "iostream": "cpp",
-      "bitset": "cpp",
-      "compare": "cpp"
+        ".clang*": "yaml",
+        "*.hpp.in": "cpp",
+        "*.in": "cpp",
+        "cstdint": "cpp",
+        "random": "cpp",
+        "stm32c0xx.h": "c",
+        "iostream": "cpp",
+        "bitset": "cpp",
+        "compare": "cpp",
+        "stm32c0xx_ll_system.h": "c"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -219,5 +220,7 @@
     "C_Cpp_Runner.showCompilationTime": false,
     "C_Cpp_Runner.useLinkTimeOptimization": false,
     "C_Cpp_Runner.msvcSecureNoWarnings": false,
-    "C_Cpp_Runner.msvcBatchPath": ""
+    "C_Cpp_Runner.msvcBatchPath": "",
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.compilerPath": "/opt/homebrew/bin/arm-none-eabi-g++"
   }

@@ -47,7 +47,7 @@ void Gpio::gpio_init()
 			case ExtiTrigger::Falling:
 				GPIO_InitStruct.Mode = Mode::Interrupt_Falling;
 				break;
-			case ExtiTrigger::Both:
+			case ExtiTrigger::Rising_Falling:
 				GPIO_InitStruct.Mode = Mode::Interrupt_Rising_Falling;
 				break;
 			default:

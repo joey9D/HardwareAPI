@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32c0xx_hal.h"
+#include "stm32c0xx_hal.h" // hal_conf in cubeIDE Include
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
