@@ -1,6 +1,45 @@
-
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
+
+/* Private variables ---------------------------------------------------------*/
+
+SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+static void MX_DMA_Init(void);
+static void MX_SPI1_Init(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -9,6 +48,7 @@
 int main(void)
 {
 
+  /* USER CODE BEGIN 1 */
 	HardwareInterface *hw = HardwareFactory::create();
 
 	hw->init_sys();
@@ -40,13 +80,18 @@ int main(void)
 
 	led.gpio_init();
 	button.gpio_init();
+	MX_DMA_Init();
+	MX_SPI1_Init();
+
 
 	bool lastButtonState = button.isDebouncePinOn();
 
-  /* Infinite loop */
 
-  while (1)
-  {
+/* Infinite loop */
+/* USER CODE BEGIN WHILE */
+while (1)
+{
+  /* USER CODE END WHILE */
 //	  hw->togglePin();
 //	  hw->delay(500);
 	  bool currentButtonState = button.isDebouncePinOn();
@@ -56,9 +101,114 @@ int main(void)
 		  led.togglePin();
 	  }
 	  lastButtonState = currentButtonState;
-
   }
+  /* USER CODE END 3 */
 }
+
+
+
+/**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 7;
+  hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI1_Init 2 */
+
+  /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+//static void MX_GPIO_Init(void)
+//{
+//  GPIO_InitTypeDef GPIO_InitStruct = {0};
+//  /* USER CODE BEGIN MX_GPIO_Init_1 */
+//
+//  /* USER CODE END MX_GPIO_Init_1 */
+//
+//  /* GPIO Ports Clock Enable */
+//  __HAL_RCC_GPIOC_CLK_ENABLE();
+//  __HAL_RCC_GPIOF_CLK_ENABLE();
+//  __HAL_RCC_GPIOA_CLK_ENABLE();
+//
+//  /*Configure GPIO pin Output Level */
+//  HAL_GPIO_WritePin(Led_GPIO_Port, Led_Pin, GPIO_PIN_SET);
+//
+//  /*Configure GPIO pin : User_Button_Pin */
+//  GPIO_InitStruct.Pin = User_Button_Pin;
+//  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+//  GPIO_InitStruct.Pull = GPIO_NOPULL;
+//  HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
+//
+//  /*Configure GPIO pins : VCP_USART2_TX_Pin VCP_USART2_RX_Pin */
+//  GPIO_InitStruct.Pin = VCP_USART2_TX_Pin|VCP_USART2_RX_Pin;
+//  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//  GPIO_InitStruct.Pull = GPIO_NOPULL;
+//  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+//  GPIO_InitStruct.Alternate = GPIO_AF1_USART2;
+//  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+//
+//  /*Configure GPIO pin : Led_Pin */
+//  GPIO_InitStruct.Pin = Led_Pin;
+//  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//  GPIO_InitStruct.Pull = GPIO_NOPULL;
+//  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+//  HAL_GPIO_Init(Led_GPIO_Port, &GPIO_InitStruct);
+//
+//  /* EXTI interrupt init*/
+//  HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
+//  HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
+//
+//  /* USER CODE BEGIN MX_GPIO_Init_2 */
+//
+//  /* USER CODE END MX_GPIO_Init_2 */
+//}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.

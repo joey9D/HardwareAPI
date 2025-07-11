@@ -68,6 +68,14 @@
 		  Timeout = 0x03U
 	};
 
+	enum class ExtiTrigger
+	{
+		None,
+		Rising,
+		Falling,
+		Rising_Falling
+	}
+
 #endif /* __cplusplus */
 
 

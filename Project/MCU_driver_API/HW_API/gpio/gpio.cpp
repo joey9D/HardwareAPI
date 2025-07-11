@@ -14,10 +14,7 @@
 #include "hw_enum_classes.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
-Gpio::Gpio(PinConfig_t &config) : _config(config)
-{
-
-}
+Gpio::Gpio(PinConfig_t &config) : _config(config){}
 
 void Gpio::gpio_init()
 {
@@ -39,7 +36,26 @@ void Gpio::gpio_init()
 	GPIO_InitStruct.Mode = static_cast<uint32_t>(_config.mode);
 	GPIO_InitStruct.Pull = static_cast<uint32_t>(_config.pull);
 	GPIO_InitStruct.Speed = static_cast<uint32_t>(_config.speed);
-//	GPIO_TypeDef *typedef_port = getGPIOTypeDef();
+
+	if (_config.extiTrigger != ExtiTrigger::None)
+	{
+		switch(_config.extiTrigger)
+		{
+			case ExtiTrigger::Rising:
+				GPIO_InitStruct.Mode = Mode::Interrupt_Rising;
+				break;
+			case ExtiTrigger::Falling:
+				GPIO_InitStruct.Mode = Mode::Interrupt_Falling;
+				break;
+			case ExtiTrigger::Both:
+				GPIO_InitStruct.Mode = Mode::Interrupt_Rising_Falling;
+				break;
+			default:
+				// GPIO_InitStruct.Mode = GPIO_MODE_INPUT; // Default to input if no trigger is set
+				break;
+		}
+	}
+
 	HAL_GPIO_Init(get_GPIO_TypeDef_port(),&GPIO_InitStruct);
 }
 
@@ -64,7 +80,7 @@ void Gpio::togglePin() const
 }
 
 /**
- * brief Helper functions
+ * @brief Helper functions
  */
 void Gpio::port_clock_enable(Port port) const
 {
@@ -189,6 +205,3 @@ Mode Gpio::getMode() const { return _config.mode; }
 Pull Gpio::getPull() const { return _config.pull; }
 
 Speed Gpio::getSpeed() const { return _config.speed; }
-
-
-
