@@ -31,7 +31,7 @@ struct PinConfig_t
 	uint32_t debounceTime;
 	uint8_t debounceState;
 	Timer debounceTimer;
-	ExtiTrigger extiTrigger= ExtiTrigger::None;
+	ExtiTrigger extiTrigger = ExtiTrigger::None;
 };
 
 class HardwareInterface
