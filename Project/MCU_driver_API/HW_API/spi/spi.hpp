@@ -11,7 +11,15 @@
 class Spi
 {
     public:
-
+        transmit();
+        receive();
+        transmitReceive();
+        transmit_IT();
+        receive_IT();
+        transmitReceive_IT();
+        transmit_DMA();
+        receive_DMA();
+        transmitReceive_DMA();
     private:
 
 };
