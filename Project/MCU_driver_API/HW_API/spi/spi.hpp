@@ -8,9 +8,10 @@
 #include "gpio.hpp"
 
 
-class Spi
+class Spi : public Gpio
 {
     public:
+        void spi_init();
         transmit();
         receive();
         transmitReceive();
@@ -21,7 +22,8 @@ class Spi
         receive_DMA();
         transmitReceive_DMA();
     private:
-
+        PinConfig_t _config;
+        SPI_HandleTypeDef _hspi;
 };
 
 #endif /* __cplusplus */

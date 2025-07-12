@@ -80,7 +80,38 @@ int main(void)
 
 	led.gpio_init();
 	button.gpio_init();
-	MX_DMA_Init();
+
+    PinConfig_t spi_sclk_cfg;
+    spi_sclk_cfg.pin = 1;
+    spi_sclk_cfg.port = Port::A;
+    spi_sclk_cfg.mode = Mode::Alt_Function_Push_Pull;
+	spi_sclk_cfg.pull = Pull::None;
+	spi_sclk_cfg.speed = Speed::Low;
+	spi_sclk_cfg.invertedPin = false;
+	spi_sclk_cfg.debounceTime = 0;
+	spi_sclk_cfg.debounceState = 0;
+
+    PinConfig_t spi_miso_cfg;
+    spi_miso_cfg.pin = 6;
+    spi_miso_cfg.port = Port::A;
+    spi_miso_cfg.mode = Mode::Alt_Function_Push_Pull;
+	spi_miso_cfg.pull = Pull::None;
+	spi_miso_cfg.speed = Speed::Low;
+	spi_miso_cfg.invertedPin = false;
+	spi_miso_cfg.debounceTime = 0;
+	spi_miso_cfg.debounceState = 0;
+
+    PinConfig_t spi_mosi_cfg;
+    spi_mosi_cfg.pin = 7;
+    spi_mosi_cfg.port = Port::A;
+    spi_mosi_cfg.mode = Mode::Alt_Function_Push_Pull;
+	spi_mosi_cfg.pull = Pull::None;
+	spi_mosi_cfg.speed = Speed::Low;
+	spi_mosi_cfg.invertedPin = false;
+	spi_mosi_cfg.debounceTime = 0;
+	spi_mosi_cfg.debounceState = 0;
+
+    MX_DMA_Init();
 	MX_SPI1_Init();
 
 

@@ -14,7 +14,7 @@
 #include "hw_enum_classes.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
-Gpio::Gpio(PinConfig_t &config) : _config(config){}
+Gpio::Gpio(const PinConfig_t &config) : _config(config){}
 
 void Gpio::gpio_init()
 {
