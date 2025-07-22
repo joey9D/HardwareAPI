@@ -1,0 +1,7 @@
+# ninja log v5
+11	1776	7748773356755548	HW_API/core/CMakeFiles/core.dir/core_test.cpp.obj	5565e3320e3fe41b
+20	1818	7748773356755548	HW_API/gpio/CMakeFiles/gpio.dir/gpio_test.cpp.obj	dd6edf74afa5bc38
+30	1930	7748773358259318	app/CMakeFiles/main.dir/main.cpp.obj	9834c36f549ba776
+1788	2428	7748773363314383	HW_API/core/libcore.a	8ff9fdc35319e208
+1819	2436	7748773363470602	HW_API/gpio/libgpio.a	168716f0b3fb6a55
+2436	2951	7748773368572479	app/main.exe	ebda5ff7316e26da

@@ -1,0 +1,20 @@
+[
+{
+  "directory": "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/. -g -o HW_API\\core\\CMakeFiles\\core.dir\\core_test.cpp.obj -c C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\HW_API\\core\\core_test.cpp",
+  "file": "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\HW_API\\core\\core_test.cpp",
+  "output": "HW_API\\core\\CMakeFiles\\core.dir\\core_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/. -g -o HW_API\\gpio\\CMakeFiles\\gpio.dir\\gpio_test.cpp.obj -c C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\HW_API\\gpio\\gpio_test.cpp",
+  "file": "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\HW_API\\gpio\\gpio_test.cpp",
+  "output": "HW_API\\gpio\\CMakeFiles\\gpio.dir\\gpio_test.cpp.obj"
+},
+{
+  "directory": "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/. -g -o app\\CMakeFiles\\main.dir\\main.cpp.obj -c C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\app\\main.cpp",
+  "file": "C:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\HW_API_final\\app\\main.cpp",
+  "output": "app\\CMakeFiles\\main.dir\\main.cpp.obj"
+}
+]

@@ -2,4 +2,4 @@
 
 #include <iostream>
 
-void core_test();
+void print_core_test();

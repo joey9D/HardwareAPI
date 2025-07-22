@@ -8,5 +8,5 @@
 /**
 * include HW_API headers
  */
-#include "core/core_test.hpp"
-#include "gpio/gpio_test.hpp"
+#include "core_test.hpp"
+#include "gpio_test.hpp"
