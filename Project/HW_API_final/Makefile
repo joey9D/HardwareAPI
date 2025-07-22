@@ -16,11 +16,11 @@ clean:
 
 dependency:
 # for macos
-	cd build && cmake ..
+# 	cd build && cmake ..
 # --graphviz=graph.dot && dot -Tpng graph.dot -o graphImage.png
 
 # for windows
-#	cd build && cmake -S .. -B . -G "Ninja"
+	cd build && cmake -S .. -B . -G "Ninja"
 
 prepare:
 	rm -rf build
