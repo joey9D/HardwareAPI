@@ -19,7 +19,17 @@
 class Gpio
 {
 public:
-	Gpio(PinConfig_t &config);
+	Gpio(
+		uint16_t pin,
+		Port port,
+		Mode mode,
+		Pull pull,
+		Speed speed,
+		bool inverted,
+		uint32_t debounceTime,
+		uint8_t debounceState,
+		ExtiTrigger extiTrigger
+	);
 	// 		- init
 	void gpio_init();
 	void port_clock_enable(Port port) const;
@@ -42,7 +52,16 @@ public:
 	bool isDebouncePinOn();
 	bool isPinInverted() const;
 private:
-	PinConfig_t _config;
+	uint16_t _pin;
+	Port _port;
+	Mode _mode;
+	Pull _pull;
+	Speed _speed;
+	bool _inverted;
+	uint32_t _debounceTime;
+	uint8_t _debounceState;
+	Timer debounceTimer;
+	ExtiTrigger _extiTrigger;
 };
 
 #endif /* __cplusplus */

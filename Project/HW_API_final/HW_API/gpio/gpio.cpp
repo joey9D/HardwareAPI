@@ -14,32 +14,42 @@
 #include "hw_enum_classes.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
-Gpio::Gpio(const PinConfig_t &config) : _config(config){}
+Gpio::Gpio(	uint16_t pin,
+	Port port,
+	Mode mode,
+	Pull pull,
+	Speed speed,
+	bool inverted,
+	uint32_t debounceTime,
+	uint8_t debounceState,
+	ExtiTrigger extiTrigger
+) : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed), _inverted(inverted), _debounceTime(debounceTime), _debounceState(debounceState), _extiTrigger(extiTrigger)
+{}
 
 void Gpio::gpio_init()
 {
-	assert(stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(_config.port)]);
-	assert(_config.pin < stm32x0_gpio_mapping::pin_count);
+	assert(stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(_port)]);
+	assert(_pin < stm32x0_gpio_mapping::pin_count);
 
 
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
-	port_clock_enable(_config.port);
+	port_clock_enable(_port);
 
-	uint16_t pin_msk = (1UL << _config.pin);
+	uint16_t pin_msk = (1UL << _pin);
 
-	if (_config.mode == Mode::Output_Push_Pull || _config.mode == Mode::Output_Open_Drain)
+	if (_mode == Mode::Output_Push_Pull || _mode == Mode::Output_Open_Drain)
 	{
 		HAL_GPIO_WritePin(get_GPIO_TypeDef_port(), pin_msk, GPIO_PIN_RESET);
 	}
 
 	GPIO_InitStruct.Pin = pin_msk;
-	GPIO_InitStruct.Mode = static_cast<uint32_t>(_config.mode);
-	GPIO_InitStruct.Pull = static_cast<uint32_t>(_config.pull);
-	GPIO_InitStruct.Speed = static_cast<uint32_t>(_config.speed);
+	GPIO_InitStruct.Mode = static_cast<uint32_t>(_mode);
+	GPIO_InitStruct.Pull = static_cast<uint32_t>(_pull);
+	GPIO_InitStruct.Speed = static_cast<uint32_t>(_speed);
 
-	if (_config.extiTrigger != ExtiTrigger::None)
+	if (_extiTrigger != ExtiTrigger::None)
 	{
-		switch(_config.extiTrigger)
+		switch(_extiTrigger)
 		{
 			case ExtiTrigger::Rising:
 				GPIO_InitStruct.Mode = Mode::Interrupt_Rising;
@@ -120,56 +130,56 @@ bool Gpio::isDebouncePinOn()
 {
 	bool retval = false;
 
-	if (_config.debounceTime != 0)
+	if (_debounceTime != 0)
 	{
-		switch (_config.debounceState)
+		switch (_debounceState)
 		{
 		case 0://pin off idle
 			if(isPinOn())
 			{
-				_config.debounceTimer.startTime(_config.debounceTime);
-				_config.debounceState = 1;//pin off debounce
+				_debounceTimer.startTime(_debounceTime);
+				_debounceState = 1;//pin off debounce
 			}
 			break;
 		case 1://pin off debounce
 			if(isPinOn())
 			{
-				if(_config.debounceTimer.isTimeExpired())
+				if(_debounceTimer.isTimeExpired())
 				{
-					_config.debounceState = 2;
+					_debounceState = 2;
 				}
 			}
 			else
 			{
-				_config.debounceTimer.stopTime();
-				_config.debounceState = 0;//pin off idle
+				_debounceTimer.stopTime();
+				_debounceState = 0;//pin off idle
 			}
 			break;
 		case 2://pin on idle
 			retval = true;
 			if(!isPinOn())
 			{
-				_config.debounceTimer.startTime(_config.debounceTime);
-				_config.debounceState = 3;//pin on debounce
+				_debounceTimer.startTime(_debounceTime);
+				_debounceState = 3;//pin on debounce
 			}
 			break;
 		case 3://pin on debounce
 			retval = true;
 			if(!isPinOn())
 			{
-				if(_config.debounceTimer.isTimeExpired())
+				if(_debounceTimer.isTimeExpired())
 				{
-					_config.debounceState = 0;//pin off idle
+					_debounceState = 0;//pin off idle
 				}
 			}
 			else
 			{
-				_config.debounceTimer.stopTime();
-				_config.debounceState = 2;//pin on idle
+				_debounceTimer.stopTime();
+				_debounceState = 2;//pin on idle
 			}
 			break;
 		default:
-			_config.debounceState = 0;
+			_debounceState = 0;
 			break;
 		}
 	}
@@ -183,7 +193,7 @@ bool Gpio::isDebouncePinOn()
 
 bool Gpio::isPinInverted() const
 {
-	return _config.invertedPin;
+	return _inverted;
 }
 
 
@@ -192,16 +202,16 @@ bool Gpio::isPinInverted() const
 /**
  * @brief Getter funcitons
  */
-uint16_t Gpio::getPin() const { return (1 << _config.pin); }
+uint16_t Gpio::getPin() const { return (1 << _pin); }
 
 GPIO_TypeDef *Gpio::get_GPIO_TypeDef_port() const
 {
-	using PortIndex = std::underlying_type_t<decltype(_config.port)>;
-	return stm32x0_gpio_mapping::gpio_port[static_cast<PortIndex>(_config.port)];
+	using PortIndex = std::underlying_type_t<decltype(_port)>;
+	return stm32x0_gpio_mapping::gpio_port[static_cast<PortIndex>(_port)];
 }
 
-Mode Gpio::getMode() const { return _config.mode; }
+Mode Gpio::getMode() const { return _mode; }
 
-Pull Gpio::getPull() const { return _config.pull; }
+Pull Gpio::getPull() const { return _pull; }
 
-Speed Gpio::getSpeed() const { return _config.speed; }
+Speed Gpio::getSpeed() const { return _speed; }

@@ -60,6 +60,14 @@
 		Very_High = GPIO_SPEED_FREQ_VERY_HIGH,   /*!< Very high speed */
 	};
 
+	enum class ExtiTrigger
+	{
+		None,
+		Rising,
+		Falling,
+		Rising_Falling
+	}
+	
 	enum class HAL_State
 	{
 		  OK = 0x00U,
@@ -68,13 +76,6 @@
 		  Timeout = 0x03U
 	};
 
-	enum class ExtiTrigger
-	{
-		None,
-		Rising,
-		Falling,
-		Rising_Falling
-	}
 
 #endif /* __cplusplus */
 
