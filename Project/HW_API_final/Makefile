@@ -4,8 +4,8 @@ BUILD_DIR ?= build
 BUILD_TYPE ?= Debug
 
 all:
-#	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
-	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=cmake/arm_none_eabi_gcc.cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+# 	cd build && cmake -S .. -B . -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=cmake/arm_none_eabi_gcc.cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 	cmake --build $(BUILD_DIR) -j
 
 flash erase reset debug:

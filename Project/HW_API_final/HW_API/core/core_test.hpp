@@ -2,4 +2,4 @@
 
 #include <iostream>
 
-void print_gpio_test();
+void core_test();
