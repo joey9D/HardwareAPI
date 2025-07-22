@@ -5,8 +5,8 @@ project(HW_API_final VERSION 0.1. LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(EXECUTABLE_NAME "main")
-set(CORE_LIB "HW_API/core")
-set(GPIO_LIB "HW_API/gpio")
+set(CORE_LIB "core")
+set(GPIO_LIB "gpio")
 
 
 
