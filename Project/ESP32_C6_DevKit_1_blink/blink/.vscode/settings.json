@@ -16,5 +16,10 @@
     "--compile-commands-dir=c:\\Users\\jan.kristel\\Documents\\Thesis\\HardwareAPI\\Project\\ESP32_C6_DevKit_1_blink\\blink\\build"
   ],
   "idf.portWin": "COM8",
-  "idf.flashType": "UART"
+  "idf.flashType": "UART",
+  "files.associations": {
+    "sdkconfig.h": "c",
+    "led_strip.h": "c",
+    "esp_log.h": "c"
+  }
 }

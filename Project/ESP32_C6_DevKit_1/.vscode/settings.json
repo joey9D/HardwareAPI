@@ -1,5 +1,5 @@
 {
-  "C_Cpp.errorSquiggles": "disabled",
+  "idf.portWin": "COM8",
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
@@ -56,5 +56,9 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "idf.flashType": "UART",
+  "idf.openOcdConfigs": [
+    "board/esp32c6-builtin.cfg"
+  ]
 }
