@@ -1,3 +1,7 @@
+#pragma once
+
+#include "driver/gpio.h"
+
 enum class Mode
 {
     Disabled = GPIO_MODE_DEF_DISABLE,                                                         
@@ -20,7 +24,7 @@ enum class Pull
     Up = GPIO_PULLUP_ONLY,
     Down = GPIO_PULLDOWN_ONLY,
     UpDown = GPIO_PULLUP_PULLDOWN,
-}
+};
 
 enum class Speed
 {
@@ -29,7 +33,7 @@ enum class Speed
     High = ((GPIO_DRIVE_CAP_2) | (GPIO_DRIVE_CAP_DEFAULT)) ,
     Very_High = GPIO_DRIVE_CAP_3,
     Max = GPIO_DRIVE_CAP_MAX,
-}
+};
 
 enum class Interrupt
 {
@@ -40,4 +44,4 @@ enum class Interrupt
     Low_Level = GPIO_INTR_LOW_LEVEL,
     High_Level = GPIO_INTR_HIGH_LEVEL,
     Max = GPIO_INTR_MAX,
-}
+};

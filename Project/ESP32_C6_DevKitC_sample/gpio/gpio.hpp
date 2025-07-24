@@ -1,10 +1,10 @@
 #pragma once
 
-extern "C" {
-    #include "gpio_types.h"
+// extern "C" {
+//     #include "gpio_types.h"
 
-}
-#include "main/hw_enum_classes.hpp"
+// }
+#include "hw_enum_classes.hpp"
 
 
 class Gpio
@@ -20,7 +20,26 @@ class Gpio
             uint8_t debounceState,
             Interrupt intr
         );
-        
+    
+        void gpio_init();
+        // void port_clock_enable(Port port) const;
+        //		- functions
+        bool readPin() const;
+        void writePin(bool value) const;
+        void togglePin() const;
+        //		- getter
+        uint16_t getPin() const;
+        // GPIO_TypeDef *get_GPIO_TypeDef_port() const;
+        Mode getMode() const;
+        Pull getPull() const;
+        Speed getSpeed() const;
+    //	virtual Pin_State getPinState() const;
+        //		- helper
+        bool isPinOn() const;
+        bool isDebouncePinOn();
+        bool isPinInverted() const;
+
+
     private:
         uint64_t _pin; // im Konstruktor wieder bit shift
         Mode _mode;
@@ -30,5 +49,6 @@ class Gpio
         uint32_t _debounceTime;
         uint8_t _debounceState;
         // Timer debounceTimer;
+        int64_t _lastTimeUs;
         Interrupt _intr;
 };

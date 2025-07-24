@@ -1,5 +1,10 @@
 {
     "idf.portWin": "COM8",
     "idf.flashType": "UART",
-    "idf.riscv32-esp-elf.gdb": "C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20240530/riscv32-esp-elf/bin/riscv32-esp-elf-gdb.exe"
+    "idf.riscv32-esp-elf.gdb": "C:/Espressif/tools/riscv32-esp-elf/esp-13.2.0_20240530/riscv32-esp-elf/bin/riscv32-esp-elf-gdb.exe",
+    "files.associations": {
+        "cstdint": "c",
+        "gpio.h": "c",
+        "gpio_types.h": "c"
+    }
 }

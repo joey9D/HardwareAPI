@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "main",
-    "project_version":    "f8d29f8-dirty",
+    "project_version":    "08cca3e-dirty",
     "project_path":       "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKitC_sample",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKitC_sample",
@@ -1181,7 +1181,7 @@
             "managed_priv_reqs": [],
             "file": "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKitC_sample/esp-idf/main/libmain.a",
             "sources": [ "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKitC_sample/main/main.cpp" ],
-            "include_dirs": []
+            "include_dirs": [ ".", "../gpio" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2776,7 +2776,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ ".", "../gpio" ]
         }
     },
     "debug_prefix_map_gdbinit": ""
