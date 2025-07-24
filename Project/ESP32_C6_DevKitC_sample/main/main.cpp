@@ -83,7 +83,7 @@ extern "C"{
                 toggle_led(led_state, led_pin);
             }
             lastButtonState = currentButtonState;
-            vTaskDelay(pdMS_TO_TICKS(10)); // CPU entlasten
+            // vTaskDelay(pdMS_TO_TICKS(10)); // CPU entlasten
 
         }
     // for (int i = 10; i >= 0; i--) {
