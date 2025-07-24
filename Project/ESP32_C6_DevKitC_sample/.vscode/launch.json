@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ESP32-C6 Debug",
+      "name": "ESP32-C6 JTAG Debug",
       "type": "espidf",
       "request": "launch",
       "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
@@ -13,7 +13,8 @@
       "serialPort": "COM8",
       "openOcdConfigs": [
         "board/esp32c6-bridge.cfg"
-      ]
+      ],
+      "stopOnEntry": true
     }
   ]
 }
