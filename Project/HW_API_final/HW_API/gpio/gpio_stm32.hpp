@@ -16,7 +16,7 @@
 
 #ifdef __cplusplus
 
-class Gpio
+class Gpio : public IGpio
 {
 public:
 	Gpio(
@@ -31,7 +31,7 @@ public:
 		ExtiTrigger extiTrigger
 	);
 	// 		- init
-	void gpio_init();
+	void gpio_init() ;
 	void port_clock_enable(Port port) const;
 	//		- functions
 	bool readPin() const;
