@@ -5,7 +5,10 @@
 extern "C" {
 #endif
 
-//#include "stm32c0xx.h"
+// Need HAL types for GPIO_TypeDef
+#ifdef STM32_PLATFORM
+#include "../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
+#endif
 
 
 #ifdef __cplusplus

@@ -9,7 +9,7 @@
  * include HW_API headers - updated for new structure
  */
 #include "hw_factory.hpp"
-#include "hw_interface.hpp"
+// hw_interface.hpp is included via hw_factory.hpp - no need to include directly
 #include "pin_config.hpp"
 
 // Platform-specific includes
