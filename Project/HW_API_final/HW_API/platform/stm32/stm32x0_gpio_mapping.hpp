@@ -1,17 +1,11 @@
 #ifndef __STM32X0_GPIO_MAPPING_HPP
 #define __STM32X0_GPIO_MAPPING_HPP
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // Need HAL types for GPIO_TypeDef
 #ifdef STM32_PLATFORM
 #include "../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
 #endif
 
-
-#ifdef __cplusplus
 namespace stm32x0_gpio_mapping
 {
 
@@ -90,10 +84,5 @@ constexpr GPIO_TypeDef *const gpio[ports] =
 
 
 }
-#endif
-
-#ifdef __cplusplus
-}
-#endif /* extern "C" */
 
 #endif /* __STM32_GPIO_MAPPING_HPP */
