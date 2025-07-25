@@ -9,7 +9,12 @@
 #define SYS_CLOCK_TIMER_HPP_
 
 #include "hw_interface.hpp"
-#include "stm32c0xx_hal.h"
+#include <cstdint>
+
+// Only include HAL headers if we're on STM32 platform
+#ifdef STM32_PLATFORM
+#include "../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
+#endif
 
 #ifdef __cplusplus
 

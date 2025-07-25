@@ -5,14 +5,16 @@
  *      Author: jan.kristel
  */
 
-#ifndef GPIO_GPIO_HPP_
-#define GPIO_GPIO_HPP_
+#ifndef GPIO_GPIO_STM32_HPP_
+#define GPIO_GPIO_STM32_HPP_
 
 //#include "stm32c0xx_hal.h"
 
-#include "hw_interface.hpp"
+//#include "hw_interface.hpp"
+#include "gpio_interface.hpp"
 #include "timer.hpp"
 #include "stm32c0_hw.hpp"
+// #include "hw_enum_classes.hpp"
 
 #ifdef __cplusplus
 
@@ -31,26 +33,26 @@ public:
 		ExtiTrigger extiTrigger
 	);
 	// 		- init
-	void gpio_init() ;
-	void port_clock_enable(Port port) const;
+	void gpio_init() override;
+	void port_clock_enable(Port port) const override;
 	//		- functions
-	bool readPin() const;
-	void writePin(bool value) const;
-	void togglePin() const;
+	bool readPin() const override;
+	void writePin(bool value) const override;
+	void togglePin() const override;
 //    virtual bool lockPin() const = 0;
 	//		- getter
-	uint16_t getPin() const;
+	uint16_t getPin() const override;
 //	virtual uint16_t getPinNumber() const;
 //	virtual Port getPort() const;
 	GPIO_TypeDef *get_GPIO_TypeDef_port() const;
-	Mode getMode() const;
-	Pull getPull() const;
-	Speed getSpeed() const;
+	Mode getMode() const override;
+	Pull getPull() const override;
+	Speed getSpeed() const override;
 //	virtual Pin_State getPinState() const;
 	//		- helper
-	bool isPinOn() const;
-	bool isDebouncePinOn();
-	bool isPinInverted() const;
+	bool isPinOn() const override;
+	bool isDebouncePinOn() override;
+	bool isPinInverted() const override;
 private:
 	uint16_t _pin;
 	Port _port;
@@ -65,4 +67,4 @@ private:
 };
 
 #endif /* __cplusplus */
-#endif /* GPIO_GPIO_HPP_ */
+#endif /* GPIO_GPIO_STM32_HPP_ */

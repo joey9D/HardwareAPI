@@ -1,8 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
+  * @file           : main.cpp
+  * @brief          : Main program body for HW_API
   ******************************************************************************
   * @attention
   *
@@ -16,8 +16,9 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
+
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "main.hpp"
 
 /**
   * @brief  The application entry point.
@@ -25,31 +26,36 @@
   */
 int main(void)
 {
+    // Create hardware interface using factory pattern
+    HardwareInterface *hw = HardwareFactory::create();
 
-	HardwareInterface *hw = HardwareFactory::create();
+    // Initialize system (HAL, clocks, etc.)
+    hw->init_sys();
 
-	hw->init_sys();
+    // Initialize all pins defined in pin_config.hpp
+    hw->initAllPins();
 
-	hw->initAllPins();
+    // Initialize debounce state
+    bool lastButtonState = boardPins.button.isDebouncePinOn();
 
-//	led.gpio_init();
-//	button.gpio_init();
+    /* Infinite loop */
+    while (1)
+    {
+        // Read current button state with debouncing
+        bool currentButtonState = boardPins.button.isDebouncePinOn();
 
-//	bool lastButtonState = buttonisDebouncePinOn();
-	bool lastButtonState = boardPins.button.isDebouncePinOn();
-
-while (1)
-{
-//	  hw->togglePin();
-//	  hw->delay(500);
-	  bool currentButtonState = boardPins.button.isDebouncePinOn();
-
-	  if( !lastButtonState && currentButtonState )
-	  {
-		  boardPins.led.togglePin();
-	  }
-	  lastButtonState = currentButtonState;
-  }
+        // Toggle LED on button press (rising edge detection)
+        if (!lastButtonState && currentButtonState)
+        {
+            boardPins.led.togglePin();
+        }
+        
+        // Update button state
+        lastButtonState = currentButtonState;
+        
+        // Small delay to prevent CPU hogging
+        hw->delay(1);
+    }
 }
 
 

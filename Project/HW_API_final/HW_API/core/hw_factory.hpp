@@ -1,13 +1,4 @@
-/*
- * hw_factory.hpp
- *
- *  Created on: Jul 10, 2025
- *      Author: jan.kristel
- */
-
-#ifndef __HW_FACTORY_HPP
-#define __HW_FACTORY_HPP
-
+#pragma once
 #ifdef __cplusplus
 
 #include "hw_interface.hpp"
@@ -15,7 +6,9 @@
 #ifdef STM32C0
 	#include "stm32c0_hw.hpp"
 #elif defined(STM32G0)
-	#include "stm32g0_hw.h"
+	#include "stm32g0_hw.hpp"
+#elif defined(ESP32C6)
+	#include "esp32c6_hw.hpp"
 #endif
 
 
@@ -38,7 +31,3 @@ class HardwareFactory
 
 
 #endif /* __cpluscplus */
-
-
-
-#endif /* CORE_HW_FACTORY_HPP_ */

@@ -9,8 +9,14 @@
 #define PIN_CONFIG_HPP_
 
 #include <array>
-//#include "stm32c0xx_hal.h"
-#include "gpio.hpp"
+#include "gpio_interface.hpp"
+
+// Platform-specific GPIO includes
+#ifdef STM32_PLATFORM
+    #include "gpio_stm32.hpp"
+#elif ESP32_PLATFORM
+    #include "gpio_esp32.hpp"
+#endif
 
 
 /**

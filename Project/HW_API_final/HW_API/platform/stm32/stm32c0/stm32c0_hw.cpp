@@ -6,12 +6,13 @@
  */
 #include <assert.h>
 #include <type_traits>
-#include "stm32c0xx_hal.h"
+#include "../../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
 #include "stm32c0_hw.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 //#include "timer.hpp"
-#include "gpio.hpp"
+#include "gpio_stm32.hpp"
 #include "pin_config.hpp"
+
 void Stm32c0_hw::init_sys()
 	{
 		HAL_Init();
