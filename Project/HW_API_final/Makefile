@@ -114,7 +114,6 @@ help:
 	@echo "  all              - Build for specified platform (default: STM32)"
 	@echo "  stm32            - Build for STM32 platform"
 	@echo "  # esp32            - Build for ESP32 platform (DISABLED)" 
-	@echo "  # test             - Build for TEST platform (desktop) (DISABLED)"
 	@echo "  stm32-hal        - Build STM32 with custom HAL path"
 	@echo "  # esp32-idf        - Build ESP32 with custom IDF path (DISABLED)"
 	@echo "  clean            - Clean build directory"
