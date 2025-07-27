@@ -14,8 +14,9 @@
 // Platform-specific GPIO includes
 #ifdef STM32_PLATFORM
     #include "gpio_stm32.hpp"
-#elif ESP32_PLATFORM
-    #include "gpio_esp32.hpp"
+// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
+// #elif ESP32_PLATFORM
+//     #include "gpio_esp32.hpp"
 #endif
 
 

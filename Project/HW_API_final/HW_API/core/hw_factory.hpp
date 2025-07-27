@@ -7,8 +7,9 @@
 	#include "stm32c0_hw.hpp"
 #elif defined(STM32G0)
 	#include "stm32g0_hw.hpp"
-#elif defined(ESP32C6)
-	#include "esp32c6_hw.hpp"
+// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
+// #elif defined(ESP32C6)
+// 	#include "esp32c6_hw.hpp"
 #endif
 
 

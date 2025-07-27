@@ -15,6 +15,7 @@
 // Platform-specific includes
 #ifdef STM32_PLATFORM
     // STM32 specific headers if needed
-#elif ESP32_PLATFORM
-    // ESP32 specific headers if needed
+// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
+// #elif ESP32_PLATFORM
+//     // ESP32 specific headers if needed
 #endif

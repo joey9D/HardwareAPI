@@ -10,15 +10,15 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Platform detection - Enhanced for standalone operation
+# Platform detection - Enhanced for standalone operation - ESP32 DISABLED
 if(NOT DEFINED TARGET_PLATFORM)
     # Check command line definition first
     if(DEFINED CACHE{TARGET_PLATFORM})
         set(TARGET_PLATFORM ${TARGET_PLATFORM})
-    # ESP-IDF detection
-    elseif(ESP_PLATFORM OR DEFINED ENV{IDF_PATH} OR DEFINED IDF_PATH)
-        set(TARGET_PLATFORM "ESP32")
-        add_definitions(-DESP32_PLATFORM)
+    # ESP-IDF detection - DISABLED FOR STM32-ONLY BUILD
+    # elseif(ESP_PLATFORM OR DEFINED ENV{IDF_PATH} OR DEFINED IDF_PATH)
+    #     set(TARGET_PLATFORM "ESP32")
+    #     add_definitions(-DESP32_PLATFORM)
     # STM32 detection (toolchain or HAL path)
     elseif(CMAKE_SYSTEM_NAME STREQUAL "Generic" OR 
            DEFINED STM32_FAMILY OR 
@@ -27,26 +27,27 @@ if(NOT DEFINED TARGET_PLATFORM)
         set(TARGET_PLATFORM "STM32")
         add_definitions(-DSTM32_PLATFORM)
     else()
-        set(TARGET_PLATFORM "TEST")
-        add_definitions(-DTEST_PLATFORM)
+        # Default to STM32 instead of TEST
+        set(TARGET_PLATFORM "STM32")
+        add_definitions(-DSTM32_PLATFORM)
     endif()
 endif()
 
 message(STATUS "HW_API Target Platform: ${TARGET_PLATFORM}")
 
-# Platform-specific HAL configuration
-if(TARGET_PLATFORM STREQUAL "ESP32")
-    # ESP-IDF path detection and setup
-    if(NOT DEFINED IDF_PATH)
-        if(DEFINED ENV{IDF_PATH})
-            set(IDF_PATH $ENV{IDF_PATH})
-        else()
-            message(WARNING "ESP-IDF path not found. Set IDF_PATH environment variable or use -DIDF_PATH=...")
-        endif()
-    endif()
-    message(STATUS "ESP-IDF Path: ${IDF_PATH}")
+# Platform-specific HAL configuration - ESP32 DISABLED
+# if(TARGET_PLATFORM STREQUAL "ESP32")
+#     # ESP-IDF path detection and setup
+#     if(NOT DEFINED IDF_PATH)
+#         if(DEFINED ENV{IDF_PATH})
+#             set(IDF_PATH $ENV{IDF_PATH})
+#         else()
+#             message(WARNING "ESP-IDF path not found. Set IDF_PATH environment variable or use -DIDF_PATH=...")
+#         endif()
+#     endif()
+#     message(STATUS "ESP-IDF Path: ${IDF_PATH}")
     
-elseif(TARGET_PLATFORM STREQUAL "STM32")
+if(TARGET_PLATFORM STREQUAL "STM32")
     # STM32 HAL path detection and setup
     # Only check environment if not already set by toolchain or command line
     if(NOT DEFINED STM32_HAL_PATH AND DEFINED ENV{STM32_HAL_PATH})
