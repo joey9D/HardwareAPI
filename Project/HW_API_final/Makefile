@@ -9,13 +9,14 @@ TARGET_PLATFORM ?= STM32
 ifeq ($(TARGET_PLATFORM),STM32)
     TOOLCHAIN_FILE = toolchains/stm32-toolchain.cmake
     EXTRA_CMAKE_ARGS = -DSTM32_MCU_FAMILY=STM32C0xx
+    
+    # Debug probe configuration (default: ST-Link for STM32)
+    DEBUG_PROBE ?= st-link
+    EXTRA_CMAKE_ARGS += -DDEBUG_PROBE=$(DEBUG_PROBE)
+    
     ifdef STM32_HAL_PATH
         EXTRA_CMAKE_ARGS += -DSTM32_HAL_PATH=$(STM32_HAL_PATH)
     endif
-# else ifeq ($(TARGET_PLATFORM),ESP32)
-#     ifdef IDF_PATH
-#         EXTRA_CMAKE_ARGS = -DIDF_PATH=$(IDF_PATH)
-#     endif
 endif
 
 # Base CMake command
@@ -28,7 +29,7 @@ endif
 CMAKE_CMD += $(EXTRA_CMAKE_ARGS)
 
 # Default target
-.PHONY: all clean prepare test stm32 esp32 info help
+.PHONY: all clean prepare stm32 info help flash erase reset debug stlink jlink openocd
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -39,8 +40,15 @@ all: info
 stm32:
 	@$(MAKE) all TARGET_PLATFORM=STM32
 
-# esp32:
-# 	@$(MAKE) all TARGET_PLATFORM=ESP32
+# Debug probe specific builds
+stlink:
+	@$(MAKE) stm32 DEBUG_PROBE=st-link
+
+jlink:
+	@$(MAKE) stm32 DEBUG_PROBE=jlink
+
+openocd:
+	@$(MAKE) stm32 DEBUG_PROBE=openocd
 
 
 # Build with specific STM32 HAL path
@@ -52,22 +60,25 @@ ifndef STM32_HAL_PATH
 endif
 	@$(MAKE) stm32 STM32_HAL_PATH=$(STM32_HAL_PATH)
 
-# Build with specific ESP-IDF path - DISABLED FOR STM32-ONLY BUILD
-# esp32-idf:
-# ifndef IDF_PATH
-# 	@echo "Error: IDF_PATH not set"
-# 	@echo "Usage: make esp32-idf IDF_PATH=/path/to/esp-idf"
-# 	@exit 1
-# endif
-# 	@$(MAKE) esp32 IDF_PATH=$(IDF_PATH)
-
-# Hardware-specific targets (if supported by platform implementation)
+# Hardware-specific targets (using debug_probes configuration)
 flash erase reset debug:
 	@if [ -f "$(BUILD_DIR)/build.ninja" ]; then \
-		cmake --build $(BUILD_DIR) --target $@ || echo "Target '$@' not available for $(TARGET_PLATFORM)"; \
+		echo "Executing $@ using $(DEBUG_PROBE) debug probe..."; \
+		cmake --build $(BUILD_DIR) --target $@ || echo "Target '$@' not available for debug probe '$(DEBUG_PROBE)'"; \
 	else \
 		echo "Build directory not found. Run 'make all' first."; \
+		echo "Current debug probe: $(DEBUG_PROBE) (change with DEBUG_PROBE=<probe>)"; \
 	fi
+
+# Debug probe selection shortcuts with hardware operations
+flash-stlink erase-stlink reset-stlink debug-stlink:
+	@$(MAKE) $(subst -stlink,,$@) DEBUG_PROBE=st-link
+
+flash-jlink erase-jlink reset-jlink debug-jlink:
+	@$(MAKE) $(subst -jlink,,$@) DEBUG_PROBE=jlink
+
+flash-openocd erase-openocd reset-openocd debug-openocd:
+	@$(MAKE) $(subst -openocd,,$@) DEBUG_PROBE=openocd
 
 # Utility targets
 clean:
@@ -91,16 +102,15 @@ info:
 	@echo "Target Platform: $(TARGET_PLATFORM)"
 	@echo "Build Type: $(BUILD_TYPE)"
 	@echo "Build Directory: $(BUILD_DIR)"
+	@echo "Debug Probe: $(DEBUG_PROBE)"
 ifdef TOOLCHAIN_FILE
 	@echo "Toolchain File: $(TOOLCHAIN_FILE)"
 endif
 ifdef STM32_HAL_PATH
 	@echo "STM32 HAL Path: $(STM32_HAL_PATH)"
 endif
-# ifdef IDF_PATH
-# 	@echo "ESP-IDF Path: $(IDF_PATH)"
-# endif
 	@echo "CMake Command: $(CMAKE_CMD)"
+	@echo "Available debug probes: st-link, jlink, openocd"
 	@echo "=================================="
 
 # Help target
@@ -108,23 +118,38 @@ help:
 	@echo "HW_API Makefile - Hardware Abstraction Layer Build System"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make [target] [TARGET_PLATFORM=STM32|TEST] [BUILD_TYPE=Debug|Release]"
+	@echo "  make [target] [TARGET_PLATFORM=STM32] [BUILD_TYPE=Debug|Release] [DEBUG_PROBE=st-link|jlink|openocd]"
 	@echo ""
-	@echo "Targets:"
+	@echo "Build Targets:"
 	@echo "  all              - Build for specified platform (default: STM32)"
 	@echo "  stm32            - Build for STM32 platform"
-	@echo "  # esp32            - Build for ESP32 platform (DISABLED)" 
 	@echo "  stm32-hal        - Build STM32 with custom HAL path"
-	@echo "  # esp32-idf        - Build ESP32 with custom IDF path (DISABLED)"
 	@echo "  clean            - Clean build directory"
 	@echo "  prepare          - Prepare fresh build directory"
 	@echo "  info             - Show current build configuration"
 	@echo "  dependency       - Generate dependency graph"
-	@echo "  flash/erase/reset/debug - Hardware-specific operations"
+	@echo ""
+	@echo "Debug Probe Targets:"
+	@echo "  stlink           - Build with ST-Link debug probe"
+	@echo "  jlink            - Build with J-Link debug probe"
+	@echo "  openocd          - Build with OpenOCD debug probe"
+	@echo ""
+	@echo "Hardware Operations (use current DEBUG_PROBE):"
+	@echo "  flash            - Flash firmware to target"
+	@echo "  erase            - Erase target flash"
+	@echo "  reset            - Reset target device"
+	@echo "  debug            - Start debug session"
+	@echo ""
+	@echo "Hardware Operations (probe-specific):"
+	@echo "  flash-stlink     - Flash using ST-Link"
+	@echo "  flash-jlink      - Flash using J-Link"
+	@echo "  flash-openocd    - Flash using OpenOCD"
+	@echo "  (same pattern for erase-, reset-, debug-)"
 	@echo ""
 	@echo "Examples:"
-	@echo "  make stm32"
-	@echo "  # make esp32 BUILD_TYPE=Release (DISABLED)"
-	@echo "  make stm32-hal STM32_HAL_PATH=/opt/STM32Cube/STM32CubeC0/Drivers/STM32C0xx_HAL_Driver"
-	@echo "  # make esp32-idf IDF_PATH=/opt/esp-idf (DISABLED)"
-	@echo "  make all TARGET_PLATFORM=STM32 BUILD_TYPE=Release"
+	@echo "  make stm32                              # Build with default ST-Link"
+	@echo "  make jlink                              # Build with J-Link probe"
+	@echo "  make flash                              # Flash with current probe"
+	@echo "  make flash-jlink                        # Flash with J-Link"
+	@echo "  make stm32 DEBUG_PROBE=openocd          # Build with specific probe"
+	@echo "  make stm32-hal STM32_HAL_PATH=/path/to/hal"
