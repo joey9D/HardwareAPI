@@ -5,24 +5,8 @@ BUILD_DIR ?= build
 BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= STM32
 
-# Platform-specific configuration
-ifeq ($(TARGET_PLATFORM),STM32)
-    TOOLCHAIN_FILE = toolchains/stm32-toolchain.cmake
-    EXTRA_CMAKE_ARGS = -DSTM32_MCU_FAMILY=STM32C0xx
-    
-    # Debug probe configuration (default: ST-Link for STM32)
-    DEBUG_PROBE ?= st-link
-    EXTRA_CMAKE_ARGS += -DDEBUG_PROBE=$(DEBUG_PROBE)
-endif
-
-# Base CMake command
+# Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
-
-ifdef TOOLCHAIN_FILE
-    CMAKE_CMD += -DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE)
-endif
-
-CMAKE_CMD += $(EXTRA_CMAKE_ARGS)
 
 # Default target
 .PHONY: all clean prepare stm32 info help flash erase reset debug
@@ -34,7 +18,27 @@ all: info
 
 # Platform-specific builds
 stm32:
-	$(MAKE) all TARGET_PLATFORM=STM32
+	@echo "=== Building STM32 Platform ==="
+	@mkdir -p $(BUILD_DIR)
+	cmake -S . -B $(BUILD_DIR) -G "Ninja" \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DTARGET_PLATFORM=STM32 \
+		-DCMAKE_TOOLCHAIN_FILE=toolchains/stm32-toolchain.cmake \
+		-DSTM32_FAMILY=stm32c0 \
+		-DSTM32_MCU_FAMILY=STM32C031C6 \
+		-DDEBUG_PROBE=st-link
+	cmake --build $(BUILD_DIR) -j
+
+# ESP32 Build with all platform-specific settings (commented - currently disabled)
+# esp32:
+# 	@echo "=== Building ESP32 Platform ==="
+# 	@mkdir -p $(BUILD_DIR)
+# 	cmake -S . -B $(BUILD_DIR) -G "Ninja" \
+# 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+# 		-DTARGET_PLATFORM=ESP32 \
+# 		-DESP32_FAMILY=esp32 \
+# 		-DDEBUG_PROBE=esptool
+# 	cmake --build $(BUILD_DIR) -j
 
 # Hardware-specific targets (simplified)
 flash erase reset debug:

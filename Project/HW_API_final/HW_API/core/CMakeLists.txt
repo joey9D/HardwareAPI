@@ -1,36 +1,11 @@
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# HW_API Core Module
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-cmake_minimum_required(VERSION 3.22)
-
 # Define target name as variable for better maintainability
 set(TARGET_NAME hw_api_core)
 
 message(STATUS "=== Configuring HW_API Core Module (${TARGET_NAME}) ===")
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Define source and header files explicitly
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-# All source files in core module
-set(CORE_SOURCES
-    # core_test.cpp
-)
-
-# All header files in core module  
-set(CORE_HEADERS
-    # core_test.hpp
-    hw_enum_classes.hpp
-    hw_enum_esp32.hpp
-    hw_enum_stm32.hpp
-    hw_factory.hpp
-    hw_interface.hpp
-    pin_config.hpp
-    timer.hpp
-)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Platform-specific file filtering
+# Platform-specific files
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "Configuring for STM32 platform...")

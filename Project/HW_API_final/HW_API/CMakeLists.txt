@@ -46,11 +46,35 @@ endif()
 if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "Configuring for STM32 platform")
     
-    # STM32-specific includes
+    # STM32 Hardware Configuration - Centralized for easy changes
+    if(NOT DEFINED STM32_FAMILY)
+        set(STM32_FAMILY "stm32c0" CACHE STRING "STM32 family (e.g., stm32c0, stm32g0, stm32f4)")
+        message(STATUS "Using default STM32 family: ${STM32_FAMILY}")
+    endif()
+    
+    message(STATUS "STM32 Family: ${STM32_FAMILY}")
+    
+    # STM32-specific includes (using configurable family)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platform/stm32
+        ${CMAKE_CURRENT_SOURCE_DIR}/platform/stm32/${STM32_FAMILY}
         ${CMAKE_CURRENT_SOURCE_DIR}/drivers/stm32_hal_wrapper
     )
+    
+    # Make STM32 configuration available to all modules
+    set(STM32_PLATFORM_PATH "stm32/${STM32_FAMILY}" CACHE INTERNAL "STM32 platform path")
+    set(STM32_HW_FILE "${STM32_FAMILY}_hw" CACHE INTERNAL "STM32 hardware file base name")
+    
+    # Global STM32 compile definitions
+    add_compile_definitions(
+        STM32_PLATFORM=1
+        STM32_FAMILY_${STM32_FAMILY}=1
+    )
+    
+    message(STATUS "STM32 Platform Path: ${STM32_PLATFORM_PATH}")
+    message(STATUS "STM32 HW File Base: ${STM32_HW_FILE}")
+    message(STATUS "STM32 compile definitions applied globally")
+    
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM: ${TARGET_PLATFORM}")
 endif()
@@ -81,11 +105,7 @@ add_subdirectory(gpio)
 # Add platform-specific implementations
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 message(STATUS "Adding platform module...")
-if(TARGET_PLATFORM STREQUAL "STM32")
-    add_subdirectory(platform/stm32/)
-else()
-    message(FATAL_ERROR "Unsupported TARGET_PLATFORM for platform: ${TARGET_PLATFORM}")
-endif()
+add_subdirectory(platform)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Add SPI module
