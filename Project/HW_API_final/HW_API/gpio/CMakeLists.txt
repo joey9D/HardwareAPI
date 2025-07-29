@@ -1,127 +1,131 @@
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # HW_API GPIO Module
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cmake_minimum_required(VERSION 3.22)
 
-message(STATUS "=== Configuring HW_API GPIO Module ===")
+# Define target name as variable for better maintainability
+set(TARGET_NAME hw_api_gpio)
 
-# Collect all source files in current directory
-file(GLOB_RECURSE GPIO_SOURCES 
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+message(STATUS "=== Configuring HW_API GPIO Module (${TARGET_NAME}) ===")
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Define source and header files explicitly
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# All source files in gpio module
+set(GPIO_SOURCES
+    gpio_esp32.cpp
+    gpio_stm32.cpp
+    # gpio_test.cpp
 )
 
-file(GLOB_RECURSE GPIO_HEADERS 
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+# All header files in gpio module  
+set(GPIO_HEADERS
+    gpio_esp32.hpp
+    gpio_interface.hpp
+    gpio_stm32.hpp
+    # gpio_test.hpp
 )
 
-# Display found files for debugging
-message(STATUS "GPIO source files found:")
-foreach(SOURCE_FILE ${GPIO_SOURCES})
-    get_filename_component(FILENAME ${SOURCE_FILE} NAME)
-    message(STATUS "  - ${FILENAME}")
-endforeach()
-
-message(STATUS "GPIO header files found:")
-foreach(HEADER_FILE ${GPIO_HEADERS})
-    get_filename_component(FILENAME ${HEADER_FILE} NAME)
-    message(STATUS "  - ${FILENAME}")
-endforeach()
-
-# Filter platform-specific files based on TARGET_PLATFORM
-set(FILTERED_SOURCES ${GPIO_SOURCES})
-set(FILTERED_HEADERS ${GPIO_HEADERS})
-
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Platform-specific file filtering
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
-    message(STATUS "Filtering for STM32 platform...")
+    message(STATUS "Configuring for STM32 platform...")
     
-    # Remove ESP32-specific files
-    list(FILTER FILTERED_SOURCES EXCLUDE REGEX ".*esp32.*")
-    list(FILTER FILTERED_HEADERS EXCLUDE REGEX ".*esp32.*")
+    # Only include STM32-specific files for STM32 build
+    set(FILTERED_SOURCES
+        gpio_stm32.cpp
+        # gpio_test.cpp only included if tests are enabled
+    )
     
-    message(STATUS "Excluded ESP32-specific files for STM32 build")
-    
-    # Show remaining files
-    message(STATUS "Remaining STM32 source files:")
-    foreach(SOURCE_FILE ${FILTERED_SOURCES})
-        get_filename_component(FILENAME ${SOURCE_FILE} NAME)
-        message(STATUS "  - ${FILENAME}")
-    endforeach()
-    
-elseif(TARGET_PLATFORM STREQUAL "TEST")
-    message(STATUS "Including all files for TEST platform")
-    
+    set(FILTERED_HEADERS
+        gpio_interface.hpp
+        gpio_stm32.hpp
+        # gpio_test.hpp only included if tests are enabled
+    )
+       
+    message(STATUS "Using STM32-specific GPIO files")
+
+# ESP32 ...    
 else()
-    message(FATAL_ERROR "Unsupported TARGET_PLATFORM in GPIO module: ${TARGET_PLATFORM}")
+    message(FATAL_ERROR "Unsupported TARGET_PLATFORM in gpio module: ${TARGET_PLATFORM}")
 endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Display files being used for this build
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+message(STATUS "GPIO source files for ${TARGET_PLATFORM}:")
+foreach(SOURCE_FILE ${FILTERED_SOURCES})
+    message(STATUS "  - ${SOURCE_FILE}")
+endforeach()
+
+message(STATUS "GPIO header files for ${TARGET_PLATFORM}:")
+foreach(HEADER_FILE ${FILTERED_HEADERS})
+    message(STATUS "  - ${HEADER_FILE}")
+endforeach()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Create the GPIO library
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(FILTERED_SOURCES)
     # Create static library with source files
-    add_library(hw_api_gpio STATIC 
+    add_library(${TARGET_NAME} STATIC 
         ${FILTERED_SOURCES}
         ${FILTERED_HEADERS}  # Include headers in target for IDE support
     )
     
-    message(STATUS "Created hw_api_gpio library with source files")
+    message(STATUS "Created ${TARGET_NAME} library with source files")
     
 else()
     # Create interface library if no source files (header-only)
-    add_library(hw_api_gpio INTERFACE)
+    add_library(${TARGET_NAME} INTERFACE)
     
-    message(STATUS "Created hw_api_gpio as header-only interface library")
+    message(STATUS "Created ${TARGET_NAME} as header-only interface library")
 endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Set include directories
-target_include_directories(hw_api_gpio 
-    PUBLIC 
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/..  # Parent HW_API directory
-)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(FILTERED_SOURCES)
+    # For libraries with source files - use PUBLIC
+    target_include_directories(${TARGET_NAME} 
+        PUBLIC 
+            ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+else()
+    # For interface libraries - use INTERFACE
+    target_include_directories(${TARGET_NAME} 
+        INTERFACE 
+            ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Link with core module if available
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET hw_api_core)
     if(FILTERED_SOURCES)
-        target_link_libraries(hw_api_gpio PUBLIC hw_api_core)
+        target_link_libraries(${TARGET_NAME} PUBLIC hw_api_core)
     else()
-        target_link_libraries(hw_api_gpio INTERFACE hw_api_core)
+        target_link_libraries(${TARGET_NAME} INTERFACE hw_api_core)
     endif()
-    message(STATUS "Linked hw_api_gpio with hw_api_core")
+    message(STATUS "Linked ${TARGET_NAME} with hw_api_core")
 endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Platform-specific compile definitions
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
-    target_compile_definitions(hw_api_gpio PUBLIC
+    target_compile_definitions(${TARGET_NAME} PUBLIC
         STM32_PLATFORM=1
-        HW_GPIO_STM32=1
     )
-elseif(TARGET_PLATFORM STREQUAL "TEST")
-    target_compile_definitions(hw_api_gpio PUBLIC
-        TEST_PLATFORM=1
-        HW_GPIO_TEST=1
-    )
+# ESP32    
+# elseif(TARGET_PLATFORM STREQUAL "ESP32")
+#     target_compile_definitions(${TARGET_NAME} PUBLIC
+#         ESP32_PLATFORM=1
+#     )
+else()
+    message(WARNING "No platform-specific compile definitions for TARGET_PLATFORM: ${TARGET_PLATFORM}")
 endif()
-
-# Compiler-specific settings
-if(FILTERED_SOURCES)
-    target_compile_features(hw_api_gpio PUBLIC cxx_std_17)
-    
-    # Add compiler warnings for source files
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        target_compile_options(hw_api_gpio PRIVATE
-            -Wall
-            -Wextra
-            -Wpedantic
-        )
-    endif()
-endif()
-
-# Set library properties
-set_target_properties(hw_api_gpio PROPERTIES
-    OUTPUT_NAME "hw_api_gpio"
-    EXPORT_NAME "GPIO"
-)
 
 message(STATUS "=== HW_API GPIO Module Configuration Complete ===")
-
-# Export information for parent CMakeLists
-set(HW_API_GPIO_TARGET hw_api_gpio PARENT_SCOPE)
-set(HW_API_GPIO_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)

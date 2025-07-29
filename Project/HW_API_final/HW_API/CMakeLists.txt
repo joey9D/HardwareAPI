@@ -15,6 +15,32 @@ message(STATUS "Configuring Hardware Abstraction Layer...")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Set C++ standard for all modules
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)  # No compiler-specific extensions
+
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "C++ Compiler: ${CMAKE_CXX_COMPILER}")
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Global compiler warnings for all modules
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    add_compile_options(
+        -Wall
+        -Wextra
+        -Wpedantic
+    )
+    message(STATUS "Enabled GCC/Clang warnings: -Wall -Wextra -Wpedantic")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    add_compile_options(/W4)
+    message(STATUS "Enabled MSVC warnings: /W4")
+endif()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Platform-specific configuration
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")

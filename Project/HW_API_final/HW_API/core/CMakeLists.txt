@@ -1,110 +1,140 @@
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # HW_API Core Module
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cmake_minimum_required(VERSION 3.22)
 
-message(STATUS "=== Configuring HW_API Core Module ===")
+# Define target name as variable for better maintainability
+set(TARGET_NAME hw_api_core)
 
-# Collect all source files in current directory
-file(GLOB_RECURSE CORE_SOURCES 
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+message(STATUS "=== Configuring HW_API Core Module (${TARGET_NAME}) ===")
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Define source and header files explicitly
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# All source files in core module
+set(CORE_SOURCES
+    # core_test.cpp
 )
 
-file(GLOB_RECURSE CORE_HEADERS 
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+# All header files in core module  
+set(CORE_HEADERS
+    # core_test.hpp
+    hw_enum_classes.hpp
+    hw_enum_esp32.hpp
+    hw_enum_stm32.hpp
+    hw_factory.hpp
+    hw_interface.hpp
+    pin_config.hpp
+    timer.hpp
 )
 
-# Display found files for debugging
-message(STATUS "Core source files found:")
-foreach(SOURCE_FILE ${CORE_SOURCES})
-    get_filename_component(FILENAME ${SOURCE_FILE} NAME)
-    message(STATUS "  - ${FILENAME}")
-endforeach()
-
-message(STATUS "Core header files found:")
-foreach(HEADER_FILE ${CORE_HEADERS})
-    get_filename_component(FILENAME ${HEADER_FILE} NAME)
-    message(STATUS "  - ${FILENAME}")
-endforeach()
-
-# Filter platform-specific files based on TARGET_PLATFORM
-set(FILTERED_SOURCES ${CORE_SOURCES})
-set(FILTERED_HEADERS ${CORE_HEADERS})
-
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Platform-specific file filtering
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
-    message(STATUS "Filtering for STM32 platform...")
+    message(STATUS "Configuring for STM32 platform...")
     
-    # Remove ESP32-specific files
-    list(FILTER FILTERED_SOURCES EXCLUDE REGEX ".*esp32.*")
-    list(FILTER FILTERED_HEADERS EXCLUDE REGEX ".*esp32.*")
+    # Remove ESP32-specific files for STM32 build
+    set(FILTERED_SOURCES
+        # core_test.cpp
+    )
     
-    message(STATUS "Excluded ESP32-specific files for STM32 build")
-    
-elseif(TARGET_PLATFORM STREQUAL "TEST")
-    message(STATUS "Including all files for TEST platform")
-    
+    set(FILTERED_HEADERS
+        # core_test.hpp
+        hw_enum_classes.hpp
+        hw_enum_stm32.hpp
+        hw_factory.hpp
+        hw_interface.hpp
+        
+        # make pin_config is included
+        pin_config.hpp
+
+        timer.hpp
+    )
+
+    message(STATUS "Using ${TARGET_PLATFORM}-specific core files")
+
+# elseif(TARGET_PLATFORM STREQUAL "ESP32")
+#     message(STATUS "Configuring for ESP32 platform...")
+
+#     # Include all files for ESP32 builds
+#     set(FILTERED_SOURCES ${CORE_SOURCES})
+#     set(FILTERED_HEADERS ${CORE_HEADERS})
+
+#     message(STATUS "Using ESP32-specific core files")
+
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM in core module: ${TARGET_PLATFORM}")
 endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Display files being used for this build
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+message(STATUS "Core source files for ${TARGET_PLATFORM}:")
+foreach(SOURCE_FILE ${FILTERED_SOURCES})
+    message(STATUS "  - ${SOURCE_FILE}")
+endforeach()
+
+message(STATUS "Core header files for ${TARGET_PLATFORM}:")
+foreach(HEADER_FILE ${FILTERED_HEADERS})
+    message(STATUS "  - ${HEADER_FILE}")
+endforeach()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Create the core library
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(FILTERED_SOURCES)
     # Create static library with source files
-    add_library(hw_api_core STATIC 
+    add_library(${TARGET_NAME} STATIC 
         ${FILTERED_SOURCES}
         ${FILTERED_HEADERS}  # Include headers in target for IDE support
     )
     
-    message(STATUS "Created hw_api_core library with source files")
+    message(STATUS "Created ${TARGET_NAME} library with source files")
     
 else()
     # Create interface library if no source files (header-only)
-    add_library(hw_api_core INTERFACE)
+    add_library(${TARGET_NAME} INTERFACE)
     
-    message(STATUS "Created hw_api_core as header-only interface library")
+    message(STATUS "Created ${TARGET_NAME} as header-only interface library")
 endif()
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Set include directories
-target_include_directories(hw_api_core 
-    PUBLIC 
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        ${CMAKE_CURRENT_SOURCE_DIR}/..  # Parent HW_API directory
-)
-
-# Platform-specific compile definitions
-if(TARGET_PLATFORM STREQUAL "STM32")
-    target_compile_definitions(hw_api_core PUBLIC
-        STM32_PLATFORM=1
-        HW_CORE_STM32=1
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(FILTERED_SOURCES)
+    # For libraries with source files - use PUBLIC
+    target_include_directories(${TARGET_NAME} 
+        PUBLIC 
+            ${CMAKE_CURRENT_SOURCE_DIR}
+            ${CMAKE_CURRENT_SOURCE_DIR}/..  # Parent HW_API directory
     )
-elseif(TARGET_PLATFORM STREQUAL "TEST")
-    target_compile_definitions(hw_api_core PUBLIC
-        TEST_PLATFORM=1
-        HW_CORE_TEST=1
+else()
+    # For interface libraries - use INTERFACE
+    target_include_directories(${TARGET_NAME} 
+        INTERFACE 
+            ${CMAKE_CURRENT_SOURCE_DIR}
+            ${CMAKE_CURRENT_SOURCE_DIR}/..  # Parent HW_API directory
     )
 endif()
 
-# Compiler-specific settings
-if(FILTERED_SOURCES)
-    target_compile_features(hw_api_core PUBLIC cxx_std_17)
-    
-    # Add compiler warnings for source files
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-        target_compile_options(hw_api_core PRIVATE
-            -Wall
-            -Wextra
-            -Wpedantic
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Platform-specific compile definitions
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(TARGET_PLATFORM STREQUAL "STM32")
+    if(FILTERED_SOURCES)
+        target_compile_definitions(${TARGET_NAME} PUBLIC
+            STM32_PLATFORM=1
+            # HW_CORE_STM32=1
+        )
+    else()
+        target_compile_definitions(${TARGET_NAME} INTERFACE
+            STM32_PLATFORM=1
+            # HW_CORE_STM32=1
         )
     endif()
+# ESP32 ...
+else()
+    message(FATAL_ERROR "Unsupported TARGET_PLATFORM in core module: ${TARGET_PLATFORM}")
 endif()
-
-# Set library properties
-set_target_properties(hw_api_core PROPERTIES
-    OUTPUT_NAME "hw_api_core"
-    EXPORT_NAME "Core"
-)
-
-message(STATUS "=== HW_API Core Module Configuration Complete ===")
-
-# Export information for parent CMakeLists
-set(HW_API_CORE_TARGET hw_api_core PARENT_SCOPE)
-set(HW_API_CORE_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
