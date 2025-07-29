@@ -9,6 +9,27 @@ MCU_FAMILY ?= stm32c0
 MCU_SPECIFIC ?= STM32C031C6
 DEBUG_PROBE ?= st-link
 
+# STM32 HAL Repository Configuration (based on MCU_FAMILY)
+ifeq ($(MCU_FAMILY),stm32c0)
+    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
+    STM32_HAL_TAG ?= v1.0.6
+    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_c0.git
+    STM32_CMSIS_TAG ?= v1.0.3
+    HAL_PREFIX ?= STM32C0xx
+else ifeq ($(MCU_FAMILY),stm32g0)
+    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
+    STM32_HAL_TAG ?= v1.4.4
+    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_g0.git
+    STM32_CMSIS_TAG ?= v1.4.2
+    HAL_PREFIX ?= STM32G0xx
+else ifeq ($(MCU_FAMILY),stm32f4)
+    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32f4xx_hal_driver.git
+    STM32_HAL_TAG ?= v1.8.2
+    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_f4.git
+    STM32_CMSIS_TAG ?= v2.6.8
+    HAL_PREFIX ?= STM32F4xx
+endif
+
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
@@ -30,7 +51,12 @@ stm32:
 		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
 		-DSTM32_FAMILY=$(MCU_FAMILY) \
 		-DSTM32_MCU=$(MCU_SPECIFIC) \
-		-DDEBUG_PROBE=$(DEBUG_PROBE)
+		-DDEBUG_PROBE=$(DEBUG_PROBE) \
+		-DSTM32_HAL_REPO=$(STM32_HAL_REPO) \
+		-DSTM32_HAL_TAG=$(STM32_HAL_TAG) \
+		-DSTM32_CMSIS_REPO=$(STM32_CMSIS_REPO) \
+		-DSTM32_CMSIS_TAG=$(STM32_CMSIS_TAG) \
+		-DHAL_PREFIX=$(HAL_PREFIX)
 	cmake --build $(BUILD_DIR) -j
 
 # ESP32 Build with all platform-specific settings (commented - currently disabled)
@@ -116,8 +142,4 @@ help:
 	@echo ""
 	@echo "Examples:"
 	@echo "  make stm32                              # Build with default ST-Link"
-	@echo "  make jlink                              # Build with J-Link probe"
-	@echo "  make flash                              # Flash with current probe"
-	@echo "  make flash-jlink                        # Flash with J-Link"
-	@echo "  make stm32 DEBUG_PROBE=openocd          # Build with specific probe"
-	@echo "  make stm32-hal STM32_HAL_PATH=/path/to/hal"
+
