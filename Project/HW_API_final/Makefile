@@ -13,10 +13,6 @@ ifeq ($(TARGET_PLATFORM),STM32)
     # Debug probe configuration (default: ST-Link for STM32)
     DEBUG_PROBE ?= st-link
     EXTRA_CMAKE_ARGS += -DDEBUG_PROBE=$(DEBUG_PROBE)
-    
-    ifdef STM32_HAL_PATH
-        EXTRA_CMAKE_ARGS += -DSTM32_HAL_PATH=$(STM32_HAL_PATH)
-    endif
 endif
 
 # Base CMake command
@@ -29,7 +25,7 @@ endif
 CMAKE_CMD += $(EXTRA_CMAKE_ARGS)
 
 # Default target
-.PHONY: all clean prepare stm32 info help flash erase reset debug stlink jlink openocd
+.PHONY: all clean prepare stm32 info help flash erase reset debug
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -38,47 +34,11 @@ all: info
 
 # Platform-specific builds
 stm32:
-	@$(MAKE) all TARGET_PLATFORM=STM32
+	$(MAKE) all TARGET_PLATFORM=STM32
 
-# Debug probe specific builds
-stlink:
-	@$(MAKE) stm32 DEBUG_PROBE=st-link
-
-jlink:
-	@$(MAKE) stm32 DEBUG_PROBE=jlink
-
-openocd:
-	@$(MAKE) stm32 DEBUG_PROBE=openocd
-
-
-# Build with specific STM32 HAL path
-stm32-hal:
-ifndef STM32_HAL_PATH
-	@echo "Error: STM32_HAL_PATH not set"
-	@echo "Usage: make stm32-hal STM32_HAL_PATH=/path/to/hal"
-	@exit 1
-endif
-	@$(MAKE) stm32 STM32_HAL_PATH=$(STM32_HAL_PATH)
-
-# Hardware-specific targets (using debug_probes configuration)
+# Hardware-specific targets (simplified)
 flash erase reset debug:
-	@if [ -f "$(BUILD_DIR)/build.ninja" ]; then \
-		echo "Executing $@ using $(DEBUG_PROBE) debug probe..."; \
-		cmake --build $(BUILD_DIR) --target $@ || echo "Target '$@' not available for debug probe '$(DEBUG_PROBE)'"; \
-	else \
-		echo "Build directory not found. Run 'make all' first."; \
-		echo "Current debug probe: $(DEBUG_PROBE) (change with DEBUG_PROBE=<probe>)"; \
-	fi
-
-# Debug probe selection shortcuts with hardware operations
-flash-stlink erase-stlink reset-stlink debug-stlink:
-	@$(MAKE) $(subst -stlink,,$@) DEBUG_PROBE=st-link
-
-flash-jlink erase-jlink reset-jlink debug-jlink:
-	@$(MAKE) $(subst -jlink,,$@) DEBUG_PROBE=jlink
-
-flash-openocd erase-openocd reset-openocd debug-openocd:
-	@$(MAKE) $(subst -openocd,,$@) DEBUG_PROBE=openocd
+	cmake --build $(BUILD_DIR) --target $@
 
 # Utility targets
 clean:
