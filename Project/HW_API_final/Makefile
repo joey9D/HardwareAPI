@@ -4,6 +4,10 @@
 BUILD_DIR ?= build
 BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= STM32
+TOOLCHAIN_FILE ?= toolchains/stm32-toolchain.cmake
+MCU_FAMILY ?= stm32c0
+MCU_SPECIFIC ?= STM32C031C6
+DEBUG_PROBE ?= st-link
 
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
@@ -23,10 +27,10 @@ stm32:
 	cmake -S . -B $(BUILD_DIR) -G "Ninja" \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DTARGET_PLATFORM=STM32 \
-		-DCMAKE_TOOLCHAIN_FILE=toolchains/stm32-toolchain.cmake \
-		-DSTM32_FAMILY=stm32c0 \
-		-DSTM32_MCU_FAMILY=STM32C031C6 \
-		-DDEBUG_PROBE=st-link
+		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
+		-DSTM32_FAMILY=$(MCU_FAMILY) \
+		-DSTM32_MCU=$(MCU_SPECIFIC) \
+		-DDEBUG_PROBE=$(DEBUG_PROBE)
 	cmake --build $(BUILD_DIR) -j
 
 # ESP32 Build with all platform-specific settings (commented - currently disabled)
