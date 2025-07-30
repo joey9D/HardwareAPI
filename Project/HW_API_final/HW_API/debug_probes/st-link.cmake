@@ -1,6 +1,7 @@
 add_custom_target(flash
-    COMMAND STM32_Programmer_CLI --connect port=SWD --write ${CMAKE_PROJECT_NAME}.bin 0x08000000 --verify -rst
+    COMMAND STM32_Programmer_CLI --connect port=SWD --write ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin 0x08000000 --verify -rst
     USES_TERMINAL
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
 add_custom_target(erase
