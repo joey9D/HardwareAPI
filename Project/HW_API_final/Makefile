@@ -12,9 +12,9 @@ DEBUG_PROBE ?= st-link
 # STM32 HAL Repository Configuration (based on MCU_FAMILY)
 ifeq ($(MCU_FAMILY),stm32c0)
     STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
-    STM32_HAL_TAG ?= v1.0.6
+    STM32_HAL_TAG ?= v1.4.0
     STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_c0.git
-    STM32_CMSIS_TAG ?= v1.0.3
+    STM32_CMSIS_TAG ?= v1.3.0
     HAL_PREFIX ?= STM32C0xx
 else ifeq ($(MCU_FAMILY),stm32g0)
     STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
@@ -45,7 +45,8 @@ all: info
 stm32:
 	@echo "=== Building STM32 Platform ==="
 	@mkdir -p $(BUILD_DIR)
-	cmake -S . -B $(BUILD_DIR) -G "Ninja" \
+	@echo "Configuring build system..."
+	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DTARGET_PLATFORM=STM32 \
 		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
@@ -56,8 +57,9 @@ stm32:
 		-DSTM32_HAL_TAG=$(STM32_HAL_TAG) \
 		-DSTM32_CMSIS_REPO=$(STM32_CMSIS_REPO) \
 		-DSTM32_CMSIS_TAG=$(STM32_CMSIS_TAG) \
-		-DHAL_PREFIX=$(HAL_PREFIX)
-	cmake --build $(BUILD_DIR) -j
+		-DHAL_PREFIX=$(HAL_PREFIX) > /dev/null
+	@echo "Building project..."
+	@cmake --build $(BUILD_DIR) -j
 
 # ESP32 Build with all platform-specific settings (commented - currently disabled)
 # esp32:

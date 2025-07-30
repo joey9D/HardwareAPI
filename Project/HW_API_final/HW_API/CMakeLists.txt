@@ -15,29 +15,31 @@ message(STATUS "Configuring Hardware Abstraction Layer...")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Set C++ standard for all modules
+# HW_API-specific C++ standard and compiler settings
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)  # No compiler-specific extensions
+set(CMAKE_CXX_EXTENSIONS OFF)  # No compiler-specific extensions (important for embedded)
 
-message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "HW_API C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "C++ Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "C++ Compiler: ${CMAKE_CXX_COMPILER}")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Global compiler warnings for all modules
+# HW_API-specific compiler warnings (stricter than project defaults)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_compile_options(
         -Wall
         -Wextra
         -Wpedantic
+        -Wconversion          # Important for embedded - catch implicit conversions
+        -Wsign-conversion     # Catch signed/unsigned conversions
     )
-    message(STATUS "Enabled GCC/Clang warnings: -Wall -Wextra -Wpedantic")
+    message(STATUS "Enabled HW_API-specific warnings: -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    add_compile_options(/W4)
-    message(STATUS "Enabled MSVC warnings: /W4")
+    add_compile_options(/W4 /WX)  # Treat warnings as errors for HW_API
+    message(STATUS "Enabled MSVC warnings: /W4 /WX")
 endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,7 +51,9 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     # STM32 Hardware Configuration - Centralized for easy changes
     if(NOT DEFINED STM32_FAMILY)
         set(STM32_FAMILY "stm32c0" CACHE STRING "STM32 family (e.g., stm32c0, stm32g0, stm32f4)")
-        message(STATUS "Using default STM32 family: ${STM32_FAMILY}")
+        message(WARNING "STM32_FAMILY not defined, using default: ${STM32_FAMILY}. Consider using 'make stm32' instead of direct cmake.")
+    else()
+        message(STATUS "Using STM32 family from Makefile: ${STM32_FAMILY}")
     endif()
     
     message(STATUS "STM32 Family: ${STM32_FAMILY}")
@@ -90,7 +94,7 @@ add_subdirectory(core)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 message(STATUS "Adding drivers module...")
 if(TARGET_PLATFORM STREQUAL "STM32")
-    add_subdirectory(drivers/stm32_hal_wrapper)
+    add_subdirectory(drivers)
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM for drivers: ${TARGET_PLATFORM}")
 endif()
