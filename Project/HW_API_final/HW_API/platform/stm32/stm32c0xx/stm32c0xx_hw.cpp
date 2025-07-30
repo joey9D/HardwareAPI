@@ -22,8 +22,8 @@ void Stm32c0xx_hw::init_sys()
 	// clock
 void Stm32c0xx_hw::init_clock()
 {
-	RCC_OscInitTypeDef OscInitStruct = {0};
-	RCC_ClkInitTypeDef ClkInitStruct = {0};
+	RCC_OscInitTypeDef OscInitStruct{}; // Klammern leer nach C++ 11 Standard
+	RCC_ClkInitTypeDef ClkInitStruct{};
 
 	__HAL_FLASH_SET_LATENCY(FLASH_LATENCY_1);
 

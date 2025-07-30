@@ -26,8 +26,6 @@ public:
 	void delay(uint32_t ms) override;
 
 	void initAllPins() override;
-private:
-	PinConfig_t _config;
 };
 
 #endif /* __cplusplus class */

@@ -56,7 +56,7 @@ public:
 		return (HAL_GetTick() - _startTime);
 	}
 
-	const uint32_t getExpiredDiffTime() const
+	uint32_t getExpiredDiffTime() const
 	{
 		return _diffTime_ms;
 	}

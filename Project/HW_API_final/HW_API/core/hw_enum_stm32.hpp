@@ -4,8 +4,9 @@
 #ifdef STM32_PLATFORM
 
 // Only include the minimal HAL headers needed for GPIO definitions
-#include "stm32c0xx_hal_conf.h"
-#include "stm32c0xx_hal_gpio.h"
+// #include "stm32c0xx_hal_conf.h"
+// #include "stm32c0xx_hal_gpio.h"
+#include "stm32c0xx_hal.h" // Include all HAL headers for STM32C0
 
 namespace HW_API {
 namespace STM32 {
@@ -18,12 +19,12 @@ enum class Mode : uint32_t
     Alternate_Push_Pull = GPIO_MODE_AF_PP,
     Alternate_Open_Drain = GPIO_MODE_AF_OD,
     Analog = GPIO_MODE_ANALOG,
-    Input_IT_Rising = GPIO_MODE_IT_RISING,
-    Input_IT_Falling = GPIO_MODE_IT_FALLING,
-    Input_IT_RisingFalling = GPIO_MODE_IT_RISING_FALLING,
-    Input_EVT_Rising = GPIO_MODE_EVT_RISING,
-    Input_EVT_Falling = GPIO_MODE_EVT_FALLING,
-    Input_EVT_RisingFalling = GPIO_MODE_EVT_RISING_FALLING,
+    Interrupt_Rising = GPIO_MODE_IT_RISING,
+    Interrupt_Falling = GPIO_MODE_IT_FALLING,
+    Interrupt_RisingFalling = GPIO_MODE_IT_RISING_FALLING,
+    Event_Rising = GPIO_MODE_EVT_RISING,
+    Event_Falling = GPIO_MODE_EVT_FALLING,
+    Event_RisingFalling = GPIO_MODE_EVT_RISING_FALLING,
 };
 
 enum class Pull : uint32_t

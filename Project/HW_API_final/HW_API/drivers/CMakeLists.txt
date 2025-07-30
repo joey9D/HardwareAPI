@@ -93,8 +93,16 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_uart.c
     )
     
+    # STM32 System sources (from CMSIS Device)
+    set(STM32_SYSTEM_SOURCES
+        ${stm32_cmsis_SOURCE_DIR}/Source/Templates/system_stm32c0xx.c
+    )
+
     # Create a separate HAL library to avoid include path issues
-    add_library(stm32_hal_library STATIC ${STM32_HAL_CORE_SOURCES})
+    add_library(stm32_hal_library STATIC 
+        ${STM32_HAL_CORE_SOURCES}
+        ${STM32_SYSTEM_SOURCES}
+    )
     
     # Set include directories for HAL library compilation
     target_include_directories(stm32_hal_library 

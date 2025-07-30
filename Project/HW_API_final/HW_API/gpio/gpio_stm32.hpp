@@ -37,7 +37,7 @@ public:
 	);
 	// 		- init
 	void gpio_init() override;
-	void port_clock_enable(Port port) const override;
+	void port_clock_enable(Port port) const;
 	//		- functions
 	bool readPin() const override;
 	void writePin(bool value) const override;

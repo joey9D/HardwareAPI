@@ -24,9 +24,9 @@ namespace {
 				return GPIO_MODE_OUTPUT_PP;
             case Mode::Output_Open_Drain:
 				return GPIO_MODE_OUTPUT_OD;
-            case Mode::Alt_Function_Push_Pull: 
+            case Mode::Alternate_Push_Pull: 
 				return GPIO_MODE_AF_PP;
-            case Mode::Alt_Function_Open_Drain: 
+            case Mode::Alternate_Open_Drain: 
 				return GPIO_MODE_AF_OD;
             case Mode::Analog: 
 				return GPIO_MODE_ANALOG;
@@ -34,13 +34,13 @@ namespace {
 				return GPIO_MODE_IT_RISING;
             case Mode::Interrupt_Falling: 
 				return GPIO_MODE_IT_FALLING;
-            case Mode::Interrupt_Rising_Falling: 
+            case Mode::Interrupt_RisingFalling: 
 				return GPIO_MODE_IT_RISING_FALLING;
             case Mode::Event_Rising: 
 				return GPIO_MODE_EVT_RISING;
             case Mode::Event_Falling: 
 				return GPIO_MODE_EVT_FALLING;
-            case Mode::Event_Rising_Falling: 
+            case Mode::Event_RisingFalling: 
 				return GPIO_MODE_EVT_RISING_FALLING;
             default: 
 				return GPIO_MODE_INPUT;
@@ -102,7 +102,7 @@ void Gpio::gpio_init()
 	assert(stm32x0_gpio_mapping::gpio_port[static_cast<uint8_t>(_port)]);
 	assert(_pin < stm32x0_gpio_mapping::pin_count);
 
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	GPIO_InitTypeDef GPIO_InitStruct{};
 	port_clock_enable(_port);
 
 	uint16_t pin_msk = (1UL << _pin);
@@ -125,7 +125,7 @@ void Gpio::gpio_init()
  * @brief using functions
  */
 
-bool Gpio::readPin() const
+[[nodiscard]] bool Gpio::readPin() const
 {
 	 return HAL_GPIO_ReadPin(get_GPIO_TypeDef_port(), getPin());
 }
@@ -168,12 +168,12 @@ void Gpio::port_clock_enable(Port port) const
 	}
 }
 
-bool Gpio::isPinOn() const
+[[nodiscard]] bool Gpio::isPinOn() const
 {
 	bool retval = false;
 
 	/**
-	 * @note eihter like this or using readPin(),
+	 * @note either like this or using readPin(),
 	 * so that for future adjustments/portability you can just copy this whole function
 	 */
 	if (HAL_GPIO_ReadPin(get_GPIO_TypeDef_port(), getPin()) == GPIO_PIN_SET)
@@ -189,7 +189,7 @@ bool Gpio::isPinOn() const
 	return retval;
 }
 
-bool Gpio::isDebouncePinOn()
+[[nodiscard]] bool Gpio::isDebouncePinOn()
 {
 	bool retval = false;
 
@@ -254,7 +254,7 @@ bool Gpio::isDebouncePinOn()
 	return retval;
 }
 
-bool Gpio::isPinInverted() const
+[[nodiscard]] bool Gpio::isPinInverted() const
 {
 	return _inverted;
 }
@@ -263,21 +263,21 @@ bool Gpio::isPinInverted() const
 
 
 /**
- * @brief Getter funcitons
+ * @brief Getter functions
  */
-uint16_t Gpio::getPin() const { return (1 << _pin); }
+[[nodiscard]] uint16_t Gpio::getPin() const { return (1 << _pin); }
 
-GPIO_TypeDef *Gpio::get_GPIO_TypeDef_port() const
+[[nodiscard]] GPIO_TypeDef *Gpio::get_GPIO_TypeDef_port() const
 {
 	using PortIndex = std::underlying_type_t<decltype(_port)>;
 	return stm32x0_gpio_mapping::gpio_port[static_cast<PortIndex>(_port)];
 }
 
-Mode Gpio::getMode() const { return _mode; }
+[[nodiscard]] Mode Gpio::getMode() const { return _mode; }
 
-Pull Gpio::getPull() const { return _pull; }
+[[nodiscard]] Pull Gpio::getPull() const { return _pull; }
 
-Speed Gpio::getSpeed() const { return _speed; }
+[[nodiscard]] Speed Gpio::getSpeed() const { return _speed; }
 
 
 

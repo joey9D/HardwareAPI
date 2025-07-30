@@ -104,5 +104,4 @@ add_custom_target(info
     COMMAND ${CMAKE_COMMAND} -E echo "Binary Dir: ${CMAKE_BINARY_DIR}"
     COMMAND ${CMAKE_COMMAND} -E echo "=================================="
     COMMENT "Display project information"
-    VERBATIM
 )

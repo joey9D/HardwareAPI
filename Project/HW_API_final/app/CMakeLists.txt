@@ -35,6 +35,22 @@ add_executable(${TARGET_NAME}
 # Set output name without prefix
 set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "main")
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Add STM32-specific compile definitions to the app target
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(TARGET_PLATFORM STREQUAL "STM32")
+    target_compile_definitions(${TARGET_NAME} PRIVATE
+        STM32_PLATFORM=1
+        STM32_FAMILY_${STM32_FAMILY}=1
+        STM32C0xx=1
+        STM32C031xx=1
+        STM32C031x6=1
+        USE_HAL_DRIVER=1
+        DEBUG=1
+    )
+    message(STATUS "Added STM32 compile definitions to ${TARGET_NAME}")
+endif()
+
 message(STATUS "Created ${TARGET_NAME} executable")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,5 +71,24 @@ message(STATUS "Linked ${TARGET_NAME} with HW_API modules")
 target_include_directories(${TARGET_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Generate binary file for flashing (STM32 only)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(TARGET_PLATFORM STREQUAL "STM32")
+    # Create .bin file from the ELF executable
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${TARGET_NAME}> ${CMAKE_PROJECT_NAME}.bin
+        COMMENT "Creating binary file for flashing: ${CMAKE_PROJECT_NAME}.bin"
+    )
+    
+    # Copy .bin file to build root for easier flashing
+    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_PROJECT_NAME}.bin ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin
+        COMMENT "Copying ${CMAKE_PROJECT_NAME}.bin to build directory"
+    )
+    
+    message(STATUS "Will generate ${CMAKE_PROJECT_NAME}.bin for flashing")
+endif()
 
 message(STATUS "=== Application Configuration Complete ===")
