@@ -1,5 +1,5 @@
 /*
- * stm32c0_hw.cpp
+ * stm32c0xx_hw.cpp
  *
  *  Created on: Jul 10, 2025
  *      Author: jan.kristel
@@ -7,20 +7,20 @@
 #include <assert.h>
 #include <type_traits>
 #include "../../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
-#include "stm32c0_hw.hpp"
+#include "stm32c0xx_hw.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 //#include "timer.hpp"
 #include "gpio_stm32.hpp"
 #include "pin_config.hpp"
 
-void Stm32c0_hw::init_sys()
+void Stm32c0xx_hw::init_sys()
 	{
 		HAL_Init();
 		init_clock();
 	}
 
 	// clock
-void Stm32c0_hw::init_clock()
+void Stm32c0xx_hw::init_clock()
 {
 	RCC_OscInitTypeDef OscInitStruct = {0};
 	RCC_ClkInitTypeDef ClkInitStruct = {0};
@@ -41,7 +41,7 @@ void Stm32c0_hw::init_clock()
 	HAL_RCC_ClockConfig(&ClkInitStruct, FLASH_LATENCY_1);
 }
 
-void Stm32c0_hw::delay(uint32_t ms)
+void Stm32c0xx_hw::delay(uint32_t ms)
 {
 	HAL_Delay(ms);
 }
@@ -49,7 +49,7 @@ void Stm32c0_hw::delay(uint32_t ms)
 /**
  * @brief Initialize all Pins defined in BoardPins from pin_config.hpp
  */
-void Stm32c0_hw::initAllPins()
+void Stm32c0xx_hw::initAllPins()
 {
 	for( auto pin : boardPins.allPins )
 	{

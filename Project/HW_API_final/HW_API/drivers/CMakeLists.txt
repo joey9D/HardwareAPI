@@ -21,10 +21,20 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         message(FATAL_ERROR "STM32_HAL_TAG not defined. Please build via Makefile: make stm32")
     endif()
     
+    if(NOT DEFINED ARM_CMSIS_REPO)
+        message(FATAL_ERROR "ARM_CMSIS_REPO not defined. Please build via Makefile: make stm32")
+    endif()
+    
+    if(NOT DEFINED ARM_CMSIS_TAG)
+        message(FATAL_ERROR "ARM_CMSIS_TAG not defined. Please build via Makefile: make stm32")
+    endif()
+    
     message(STATUS "STM32 HAL Repository: ${STM32_HAL_REPO}")
     message(STATUS "STM32 HAL Tag: ${STM32_HAL_TAG}")
     message(STATUS "STM32 CMSIS Repository: ${STM32_CMSIS_REPO}")
     message(STATUS "STM32 CMSIS Tag: ${STM32_CMSIS_TAG}")
+    message(STATUS "ARM CMSIS Repository: ${ARM_CMSIS_REPO}")
+    message(STATUS "ARM CMSIS Tag: ${ARM_CMSIS_TAG}")
     message(STATUS "HAL Prefix: ${HAL_PREFIX}")
     
     # Fetch STM32 HAL Driver
@@ -43,11 +53,20 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         GIT_SHALLOW    TRUE
     )
     
+    # Fetch ARM CMSIS Core (needed for core_cm0plus.h)
+    FetchContent_Declare(
+        arm_cmsis_core
+        GIT_REPOSITORY ${ARM_CMSIS_REPO}
+        GIT_TAG        ${ARM_CMSIS_TAG}
+        GIT_SHALLOW    TRUE
+    )
+    
     # Make content available
-    FetchContent_MakeAvailable(stm32_hal stm32_cmsis)
+    FetchContent_MakeAvailable(stm32_hal stm32_cmsis arm_cmsis_core)
     
     message(STATUS "STM32 HAL Driver fetched to: ${stm32_hal_SOURCE_DIR}")
     message(STATUS "STM32 CMSIS Device fetched to: ${stm32_cmsis_SOURCE_DIR}")
+    message(STATUS "ARM CMSIS Core fetched to: ${arm_cmsis_core_SOURCE_DIR}")
     
     # HAL Wrapper sources
     set(STM32_HAL_WRAPPER_SOURCES
@@ -62,22 +81,43 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     
     # STM32 HAL Core sources (common to all families)  
     set(STM32_HAL_CORE_SOURCES
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_cortex.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_dma.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_flash.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_gpio.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_pwr.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_rcc.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_spi.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_tim.c
-        ${stm32_hal_SOURCE_DIR}/Src/${STM32_FAMILY}xx_hal_uart.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_cortex.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_dma.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_flash.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_gpio.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_pwr.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_rcc.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_spi.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_tim.c
+        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_uart.c
     )
     
-    # Combine all sources
+    # Create a separate HAL library to avoid include path issues
+    add_library(stm32_hal_library STATIC ${STM32_HAL_CORE_SOURCES})
+    
+    # Set include directories for HAL library compilation
+    target_include_directories(stm32_hal_library 
+        PRIVATE
+            ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
+            ${stm32_hal_SOURCE_DIR}/Inc
+            ${stm32_cmsis_SOURCE_DIR}/Include
+            ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
+    )
+    
+    # Set compile definitions for HAL library
+    target_compile_definitions(stm32_hal_library 
+        PRIVATE
+            USE_HAL_DRIVER
+            STM32C0xx
+            STM32C031xx
+            STM32C031x6  # Device-specific define needed by CMSIS
+            STM32_PLATFORM=1
+    )
+    
+    # Combine wrapper sources only
     set(FILTERED_SOURCES
         ${STM32_HAL_WRAPPER_SOURCES}
-        ${STM32_HAL_CORE_SOURCES}
     )
     
     set(FILTERED_HEADERS
@@ -133,6 +173,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
                 ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
+                ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
         )
     else()
         # For interface libraries - use INTERFACE
@@ -141,20 +182,28 @@ if(TARGET_PLATFORM STREQUAL "STM32")
                 ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
+                ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
         )
     endif()
 endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Link with core module if available
+# Link with core module and HAL library if available
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET hw_api_core)
     if(FILTERED_SOURCES)
-        target_link_libraries(${TARGET_NAME} PUBLIC hw_api_core)
+        target_link_libraries(${TARGET_NAME} PUBLIC hw_api_core stm32_hal_library)
     else()
-        target_link_libraries(${TARGET_NAME} INTERFACE hw_api_core)
+        target_link_libraries(${TARGET_NAME} INTERFACE hw_api_core stm32_hal_library)
     endif()
-    message(STATUS "Linked ${TARGET_NAME} with hw_api_core")
+    message(STATUS "Linked ${TARGET_NAME} with hw_api_core and stm32_hal_library")
+else()
+    if(FILTERED_SOURCES)
+        target_link_libraries(${TARGET_NAME} PUBLIC stm32_hal_library)
+    else()
+        target_link_libraries(${TARGET_NAME} INTERFACE stm32_hal_library)
+    endif()
+    message(STATUS "Linked ${TARGET_NAME} with stm32_hal_library")
 endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

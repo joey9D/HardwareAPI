@@ -50,7 +50,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     
     # STM32 Hardware Configuration - Centralized for easy changes
     if(NOT DEFINED STM32_FAMILY)
-        set(STM32_FAMILY "stm32c0" CACHE STRING "STM32 family (e.g., stm32c0, stm32g0, stm32f4)")
+        set(STM32_FAMILY "stm32c0xx" CACHE STRING "STM32 family (e.g., stm32c0xx, stm32g0xx, stm32f4xx)")
         message(WARNING "STM32_FAMILY not defined, using default: ${STM32_FAMILY}. Consider using 'make stm32' instead of direct cmake.")
     else()
         message(STATUS "Using STM32 family from Makefile: ${STM32_FAMILY}")
@@ -73,6 +73,9 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     add_compile_definitions(
         STM32_PLATFORM=1
         STM32_FAMILY_${STM32_FAMILY}=1
+        STM32C0xx=1
+        STM32C031xx=1
+        STM32C031x6=1  # Device-specific define needed by CMSIS
     )
     
     message(STATUS "STM32 Platform Path: ${STM32_PLATFORM_PATH}")

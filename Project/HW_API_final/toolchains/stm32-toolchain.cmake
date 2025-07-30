@@ -5,22 +5,43 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 # Without that flag CMake is not able to pass test compilation check
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-# ARM GCC Toolchain paths (adjust if needed based on installation)
+# ARM GCC Toolchain paths for Windows (STM32CubeCLT installation)
 set(TOOLCHAIN_PREFIX arm-none-eabi-)
 
-# Set ARM Toolchain paths directly (we know they're in /opt/homebrew/bin)
-set(CMAKE_C_COMPILER /opt/homebrew/bin/${TOOLCHAIN_PREFIX}gcc)
-set(CMAKE_CXX_COMPILER /opt/homebrew/bin/${TOOLCHAIN_PREFIX}g++)
-set(CMAKE_ASM_COMPILER /opt/homebrew/bin/${TOOLCHAIN_PREFIX}gcc)
+# Find STM32CubeCLT installation automatically
+set(STM32_CUBECLT_PATHS
+    "C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin"
+    "C:/ST/STM32CubeCLT_1.17.0/GNU-tools-for-STM32/bin"
+    "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin"
+)
+
+# Try to find the toolchain in known locations
+foreach(TOOLCHAIN_PATH ${STM32_CUBECLT_PATHS})
+    if(EXISTS "${TOOLCHAIN_PATH}/${TOOLCHAIN_PREFIX}gcc.exe")
+        set(TOOLCHAIN_BIN_PATH ${TOOLCHAIN_PATH})
+        break()
+    endif()
+endforeach()
+
+if(NOT TOOLCHAIN_BIN_PATH)
+    message(FATAL_ERROR "STM32 ARM GCC Toolchain not found! Please install STM32CubeCLT from https://www.st.com/en/development-tools/stm32cubeclt.html")
+endif()
+
+message(STATUS "Found STM32 ARM GCC Toolchain at: ${TOOLCHAIN_BIN_PATH}")
+
+# Set ARM Toolchain paths with Windows paths
+set(CMAKE_C_COMPILER ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}gcc.exe)
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}g++.exe)
+set(CMAKE_ASM_COMPILER ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}gcc.exe)
 
 # Set additional tools with full paths
-set(CMAKE_OBJCOPY /opt/homebrew/bin/${TOOLCHAIN_PREFIX}objcopy CACHE STRING "objcopy tool")
-set(CMAKE_SIZE_UTIL /opt/homebrew/bin/${TOOLCHAIN_PREFIX}size CACHE STRING "size tool")
-set(CMAKE_OBJDUMP /opt/homebrew/bin/${TOOLCHAIN_PREFIX}objdump CACHE STRING "objdump tool")
+set(CMAKE_OBJCOPY ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}objcopy.exe CACHE STRING "objcopy tool")
+set(CMAKE_SIZE_UTIL ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}size.exe CACHE STRING "size tool")
+set(CMAKE_OBJDUMP ${TOOLCHAIN_BIN_PATH}/${TOOLCHAIN_PREFIX}objdump.exe CACHE STRING "objdump tool")
 
 # Check if ARM GCC was found
-if(NOT CMAKE_C_COMPILER)
-    message(FATAL_ERROR "ARM GCC Toolchain not found! Please install arm-none-eabi-gcc")
+if(NOT EXISTS ${CMAKE_C_COMPILER})
+    message(FATAL_ERROR "ARM GCC Toolchain not found at: ${CMAKE_C_COMPILER}")
 endif()
 
 message(STATUS "Using ARM GCC Toolchain:")

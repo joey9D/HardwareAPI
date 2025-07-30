@@ -16,7 +16,7 @@
 //#include "hw_interface.hpp"
 #include "gpio_interface.hpp"
 #include "timer.hpp"
-// Removed stm32c0_hw.hpp - not needed in GPIO class
+// Removed stm32c0xx_hw.hpp - not needed in GPIO class
 // #include "hw_enum_classes.hpp"
 
 #ifdef __cplusplus

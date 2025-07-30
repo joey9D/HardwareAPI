@@ -81,7 +81,7 @@ else()
 endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Link with core module if available
+# Link with required modules
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET hw_api_core)
     if(FILTERED_SOURCES)
@@ -90,6 +90,26 @@ if(TARGET hw_api_core)
         target_link_libraries(${TARGET_NAME} INTERFACE hw_api_core)
     endif()
     message(STATUS "Linked ${TARGET_NAME} with hw_api_core")
+endif()
+
+# Link with drivers module for HAL access (STM32 platform needs this)
+if(TARGET_PLATFORM STREQUAL "STM32" AND TARGET hw_api_drivers)
+    if(FILTERED_SOURCES)
+        target_link_libraries(${TARGET_NAME} PUBLIC hw_api_drivers)
+    else()
+        target_link_libraries(${TARGET_NAME} INTERFACE hw_api_drivers)
+    endif()
+    message(STATUS "Linked ${TARGET_NAME} with hw_api_drivers for HAL access")
+endif()
+
+# Link with GPIO module (STM32 platform needs this)
+if(TARGET_PLATFORM STREQUAL "STM32" AND TARGET hw_api_gpio)
+    if(FILTERED_SOURCES)
+        target_link_libraries(${TARGET_NAME} PUBLIC hw_api_gpio)
+    else()
+        target_link_libraries(${TARGET_NAME} INTERFACE hw_api_gpio)
+    endif()
+    message(STATUS "Linked ${TARGET_NAME} with hw_api_gpio for GPIO access")
 endif()
 
 message(STATUS "=== HW_API Platform Module Configuration Complete ===")

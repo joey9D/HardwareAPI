@@ -11,7 +11,7 @@
         using Port = STM32::Port;
         using ExtiTrigger = STM32::ExtiTrigger;
     }
-ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
+// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
 #elif ESP32_PLATFORM
     #include "hw_enum_esp32.hpp"
     namespace HW_API {

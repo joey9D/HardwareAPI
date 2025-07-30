@@ -5,8 +5,8 @@
  *      Author: jan.kristel
  */
 
-#ifndef __STM32C0_HW_HPP
-#define __STM32C0_HW_HPP
+#ifndef __STM32C0XX_HW_HPP
+#define __STM32C0XX_HW_HPP
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -18,7 +18,7 @@
 
 #ifdef __cplusplus
 
-class Stm32c0_hw : public HardwareInterface
+class Stm32c0xx_hw : public HardwareInterface
 {
 public:
 	void init_sys() override ;

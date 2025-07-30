@@ -14,13 +14,15 @@ extern "C" {
 #endif
 
 // Step 2: Include CMSIS device header FIRST (provides register definitions)
-#include "stm32c0xx.h"
+// Note: The exact include path is handled by CMake include directories
+#include <stm32c0xx.h>
 
 // Step 3: Include HAL configuration (this now finds all types correctly)
 #include "stm32c0xx_hal_conf.h"
 
 // Step 4: Include main HAL header (this pulls in all enabled modules)
-#include "stm32c0xx_hal.h"
+// Note: The exact include path is handled by CMake include directories
+#include <stm32c0xx_hal.h>
 
 #ifdef __cplusplus
 }
