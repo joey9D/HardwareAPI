@@ -1,0 +1,102 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32 Debug (Remote)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/app/main",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2331",
+            "targetArchitecture": "arm",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "neverOpen",
+            "showDisplayString": true,
+            "logging": {
+                "moduleLoad": false,
+                "trace": false,
+                "engineLogging": false,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set architecture", 
+                    "text": "set architecture arm",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Load symbols",
+                    "text": "file ${workspaceFolder}/build/app/main",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Reset and halt target", 
+                    "text": "monitor reset halt",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "STM32 Debug (Launch Mode - Flash & Debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/app/main",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2331",
+            "targetArchitecture": "arm",
+            "stopAtEntry": true,
+            "internalConsoleOptions": "neverOpen",
+            "showDisplayString": true,
+            "externalConsole": false,
+            "preLaunchTask": "build",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false,
+                "engineLogging": false,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set architecture",
+                    "text": "set architecture arm",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Reset and halt target",
+                    "text": "monitor reset halt",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Flash the program",
+                    "text": "load",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Enable flash breakpoints",
+                    "text": "monitor flash breakpoints = 1",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Reset to start of program",
+                    "text": "monitor reset halt",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

@@ -103,11 +103,23 @@ if(TARGET_PLATFORM STREQUAL "STM32")
             STM32_PLATFORM=1
             # HW_CORE_STM32=1
         )
+        # Add STM32 family-specific definitions
+        if(STM32_FAMILY STREQUAL "stm32c0xx")
+            target_compile_definitions(${TARGET_NAME} PUBLIC STM32C0xx=1)
+        elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+            target_compile_definitions(${TARGET_NAME} PUBLIC STM32G0xx=1)
+        endif()
     else()
         target_compile_definitions(${TARGET_NAME} INTERFACE
             STM32_PLATFORM=1
             # HW_CORE_STM32=1
         )
+        # Add STM32 family-specific definitions
+        if(STM32_FAMILY STREQUAL "stm32c0xx")
+            target_compile_definitions(${TARGET_NAME} INTERFACE STM32C0xx=1)
+        elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+            target_compile_definitions(${TARGET_NAME} INTERFACE STM32G0xx=1)
+        endif()
     endif()
 # ESP32 ...
 else()
