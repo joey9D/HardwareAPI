@@ -9,23 +9,39 @@
 #include "../../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
 #include "stm32c0xx_hw.hpp"
 #include "stm32x0_gpio_mapping.hpp"
-//#include "timer.hpp"
+// #include "timer.hpp"
 #include "gpio_stm32.hpp"
 #include "pin_config.hpp"
 
-// Forward declaration of Error_Handler
-extern "C" void Error_Handler(void);
+// Error handler implementation for hardware abstraction layer
+extern "C" void Error_Handler(void)
+{
+	// Disable interrupts and halt
+	__disable_irq();
+	while (1)
+	{
+		// Stay here in case of error
+	}
+}
+
+// Forward declaration of the forcing function from MSP file
+extern "C" uint32_t MSP_ForceInclude(void);
 
 void Stm32c0xx_hw::init_sys()
-	{
-		HAL_Init();
-		init_clock();
-	}
+{
+	// Force inclusion of MSP object file to ensure HAL_MspInit override works
+	volatile uint32_t msp_check = MSP_ForceInclude();
+	(void)msp_check; // Avoid unused variable warning
 
-	// clock
+	HAL_Init();
+	init_clock();
+}
+
+// clock
 void Stm32c0xx_hw::init_clock()
 {
-	RCC_OscInitTypeDef OscInitStruct{}; // Klammern leer nach C++ 11 Standard
+	// C++17 aggregate initialization - clean and elegant
+	RCC_OscInitTypeDef OscInitStruct{};
 	RCC_ClkInitTypeDef ClkInitStruct{};
 
 	// Configure flash latency
@@ -57,7 +73,7 @@ void Stm32c0xx_hw::init_clock()
 	}
 
 	// Enable GPIO clocks for the pins we'll use
-	__HAL_RCC_GPIOA_CLK_ENABLE();  // Both LED (PA15) and Button (PA9) are on GPIOA
+	__HAL_RCC_GPIOA_CLK_ENABLE(); // Both LED (PA15) and Button (PA9) are on GPIOA
 }
 
 void Stm32c0xx_hw::delay(uint32_t ms)
@@ -70,27 +86,8 @@ void Stm32c0xx_hw::delay(uint32_t ms)
  */
 void Stm32c0xx_hw::initAllPins()
 {
-	for( auto pin : boardPins.allPins )
+	for (auto pin : boardPins.allPins)
 	{
 		pin->gpio_init();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

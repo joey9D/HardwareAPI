@@ -50,7 +50,16 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         USE_HAL_DRIVER=1
         DEBUG=1
     )
+    
+    # Add linker script for STM32C031C6
+    set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/../HW_API/platform/stm32/stm32c0xx/STM32C031C6Tx_FLASH.ld")
+    target_link_options(${TARGET_NAME} PRIVATE 
+        -T${LINKER_SCRIPT}
+        -Wl,--print-memory-usage
+    )
+    
     message(STATUS "Added STM32 compile definitions to ${TARGET_NAME}")
+    message(STATUS "Using linker script: ${LINKER_SCRIPT}")
 endif()
 
 message(STATUS "Created ${TARGET_NAME} executable")
@@ -61,8 +70,8 @@ message(STATUS "Created ${TARGET_NAME} executable")
 target_link_libraries(${TARGET_NAME} PRIVATE
     hw_api_core
     hw_api_gpio
-    hw_api_platform
     hw_api_drivers
+    hw_api_platform
 )
 
 message(STATUS "Linked ${TARGET_NAME} with HW_API modules")

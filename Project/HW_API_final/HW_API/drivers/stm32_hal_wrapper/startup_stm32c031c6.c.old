@@ -2,7 +2,7 @@
 // Vector table and basic initialization
 
 #include <stdint.h>
-#include "stm32c0xx.h" // For CMSIS and debugging registers
+#include "stm32c0xx.h"  // For CMSIS and debugging registers
 
 // Stack pointer (defined in linker script)
 extern uint32_t _estack;
@@ -19,18 +19,18 @@ void Default_Handler(void)
     // Get the active IRQ number to help with debugging
     volatile uint32_t active_irq = __get_IPSR() & 0x1FF;
     volatile uint32_t fault_address = 0;
-
+    
     // If it's a HardFault, try to get more information
     if (active_irq == 3) // HardFault exception number
     {
         // Read Hard Fault Status Register
         fault_address = SCB->HFSR;
     }
-
+    
     // Set breakpoint here - you can examine active_irq and fault_address in debugger
     (void)active_irq;
     (void)fault_address;
-
+    
     while (1)
         ;
 }
@@ -49,13 +49,13 @@ void HardFault_Handler_Debug(void)
     volatile uint32_t cfsr = SCB->CFSR;
     volatile uint32_t mmfar = SCB->MMFAR;
     volatile uint32_t bfar = SCB->BFAR;
-
+    
     // Set a breakpoint here to examine the fault registers
     (void)hfsr;
     (void)cfsr;
     (void)mmfar;
     (void)bfar;
-
+    
     while (1)
         ;
 }

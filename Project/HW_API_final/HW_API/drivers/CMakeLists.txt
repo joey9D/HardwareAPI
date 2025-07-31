@@ -72,8 +72,9 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     
     # HAL Wrapper sources
     set(STM32_HAL_WRAPPER_SOURCES
-        stm32_hal_wrapper/startup_stm32c031c6.c
+        ${stm32_cmsis_SOURCE_DIR}/Source/Templates/gcc/startup_stm32c031xx.s
         stm32_hal_wrapper/syscalls.c
+        stm32_hal_wrapper/stm32_interrupt_handlers.c
     )
     
     set(STM32_HAL_WRAPPER_HEADERS

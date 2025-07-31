@@ -18,6 +18,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     # Build file paths using central configuration
     set(FILTERED_SOURCES
         ${STM32_PLATFORM_PATH}/${STM32_HW_FILE}.cpp
+        ${STM32_PLATFORM_PATH}/stm32c0xx_hal_msp.c
     )
     
     set(FILTERED_HEADERS
