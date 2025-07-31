@@ -1,7 +1,9 @@
 # Define target name as variable for better maintainability
 set(TARGET_NAME hw_api_app)
 
+message(STATUS "=======================================================")
 message(STATUS "=== Configuring Application (${TARGET_NAME}) ===")
+message(STATUS "=======================================================")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Application source files

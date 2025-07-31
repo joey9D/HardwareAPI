@@ -49,7 +49,9 @@ all: info
 
 # Platform-specific builds
 stm32:
+	@echo "================================================="
 	@echo "=== Building STM32 Platform ==="
+	@echo "================================================="
 	@mkdir -p $(BUILD_DIR)
 	@echo "Configuring build system..."
 	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
@@ -65,7 +67,7 @@ stm32:
 		-DSTM32_CMSIS_TAG=$(STM32_CMSIS_TAG) \
 		-DARM_CMSIS_REPO=$(ARM_CMSIS_REPO) \
 		-DARM_CMSIS_TAG=$(ARM_CMSIS_TAG) \
-		-DHAL_PREFIX=$(HAL_PREFIX) > /dev/null
+		-DHAL_PREFIX=$(HAL_PREFIX)
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
 

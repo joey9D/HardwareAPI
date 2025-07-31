@@ -1,8 +1,9 @@
 # Define target name as variable for better maintainability
 set(TARGET_NAME hw_api_core)
 
+message(STATUS "=======================================================")
 message(STATUS "=== Configuring HW_API Core Module (${TARGET_NAME}) ===")
-
+message(STATUS "=======================================================")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Platform-specific files

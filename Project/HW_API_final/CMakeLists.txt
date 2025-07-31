@@ -80,7 +80,9 @@ add_subdirectory(app)
 
 
 # Print final configuration
+message(STATUS "=======================================================")
 message(STATUS "=== Configuration Summary ===")
+message(STATUS "=======================================================")
 message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 if(TARGET_PLATFORM STREQUAL "STM32")
@@ -92,16 +94,17 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     endif()
 endif()
 
-message(STATUS "==============================")
+message(STATUS "=======================================================")
 
 # Custom targets for development
 add_custom_target(info
+    COMMAND ${CMAKE_COMMAND} -E echo "============================================="
     COMMAND ${CMAKE_COMMAND} -E echo "=== HW_API Project Information ==="
     COMMAND ${CMAKE_COMMAND} -E echo "Project: ${PROJECT_NAME} v${PROJECT_VERSION}"
     COMMAND ${CMAKE_COMMAND} -E echo "Target Platform: ${TARGET_PLATFORM}"
     COMMAND ${CMAKE_COMMAND} -E echo "Build Type: ${CMAKE_BUILD_TYPE}"
     COMMAND ${CMAKE_COMMAND} -E echo "Source Dir: ${CMAKE_SOURCE_DIR}"
     COMMAND ${CMAKE_COMMAND} -E echo "Binary Dir: ${CMAKE_BINARY_DIR}"
-    COMMAND ${CMAKE_COMMAND} -E echo "=================================="
+    COMMAND ${CMAKE_COMMAND} -E echo "=============================================="
     COMMENT "Display project information"
 )
