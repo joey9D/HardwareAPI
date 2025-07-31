@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/arm_cmsis_core-populate"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/arm_cmsis_core-populate.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/arm_cmsis_core-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"arm_cmsis_core-populate"
+		],
+		"name" : "arm_cmsis_core-populate"
+	}
+}

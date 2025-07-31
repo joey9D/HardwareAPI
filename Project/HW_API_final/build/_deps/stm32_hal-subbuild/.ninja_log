@@ -1,0 +1,21 @@
+# ninja log v5
+5	212	7756431793922023	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-mkdir	bf359a7ae227c9e7
+5	212	7756431793922023	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-mkdir	bf359a7ae227c9e7
+213	6211	7756431853894133	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-download	cfbdb64eaf51da0
+213	6211	7756431853894133	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-download	cfbdb64eaf51da0
+6213	6675	0	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-update	95a7fa8e621c2ea2
+6213	6675	0	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-update	95a7fa8e621c2ea2
+6676	6849	7756431860256927	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-patch	931158af30977508
+6676	6849	7756431860256927	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-patch	931158af30977508
+6850	7025	7756431861921210	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-configure	6d7670c3228d0cc
+6850	7025	7756431861921210	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-configure	6d7670c3228d0cc
+7026	7190	7756431863593558	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-build	bac59190d494055e
+7026	7190	7756431863593558	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-build	bac59190d494055e
+7190	7375	7756431865568431	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-install	8241e67759799ecb
+7190	7375	7756431865568431	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-install	8241e67759799ecb
+7376	7550	7756431867272805	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-test	95b560a8c41687fd
+7376	7550	7756431867272805	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-test	95b560a8c41687fd
+7551	7811	7756431869613549	CMakeFiles/stm32_hal-populate-complete	4f35d665263d37e1
+7551	7811	7756431869613549	stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-done	4f35d665263d37e1
+7551	7811	7756431869613549	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/CMakeFiles/stm32_hal-populate-complete	4f35d665263d37e1
+7551	7811	7756431869613549	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-done	4f35d665263d37e1

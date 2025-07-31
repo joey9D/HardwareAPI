@@ -2,10 +2,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "STM32 Debug (Remote)",
+            "name": "STM32 Debug (Simple)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/app/main",
+            "program": "${workspaceFolder}\\build\\app\\main",
+            "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "miDebuggerPath": "C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gdb.exe",
             "miDebuggerServerAddress": "localhost:2331",
@@ -13,13 +14,6 @@
             "stopAtEntry": false,
             "internalConsoleOptions": "neverOpen",
             "showDisplayString": true,
-            "logging": {
-                "moduleLoad": false,
-                "trace": false,
-                "engineLogging": false,
-                "programOutput": true,
-                "exceptions": true
-            },
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -30,16 +24,6 @@
                     "description": "Set architecture", 
                     "text": "set architecture arm",
                     "ignoreFailures": true
-                },
-                {
-                    "description": "Load symbols",
-                    "text": "file ${workspaceFolder}/build/app/main",
-                    "ignoreFailures": false
-                },
-                {
-                    "description": "Reset and halt target", 
-                    "text": "monitor reset halt",
-                    "ignoreFailures": true
                 }
             ]
         },
@@ -47,7 +31,7 @@
             "name": "STM32 Debug (Launch Mode - Flash & Debug)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/app/main",
+            "program": "${workspaceFolder}\\build\\app\\main",
             "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "miDebuggerPath": "C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gdb.exe",
