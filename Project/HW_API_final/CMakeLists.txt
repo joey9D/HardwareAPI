@@ -23,7 +23,7 @@ endif()
 
 # Target platform configuration
 if(NOT DEFINED TARGET_PLATFORM)
-    message(FATAL_ERROR "TARGET_PLATFORM not defined. Please build via Makefile: make stm32")
+    message(FATAL_ERROR "TARGET_PLATFORM not defined. Please build via Makefile: make stm32 or make esp32")
 endif()
 
 message(STATUS "Target Platform: ${TARGET_PLATFORM}")
@@ -43,35 +43,92 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "STM32 Family: ${STM32_FAMILY}")
     message(STATUS "STM32 MCU: ${STM32_MCU}")
     message(STATUS "Debug Probe: ${DEBUG_PROBE}")
+    
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    if(NOT DEFINED ESP32_FAMILY)
+        message(FATAL_ERROR "ESP32_FAMILY not defined. Please build via Makefile: make esp32")
+    endif()
+    
+    if(NOT DEFINED ESP32_MCU)
+        message(FATAL_ERROR "ESP32_MCU not defined. Please build via Makefile: make esp32")
+    endif()
+    
+    if(NOT DEFINED ESP32_IDF_TARGET)
+        message(FATAL_ERROR "ESP32_IDF_TARGET not defined. Please build via Makefile: make esp32")
+    endif()
+    
+    message(STATUS "ESP32 Family: ${ESP32_FAMILY}")
+    message(STATUS "ESP32 MCU: ${ESP32_MCU}")
+    message(STATUS "ESP32 IDF Target: ${ESP32_IDF_TARGET}")
+    message(STATUS "Debug Probe: ${DEBUG_PROBE}")
+    
+else()
+    message(FATAL_ERROR "Unsupported TARGET_PLATFORM: ${TARGET_PLATFORM}. Supported: STM32, ESP32")
 endif()
 
 # Global compiler flags
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
+if(TARGET_PLATFORM STREQUAL "STM32")
+    # STM32-specific compiler flags
+    if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
+        add_compile_options(
+            -Wall
+            -Wextra
+            -Wpedantic
+            -Wno-unused-parameter
+        )
+        
+        # Debug-specific flags
+        if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+            add_compile_options(-g -O0)
+            add_compile_definitions(DEBUG=1)
+        endif()
+        
+        # Release-specific flags
+        if(CMAKE_BUILD_TYPE STREQUAL "Release")
+            add_compile_options(-O3)
+            add_compile_definitions(NDEBUG=1)
+        endif()
+    endif()
+    
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32-specific compiler flags
     add_compile_options(
         -Wall
         -Wextra
-        -Wpedantic
         -Wno-unused-parameter
+        -Wno-sign-compare
     )
     
-    # Debug-specific flags
+    # ESP32 specific compile definitions
+    add_compile_definitions(
+        ESP32_PLATFORM=1
+        ESP_PLATFORM=1
+    )
+    
+    # Debug-specific flags for ESP32
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-        add_compile_options(-g -O0)
+        add_compile_options(-g -Og)
         add_compile_definitions(DEBUG=1)
     endif()
     
-    # Release-specific flags
+    # Release-specific flags for ESP32
     if(CMAKE_BUILD_TYPE STREQUAL "Release")
-        add_compile_options(-O3)
+        add_compile_options(-Os)  # Optimize for size on ESP32
         add_compile_definitions(NDEBUG=1)
     endif()
 endif()
 
-# Include directories (global)
+# Include directories (platform-specific)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/HW_API
 )
+
+# Platform-specific include directories
+if(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32-specific includes will be added by HW_API module
+    message(STATUS "ESP32 platform detected - ESP32-specific includes will be configured by modules")
+endif()
 
 # Add subdirectories in correct order
 message(STATUS "Adding subdirectories...")

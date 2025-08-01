@@ -31,14 +31,28 @@ if(TARGET_PLATFORM STREQUAL "STM32")
 
     message(STATUS "Using ${TARGET_PLATFORM}-specific core files")
 
-# elseif(TARGET_PLATFORM STREQUAL "ESP32")
-#     message(STATUS "Configuring for ESP32 platform...")
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    message(STATUS "Configuring for ESP32 platform...")
 
-#     # Include all files for ESP32 builds
-#     set(FILTERED_SOURCES ${CORE_SOURCES})
-#     set(FILTERED_HEADERS ${CORE_HEADERS})
+    # ESP32-specific core files
+    set(FILTERED_SOURCES
+        # core_test.cpp
+    )
+    
+    set(FILTERED_HEADERS
+        # core_test.hpp
+        hw_enum_classes.hpp
+        hw_enum_esp32.hpp
+        hw_factory.hpp
+        hw_interface.hpp
+        
+        # make pin_config is included
+        pin_config.hpp
 
-#     message(STATUS "Using ESP32-specific core files")
+        timer.hpp
+    )
+
+    message(STATUS "Using ESP32-specific core files")
 
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM in core module: ${TARGET_PLATFORM}")
@@ -122,7 +136,26 @@ if(TARGET_PLATFORM STREQUAL "STM32")
             target_compile_definitions(${TARGET_NAME} INTERFACE STM32G0xx=1)
         endif()
     endif()
-# ESP32 ...
+    
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    if(FILTERED_SOURCES)
+        target_compile_definitions(${TARGET_NAME} PUBLIC
+            ESP32_PLATFORM=1
+        )
+        # Add ESP32 family-specific definitions
+        if(ESP32_FAMILY STREQUAL "esp32c6")
+            target_compile_definitions(${TARGET_NAME} PUBLIC ESP32C6=1)
+        endif()
+    else()
+        target_compile_definitions(${TARGET_NAME} INTERFACE
+            ESP32_PLATFORM=1
+        )
+        # Add ESP32 family-specific definitions
+        if(ESP32_FAMILY STREQUAL "esp32c6")
+            target_compile_definitions(${TARGET_NAME} INTERFACE ESP32C6=1)
+        endif()
+    endif()
+    
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM in core module: ${TARGET_PLATFORM}")
 endif()

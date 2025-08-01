@@ -25,7 +25,23 @@ if(TARGET_PLATFORM STREQUAL "STM32")
        
     message(STATUS "Using STM32-specific GPIO files")
 
-# ESP32 ...    
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    message(STATUS "Configuring for ESP32 platform...")
+    
+    # Only include ESP32-specific files for ESP32 build
+    set(FILTERED_SOURCES
+        gpio_esp32.cpp
+        # gpio_test.cpp only included if tests are enabled
+    )
+    
+    set(FILTERED_HEADERS
+        gpio_interface.hpp
+        gpio_esp32.hpp
+        # gpio_test.hpp only included if tests are enabled
+    )
+       
+    message(STATUS "Using ESP32-specific GPIO files")
+
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM in gpio module: ${TARGET_PLATFORM}")
 endif()
@@ -91,7 +107,7 @@ if(TARGET hw_api_core)
     message(STATUS "Linked ${TARGET_NAME} with hw_api_core")
 endif()
 
-# Link with drivers module for HAL access (STM32 platform needs this)
+# Link with drivers module for HAL access
 if(TARGET_PLATFORM STREQUAL "STM32" AND TARGET hw_api_drivers)
     if(FILTERED_SOURCES)
         target_link_libraries(${TARGET_NAME} PUBLIC hw_api_drivers)
@@ -99,6 +115,9 @@ if(TARGET_PLATFORM STREQUAL "STM32" AND TARGET hw_api_drivers)
         target_link_libraries(${TARGET_NAME} INTERFACE hw_api_drivers)
     endif()
     message(STATUS "Linked ${TARGET_NAME} with hw_api_drivers for HAL access")
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32 will link with ESP32 drivers when implemented
+    message(STATUS "ESP32 GPIO drivers linking will be added in future implementation")
 endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,10 +127,10 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     target_compile_definitions(${TARGET_NAME} PUBLIC
         STM32_PLATFORM=1
     )
-# ESP32    
-# elseif(TARGET_PLATFORM STREQUAL "ESP32")
-#     target_compile_definitions(${TARGET_NAME} PUBLIC
-#         ESP32_PLATFORM=1
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    target_compile_definitions(${TARGET_NAME} PUBLIC
+        ESP32_PLATFORM=1
+    )
 #     )
 else()
     message(WARNING "No platform-specific compile definitions for TARGET_PLATFORM: ${TARGET_PLATFORM}")

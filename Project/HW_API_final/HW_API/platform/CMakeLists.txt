@@ -30,7 +30,23 @@ if(TARGET_PLATFORM STREQUAL "STM32")
        
     message(STATUS "Using STM32-specific platform files")
 
-# ESP32 ...
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    message(STATUS "Configuring for ESP32 platform...")
+    
+    # Use centrally configured ESP32 variables from parent CMakeLists.txt
+    message(STATUS "Using ESP32 family: ${ESP32_FAMILY}")
+    message(STATUS "Using platform path: ${ESP32_PLATFORM_PATH}")
+    
+    # Build file paths using central configuration
+    set(FILTERED_SOURCES
+        ${ESP32_PLATFORM_PATH}/${ESP32_HW_FILE}.cpp
+    )
+    
+    set(FILTERED_HEADERS
+        ${ESP32_PLATFORM_PATH}/esp32c6devkitc.hpp
+    )
+       
+    message(STATUS "Using ESP32-specific platform files")
 
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM in platform module: ${TARGET_PLATFORM}")
