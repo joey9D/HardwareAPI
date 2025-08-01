@@ -71,9 +71,6 @@ void Stm32c0xx_hw::init_clock()
 		// Clock configuration failed - call error handler
 		Error_Handler();
 	}
-
-	// Enable GPIO clocks for the pins we'll use
-	__HAL_RCC_GPIOA_CLK_ENABLE(); // Both LED (PA15) and Button (PA9) are on GPIOA
 }
 
 void Stm32c0xx_hw::delay(uint32_t ms)

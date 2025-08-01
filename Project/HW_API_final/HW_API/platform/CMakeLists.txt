@@ -19,11 +19,13 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     set(FILTERED_SOURCES
         ${STM32_PLATFORM_PATH}/${STM32_HW_FILE}.cpp
         ${STM32_PLATFORM_PATH}/stm32c0xx_hal_msp.c
+        # Note: stm32c0xx_it.c moved to app/CMakeLists.txt for direct linking
     )
     
     set(FILTERED_HEADERS
         stm32/stm32x0_gpio_mapping.hpp
         ${STM32_PLATFORM_PATH}/${STM32_HW_FILE}.hpp
+        ${STM32_PLATFORM_PATH}/stm32c0xx_it.h
     )
        
     message(STATUS "Using STM32-specific platform files")

@@ -12,6 +12,14 @@ set(APP_SOURCES
     main.cpp
 )
 
+# Platform-specific interrupt handlers (force direct linking to override weak symbols)
+if(TARGET_PLATFORM STREQUAL "STM32")
+    list(APPEND APP_SOURCES
+        ../HW_API/platform/stm32/stm32c0xx/stm32c0xx_it.c
+    )
+    message(STATUS "Added STM32 interrupt handlers directly to application")
+endif()
+
 set(APP_HEADERS
     main.hpp
 )
