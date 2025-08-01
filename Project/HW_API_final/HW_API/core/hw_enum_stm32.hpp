@@ -3,10 +3,8 @@
 // Platform-specific GPIO enums for STM32
 #ifdef STM32_PLATFORM
 
-// Only include the minimal HAL headers needed for GPIO definitions
-// #include "stm32c0xx_hal_conf.h"
-// #include "stm32c0xx_hal_gpio.h"
-#include "stm32c0xx_hal.h" // Include all HAL headers for STM32C0
+// Use our central HAL include that handles family detection
+#include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 
 namespace HW_API {
 namespace STM32 {

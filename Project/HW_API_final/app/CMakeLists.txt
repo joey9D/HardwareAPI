@@ -14,10 +14,20 @@ set(APP_SOURCES
 
 # Platform-specific interrupt handlers (force direct linking to override weak symbols)
 if(TARGET_PLATFORM STREQUAL "STM32")
-    list(APPEND APP_SOURCES
-        ../HW_API/platform/stm32/stm32c0xx/stm32c0xx_it.c
-    )
-    message(STATUS "Added STM32 interrupt handlers directly to application")
+    # Family-specific interrupt handlers
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        list(APPEND APP_SOURCES
+            ../HW_API/platform/stm32/stm32c0xx/stm32c0xx_it.c
+        )
+        message(STATUS "Added STM32C0xx interrupt handlers directly to application")
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        list(APPEND APP_SOURCES
+            ../HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c
+        )
+        message(STATUS "Added STM32G0xx interrupt handlers directly to application")
+    else()
+        message(FATAL_ERROR "Unsupported STM32_FAMILY for interrupt handlers: ${STM32_FAMILY}")
+    endif()
 endif()
 
 set(APP_HEADERS
@@ -49,18 +59,38 @@ set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "main")
 # Add STM32-specific compile definitions to the app target
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
+    # Common STM32 definitions
     target_compile_definitions(${TARGET_NAME} PRIVATE
         STM32_PLATFORM=1
         STM32_FAMILY_${STM32_FAMILY}=1
-        STM32C0xx=1
-        STM32C031xx=1
-        STM32C031x6=1
         USE_HAL_DRIVER=1
         DEBUG=1
     )
     
-    # Add linker script for STM32C031C6
-    set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/../HW_API/platform/stm32/stm32c0xx/STM32C031C6Tx_FLASH.ld")
+    # Family-specific compile definitions and linker script
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        target_compile_definitions(${TARGET_NAME} PRIVATE
+            STM32C0xx=1
+            STM32C031xx=1
+            STM32C031x6=1
+        )
+        set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/../HW_API/platform/stm32/stm32c0xx/STM32C031C6Tx_FLASH.ld")
+        message(STATUS "Using STM32C031C6 linker script")
+        
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        target_compile_definitions(${TARGET_NAME} PRIVATE
+            STM32G0xx=1
+            STM32G071xx=1
+            STM32G071xB=1
+        )
+        set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/../HW_API/platform/stm32/stm32g0xx/STM32G071RBTx_FLASH.ld")
+        message(STATUS "Using STM32G071RB linker script")
+        
+    else()
+        message(FATAL_ERROR "Unsupported STM32_FAMILY for compile definitions: ${STM32_FAMILY}")
+    endif()
+    
+    # Apply linker script
     target_link_options(${TARGET_NAME} PRIVATE 
         -T${LINKER_SCRIPT}
         -Wl,--print-memory-usage

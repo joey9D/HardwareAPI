@@ -20,10 +20,13 @@ class HardwareFactory
         {
 #ifdef STM32C0xx
         	static Stm32c0xx_hw instance;
+        	return &instance;
+#elif defined(STM32G0xx)
+        	static Stm32g0xx_hw instance;
+        	return &instance;
 #else
 			#error "Unsupported STM32 series"
 #endif
-			return &instance;
         }
 
 }; /* class HardwareFactory */
