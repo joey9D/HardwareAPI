@@ -3,7 +3,7 @@
 
 // Need HAL types for GPIO_TypeDef
 #ifdef STM32_PLATFORM
-#include "../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
+#include "../../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #endif
 
 namespace stm32x0_gpio_mapping

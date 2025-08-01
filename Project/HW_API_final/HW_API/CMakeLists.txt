@@ -75,10 +75,26 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     add_compile_definitions(
         STM32_PLATFORM=1
         STM32_FAMILY_${STM32_FAMILY}=1
-        STM32C0xx=1
-        STM32C031xx=1
-        STM32C031x6=1  # Device-specific define needed by CMSIS
     )
+    
+    # Family-specific compile definitions
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        add_compile_definitions(
+            STM32C0xx=1
+            STM32C031xx=1
+            STM32C031x6=1  # Device-specific define needed by CMSIS
+        )
+        message(STATUS "Added STM32C0xx family compile definitions")
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        add_compile_definitions(
+            STM32G0xx=1
+            STM32G071xx=1
+            STM32G071RB=1  # Device-specific define needed by CMSIS
+        )
+        message(STATUS "Added STM32G0xx family compile definitions")
+    else()
+        message(FATAL_ERROR "Unsupported STM32_FAMILY: ${STM32_FAMILY}")
+    endif()
     
     message(STATUS "STM32 Platform Path: ${STM32_PLATFORM_PATH}")
     message(STATUS "STM32 HW File Base: ${STM32_HW_FILE}")

@@ -1,40 +1,7 @@
 
 
 # HW_API Build System
-BUILD_DIR ?= build
-BUILD_TYPE ?= Debug
-TARGET_PLATFORM ?= STM32
-TOOLCHAIN_FILE ?= toolchains/stm32-toolchain.cmake
-MCU_FAMILY ?= stm32c0xx
-MCU_SPECIFIC ?= STM32C031C6
-DEBUG_PROBE ?= st-link
-
-# STM32 HAL Repository Configuration (based on MCU_FAMILY)
-ifeq ($(MCU_FAMILY),stm32c0xx)
-    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
-    STM32_HAL_TAG ?= v1.4.0
-    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_c0.git
-    STM32_CMSIS_TAG ?= v1.3.0
-    ARM_CMSIS_REPO ?= https://github.com/ARM-software/CMSIS_5.git
-    ARM_CMSIS_TAG ?= 5.9.0
-    HAL_PREFIX ?= STM32C0xx
-else ifeq ($(MCU_FAMILY),stm32g0xx)
-    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
-    STM32_HAL_TAG ?= v1.4.4
-    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_g0.git
-    STM32_CMSIS_TAG ?= v1.4.2
-    ARM_CMSIS_REPO ?= https://github.com/ARM-software/CMSIS_5.git
-    ARM_CMSIS_TAG ?= 5.9.0
-    HAL_PREFIX ?= STM32G0xx
-else ifeq ($(MCU_FAMILY),stm32f4xx)
-    STM32_HAL_REPO ?= https://github.com/STMicroelectronics/stm32f4xx_hal_driver.git
-    STM32_HAL_TAG ?= v1.8.2
-    STM32_CMSIS_REPO ?= https://github.com/STMicroelectronics/cmsis_device_f4.git
-    STM32_CMSIS_TAG ?= v2.6.8
-    ARM_CMSIS_REPO ?= https://github.com/ARM-software/CMSIS_5.git
-    ARM_CMSIS_TAG ?= 5.9.0
-    HAL_PREFIX ?= STM32F4xx
-endif
+include config/stm32_config.mk  # STM32-specific configuration
 
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
@@ -104,8 +71,12 @@ dependency:
 
 # Show current configuration
 info:
+	@echo "=================================="
 	@echo "=== HW_API Build Configuration ==="
+	@echo "=================================="
 	@echo "Target Platform: $(TARGET_PLATFORM)"
+	@echo "MCU Family: $(MCU_FAMILY)"
+	@echo "MCU Specific: $(MCU_SPECIFIC)"
 	@echo "Build Type: $(BUILD_TYPE)"
 	@echo "Build Directory: $(BUILD_DIR)"
 	@echo "Debug Probe: $(DEBUG_PROBE)"

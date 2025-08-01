@@ -6,7 +6,7 @@
  */
 #include <assert.h>
 #include <type_traits>
-#include "../../../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
+#include "../../../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #include "stm32c0xx_hw.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 // #include "timer.hpp"

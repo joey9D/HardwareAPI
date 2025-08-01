@@ -13,12 +13,11 @@
 
 // Platform-specific GPIO includes
 #ifdef STM32_PLATFORM
-    #include "gpio_stm32.hpp"
+#include "gpio_stm32.hpp"
 // ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
 // #elif ESP32_PLATFORM
 //     #include "gpio_esp32.hpp"
 #endif
-
 
 /**
  * struct PinConfig_t
@@ -36,15 +35,14 @@
 };
  */
 
-//class Gpio;
+// class Gpio;
 
 struct BoardPins
 {
-	Gpio led {15, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, false, 0, 0, ExtiTrigger::None};
-	Gpio button {9, Port::A, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, ExtiTrigger::None};
+	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, false, 0, 0, ExtiTrigger::None};
+	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, ExtiTrigger::None};
 
-
-	std::array<Gpio*, 2> allPins {&led, &button};
+	std::array<Gpio *, 2> allPins{&led, &button};
 };
 inline BoardPins boardPins;
 

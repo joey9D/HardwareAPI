@@ -70,35 +70,83 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "STM32 CMSIS Device fetched to: ${stm32_cmsis_SOURCE_DIR}")
     message(STATUS "ARM CMSIS Core fetched to: ${arm_cmsis_core_SOURCE_DIR}")
     
-    # HAL Wrapper sources
-    set(STM32_HAL_WRAPPER_SOURCES
-        ${stm32_cmsis_SOURCE_DIR}/Source/Templates/gcc/startup_stm32c031xx.s
-        stm32_hal_wrapper/syscalls.c
-    )
+    # Debug: Check STM32_FAMILY variable
+    message(STATUS "STM32_FAMILY in drivers: ${STM32_FAMILY}")
     
-    set(STM32_HAL_WRAPPER_HEADERS
-        stm32_hal_wrapper/stm32_hal_inc.hpp
-        stm32_hal_wrapper/stm32c0xx_hal_conf.h
-    )
-    
-    # STM32 HAL Core sources (common to all families)  
-    set(STM32_HAL_CORE_SOURCES
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_cortex.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_dma.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_flash.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_gpio.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_pwr.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_rcc.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_spi.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_tim.c
-        ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_uart.c
-    )
-    
-    # STM32 System sources (from CMSIS Device)
-    set(STM32_SYSTEM_SOURCES
-        ${stm32_cmsis_SOURCE_DIR}/Source/Templates/system_stm32c0xx.c
-    )
+    # Family-specific configuration
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        message(STATUS "Configuring for STM32C0xx family...")
+        
+        # HAL Wrapper sources for C0xx
+        set(STM32_HAL_WRAPPER_SOURCES
+            ${stm32_cmsis_SOURCE_DIR}/Source/Templates/gcc/startup_stm32c031xx.s
+            stm32_hal_wrapper/common/syscalls.c
+        )
+        
+        set(STM32_HAL_WRAPPER_HEADERS
+            stm32_hal_wrapper/common/stm32_hal_inc.hpp
+            stm32_hal_wrapper/stm32c0xx/stm32c0xx_hal_conf.h
+        )
+        
+        # STM32C0xx HAL Core sources  
+        set(STM32_HAL_CORE_SOURCES
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_cortex.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_dma.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_flash.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_gpio.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_pwr.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_rcc.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_spi.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_tim.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_uart.c
+        )
+        
+        # STM32C0xx System sources (from CMSIS Device)
+        set(STM32_SYSTEM_SOURCES
+            ${stm32_cmsis_SOURCE_DIR}/Source/Templates/system_stm32c0xx.c
+        )
+        
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        message(STATUS "Configuring for STM32G0xx family...")
+        
+        # HAL Wrapper sources for G0xx
+        set(STM32_HAL_WRAPPER_SOURCES
+            ${stm32_cmsis_SOURCE_DIR}/Source/Templates/gcc/startup_stm32g071xx.s
+            stm32_hal_wrapper/common/syscalls.c
+        )
+        
+        set(STM32_HAL_WRAPPER_HEADERS
+            stm32_hal_wrapper/common/stm32_hal_inc.hpp
+            stm32_hal_wrapper/stm32g0xx/stm32g0xx_hal_conf.h
+        )
+        
+        # STM32G0xx HAL Core sources  
+        set(STM32_HAL_CORE_SOURCES
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_cortex.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_dma.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_flash.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_gpio.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_pwr.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_pwr_ex.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_rcc.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_rcc_ex.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_spi.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_tim.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_tim_ex.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_uart.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32g0xx_hal_uart_ex.c
+        )
+        
+        # STM32G0xx System sources (from CMSIS Device)
+        set(STM32_SYSTEM_SOURCES
+            ${stm32_cmsis_SOURCE_DIR}/Source/Templates/system_stm32g0xx.c
+        )
+        
+    else()
+        message(FATAL_ERROR "Unsupported STM32_FAMILY: ${STM32_FAMILY}. Supported families: stm32c0xx, stm32g0xx")
+    endif()
 
     # Create a separate HAL library to avoid include path issues
     add_library(stm32_hal_library STATIC 
@@ -106,24 +154,49 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         ${STM32_SYSTEM_SOURCES}
     )
     
-    # Set include directories for HAL library compilation
-    target_include_directories(stm32_hal_library 
-        PRIVATE
-            ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
-            ${stm32_hal_SOURCE_DIR}/Inc
-            ${stm32_cmsis_SOURCE_DIR}/Include
-            ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
-    )
-    
-    # Set compile definitions for HAL library
-    target_compile_definitions(stm32_hal_library 
-        PRIVATE
-            USE_HAL_DRIVER
-            STM32C0xx
-            STM32C031xx
-            STM32C031x6  # Device-specific define needed by CMSIS
-            STM32_PLATFORM=1
-    )
+    # Set family-specific include directories and compile definitions
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        # Set include directories for C0xx HAL library compilation
+        target_include_directories(stm32_hal_library 
+            PRIVATE
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32c0xx
+                ${stm32_hal_SOURCE_DIR}/Inc
+                ${stm32_cmsis_SOURCE_DIR}/Include
+                ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
+        )
+        
+        # Set compile definitions for C0xx HAL library
+        target_compile_definitions(stm32_hal_library 
+            PRIVATE
+                USE_HAL_DRIVER
+                STM32C0xx
+                STM32C031xx
+                STM32C031x6  # Device-specific define needed by CMSIS
+                STM32_PLATFORM=1
+        )
+        
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        # Set include directories for G0xx HAL library compilation
+        target_include_directories(stm32_hal_library 
+            PRIVATE
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32g0xx
+                ${stm32_hal_SOURCE_DIR}/Inc
+                ${stm32_cmsis_SOURCE_DIR}/Include
+                ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
+        )
+        
+        # Set compile definitions for G0xx HAL library
+        target_compile_definitions(stm32_hal_library 
+            PRIVATE
+                USE_HAL_DRIVER
+                STM32G0xx
+                STM32G071xx
+                STM32G071xB  # Device-specific define needed by CMSIS
+                STM32_PLATFORM=1
+        )
+    endif()
     
     # Combine wrapper sources only
     set(FILTERED_SOURCES
@@ -176,11 +249,21 @@ endif()
 # Set include directories
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
+    # Set family-specific include directory
+    if(STM32_FAMILY STREQUAL "stm32c0xx")
+        set(STM32_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32c0xx)
+    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+        set(STM32_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32g0xx)
+    else()
+        message(FATAL_ERROR "Unsupported STM32_FAMILY for include directories: ${STM32_FAMILY}")
+    endif()
+    
     if(FILTERED_SOURCES)
         # For libraries with source files - use PUBLIC
         target_include_directories(${TARGET_NAME} 
             PUBLIC 
-                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
+                ${STM32_FAMILY_INCLUDE_DIR}
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
                 ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
@@ -189,7 +272,8 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         # For interface libraries - use INTERFACE
         target_include_directories(${TARGET_NAME} 
             INTERFACE 
-                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper
+                ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
+                ${STM32_FAMILY_INCLUDE_DIR}
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
                 ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include

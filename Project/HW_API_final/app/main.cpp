@@ -35,30 +35,27 @@ int main(void)
   // Initialize all pins defined in pin_config.hpp
   hw->initAllPins();
 
-  // // Initialize debounce state
-  // bool lastButtonState = boardPins.button.isDebouncePinOn();
+  // Initialize debounce state
+  bool lastButtonState = boardPins.button.isDebouncePinOn();
 
   /* Infinite loop */
   while (1)
   {
-    boardPins.led.writePin(1); // Turn on LED
-    hw->delay(1000);           // Delay for 1 second
-    boardPins.led.writePin(0); // Turn off LED
-    hw->delay(1000);           // Delay for 1 second
-    // // Read current button state with debouncing
-    // bool currentButtonState = boardPins.button.isDebouncePinOn();
+    // boardPins.led.writePin(1); // Turn on LED
+    // hw->delay(1000);           // Delay for 1 second
+    // boardPins.led.writePin(0); // Turn off LED
+    // hw->delay(1000);           // Delay for 1 second
+    // Read current button state with debouncing
+    bool currentButtonState = boardPins.button.isDebouncePinOn();
 
-    // // Toggle LED on button press (rising edge detection)
-    // if (!lastButtonState && currentButtonState)
-    // {
-    //   boardPins.led.togglePin();
-    // }
+    // Toggle LED on button press (rising edge detection)
+    if (!lastButtonState && currentButtonState)
+    {
+      boardPins.led.togglePin();
+    }
 
-    // // Update button state
-    // lastButtonState = currentButtonState;
-
-    // Small delay to prevent CPU hogging
-    // hw->delay(1);
+    // Update button state
+    lastButtonState = currentButtonState;
   }
 }
 

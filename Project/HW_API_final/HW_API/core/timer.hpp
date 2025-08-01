@@ -13,7 +13,7 @@
 
 // Only include HAL headers if we're on STM32 platform
 #ifdef STM32_PLATFORM
-#include "../drivers/stm32_hal_wrapper/stm32_hal_inc.hpp"
+#include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #endif
 
 #ifdef __cplusplus
