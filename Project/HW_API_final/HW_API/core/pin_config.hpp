@@ -39,8 +39,19 @@
 
 struct BoardPins
 {
-	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, false, 0, 0, ExtiTrigger::None};
-	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, ExtiTrigger::None};
+	/**
+	 * @brief STM32 GPIO Example
+	 *
+	 */
+	// Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, false, 0, 0, ExtiTrigger::None};
+	// Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, ExtiTrigger::None};
+
+	/**
+	 * @brief ESP32 GPIOP Example
+	 *
+	 */
+	Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
 	std::array<Gpio *, 2> allPins{&led, &button};
 };

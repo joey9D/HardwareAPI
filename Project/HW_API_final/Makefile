@@ -1,13 +1,17 @@
 
-
 # HW_API Build System
-include config/stm32_config.mk  # STM32-specific configuration
+
+# Conditional configuration loading based on TARGET_PLATFORM
+include config/esp32_config.mk  # ESP32-specific configuration
+
+# include config/stm32_config.mk  # STM32-specific configuration (default)
+
 
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
 # Default target
-.PHONY: all clean prepare stm32 info help flash erase reset debug
+.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -38,16 +42,25 @@ stm32:
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
 
-# ESP32 Build with all platform-specific settings (commented - currently disabled)
-# esp32:
-# 	@echo "=== Building ESP32 Platform ==="
-# 	@mkdir -p $(BUILD_DIR)
-# 	cmake -S . -B $(BUILD_DIR) -G "Ninja" \
-# 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-# 		-DTARGET_PLATFORM=ESP32 \
-# 		-DESP32_FAMILY=esp32 \
-# 		-DDEBUG_PROBE=esptool
-# 	cmake --build $(BUILD_DIR) -j
+# ESP32 Build with all platform-specific settings
+esp32:
+	@echo "================================================="
+	@echo "=== Building ESP32 Platform ==="
+	@echo "================================================="
+	@mkdir -p $(BUILD_DIR)
+	@echo "Configuring ESP32 build system..."
+	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DTARGET_PLATFORM=ESP32 \
+		-DESP32_FAMILY=$(ESP32_FAMILY) \
+		-DESP32_MCU=$(ESP32_SPECIFIC) \
+		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
+		-DDEBUG_PROBE=$(DEBUG_PROBE) \
+		-DESP32_IDF_PATH=$(ESP32_IDF_PATH) \
+		-DESP32_IDF_REPO=$(ESP32_IDF_REPO) \
+		-DESP32_IDF_TAG=$(ESP32_IDF_TAG)
+	@echo "Building ESP32 project..."
+	@cmake --build $(BUILD_DIR) -j
 
 # Hardware-specific targets (simplified)
 flash erase reset debug:
@@ -75,6 +88,7 @@ info:
 	@echo "=== HW_API Build Configuration ==="
 	@echo "=================================="
 	@echo "Target Platform: $(TARGET_PLATFORM)"
+ifeq ($(TARGET_PLATFORM),STM32)
 	@echo "MCU Family: $(MCU_FAMILY)"
 	@echo "MCU Specific: $(MCU_SPECIFIC)"
 	@echo "Build Type: $(BUILD_TYPE)"
@@ -86,8 +100,24 @@ endif
 ifdef STM32_HAL_PATH
 	@echo "STM32 HAL Path: $(STM32_HAL_PATH)"
 endif
-	@echo "CMake Command: $(CMAKE_CMD)"
 	@echo "Available debug probes: st-link, jlink, openocd"
+else ifeq ($(TARGET_PLATFORM),ESP32)
+	@echo "ESP32 Family: $(ESP32_FAMILY)"
+	@echo "ESP32 Specific: $(ESP32_SPECIFIC)"
+	@echo "ESP32 IDF Target: $(ESP32_IDF_TARGET)"
+	@echo "ESP32 IDF Path: $(ESP32_IDF_PATH)"
+	@echo "Build Type: $(BUILD_TYPE)"
+	@echo "Build Directory: $(BUILD_DIR)"
+	@echo "Debug Probe: $(DEBUG_PROBE)"
+	@echo "Available debug probes: esptool, openocd"
+else
+	@echo "MCU Family: $(MCU_FAMILY)"
+	@echo "MCU Specific: $(MCU_SPECIFIC)"
+	@echo "Build Type: $(BUILD_TYPE)"
+	@echo "Build Directory: $(BUILD_DIR)"
+	@echo "Debug Probe: $(DEBUG_PROBE)"
+endif
+	@echo "CMake Command: $(CMAKE_CMD)"
 	@echo "=================================="
 
 # Help target
@@ -95,21 +125,36 @@ help:
 	@echo "HW_API Makefile - Hardware Abstraction Layer Build System"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make [target] [TARGET_PLATFORM=STM32] [BUILD_TYPE=Debug|Release] [DEBUG_PROBE=st-link|jlink|openocd]"
+	@echo "  make [target] [TARGET_PLATFORM=STM32|ESP32] [BUILD_TYPE=Debug|Release]"
 	@echo ""
 	@echo "Build Targets:"
 	@echo "  all              - Build for specified platform (default: STM32)"
 	@echo "  stm32            - Build for STM32 platform"
-	@echo "  stm32-hal        - Build STM32 with custom HAL path"
+	@echo "  esp32            - Build for ESP32 platform"
 	@echo "  clean            - Clean build directory"
 	@echo "  prepare          - Prepare fresh build directory"
 	@echo "  info             - Show current build configuration"
 	@echo "  dependency       - Generate dependency graph"
 	@echo ""
-	@echo "Debug Probe Targets:"
+	@echo "STM32 Debug Probe Targets:"
 	@echo "  stlink           - Build with ST-Link debug probe"
 	@echo "  jlink            - Build with J-Link debug probe"
 	@echo "  openocd          - Build with OpenOCD debug probe"
+	@echo ""
+	@echo "Hardware Operations (use current DEBUG_PROBE):"
+	@echo "  flash            - Flash firmware to target"
+	@echo "  erase            - Erase target flash"
+	@echo "  reset            - Reset target device"
+	@echo "  debug            - Start debug session"
+	@echo ""
+	@echo "STM32 Examples:"
+	@echo "  make stm32                             # Build STM32 with default settings"
+	@echo "  make stm32 MCU_FAMILY=stm32c0xx        # Build for STM32C0xx family"
+	@echo "  make stm32 MCU_FAMILY=stm32g0xx        # Build for STM32G0xx family"
+	@echo ""
+	@echo "ESP32 Examples:"
+	@echo "  make esp32                             # Build for ESP32-C6 DevKitC-1 (default)"
+	@echo "  make esp32 MCU_FAMILY=esp32c6          # Build for ESP32-C6 DevKitC-1"
 	@echo ""
 	@echo "Hardware Operations (use current DEBUG_PROBE):"
 	@echo "  flash            - Flash firmware to target"
