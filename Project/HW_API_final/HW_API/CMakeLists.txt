@@ -50,38 +50,38 @@ endif()
 if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "Configuring for STM32 platform")
     
-    # STM32 Hardware Configuration - Centralized for easy changes
-    if(NOT DEFINED STM32_FAMILY)
-        set(STM32_FAMILY "stm32c0xx" CACHE STRING "STM32 family (e.g., stm32c0xx, stm32g0xx, stm32f4xx)")
-        message(WARNING "STM32_FAMILY not defined, using default: ${STM32_FAMILY}. Consider using 'make stm32' instead of direct cmake.")
+    # MCU Hardware Configuration - using unified MCU_FAMILY
+    if(NOT DEFINED MCU_FAMILY)
+        set(MCU_FAMILY "stm32c0xx" CACHE STRING "MCU family (e.g., stm32c0xx, stm32g0xx, esp32c6)")
+        message(WARNING "MCU_FAMILY not defined, using default: ${MCU_FAMILY}. Consider using 'make stm32' instead of direct cmake.")
     else()
-        message(STATUS "Using STM32 family from Makefile: ${STM32_FAMILY}")
+        message(STATUS "Using MCU family from Makefile: ${MCU_FAMILY}")
     endif()
     
-    message(STATUS "STM32 Family: ${STM32_FAMILY}")
+    message(STATUS "MCU Family: ${MCU_FAMILY}")
     
     # STM32-specific includes (using configurable family)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platform/stm32
-        ${CMAKE_CURRENT_SOURCE_DIR}/platform/stm32/${STM32_FAMILY}
+        ${CMAKE_CURRENT_SOURCE_DIR}/platform/stm32/${MCU_FAMILY}
         ${CMAKE_CURRENT_SOURCE_DIR}/drivers/stm32_hal_wrapper
     )
     
     # Global STM32 compile definitions
     add_compile_definitions(
         STM32_PLATFORM=1
-        STM32_FAMILY_${STM32_FAMILY}=1
+        STM32_FAMILY_${MCU_FAMILY}=1
     )
     
     # STM32 family-specific compile definitions
-    if(STM32_FAMILY STREQUAL "stm32c0xx")
+    if(MCU_FAMILY STREQUAL "stm32c0xx")
         add_compile_definitions(
             STM32C0xx=1
             STM32C031xx=1
             STM32C031x6=1  # Device-specific define needed by CMSIS
         )
         message(STATUS "Added STM32C0xx family compile definitions")
-    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+    elseif(MCU_FAMILY STREQUAL "stm32g0xx")
         add_compile_definitions(
             STM32G0xx=1
             STM32G071xx=1
@@ -89,12 +89,12 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         )
         message(STATUS "Added STM32G0xx family compile definitions")
     else()
-        message(FATAL_ERROR "Unsupported STM32_FAMILY: ${STM32_FAMILY}")
+        message(FATAL_ERROR "Unsupported MCU_FAMILY: ${MCU_FAMILY}")
     endif()
     
     # STM32 platform paths
-    set(STM32_PLATFORM_PATH "stm32/${STM32_FAMILY}" CACHE INTERNAL "STM32 platform path")
-    set(STM32_HW_FILE "${STM32_FAMILY}_hw" CACHE INTERNAL "STM32 hardware file base name")
+    set(STM32_PLATFORM_PATH "stm32/${MCU_FAMILY}" CACHE INTERNAL "STM32 platform path")
+    set(STM32_HW_FILE "${MCU_FAMILY}_hw" CACHE INTERNAL "STM32 hardware file base name")
     
     message(STATUS "STM32 Platform Path: ${STM32_PLATFORM_PATH}")
     message(STATUS "STM32 HW File Base: ${STM32_HW_FILE}")
@@ -104,42 +104,42 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     message(STATUS "Configuring for ESP32 platform")
     
     # ESP32 Hardware Configuration
-    if(NOT DEFINED ESP32_FAMILY)
-        set(ESP32_FAMILY "esp32c6" CACHE STRING "ESP32 family (e.g., esp32c6, esp32, esp32s3)")
-        message(WARNING "ESP32_FAMILY not defined, using default: ${ESP32_FAMILY}. Consider using 'make esp32' instead of direct cmake.")
+    if(NOT DEFINED MCU_FAMILY)
+        set(MCU_FAMILY "esp32c6" CACHE STRING "MCU family (e.g., esp32c6, esp32, esp32s3)")
+        message(WARNING "MCU_FAMILY not defined, using default: ${MCU_FAMILY}. Consider using 'make esp32' instead of direct cmake.")
     else()
-        message(STATUS "Using ESP32 family from Makefile: ${ESP32_FAMILY}")
+        message(STATUS "Using MCU family from Makefile: ${MCU_FAMILY}")
     endif()
     
-    message(STATUS "ESP32 Family: ${ESP32_FAMILY}")
+    message(STATUS "MCU Family: ${MCU_FAMILY}")
     
     # ESP32-specific includes
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platform/esp32
-        ${CMAKE_CURRENT_SOURCE_DIR}/platform/esp32/${ESP32_FAMILY}_devkitc
+        ${CMAKE_CURRENT_SOURCE_DIR}/platform/esp32/${MCU_FAMILY}_devkitc
         ${CMAKE_CURRENT_SOURCE_DIR}/drivers/esp32_hal_wrapper
     )
     
     # ESP32-specific compile definitions
     add_compile_definitions(
         ESP32_PLATFORM=1
-        ESP32_FAMILY_${ESP32_FAMILY}=1
+        ESP32_FAMILY_${MCU_FAMILY}=1
     )
     
     # ESP32 family-specific definitions
-    if(ESP32_FAMILY STREQUAL "esp32c6")
+    if(MCU_FAMILY STREQUAL "esp32c6")
         add_compile_definitions(
             ESP32C6=1
             CONFIG_IDF_TARGET_ESP32C6=1
         )
         message(STATUS "Added ESP32-C6 family compile definitions")
     else()
-        message(FATAL_ERROR "Unsupported ESP32_FAMILY: ${ESP32_FAMILY}")
+        message(FATAL_ERROR "Unsupported MCU_FAMILY: ${MCU_FAMILY}")
     endif()
     
     # ESP32 platform paths
-    set(ESP32_PLATFORM_PATH "esp32/${ESP32_FAMILY}_devkitc" CACHE INTERNAL "ESP32 platform path")
-    set(ESP32_HW_FILE "${ESP32_FAMILY}_devkitc1_hw" CACHE INTERNAL "ESP32 hardware file base name")
+    set(ESP32_PLATFORM_PATH "esp32/${MCU_FAMILY}_devkitc" CACHE INTERNAL "ESP32 platform path")
+    set(ESP32_HW_FILE "${MCU_FAMILY}_devkitc1_hw" CACHE INTERNAL "ESP32 hardware file base name")
     
     message(STATUS "ESP32 Platform Path: ${ESP32_PLATFORM_PATH}")
     message(STATUS "ESP32 HW File Base: ${ESP32_HW_FILE}")

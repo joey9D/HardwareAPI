@@ -12,8 +12,7 @@ DEBUG_PROBE ?= esptool
 
 # Default to ESP32-C6 for initial implementation
 MCU_FAMILY ?= esp32c6
-ESP32_FAMILY ?= esp32c6
-ESP32_SPECIFIC ?= ESP32C6-DEVKITC-1
+MCU_SPECIFIC ?= ESP32C6-DEVKITC-1
 ESP32_IDF_TARGET ?= esp32c6
 
 #===============================================================================
@@ -22,8 +21,6 @@ ESP32_IDF_TARGET ?= esp32c6
 
 ifeq ($(MCU_FAMILY),esp32c6)
     # ESP32-C6 DevKitC-1 Board Configuration
-    ESP32_FAMILY := esp32c6
-    ESP32_SPECIFIC := ESP32C6-DEVKITC-1
     ESP32_IDF_TARGET := esp32c6
     CORTEX_TYPE := riscv32imc
     DEFAULT_MCU := ESP32C6    

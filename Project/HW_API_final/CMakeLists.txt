@@ -3,23 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Project Configuration
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-project(HW_API_Project 
-    VERSION 1.0.0
-    DESCRIPTION "Hardware Abstraction Layer for Embedded Systems"
-    LANGUAGES C CXX ASM
-)
-
-# Project settings
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Build type configuration
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-endif()
+# ESP-IDF must be included BEFORE project() call
 
 # Target platform configuration
 if(NOT DEFINED TARGET_PLATFORM)
@@ -28,42 +12,86 @@ endif()
 
 message(STATUS "Target Platform: ${TARGET_PLATFORM}")
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# Platform-specific validation
-#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if(TARGET_PLATFORM STREQUAL "STM32")
-    if(NOT DEFINED STM32_FAMILY)
-        message(FATAL_ERROR "STM32_FAMILY not defined. Please build via Makefile: make stm32")
+# ESP-IDF Integration - MUST come before project()
+if(TARGET_PLATFORM STREQUAL "ESP32")
+    if(NOT DEFINED MCU_FAMILY)
+        message(FATAL_ERROR "MCU_FAMILY not defined. Please build via Makefile: make esp32")
     endif()
     
-    if(NOT DEFINED STM32_MCU)
-        message(FATAL_ERROR "STM32_MCU not defined. Please build via Makefile: make stm32")
-    endif()
-    
-    message(STATUS "STM32 Family: ${STM32_FAMILY}")
-    message(STATUS "STM32 MCU: ${STM32_MCU}")
-    message(STATUS "Debug Probe: ${DEBUG_PROBE}")
-    
-elseif(TARGET_PLATFORM STREQUAL "ESP32")
-    if(NOT DEFINED ESP32_FAMILY)
-        message(FATAL_ERROR "ESP32_FAMILY not defined. Please build via Makefile: make esp32")
-    endif()
-    
-    if(NOT DEFINED ESP32_MCU)
-        message(FATAL_ERROR "ESP32_MCU not defined. Please build via Makefile: make esp32")
+    if(NOT DEFINED MCU_SPECIFIC)
+        message(FATAL_ERROR "MCU_SPECIFIC not defined. Please build via Makefile: make esp32")
     endif()
     
     if(NOT DEFINED ESP32_IDF_TARGET)
         message(FATAL_ERROR "ESP32_IDF_TARGET not defined. Please build via Makefile: make esp32")
     endif()
     
-    message(STATUS "ESP32 Family: ${ESP32_FAMILY}")
-    message(STATUS "ESP32 MCU: ${ESP32_MCU}")
+    message(STATUS "=========================================")
+    message(STATUS "=== ESP-IDF Integration (Pre-Project) ===")
+    message(STATUS "=========================================")
+    message(STATUS "MCU Family: ${MCU_FAMILY}")
+    message(STATUS "MCU Specific: ${MCU_SPECIFIC}")
+    message(STATUS "ESP32 IDF Target: ${ESP32_IDF_TARGET}")
+    
+    # Include ESP-IDF build system BEFORE project()
+    include($ENV{IDF_PATH}/tools/cmake/idf.cmake)
+    
+    # ESP-IDF project setup
+    project(hw_api_esp32)
+    
+    message(STATUS "ESP-IDF integration completed")
+    
+else()
+    # Regular project setup for non-ESP32 platforms
+    project(HW_API_Project 
+        VERSION 1.0.0
+        DESCRIPTION "Hardware Abstraction Layer for Embedded Systems"
+        LANGUAGES C CXX ASM
+    )
+endif()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Platform-specific validation
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(TARGET_PLATFORM STREQUAL "STM32")
+    if(NOT DEFINED MCU_FAMILY)
+        message(FATAL_ERROR "MCU_FAMILY not defined. Please build via Makefile: make stm32")
+    endif()
+    
+    if(NOT DEFINED MCU_SPECIFIC)
+        message(FATAL_ERROR "MCU_SPECIFIC not defined. Please build via Makefile: make stm32")
+    endif()
+    
+    message(STATUS "MCU Family: ${MCU_FAMILY}")
+    message(STATUS "MCU Specific: ${MCU_SPECIFIC}")
+    message(STATUS "Debug Probe: ${DEBUG_PROBE}")
+    
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32 validation already done above - display again for consistency
+    message(STATUS "MCU Family: ${MCU_FAMILY}")
+    message(STATUS "MCU Specific: ${MCU_SPECIFIC}")
     message(STATUS "ESP32 IDF Target: ${ESP32_IDF_TARGET}")
     message(STATUS "Debug Probe: ${DEBUG_PROBE}")
     
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM: ${TARGET_PLATFORM}. Supported: STM32, ESP32")
+endif()
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Project settings (applied after project() call)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if(TARGET_PLATFORM STREQUAL "STM32")
+    # STM32 specific project settings
+    set(CMAKE_C_STANDARD 11)
+    set(CMAKE_C_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
+
+# Build type configuration (for non-ESP32 platforms)
+if(NOT CMAKE_BUILD_TYPE AND TARGET_PLATFORM STREQUAL "STM32")
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
 # Global compiler flags

@@ -12,20 +12,20 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "Configuring for STM32 platform...")
     
     # Use centrally configured STM32 variables from parent CMakeLists.txt
-    message(STATUS "Using STM32 family: ${STM32_FAMILY}")
+    message(STATUS "Using MCU family: ${MCU_FAMILY}")
     message(STATUS "Using platform path: ${STM32_PLATFORM_PATH}")
     
     # Build file paths using central configuration
     set(FILTERED_SOURCES
         ${STM32_PLATFORM_PATH}/${STM32_HW_FILE}.cpp
-        ${STM32_PLATFORM_PATH}/${STM32_FAMILY}_hal_msp.c
-        # Note: ${STM32_FAMILY}_it.c moved to app/CMakeLists.txt for direct linking
+        ${STM32_PLATFORM_PATH}/${MCU_FAMILY}_hal_msp.c
+        # Note: ${MCU_FAMILY}_it.c moved to app/CMakeLists.txt for direct linking
     )
     
     set(FILTERED_HEADERS
         stm32/stm32x0_gpio_mapping.hpp
         ${STM32_PLATFORM_PATH}/${STM32_HW_FILE}.hpp
-        ${STM32_PLATFORM_PATH}/${STM32_FAMILY}_it.h
+        ${STM32_PLATFORM_PATH}/${MCU_FAMILY}_it.h
     )
        
     message(STATUS "Using STM32-specific platform files")

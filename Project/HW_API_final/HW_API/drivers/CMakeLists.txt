@@ -70,11 +70,11 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     message(STATUS "STM32 CMSIS Device fetched to: ${stm32_cmsis_SOURCE_DIR}")
     message(STATUS "ARM CMSIS Core fetched to: ${arm_cmsis_core_SOURCE_DIR}")
     
-    # Debug: Check STM32_FAMILY variable
-    message(STATUS "STM32_FAMILY in drivers: ${STM32_FAMILY}")
+    # Debug: Check MCU_FAMILY variable
+    message(STATUS "MCU_FAMILY in drivers: ${MCU_FAMILY}")
     
     # Family-specific configuration
-    if(STM32_FAMILY STREQUAL "stm32c0xx")
+    if(MCU_FAMILY STREQUAL "stm32c0xx")
         message(STATUS "Configuring for STM32C0xx family...")
         
         # HAL Wrapper sources for C0xx
@@ -107,7 +107,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
             ${stm32_cmsis_SOURCE_DIR}/Source/Templates/system_stm32c0xx.c
         )
         
-    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+    elseif(MCU_FAMILY STREQUAL "stm32g0xx")
         message(STATUS "Configuring for STM32G0xx family...")
         
         # HAL Wrapper sources for G0xx
@@ -145,7 +145,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         )
         
     else()
-        message(FATAL_ERROR "Unsupported STM32_FAMILY: ${STM32_FAMILY}. Supported families: stm32c0xx, stm32g0xx")
+        message(FATAL_ERROR "Unsupported MCU_FAMILY: ${MCU_FAMILY}. Supported families: stm32c0xx, stm32g0xx")
     endif()
 
     # Create a separate HAL library to avoid include path issues
@@ -155,7 +155,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     )
     
     # Set family-specific include directories and compile definitions
-    if(STM32_FAMILY STREQUAL "stm32c0xx")
+    if(MCU_FAMILY STREQUAL "stm32c0xx")
         # Set include directories for C0xx HAL library compilation
         target_include_directories(stm32_hal_library 
             PRIVATE
@@ -176,7 +176,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
                 STM32_PLATFORM=1
         )
         
-    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
+    elseif(MCU_FAMILY STREQUAL "stm32g0xx")
         # Set include directories for G0xx HAL library compilation
         target_include_directories(stm32_hal_library 
             PRIVATE
@@ -250,12 +250,12 @@ endif()
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if(TARGET_PLATFORM STREQUAL "STM32")
     # Set family-specific include directory
-    if(STM32_FAMILY STREQUAL "stm32c0xx")
-        set(STM32_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32c0xx)
-    elseif(STM32_FAMILY STREQUAL "stm32g0xx")
-        set(STM32_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32g0xx)
+    if(MCU_FAMILY STREQUAL "stm32c0xx")
+        set(MCU_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32c0xx)
+    elseif(MCU_FAMILY STREQUAL "stm32g0xx")
+        set(MCU_FAMILY_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/stm32g0xx)
     else()
-        message(FATAL_ERROR "Unsupported STM32_FAMILY for include directories: ${STM32_FAMILY}")
+        message(FATAL_ERROR "Unsupported MCU_FAMILY for include directories: ${MCU_FAMILY}")
     endif()
     
     if(FILTERED_SOURCES)
@@ -263,7 +263,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         target_include_directories(${TARGET_NAME} 
             PUBLIC 
                 ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
-                ${STM32_FAMILY_INCLUDE_DIR}
+                ${MCU_FAMILY_INCLUDE_DIR}
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
                 ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include
@@ -273,7 +273,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         target_include_directories(${TARGET_NAME} 
             INTERFACE 
                 ${CMAKE_CURRENT_SOURCE_DIR}/stm32_hal_wrapper/common
-                ${STM32_FAMILY_INCLUDE_DIR}
+                ${MCU_FAMILY_INCLUDE_DIR}
                 ${stm32_hal_SOURCE_DIR}/Inc
                 ${stm32_cmsis_SOURCE_DIR}/Include
                 ${arm_cmsis_core_SOURCE_DIR}/CMSIS/Core/Include

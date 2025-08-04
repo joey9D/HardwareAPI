@@ -1,7 +1,7 @@
 
 # HW_API Build System
 
-# include config/esp32_config.mk  # ESP32-specific configuration
+# include config/esp32_config.mk  # ESP32-specific configuration  
 include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
@@ -27,8 +27,8 @@ stm32:
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DTARGET_PLATFORM=STM32 \
 		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
-		-DSTM32_FAMILY=$(MCU_FAMILY) \
-		-DSTM32_MCU=$(MCU_SPECIFIC) \
+		-DMCU_FAMILY=$(MCU_FAMILY) \
+		-DMCU_SPECIFIC=$(MCU_SPECIFIC) \
 		-DDEBUG_PROBE=$(DEBUG_PROBE) \
 		-DSTM32_HAL_REPO=$(STM32_HAL_REPO) \
 		-DSTM32_HAL_TAG=$(STM32_HAL_TAG) \
@@ -45,23 +45,48 @@ esp32:
 	@echo "================================================="
 	@echo "=== Building ESP32 Platform ==="
 	@echo "================================================="
-	@mkdir -p $(BUILD_DIR)
-	@echo "Configuring ESP32 build system..."
+	@echo "Checking ESP-IDF availability..."
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "ERROR: ESP-IDF not found! Please run: . \$$IDF_PATH/export.sh"; \
+		echo "Or run this in ESP-IDF Command Prompt (Windows)"; \
+		exit 1; \
+	fi
+	@echo "ESP-IDF found at: $$IDF_PATH"
+	@echo "ESP-IDF version:"
+	@idf.py --version
+	@echo ""
+	@echo "Configuring ESP32 build with integrated CMake..."
 	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DTARGET_PLATFORM=ESP32 \
-		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
-		-DESP32_FAMILY=$(ESP32_FAMILY) \
-		-DESP32_MCU=$(ESP32_SPECIFIC) \
+		-DMCU_FAMILY=$(MCU_FAMILY) \
+		-DMCU_SPECIFIC=$(MCU_SPECIFIC) \
 		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
-		-DDEBUG_PROBE=$(DEBUG_PROBE) \
-		-DESP32_IDF_PATH=$(ESP32_IDF_PATH)
+		-DDEBUG_PROBE=$(DEBUG_PROBE)
 	@echo "Building ESP32 project..."
 	@cmake --build $(BUILD_DIR) -j
+	@echo ""
+	@echo "ESP32 build completed successfully!"
+	@echo "Binary files are in: $(BUILD_DIR)/"
+	@echo "To flash: make flash-esp32"
+	@echo "To monitor: make monitor-esp32"
 
 # Hardware-specific targets (simplified)
 flash erase reset debug:
 	cmake --build $(BUILD_DIR) --target $@
+
+# ESP32-specific hardware operations
+flash-esp32:
+	@echo "Flashing ESP32..."
+	@cmake --build $(BUILD_DIR) --target flash
+
+monitor-esp32:
+	@echo "Starting ESP32 monitor..."
+	@cmake --build $(BUILD_DIR) --target monitor
+
+erase-esp32:
+	@echo "Erasing ESP32 flash..."
+	@cmake --build $(BUILD_DIR) --target erase-flash
 
 # Utility targets
 clean:
@@ -99,8 +124,8 @@ ifdef STM32_HAL_PATH
 endif
 	@echo "Available debug probes: st-link, jlink, openocd"
 else ifeq ($(TARGET_PLATFORM),ESP32)
-	@echo "ESP32 Family: $(ESP32_FAMILY)"
-	@echo "ESP32 Specific: $(ESP32_SPECIFIC)"
+	@echo "MCU Family: $(MCU_FAMILY)"
+	@echo "MCU Specific: $(MCU_SPECIFIC)"
 	@echo "ESP32 IDF Target: $(ESP32_IDF_TARGET)"
 	@echo "ESP32 IDF Path: $(ESP32_IDF_PATH)"
 	@echo "Build Type: $(BUILD_TYPE)"
