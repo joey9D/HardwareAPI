@@ -14,7 +14,6 @@
 // Only include HAL headers if we're on STM32 platform
 #ifdef STM32_PLATFORM
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
-#endif
 
 #ifdef __cplusplus
 
@@ -68,5 +67,7 @@ private:
 };
 
 #endif /* __cplusplus */
+
+#endif /* STM32_PLATFORM */
 
 #endif /* SYS_CLOCK_TIMER_HPP_ */

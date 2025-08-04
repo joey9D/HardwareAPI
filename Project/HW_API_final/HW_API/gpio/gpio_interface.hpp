@@ -30,7 +30,6 @@ class IGpioBase
 // Platform-spezifische Type-Aliases
 #ifdef STM32_PLATFORM
 using IGpio = IGpioBase<uint16_t>;
-// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
-// #elif ESP32_PLATFORM  
-// using IGpio = IGpioBase<uint64_t>;
+#elif defined(ESP_PLATFORM) || defined(ESP32_PLATFORM)
+using IGpio = IGpioBase<uint64_t>;
 #endif

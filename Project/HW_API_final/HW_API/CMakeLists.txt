@@ -139,7 +139,7 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     
     # ESP32 platform paths
     set(ESP32_PLATFORM_PATH "esp32/${ESP32_FAMILY}_devkitc" CACHE INTERNAL "ESP32 platform path")
-    set(ESP32_HW_FILE "${ESP32_FAMILY}_hw" CACHE INTERNAL "ESP32 hardware file base name")
+    set(ESP32_HW_FILE "${ESP32_FAMILY}_devkitc1_hw" CACHE INTERNAL "ESP32 hardware file base name")
     
     message(STATUS "ESP32 Platform Path: ${ESP32_PLATFORM_PATH}")
     message(STATUS "ESP32 HW File Base: ${ESP32_HW_FILE}")
@@ -163,6 +163,10 @@ if(TARGET_PLATFORM STREQUAL "STM32")
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
     # ESP32 drivers will be added when ESP32 HAL wrapper is implemented
     message(STATUS "ESP32 drivers module will be added in future implementation")
+    
+    # Add ESP32-specific include path for sdkconfig.h
+    include_directories(SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/drivers/esp32_hal_wrapper")
+    message(STATUS "Added ESP32 sdkconfig.h include path: ${CMAKE_CURRENT_SOURCE_DIR}/drivers/esp32_hal_wrapper")
 else()
     message(FATAL_ERROR "Unsupported TARGET_PLATFORM for drivers: ${TARGET_PLATFORM}")
 endif()

@@ -16,7 +16,10 @@
 #endif
 
 #include "hw_enum_classes.hpp"
+// Timer class is only available for STM32 platform
+#ifdef STM32_PLATFORM
 #include "timer.hpp"
+#endif
 
 #ifdef __cplusplus
 

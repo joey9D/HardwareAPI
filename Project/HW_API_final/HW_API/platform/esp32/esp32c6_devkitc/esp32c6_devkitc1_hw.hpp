@@ -21,8 +21,8 @@
 class Esp32c6_hw : public HardwareInterface
 {
 public:
-    void init_sys() override;
-    void init_clock() override;
+    void init_sys() override;      // Empty implementation - ESP-IDF handles system init automatically
+    void init_clock() override;    // Empty implementation - ESP-IDF handles clock init automatically
     void delay(uint32_t ms) override;
 
     void initAllPins() override;

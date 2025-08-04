@@ -105,14 +105,26 @@ message(STATUS "Created ${TARGET_NAME} executable")
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Link with HW_API modules
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-target_link_libraries(${TARGET_NAME} PRIVATE
-    hw_api_core
-    hw_api_gpio
-    hw_api_drivers
-    hw_api_platform
-)
-
-message(STATUS "Linked ${TARGET_NAME} with HW_API modules")
+if(TARGET_PLATFORM STREQUAL "STM32")
+    # STM32 needs the HAL drivers library
+    target_link_libraries(${TARGET_NAME} PRIVATE
+        hw_api_core
+        hw_api_gpio
+        hw_api_drivers
+        hw_api_platform
+    )
+    message(STATUS "Linked ${TARGET_NAME} with STM32 HW_API modules (including drivers)")
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32 doesn't need hw_api_drivers (uses ESP-IDF instead)
+    target_link_libraries(${TARGET_NAME} PRIVATE
+        hw_api_core
+        hw_api_gpio
+        hw_api_platform
+    )
+    message(STATUS "Linked ${TARGET_NAME} with ESP32 HW_API modules (no drivers needed)")
+else()
+    message(FATAL_ERROR "Unsupported TARGET_PLATFORM: ${TARGET_PLATFORM}")
+endif()
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Set include directories

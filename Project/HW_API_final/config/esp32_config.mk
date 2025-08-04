@@ -25,17 +25,8 @@ ifeq ($(MCU_FAMILY),esp32c6)
     ESP32_FAMILY := esp32c6
     ESP32_SPECIFIC := ESP32C6-DEVKITC-1
     ESP32_IDF_TARGET := esp32c6
-    ESP32_IDF_REPO ?= https://github.com/espressif/esp-idf.git
-    ESP32_IDF_TAG ?= v5.1.2
     CORTEX_TYPE := riscv32imc
-    DEFAULT_MCU := ESP32C6
-    
-    # ESP32-C6 DevKitC-1 specific pin definitions
-    # LED: GPIO8 (built-in RGB LED)
-    # Button: GPIO9 (BOOT button)
-    ESP32_LED_PIN := 8
-    ESP32_BUTTON_PIN := 9
-    
+    DEFAULT_MCU := ESP32C6    
 else
     $(error ESP32 configuration currently only supports esp32c6 (ESP32-C6 DevKitC-1). Please set MCU_FAMILY=esp32c6)
 endif

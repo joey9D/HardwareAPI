@@ -43,7 +43,7 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     )
     
     set(FILTERED_HEADERS
-        ${ESP32_PLATFORM_PATH}/esp32c6devkitc.hpp
+        ${ESP32_PLATFORM_PATH}/esp32c6_devkitc1_hw.hpp
     )
        
     message(STATUS "Using ESP32-specific platform files")

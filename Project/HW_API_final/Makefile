@@ -1,9 +1,7 @@
 
 # HW_API Build System
 
-# Conditional configuration loading based on TARGET_PLATFORM
 # include config/esp32_config.mk  # ESP32-specific configuration
-
 include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
@@ -57,9 +55,7 @@ esp32:
 		-DESP32_MCU=$(ESP32_SPECIFIC) \
 		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
 		-DDEBUG_PROBE=$(DEBUG_PROBE) \
-		-DESP32_IDF_PATH=$(ESP32_IDF_PATH) \
-		-DESP32_IDF_REPO=$(ESP32_IDF_REPO) \
-		-DESP32_IDF_TAG=$(ESP32_IDF_TAG)
+		-DESP32_IDF_PATH=$(ESP32_IDF_PATH)
 	@echo "Building ESP32 project..."
 	@cmake --build $(BUILD_DIR) -j
 

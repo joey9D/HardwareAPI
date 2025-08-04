@@ -132,10 +132,15 @@ set(CMAKE_EXE_LINKER_FLAGS_INIT "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,--print-memo
 # ESP32-specific defines
 add_compile_definitions(
     ESP_PLATFORM=1
-    ESP32=1
+    ESP32_PLATFORM=1
     ESP32C6=1
     RISCV=1
     WITH_POSIX=1
+    CONFIG_IDF_TARGET_ESP32C6=1
+    CONFIG_IDF_TARGET="esp32c6"
+    IDF_VER="v5.3.1"
+    SOC_RISCV_HAS_CLIC=1
+    CONFIG_ESP_SYSTEM_SINGLE_CORE_MODE=1
 )
 
 # ESP-IDF Path detection for includes
@@ -143,7 +148,70 @@ if(DEFINED ENV{IDF_PATH})
     set(ESP32_IDF_PATH "$ENV{IDF_PATH}")
     message(STATUS "ESP-IDF Path: ${ESP32_IDF_PATH}")
 else()
-    message(WARNING "IDF_PATH environment variable not set. ESP-IDF components may not be found.")
+    # Try to find ESP-IDF installation automatically
+    set(ESP32_IDF_SEARCH_PATHS
+        "C:/Espressif/Frameworks/esp-idf-v5.3.1"
+        "C:/Espressif/frameworks/esp-idf-v5.1.2"
+        "C:/Espressif/frameworks/esp-idf-v5.1.1"
+        "C:/Espressif/frameworks/esp-idf-v5.2.0"
+        "$ENV{HOME}/esp/esp-idf"
+        "/opt/esp/idf"
+    )
+    
+    foreach(IDF_SEARCH_PATH ${ESP32_IDF_SEARCH_PATHS})
+        if(EXISTS "${IDF_SEARCH_PATH}/components")
+            set(ESP32_IDF_PATH "${IDF_SEARCH_PATH}")
+            message(STATUS "Found ESP-IDF Path: ${ESP32_IDF_PATH}")
+            break()
+        endif()
+    endforeach()
+    
+    if(NOT ESP32_IDF_PATH)
+        message(WARNING "IDF_PATH environment variable not set and ESP-IDF not found in standard locations. ESP-IDF components may not be found.")
+    endif()
+endif()
+
+# Add ESP-IDF include directories if found
+if(ESP32_IDF_PATH)
+set(ESP32_IDF_INCLUDES
+    "${ESP32_IDF_PATH}/components/esp_driver_gpio/include"
+    "${ESP32_IDF_PATH}/components/esp_system/include"
+    "${ESP32_IDF_PATH}/components/esp_common/include"
+    "${ESP32_IDF_PATH}/components/esp_timer/include"
+    "${ESP32_IDF_PATH}/components/esp_rom/include"
+    "${ESP32_IDF_PATH}/components/esp_rom/include/esp32c6"
+    "${ESP32_IDF_PATH}/components/freertos/FreeRTOS-Kernel/include"
+    "${ESP32_IDF_PATH}/components/freertos/FreeRTOS-Kernel/portable/riscv/include/freertos"
+    "${ESP32_IDF_PATH}/components/freertos/esp_additions/include"
+    "${ESP32_IDF_PATH}/components/freertos/esp_additions/include/freertos"
+    "${ESP32_IDF_PATH}/components/freertos/config/include"
+    "${ESP32_IDF_PATH}/components/freertos/config/riscv/include"
+    "${ESP32_IDF_PATH}/components/hal/include"
+    "${ESP32_IDF_PATH}/components/hal/platform_port/include"
+    "${ESP32_IDF_PATH}/components/hal/esp32c6/include"
+    "${ESP32_IDF_PATH}/components/soc/include"
+    "${ESP32_IDF_PATH}/components/soc/esp32c6/include"
+    "${ESP32_IDF_PATH}/components/riscv/include"
+    "${ESP32_IDF_PATH}/components/esp_hw_support/include"
+    "${ESP32_IDF_PATH}/components/esp_hw_support/include/soc"
+    "${ESP32_IDF_PATH}/components/esp_hw_support/port/esp32c6"
+    "${ESP32_IDF_PATH}/components/esp_hw_support/port/esp32c6/private_include"
+    "${ESP32_IDF_PATH}/components/log/include"
+    "${ESP32_IDF_PATH}/components/heap/include"
+    "${ESP32_IDF_PATH}/components/newlib/platform_include"
+    "${ESP32_IDF_PATH}/components/spi_flash/include"
+    "${ESP32_IDF_PATH}/components/nvs_flash/include"
+    "${ESP32_IDF_PATH}/components/xtensa/include"
+    # "${ESP32_IDF_PATH}/components/xtensa/esp32c6/include"
+    "${ESP32_IDF_PATH}/components/esp_app_format/include"
+    "${ESP32_IDF_PATH}/components/bootloader_support/include"
+)    # Add include directories for cross-compilation
+    foreach(IDF_INCLUDE_DIR ${ESP32_IDF_INCLUDES})
+        if(EXISTS "${IDF_INCLUDE_DIR}")
+            include_directories(SYSTEM "${IDF_INCLUDE_DIR}")
+            message(STATUS "Added ESP-IDF include: ${IDF_INCLUDE_DIR}")
+        endif()
+    endforeach()
 endif()
 
 # Search for programs in the build host directories
