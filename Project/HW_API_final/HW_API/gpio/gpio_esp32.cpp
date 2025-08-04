@@ -1,14 +1,6 @@
-extern "C"{
-    #include <stdio.h>
-    #include <inttypes.h>
-    #include "sdkconfig.h"
-    // #include "driver/gpio_types.h"
-    #include "driver/gpio.h" // from esp
-    #include "esp_timer.h"
-}
-
-#include "gpio.hpp"
-// #include "main/hw_enum_classes.hpp"
+#include "gpio_esp32.hpp"
+#include "hw_enum_classes.hpp"
+#include "../drivers/esp32_hal_wrapper/esp32_hal_inc.hpp"
 
 Gpio::Gpio(
     uint64_t pin,
@@ -18,10 +10,9 @@ Gpio::Gpio(
     bool inverted,
     uint32_t debounceTime,
     uint8_t debounceState,
-    Interrupt intr
-) : _pin(pin), _mode(mode), _pull(pull), _speed(speed), 
-    _inverted(inverted), _debounceTime(debounceTime), 
-    _debounceState(debounceState), _intr(intr)
+    Interrupt intr) : _pin(pin), _mode(mode), _pull(pull), _speed(speed),
+                      _inverted(inverted), _debounceTime(debounceTime),
+                      _debounceState(debounceState), _intr(intr)
 {
     // Initialization code can be added here if needed
 }
@@ -29,58 +20,59 @@ Gpio::Gpio(
 void Gpio::gpio_init()
 {
     gpio_config_t config = {};
-    config.pin_bit_mask = (1ULL << _pin); // unsig
+    config.pin_bit_mask = (1ULL << _pin); // unsigned long long
     config.mode = static_cast<gpio_mode_t>(_mode);
 
-    switch(_pull)
+    switch (_pull)
     {
-        case Pull::Down:
-            config.pull_up_en = GPIO_PULLUP_DISABLE;
-            config.pull_down_en = GPIO_PULLDOWN_ENABLE;
+    case Pull::Down:
+        config.pull_up_en = GPIO_PULLUP_DISABLE;
+        config.pull_down_en = GPIO_PULLDOWN_ENABLE;
         break;
-        case Pull::Up:
-            config.pull_up_en = GPIO_PULLUP_ENABLE;
-            config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    case Pull::Up:
+        config.pull_up_en = GPIO_PULLUP_ENABLE;
+        config.pull_down_en = GPIO_PULLDOWN_DISABLE;
         break;
-        case Pull::UpDown:
-            config.pull_up_en = GPIO_PULLUP_ENABLE;
-            config.pull_down_en = GPIO_PULLDOWN_ENABLE;
+    case Pull::UpDown:
+        config.pull_up_en = GPIO_PULLUP_ENABLE;
+        config.pull_down_en = GPIO_PULLDOWN_ENABLE;
         break;
-        default:
-            config.pull_up_en = GPIO_PULLUP_DISABLE;
-            config.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    default:
+        config.pull_up_en = GPIO_PULLUP_DISABLE;
+        config.pull_down_en = GPIO_PULLDOWN_DISABLE;
         break;
     }
-
 
     config.intr_type = GPIO_INTR_DISABLE;
     gpio_config(&config);
     _lastTimeUs = 0;
 }
 
-bool Gpio::readPin() const 
+bool Gpio::readPin() const
 {
     return gpio_get_level((gpio_num_t)_pin);
 }
 
-
-void Gpio::writePin(bool value) const {
+void Gpio::writePin(bool value) const
+{
     gpio_set_level((gpio_num_t)_pin, value ? 1 : 0);
 }
 
-void Gpio::togglePin() const {
+void Gpio::togglePin() const
+{
     writePin(!readPin());
 }
 
-bool Gpio::isPinOn() const {
+bool Gpio::isPinOn() const
+{
     // return readPin();
     bool retval = false;
-    if(gpio_get_level((gpio_num_t)_pin)) 
+    if (gpio_get_level((gpio_num_t)_pin))
     {
         retval = true;
     }
 
-    if( isPinInverted())
+    if (isPinInverted())
     {
         retval = !retval;
     }
@@ -88,42 +80,56 @@ bool Gpio::isPinOn() const {
     return retval;
 }
 
-bool Gpio::isDebouncePinOn() {
+bool Gpio::isDebouncePinOn()
+{
     bool retval = false;
     int level = gpio_get_level((gpio_num_t)_pin);
-    if (_inverted) level = !level;
+    if (_inverted)
+        level = !level;
 
-    if (_debounceTime != 0) {
-        switch (_debounceState) {
+    if (_debounceTime != 0)
+    {
+        switch (_debounceState)
+        {
         case 0: // pin off idle
-            if (level) {
+            if (level)
+            {
                 _lastTimeUs = esp_timer_get_time();
                 _debounceState = 1;
             }
             break;
         case 1: // pin off debounce
-            if (level) {
-                if ((esp_timer_get_time() - _lastTimeUs) > _debounceTime) {
+            if (level)
+            {
+                if ((esp_timer_get_time() - _lastTimeUs) > _debounceTime)
+                {
                     _debounceState = 2;
                 }
-            } else {
+            }
+            else
+            {
                 _debounceState = 0;
             }
             break;
         case 2: // pin on idle
             retval = true;
-            if (!level) {
+            if (!level)
+            {
                 _lastTimeUs = esp_timer_get_time();
                 _debounceState = 3;
             }
             break;
         case 3: // pin on debounce
             retval = true;
-            if (!level) {
-                if ((esp_timer_get_time() - _lastTimeUs) > _debounceTime) {
+            if (!level)
+            {
+                if ((esp_timer_get_time() - _lastTimeUs) > _debounceTime)
+                {
                     _debounceState = 0;
                 }
-            } else {
+            }
+            else
+            {
                 _debounceState = 2;
             }
             break;
@@ -131,7 +137,9 @@ bool Gpio::isDebouncePinOn() {
             _debounceState = 0;
             break;
         }
-    } else {
+    }
+    else
+    {
         retval = true;
     }
     return retval;
@@ -146,12 +154,10 @@ bool Gpio::isPinInverted() const
     return _inverted;
 }
 
-
 /**
- * @brief Getter
+ * @brief Getter functions
  */
-
- uint16_t Gpio::getPin() const { return (gpio_num_t)_pin; }
+uint64_t Gpio::getPin() const { return (gpio_num_t)_pin; }
 
 Mode Gpio::getMode() const { return _mode; }
 

@@ -2,9 +2,9 @@
 # HW_API Build System
 
 # Conditional configuration loading based on TARGET_PLATFORM
-include config/esp32_config.mk  # ESP32-specific configuration
+# include config/esp32_config.mk  # ESP32-specific configuration
 
-# include config/stm32_config.mk  # STM32-specific configuration (default)
+include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
 # Base CMake command (platform-specific configuration added in build targets)
@@ -52,6 +52,7 @@ esp32:
 	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DTARGET_PLATFORM=ESP32 \
+		-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE) \
 		-DESP32_FAMILY=$(ESP32_FAMILY) \
 		-DESP32_MCU=$(ESP32_SPECIFIC) \
 		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \

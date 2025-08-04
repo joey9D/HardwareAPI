@@ -317,6 +317,135 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     endif()
     
     message(STATUS "Added STM32 HAL compile definitions: USE_HAL_DRIVER, ${HAL_PREFIX}_HAL_DRIVER")
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# ESP32-IDF Integration (System Installation Approach)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+elseif(TARGET_PLATFORM STREQUAL "ESP32")
+    message(STATUS "Configuring ESP32-IDF integration...")
+    
+    # ESP32-IDF Path Detection and Validation
+    if(NOT DEFINED ENV{IDF_PATH})
+        # Try to find idf.py and derive IDF_PATH
+        find_program(IDF_PY_EXECUTABLE idf.py)
+        if(IDF_PY_EXECUTABLE)
+            get_filename_component(IDF_PATH_DERIVED ${IDF_PY_EXECUTABLE} DIRECTORY)
+            set(ENV{IDF_PATH} ${IDF_PATH_DERIVED})
+            message(STATUS "Found ESP-IDF via idf.py at: ${IDF_PATH_DERIVED}")
+        else()
+            message(FATAL_ERROR 
+                "ESP-IDF not found!\n"
+                "Please install ESP-IDF from: https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/get-started/\n"
+                "And ensure IDF_PATH environment variable is set or idf.py is in PATH."
+            )
+        endif()
+    else()
+        message(STATUS "Using ESP-IDF from IDF_PATH: $ENV{IDF_PATH}")
+    endif()
+    
+    # Validate ESP-IDF installation
+    if(NOT EXISTS "$ENV{IDF_PATH}/components")
+        message(FATAL_ERROR 
+            "Invalid ESP-IDF installation at: $ENV{IDF_PATH}\n"
+            "ESP-IDF components directory not found. Please reinstall ESP-IDF."
+        )
+    endif()
+    
+    # ESP-IDF version check
+    if(EXISTS "$ENV{IDF_PATH}/version.txt")
+        file(READ "$ENV{IDF_PATH}/version.txt" IDF_VERSION)
+        string(STRIP ${IDF_VERSION} IDF_VERSION)
+        message(STATUS "ESP-IDF Version: ${IDF_VERSION}")
+    endif()
+    
+    # ESP32-IDF Component Paths
+    set(ESP32_IDF_COMPONENTS_PATH "$ENV{IDF_PATH}/components")
+    
+    # Required ESP32-IDF components for our HAL
+    set(ESP32_REQUIRED_COMPONENTS
+        "freertos"
+        "esp_system" 
+        "esp_common"
+        "hal"
+        "driver"
+        "log"
+        "newlib"
+        "esp_hw_support"
+        "soc"
+        "esp_rom"
+    )
+    
+    # Validate required components exist
+    foreach(COMPONENT ${ESP32_REQUIRED_COMPONENTS})
+        if(NOT EXISTS "${ESP32_IDF_COMPONENTS_PATH}/${COMPONENT}")
+            message(FATAL_ERROR "Required ESP-IDF component '${COMPONENT}' not found at: ${ESP32_IDF_COMPONENTS_PATH}/${COMPONENT}")
+        endif()
+        message(STATUS "Found ESP-IDF component: ${COMPONENT}")
+    endforeach()
+    
+    # ESP32-IDF Include Directories
+    set(ESP32_IDF_INCLUDES
+        "${ESP32_IDF_COMPONENTS_PATH}/freertos/FreeRTOS-Kernel/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/freertos/FreeRTOS-Kernel/portable/riscv/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/freertos/esp_additions/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/esp_common/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/esp_system/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/hal/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/hal/esp32c6/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/driver/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/log/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/newlib/platform_include"
+        "${ESP32_IDF_COMPONENTS_PATH}/esp_hw_support/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/soc/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/soc/esp32c6/include"
+        "${ESP32_IDF_COMPONENTS_PATH}/esp_rom/include"
+    )
+    
+    # Add ESP32-IDF includes to target
+    if(FILTERED_SOURCES)
+        target_include_directories(${TARGET_NAME} PUBLIC ${ESP32_IDF_INCLUDES})
+    else()
+        target_include_directories(${TARGET_NAME} INTERFACE ${ESP32_IDF_INCLUDES})
+    endif()
+    
+    # ESP32-specific compile definitions
+    if(FILTERED_SOURCES)
+        target_compile_definitions(${TARGET_NAME} PUBLIC
+            ESP_PLATFORM=1
+            ESP32=1
+            ESP32C6=1
+            RISCV=1
+            WITH_POSIX=1
+            CONFIG_FREERTOS_HZ=1000
+            CONFIG_ESP_SYSTEM_SINGLE_CORE_MODE=1
+        )
+    else()
+        target_compile_definitions(${TARGET_NAME} INTERFACE
+            ESP_PLATFORM=1
+            ESP32=1
+            ESP32C6=1
+            RISCV=1
+            WITH_POSIX=1
+            CONFIG_FREERTOS_HZ=1000
+            CONFIG_ESP_SYSTEM_SINGLE_CORE_MODE=1
+        )
+    endif()
+    
+    message(STATUS "ESP32-IDF integration complete")
+    message(STATUS "ESP-IDF Path: $ENV{IDF_PATH}")
+    message(STATUS "Added ${TARGET_NAME} ESP32-IDF includes and definitions")
+    
+    # ESP32 only needs the include header (no additional wrapper sources needed)
+    # gpio_esp32.cpp calls ESP-IDF functions directly, like STM32 calls HAL functions
+    set(ESP32_HAL_WRAPPER_HEADERS
+        esp32_hal_wrapper/esp32_hal_inc.hpp
+    )
+    
+    # Add ESP32 HAL header to the driver headers
+    list(APPEND DRIVER_HEADERS ${ESP32_HAL_WRAPPER_HEADERS})
+    
+    message(STATUS "Added ESP32 HAL include header: ${ESP32_HAL_WRAPPER_HEADERS}")
+    
 endif()
 
 message(STATUS "=== HW_API Drivers Module Configuration Complete ===")

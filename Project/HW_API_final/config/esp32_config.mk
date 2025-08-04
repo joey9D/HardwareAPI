@@ -7,6 +7,7 @@
 BUILD_DIR ?= build
 BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= ESP32
+TOOLCHAIN_FILE ?= toolchains/esp32-toolchain.cmake
 DEBUG_PROBE ?= esptool
 
 # Default to ESP32-C6 for initial implementation

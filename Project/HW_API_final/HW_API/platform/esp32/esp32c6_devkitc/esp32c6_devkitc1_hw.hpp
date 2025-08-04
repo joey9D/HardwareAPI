@@ -26,6 +26,11 @@ public:
     void delay(uint32_t ms) override;
 
     void initAllPins() override;
+
+    // ESP32-specific member functions (C++ style)
+    uint32_t getFreeHeapSize() const;
+    uint32_t getMinimumFreeHeapSize() const;
+    void restart() const;
 };
 
 #endif /* __cplusplus class */

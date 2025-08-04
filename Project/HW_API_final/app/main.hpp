@@ -14,8 +14,7 @@
 
 // Platform-specific includes
 #ifdef STM32_PLATFORM
-    // STM32 specific headers if needed
-// ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
-// #elif ESP32_PLATFORM
-//     // ESP32 specific headers if needed
+    #include "../HW_API/drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+#elif ESP32_PLATFORM
+    #include "../HW_API/drivers/esp32_hal_wrapper/esp32_hal_inc.hpp"
 #endif
