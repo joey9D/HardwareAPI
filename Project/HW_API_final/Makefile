@@ -1,8 +1,8 @@
 
 # HW_API Build System
 
-# include config/esp32_config.mk  # ESP32-specific configuration  
-include config/stm32_config.mk  # STM32-specific configuration (default)
+include config/esp32_config.mk  # ESP32-specific configuration  
+# include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
 # Base CMake command (platform-specific configuration added in build targets)

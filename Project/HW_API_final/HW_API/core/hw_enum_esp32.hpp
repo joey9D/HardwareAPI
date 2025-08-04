@@ -3,7 +3,7 @@
 // Platform-specific GPIO enums for ESP32
 #ifdef ESP32_PLATFORM
 
-#include "driver/gpio.h"
+#include "../drivers/esp32_hal_wrapper/esp32_hal_inc.hpp"
 
 namespace HW_API {
 namespace ESP32 {
