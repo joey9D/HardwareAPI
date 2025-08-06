@@ -6,13 +6,15 @@ cmake_minimum_required(VERSION 3.22)
 # ESP-IDF must be included BEFORE project() call
 
 # Target platform configuration
+# COMMENTED OUT: ESP-IDF handles this automatically
 if(NOT DEFINED TARGET_PLATFORM)
-    message(FATAL_ERROR "TARGET_PLATFORM not defined. Please build via Makefile: make stm32 or make esp32")
+     message(FATAL_ERROR "TARGET_PLATFORM not defined. Please build via Makefile: make stm32 or make esp32")
 endif()
 
 message(STATUS "Target Platform: ${TARGET_PLATFORM}")
 
 # ESP-IDF Integration - MUST come before project()
+# COMMENTED OUT: ESP-IDF handles platform detection automatically
 if(TARGET_PLATFORM STREQUAL "ESP32")
     if(NOT DEFINED MCU_FAMILY)
         message(FATAL_ERROR "MCU_FAMILY not defined. Please build via Makefile: make esp32")
@@ -21,28 +23,41 @@ if(TARGET_PLATFORM STREQUAL "ESP32")
     if(NOT DEFINED MCU_SPECIFIC)
         message(FATAL_ERROR "MCU_SPECIFIC not defined. Please build via Makefile: make esp32")
     endif()
-    
-    if(NOT DEFINED ESP32_IDF_TARGET)
-        message(FATAL_ERROR "ESP32_IDF_TARGET not defined. Please build via Makefile: make esp32")
-    endif()
-    
-    message(STATUS "=========================================")
-    message(STATUS "=== ESP-IDF Integration (Pre-Project) ===")
-    message(STATUS "=========================================")
-    message(STATUS "MCU Family: ${MCU_FAMILY}")
-    message(STATUS "MCU Specific: ${MCU_SPECIFIC}")
-    message(STATUS "ESP32 IDF Target: ${ESP32_IDF_TARGET}")
+endif()
+
+# ESP-IDF Integration - Auto-detection if ESP-IDF environment is present AND we're building for ESP32
+if(DEFINED ENV{IDF_PATH} AND TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP-IDF environment detected - use ESP-IDF build system
+    message(STATUS "ESP-IDF environment detected - using ESP-IDF build system for ESP32")
     
     # Include ESP-IDF build system BEFORE project()
-    include($ENV{IDF_PATH}/tools/cmake/idf.cmake)
+    include($ENV{IDF_PATH}/tools/cmake/project.cmake)
     
     # ESP-IDF project setup
     project(hw_api_esp32)
     
-    message(STATUS "ESP-IDF integration completed")
+    # Set platform for our code
+    set(TARGET_PLATFORM "ESP32")
+    set(MCU_FAMILY "esp32c6")
+    set(MCU_SPECIFIC "ESP32C6-DEVKITC-1")
+    set(ESP32_IDF_TARGET "esp32c6")
+    set(DEBUG_PROBE "esptool")
     
 else()
-    # Regular project setup for non-ESP32 platforms
+    # Regular project setup for STM32 and other platforms
+    # For STM32, set the toolchain file before project()
+    if(TARGET_PLATFORM STREQUAL "STM32")
+        set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/toolchains/stm32-toolchain.cmake")
+        message(STATUS "Using STM32 toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
+    endif()
+    
+    # Check if called from our Makefile with proper variables
+    if(NOT DEFINED TARGET_PLATFORM)
+        message(FATAL_ERROR "TARGET_PLATFORM not defined. Please build via Makefile: make stm32")
+    endif()
+    
+    message(STATUS "Target Platform: ${TARGET_PLATFORM}")
+    
     project(HW_API_Project 
         VERSION 1.0.0
         DESCRIPTION "Hardware Abstraction Layer for Embedded Systems"
@@ -160,8 +175,26 @@ endif()
 
 # Add subdirectories in correct order
 message(STATUS "Adding subdirectories...")
+
+# HW_API für beide Plattformen
 add_subdirectory(HW_API)
-add_subdirectory(app)
+
+# Platform-specific app/main directories
+if(TARGET_PLATFORM STREQUAL "ESP32")
+    # ESP32: main Verzeichnis als ESP-IDF main component
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/main/CMakeLists.txt")
+        add_subdirectory(main)
+        message(STATUS "Added ESP32 main directory")
+    else()
+        message(STATUS "ESP32 main directory not found - ESP-IDF will handle main component automatically")
+    endif()
+elseif(TARGET_PLATFORM STREQUAL "STM32")
+    # STM32: app Verzeichnis als normale CMake executable
+    add_subdirectory(app)
+    message(STATUS "Added STM32 app directory")
+else()
+    message(FATAL_ERROR "Unsupported TARGET_PLATFORM for subdirectories: ${TARGET_PLATFORM}")
+endif()
 
 
 # Print final configuration

@@ -1,8 +1,8 @@
 
 # HW_API Build System
 
-include config/esp32_config.mk  # ESP32-specific configuration  
-# include config/stm32_config.mk  # STM32-specific configuration (default)
+# include config/esp32_config.mk  # ESP32-specific configuration  
+include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
 # Base CMake command (platform-specific configuration added in build targets)
@@ -40,34 +40,18 @@ stm32:
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
 
-# ESP32 Build with all platform-specific settings
+# ESP32 Build with ESP-IDF (requires toolchain in PATH)
 esp32:
 	@echo "================================================="
-	@echo "=== Building ESP32 Platform ==="
+	@echo "=== Building ESP32 Platform (ESP-IDF) ==="
 	@echo "================================================="
-	@echo "Checking ESP-IDF availability..."
-	@if [ -z "$$IDF_PATH" ]; then \
-		echo "ERROR: ESP-IDF not found! Please run: . \$$IDF_PATH/export.sh"; \
-		echo "Or run this in ESP-IDF Command Prompt (Windows)"; \
-		exit 1; \
-	fi
-	@echo "ESP-IDF found at: $$IDF_PATH"
-	@echo "ESP-IDF version:"
-	@idf.py --version
+	@echo "Setting ESP32 target to $(ESP32_IDF_TARGET)..."
+	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py set-target $(ESP32_IDF_TARGET)
 	@echo ""
-	@echo "Configuring ESP32 build with integrated CMake..."
-	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
-		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-		-DTARGET_PLATFORM=ESP32 \
-		-DMCU_FAMILY=$(MCU_FAMILY) \
-		-DMCU_SPECIFIC=$(MCU_SPECIFIC) \
-		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
-		-DDEBUG_PROBE=$(DEBUG_PROBE)
 	@echo "Building ESP32 project..."
-	@cmake --build $(BUILD_DIR) -j
+	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py -D TARGET_PLATFORM=ESP32 -D MCU_FAMILY=$(MCU_FAMILY) -D MCU_SPECIFIC=$(MCU_SPECIFIC) -D ESP32_IDF_TARGET=$(ESP32_IDF_TARGET) -D CMAKE_BUILD_TYPE=$(BUILD_TYPE) build
 	@echo ""
 	@echo "ESP32 build completed successfully!"
-	@echo "Binary files are in: $(BUILD_DIR)/"
 	@echo "To flash: make flash-esp32"
 	@echo "To monitor: make monitor-esp32"
 
@@ -78,15 +62,15 @@ flash erase reset debug:
 # ESP32-specific hardware operations
 flash-esp32:
 	@echo "Flashing ESP32..."
-	@cmake --build $(BUILD_DIR) --target flash
+	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py flash
 
 monitor-esp32:
 	@echo "Starting ESP32 monitor..."
-	@cmake --build $(BUILD_DIR) --target monitor
+	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py monitor
 
 erase-esp32:
 	@echo "Erasing ESP32 flash..."
-	@cmake --build $(BUILD_DIR) --target erase-flash
+	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py erase-flash
 
 # Utility targets
 clean:
@@ -152,7 +136,7 @@ help:
 	@echo "Build Targets:"
 	@echo "  all              - Build for specified platform (default: STM32)"
 	@echo "  stm32            - Build for STM32 platform"
-	@echo "  esp32            - Build for ESP32 platform"
+	@echo "  esp32            - Build for ESP32 platform (requires: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat)"
 	@echo "  clean            - Clean build directory"
 	@echo "  prepare          - Prepare fresh build directory"
 	@echo "  info             - Show current build configuration"
