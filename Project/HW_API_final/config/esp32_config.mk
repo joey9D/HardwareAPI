@@ -4,7 +4,7 @@
 #===============================================================================
 # Default Configuration for ESP32
 #===============================================================================
-BUILD_DIR ?= build
+BUILD_DIR ?= build-esp32
 BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= ESP32
 DEBUG_PROBE ?= esptool
@@ -14,8 +14,11 @@ MCU_FAMILY ?= esp32c6
 MCU_SPECIFIC ?= ESP32C6-DEVKITC-1
 ESP32_IDF_TARGET ?= esp32c6
 
-# ESP32-IDF Path (hardcoded to known installation)
+# ESP32-IDF Path (can be overridden by environment variable)
 ESP32_IDF_PATH ?= C:/Espressif/frameworks/esp-idf-v5.3.1
+
+# ESP32 Serial Port (adjust as needed)
+ESP32_PORT ?= COM3
 
 #===============================================================================
 # ESP32-C6 DevKitC-1 Configuration

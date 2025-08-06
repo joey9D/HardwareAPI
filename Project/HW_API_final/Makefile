@@ -1,15 +1,15 @@
 
 # HW_API Build System
 
-# include config/esp32_config.mk  # ESP32-specific configuration  
-include config/stm32_config.mk  # STM32-specific configuration (default)
+include config/esp32_config.mk  # ESP32-specific configuration  
+# include config/stm32_config.mk  # STM32-specific configuration (default)
 
 
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
 # Default target
-.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug
+.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug flash-esp32 monitor-esp32 erase-esp32
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -39,19 +39,42 @@ stm32:
 		-DHAL_PREFIX=$(HAL_PREFIX)
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
-
-# ESP32 Build with ESP-IDF (requires toolchain in PATH)
+# ESP32 Build with ESP-IDF via CMake
 esp32:
 	@echo "================================================="
 	@echo "=== Building ESP32 Platform (ESP-IDF) ==="
 	@echo "================================================="
-	@echo "Setting ESP32 target to $(ESP32_IDF_TARGET)..."
-	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py set-target $(ESP32_IDF_TARGET)
-	@echo ""
+	@echo "Setting up ESP32 build environment..."
+	@echo "Target: $(ESP32_IDF_TARGET)"
+	@echo "MCU Family: $(MCU_FAMILY)"
+	@echo "MCU Specific: $(MCU_SPECIFIC)"
+	
+	# Ensure ESP-IDF environment is sourced
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		exit 1; \
+	fi
+	
+	# Create build directory
+	@if [ ! -d "$(BUILD_DIR)" ]; then mkdir -p "$(BUILD_DIR)"; fi
+	
+	# Configure ESP32 build via CMake (which will use ESP-IDF)
+	@echo "Configuring ESP32 build..."
+	@cd "$(BUILD_DIR)" && cmake .. -G "Ninja" \
+		-DTARGET_PLATFORM=ESP32 \
+		-DMCU_FAMILY=$(MCU_FAMILY) \
+		-DMCU_SPECIFIC=$(MCU_SPECIFIC) \
+		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
+		-DDEBUG_PROBE=$(DEBUG_PROBE) \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+	
+	# Build the project
 	@echo "Building ESP32 project..."
-	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py -D TARGET_PLATFORM=ESP32 -D MCU_FAMILY=$(MCU_FAMILY) -D MCU_SPECIFIC=$(MCU_SPECIFIC) -D ESP32_IDF_TARGET=$(ESP32_IDF_TARGET) -D CMAKE_BUILD_TYPE=$(BUILD_TYPE) build
+	@cd "$(BUILD_DIR)" && cmake --build . -j
+	
 	@echo ""
 	@echo "ESP32 build completed successfully!"
+	@echo "Firmware location: $(BUILD_DIR)"
 	@echo "To flash: make flash-esp32"
 	@echo "To monitor: make monitor-esp32"
 
@@ -62,15 +85,27 @@ flash erase reset debug:
 # ESP32-specific hardware operations
 flash-esp32:
 	@echo "Flashing ESP32..."
-	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py flash
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		exit 1; \
+	fi
+	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) flash
 
 monitor-esp32:
 	@echo "Starting ESP32 monitor..."
-	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py monitor
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		exit 1; \
+	fi
+	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) monitor
 
 erase-esp32:
 	@echo "Erasing ESP32 flash..."
-	@python C:\Espressif\frameworks\esp-idf-v5.3.1\tools\idf.py erase-flash
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		exit 1; \
+	fi
+	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) erase-flash
 
 # Utility targets
 clean:
@@ -100,33 +135,16 @@ ifeq ($(TARGET_PLATFORM),STM32)
 	@echo "Build Type: $(BUILD_TYPE)"
 	@echo "Build Directory: $(BUILD_DIR)"
 	@echo "Debug Probe: $(DEBUG_PROBE)"
-ifdef TOOLCHAIN_FILE
-	@echo "Toolchain File: $(TOOLCHAIN_FILE)"
 endif
-ifdef STM32_HAL_PATH
-	@echo "STM32 HAL Path: $(STM32_HAL_PATH)"
-endif
-	@echo "Available debug probes: st-link, jlink, openocd"
-else ifeq ($(TARGET_PLATFORM),ESP32)
-	@echo "MCU Family: $(MCU_FAMILY)"
-	@echo "MCU Specific: $(MCU_SPECIFIC)"
+ifeq ($(TARGET_PLATFORM),ESP32)
 	@echo "ESP32 IDF Target: $(ESP32_IDF_TARGET)"
-	@echo "ESP32 IDF Path: $(ESP32_IDF_PATH)"
-	@echo "Build Type: $(BUILD_TYPE)"
-	@echo "Build Directory: $(BUILD_DIR)"
-	@echo "Debug Probe: $(DEBUG_PROBE)"
-	@echo "Available debug probes: esptool, openocd"
-else
 	@echo "MCU Family: $(MCU_FAMILY)"
-	@echo "MCU Specific: $(MCU_SPECIFIC)"
+	@echo "MCU Specific: $(MCU_SPECIFIC)" 
 	@echo "Build Type: $(BUILD_TYPE)"
 	@echo "Build Directory: $(BUILD_DIR)"
 	@echo "Debug Probe: $(DEBUG_PROBE)"
 endif
-	@echo "CMake Command: $(CMAKE_CMD)"
 	@echo "=================================="
-
-# Help target
 help:
 	@echo "HW_API Makefile - Hardware Abstraction Layer Build System"
 	@echo ""
