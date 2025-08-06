@@ -1,15 +1,22 @@
 
 # HW_API Build System
 
-include config/esp32_config.mk  # ESP32-specific configuration  
-# include config/stm32_config.mk  # STM32-specific configuration (default)
+# Platform detection: Load appropriate configuration
+# Default to STM32 if no platform specified
+# TARGET_PLATFORM ?= STM32
+
+# ifeq ($(TARGET_PLATFORM),ESP32)
+#     include config/esp32_config.mk  # ESP32-specific configuration  
+# else
+    include config/stm32_config.mk  # STM32-specific configuration (default)
+# endif
 
 
 # Base CMake command (platform-specific configuration added in build targets)
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
 # Default target
-.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug flash-esp32 monitor-esp32 erase-esp32
+.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug flash-stm32 flash-esp32 erase-stm32 erase-esp32 reset-stm32 reset-esp32 debug-stm32 debug-esp32
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -39,7 +46,8 @@ stm32:
 		-DHAL_PREFIX=$(HAL_PREFIX)
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
-# ESP32 Build with ESP-IDF via CMake
+# ESP32 Build with ESP-IDF via CMakemake 
+esp32: TARGET_PLATFORM=ESP32
 esp32:
 	@echo "================================================="
 	@echo "=== Building ESP32 Platform (ESP-IDF) ==="
@@ -51,7 +59,7 @@ esp32:
 	
 	# Ensure ESP-IDF environment is sourced
 	@if [ -z "$$IDF_PATH" ]; then \
-		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
 	
@@ -76,36 +84,81 @@ esp32:
 	@echo "ESP32 build completed successfully!"
 	@echo "Firmware location: $(BUILD_DIR)"
 	@echo "To flash: make flash-esp32"
-	@echo "To monitor: make monitor-esp32"
+	@echo "To monitor: make debug-esp32"
 
-# Hardware-specific targets (simplified)
-flash erase reset debug:
-	cmake --build $(BUILD_DIR) --target $@
+# Hardware-specific targets (platform-specific)
+flash-stm32:
+	cmake --build build --target flash
 
-# ESP32-specific hardware operations
 flash-esp32:
 	@echo "Flashing ESP32..."
 	@if [ -z "$$IDF_PATH" ]; then \
-		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) flash
+	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) flash
 
-monitor-esp32:
-	@echo "Starting ESP32 monitor..."
-	@if [ -z "$$IDF_PATH" ]; then \
-		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
-		exit 1; \
-	fi
-	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) monitor
+erase-stm32:
+	cmake --build build --target erase
 
 erase-esp32:
 	@echo "Erasing ESP32 flash..."
 	@if [ -z "$$IDF_PATH" ]; then \
-		echo "Error: ESP-IDF environment not found. Please run: C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat"; \
+		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@cd "$(BUILD_DIR)" && python "$$IDF_PATH/tools/idf.py" -p $(ESP32_PORT) erase-flash
+	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) erase-flash
+
+reset-stm32:
+	cmake --build build --target reset
+
+reset-esp32:
+	@echo "Resetting ESP32..."
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
+		exit 1; \
+	fi
+	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) app-flash
+
+debug-stm32:
+	cmake --build build --target debug
+
+debug-esp32:
+	@echo "Starting ESP32 monitor..."
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
+		exit 1; \
+	fi
+	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) monitor
+
+# Legacy platform-aware targets (for backwards compatibility)
+flash:
+ifeq ($(TARGET_PLATFORM),ESP32)
+	@$(MAKE) flash-esp32
+else
+	@$(MAKE) flash-stm32
+endif
+
+erase:
+ifeq ($(TARGET_PLATFORM),ESP32)
+	@$(MAKE) erase-esp32
+else
+	@$(MAKE) erase-stm32
+endif
+
+reset:
+ifeq ($(TARGET_PLATFORM),ESP32)
+	@$(MAKE) reset-esp32
+else
+	@$(MAKE) reset-stm32
+endif
+
+debug:
+ifeq ($(TARGET_PLATFORM),ESP32)
+	@$(MAKE) debug-esp32
+else
+	@$(MAKE) debug-stm32
+endif
 
 # Utility targets
 clean:
@@ -165,11 +218,25 @@ help:
 	@echo "  jlink            - Build with J-Link debug probe"
 	@echo "  openocd          - Build with OpenOCD debug probe"
 	@echo ""
-	@echo "Hardware Operations (use current DEBUG_PROBE):"
-	@echo "  flash            - Flash firmware to target"
-	@echo "  erase            - Erase target flash"
-	@echo "  reset            - Reset target device"
-	@echo "  debug            - Start debug session"
+	@echo "Hardware Operations (platform-aware):"
+	@echo "  flash            - Flash firmware to target (auto-detects platform)"
+	@echo "  erase            - Erase target flash (auto-detects platform)" 
+	@echo "  reset            - Reset target device (auto-detects platform)"
+	@echo "  debug            - Start debug session/monitor (auto-detects platform)"
+	@echo ""
+	@echo "Hardware Operations (platform-specific):"
+	@echo "  flash-stm32      - Flash STM32 firmware"
+	@echo "  flash-esp32      - Flash ESP32 firmware"
+	@echo "  erase-stm32      - Erase STM32 flash"
+	@echo "  erase-esp32      - Erase ESP32 flash"
+	@echo "  reset-stm32      - Reset STM32 device"
+	@echo "  reset-esp32      - Reset ESP32 device"
+	@echo "  debug-stm32      - Start STM32 debug session"
+	@echo "  debug-esp32      - Start ESP32 monitor"
+	@echo ""
+	@echo "Platform Usage:"
+	@echo "  STM32: Use 'make stm32' first, then 'make flash-stm32'"
+	@echo "  ESP32: Use 'make esp32' first, then 'make flash-esp32'"
 	@echo ""
 	@echo "STM32 Examples:"
 	@echo "  make stm32                             # Build STM32 with default settings"

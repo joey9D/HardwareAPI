@@ -18,7 +18,11 @@ ESP32_IDF_TARGET ?= esp32c6
 ESP32_IDF_PATH ?= C:/Espressif/frameworks/esp-idf-v5.3.1
 
 # ESP32 Serial Port (adjust as needed)
-ESP32_PORT ?= COM3
+ESP32_PORT ?= COM8
+ESP32_BAUD ?= 460800
+
+# ESP32 Export Script Path
+ESP32_EXPORT_BAT ?= C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat
 
 #===============================================================================
 # ESP32-C6 DevKitC-1 Configuration

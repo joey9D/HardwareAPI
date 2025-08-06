@@ -72,6 +72,10 @@ if(TARGET_PLATFORM STREQUAL "ESP32")
     if(DEFINED ENV{IDF_PATH})
         message(STATUS "Using ESP-IDF from: $ENV{IDF_PATH}")
         
+        # Set ESP-IDF target BEFORE project() call
+        set(IDF_TARGET ${ESP32_IDF_TARGET})
+        message(STATUS "Setting IDF_TARGET to: ${IDF_TARGET}")
+        
         # Set component directories for ESP-IDF
         set(EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/components")
         
