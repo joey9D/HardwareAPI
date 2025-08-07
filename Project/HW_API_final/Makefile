@@ -16,7 +16,7 @@
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
 # Default target
-.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug flash-stm32 flash-esp32 erase-stm32 erase-esp32 reset-stm32 reset-esp32 debug-stm32 debug-esp32
+.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug stm32-flash esp32-flash stm32-erase esp32-erase stm32-reset esp32-reset stm32-debug esp32-debug
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -83,14 +83,14 @@ esp32:
 	@echo ""
 	@echo "ESP32 build completed successfully!"
 	@echo "Firmware location: $(BUILD_DIR)"
-	@echo "To flash: make flash-esp32"
-	@echo "To monitor: make debug-esp32"
+	@echo "To flash: make esp32-flash"
+	@echo "To monitor: make esp32-debug"
 
 # Hardware-specific targets (platform-specific)
-flash-stm32:
+stm32-flash:
 	cmake --build build --target flash
 
-flash-esp32:
+esp32-flash:
 	@echo "Flashing ESP32..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
@@ -98,10 +98,10 @@ flash-esp32:
 	fi
 	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) flash
 
-erase-stm32:
+stm32-erase:
 	cmake --build build --target erase
 
-erase-esp32:
+esp32-erase:
 	@echo "Erasing ESP32 flash..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
@@ -109,10 +109,10 @@ erase-esp32:
 	fi
 	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) erase-flash
 
-reset-stm32:
+stm32-reset:
 	cmake --build build --target reset
 
-reset-esp32:
+esp32-reset:
 	@echo "Resetting ESP32..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
@@ -120,10 +120,10 @@ reset-esp32:
 	fi
 	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) app-flash
 
-debug-stm32:
+stm32-debug:
 	cmake --build build --target debug
 
-debug-esp32:
+esp32-debug:
 	@echo "Starting ESP32 monitor..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
@@ -134,30 +134,30 @@ debug-esp32:
 # Legacy platform-aware targets (for backwards compatibility)
 flash:
 ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) flash-esp32
+	@$(MAKE) esp32-flash
 else
-	@$(MAKE) flash-stm32
+	@$(MAKE) stm32-flash
 endif
 
 erase:
 ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) erase-esp32
+	@$(MAKE) esp32-erase
 else
-	@$(MAKE) erase-stm32
+	@$(MAKE) stm32-erase
 endif
 
 reset:
 ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) reset-esp32
+	@$(MAKE) esp32-reset
 else
-	@$(MAKE) reset-stm32
+	@$(MAKE) stm32-reset
 endif
 
 debug:
 ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) debug-esp32
+	@$(MAKE) esp32-debug
 else
-	@$(MAKE) debug-stm32
+	@$(MAKE) stm32-debug
 endif
 
 # Utility targets
@@ -225,18 +225,18 @@ help:
 	@echo "  debug            - Start debug session/monitor (auto-detects platform)"
 	@echo ""
 	@echo "Hardware Operations (platform-specific):"
-	@echo "  flash-stm32      - Flash STM32 firmware"
-	@echo "  flash-esp32      - Flash ESP32 firmware"
-	@echo "  erase-stm32      - Erase STM32 flash"
-	@echo "  erase-esp32      - Erase ESP32 flash"
-	@echo "  reset-stm32      - Reset STM32 device"
-	@echo "  reset-esp32      - Reset ESP32 device"
-	@echo "  debug-stm32      - Start STM32 debug session"
-	@echo "  debug-esp32      - Start ESP32 monitor"
+	@echo "  stm32-flash      - Flash STM32 firmware"
+	@echo "  esp32-flash      - Flash ESP32 firmware"
+	@echo "  stm32-erase      - Erase STM32 flash"
+	@echo "  esp32-erase      - Erase ESP32 flash"
+	@echo "  stm32-reset      - Reset STM32 device"
+	@echo "  esp32-reset      - Reset ESP32 device"
+	@echo "  stm32-debug      - Start STM32 debug session"
+	@echo "  esp32-debug      - Start ESP32 monitor"
 	@echo ""
 	@echo "Platform Usage:"
-	@echo "  STM32: Use 'make stm32' first, then 'make flash-stm32'"
-	@echo "  ESP32: Use 'make esp32' first, then 'make flash-esp32'"
+	@echo "  STM32: Use 'make stm32' first, then 'make stm32-flash'"
+	@echo "  ESP32: Use 'make esp32' first, then 'make esp32-flash'"
 	@echo ""
 	@echo "STM32 Examples:"
 	@echo "  make stm32                             # Build STM32 with default settings"

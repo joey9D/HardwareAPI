@@ -20,7 +20,7 @@
 /* External variables --------------------------------------------------------*/
 
 /******************************************************************************/
-/*           Cortex-M0+ Processor Interruption and Exception Handlers       */ 
+/*           Cortex-M0+ Processor Interruption and Exception Handlers       */
 /******************************************************************************/
 
 /**
@@ -76,11 +76,12 @@ void SysTick_Handler(void)
 
 /* C++ compatibility wrapper */
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/* Ensure this object file is linked even if no functions are called directly */
-__attribute__((used)) static const uint32_t stm32g0xx_it_force_link = 0xDEADBEEF;
+    /* Ensure this object file is linked even if no functions are called directly */
+    __attribute__((used)) static const uint32_t stm32g0xx_it_force_link = 0xDEADBEEF;
 
 #ifdef __cplusplus
 }

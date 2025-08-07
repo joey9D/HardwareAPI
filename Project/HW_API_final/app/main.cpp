@@ -30,7 +30,7 @@ int main(void)
   HardwareInterface *hw = HardwareFactory::create();
 
   // Initialize system (HAL, clocks, etc.)
-  // hw->init_sys();
+  hw->init_sys();
 
   // Initialize all pins defined in pin_config.hpp
   hw->initAllPins();
