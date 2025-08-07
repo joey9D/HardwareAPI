@@ -49,26 +49,31 @@ extern "C" void app_main(void)
     ESP_LOGI(TAG, "GPIO pins initialized successfully");
 
     // Initialize debounce state
-    bool lastButtonState = boardPins.button.isDebouncePinOn();
+    // bool lastButtonState = boardPins.button.isDebouncePinOn();
     ESP_LOGI(TAG, "Starting main loop...");
 
     /* Infinite loop */
     while (1)
     {
+        boardPins.led.writePin(true);  // Turn on LED
+        hw->delay(1000);               // Delay for 1 second
+        boardPins.led.writePin(false); // Turn off LED
+        hw->delay(1000);               // Delay for 1 second
+
         // Read current button state with debouncing
-        bool currentButtonState = boardPins.button.isDebouncePinOn();
+        // bool currentButtonState = boardPins.button.isDebouncePinOn();
 
-        // Toggle LED on button press (rising edge detection)
-        if (!lastButtonState && currentButtonState)
-        {
-            boardPins.led.togglePin();
-            ESP_LOGI(TAG, "Button pressed - LED toggled");
-        }
+        // // Toggle LED on button press (rising edge detection)
+        // if (!lastButtonState && currentButtonState)
+        // {
+        //     boardPins.led.togglePin();
+        //     ESP_LOGI(TAG, "Button pressed - LED toggled");
+        // }
 
-        // Update button state
-        lastButtonState = currentButtonState;
+        // // Update button state
+        // lastButtonState = currentButtonState;
 
-        // Small delay to prevent busy waiting (ESP32 specific)
+        // // Small delay to prevent busy waiting (ESP32 specific)
         vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
     }
 }
