@@ -16,7 +16,7 @@
 CMAKE_CMD = cmake -S . -B $(BUILD_DIR) -G "Ninja" -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) -DTARGET_PLATFORM=$(TARGET_PLATFORM)
 
 # Default target
-.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug stm32-flash esp32-flash stm32-erase esp32-erase stm32-reset esp32-reset stm32-debug esp32-debug
+.PHONY: all clean prepare stm32 esp32 info help flash erase reset debug stm32-flash esp32-flash stm32-erase esp32-erase stm32-reset esp32-reset stm32-debug esp32-debug esp32-debug-gdb esp32-debug-tui esp32-monitor
 
 all: info
 	@mkdir -p $(BUILD_DIR)
@@ -84,7 +84,12 @@ esp32:
 	@echo "ESP32 build completed successfully!"
 	@echo "Firmware location: $(BUILD_DIR)"
 	@echo "To flash: make esp32-flash"
-	@echo "To monitor: make esp32-debug"
+	@echo "To debug: make esp32-debug (full debug session)"
+	@echo "To monitor: make esp32-monitor (serial output only)"
+	@echo ""
+	@echo "IMPORTANT: For debugging, ensure ESP-IDF environment is loaded:"
+	@echo "  Run: $(ESP32_EXPORT_BAT)"
+	@echo "  Then restart your terminal before running debug commands"
 
 # Hardware-specific targets (platform-specific)
 stm32-flash:
@@ -124,7 +129,33 @@ stm32-debug:
 	cmake --build build --target debug
 
 esp32-debug:
-	@echo "Starting ESP32 monitor..."
+	@echo "Starting ESP32 step-by-step debugging session (USB-JTAG)..."
+	@if [ -z "$$IDF_PATH" ]; then \
+		echo "Error: ESP-IDF environment not found. Please set IDF_PATH environment variable."; \
+		exit 1; \
+	fi
+	@echo ""
+	@echo "=== ESP32-C6 USB-JTAG DEBUGGING ==="
+	@echo "Using integrated USB-JTAG debugger (same USB cable as flashing)"
+	@echo ""
+	@echo "GDB Commands for step-by-step debugging:"
+	@echo "  break app_main           - Set breakpoint at main function"
+	@echo "  break main.cpp:45        - Set breakpoint at specific line"
+	@echo "  continue (or c)          - Continue execution"
+	@echo "  next (or n)              - Step over (next line)"  
+	@echo "  step (or s)              - Step into (inside functions)"
+	@echo "  print variable_name      - Print variable value"
+	@echo "  list                     - Show current code"
+	@echo "  backtrace (or bt)        - Show call stack"
+	@echo "  quit                     - Exit debugger"
+	@echo ""
+	@echo "Starting GDB session now..."
+	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) openocd gdb
+
+
+
+esp32-monitor:
+	@echo "Starting ESP32 serial monitor only..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
@@ -232,7 +263,8 @@ help:
 	@echo "  stm32-reset      - Reset STM32 device"
 	@echo "  esp32-reset      - Reset ESP32 device"
 	@echo "  stm32-debug      - Start STM32 debug session"
-	@echo "  esp32-debug      - Start ESP32 monitor"
+	@echo "  esp32-debug      - Start ESP32 step-by-step debugging (USB-JTAG)"
+	@echo "  esp32-monitor    - Start ESP32 serial monitor only"
 	@echo ""
 	@echo "Platform Usage:"
 	@echo "  STM32: Use 'make stm32' first, then 'make stm32-flash'"
