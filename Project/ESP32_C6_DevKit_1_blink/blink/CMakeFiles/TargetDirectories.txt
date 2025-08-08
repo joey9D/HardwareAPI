@@ -1,2 +1,0 @@
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKit_1_blink/blink/CMakeFiles/edit_cache.dir
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/ESP32_C6_DevKit_1_blink/blink/CMakeFiles/rebuild_cache.dir

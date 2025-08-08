@@ -12,7 +12,8 @@
       "monitorPort": "COM8",
       "serialPort": "COM8",
       "openOcdConfigs": [
-        "board/esp32c6-bridge.cfg"
+        // "board/esp32c6-bridge.cfg"
+        "board/esp32c6-builtin.cfg"
       ],
       "stopOnEntry": true
     }
