@@ -27,7 +27,7 @@ CMAKE_ADDR2LINE:FILEPATH=C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clan
 CMAKE_AR:FILEPATH=C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/llvm-ar.exe
 
 //ASM compiler
-CMAKE_ASM_COMPILER:FILEPATH=C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe
+CMAKE_ASM_COMPILER:STRING=C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe
 
 //LLVM archiver
 CMAKE_ASM_COMPILER_AR:FILEPATH=C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/llvm-ar.exe
