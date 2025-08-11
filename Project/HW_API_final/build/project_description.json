@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "hw_api_esp32",
-    "project_version":    "db92639-dirty",
+    "project_version":    "62682af-dirty",
     "project_path":       "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.1",
     "build_dir":          "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build",

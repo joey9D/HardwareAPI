@@ -26,6 +26,7 @@
  */
 extern "C" void app_main(void)
 {
+    // printf("Hello from ESP32 app_main!\n");
     // Create hardware interface using factory pattern
     HardwareInterface *hw = HardwareFactory::create();
 
@@ -37,31 +38,31 @@ extern "C" void app_main(void)
     hw->initAllPins();
 
     // Initialize debounce state
-    bool lastButtonState = boardPins.button.isDebouncePinOn();
-    bool led_state = false;
+    // bool lastButtonState = boardPins.button.isDebouncePinOn();
+    // bool led_state = false;
 
     /* Infinite loop */
     while (1)
     {
-        // boardPins.led.writePin(true);  // Turn on LED
-        // hw->delay(1000);               // Delay for 1 second
-        // boardPins.led.writePin(false); // Turn off LED
-        // hw->delay(1000);               // Delay for 1 second
+        boardPins.led.writePin(true);  // Turn on LED
+        hw->delay(1000);               // Delay for 1 second
+        boardPins.led.writePin(false); // Turn off LED
+        hw->delay(1000);               // Delay for 1 second
 
         // Read current button state with debouncing
-        bool currentButtonState = boardPins.button.isDebouncePinOn();
+        // bool currentButtonState = boardPins.button.isDebouncePinOn();
 
         // Toggle LED on button press (rising edge detection)
-        if (!lastButtonState && currentButtonState)
-        {
-            // boardPins.led.togglePin();
-            led_state = !led_state; // Toggle LED state
-            gpio_set_level(static_cast<gpio_num_t>(boardPins.led.getPin()),
-                           led_state); // Set LED pin state
-        }
+        // if (!lastButtonState && currentButtonState)
+        // {
+        // boardPins.led.togglePin();
+        // led_state = !led_state; // Toggle LED state
+        // gpio_set_level(static_cast<gpio_num_t>(boardPins.led.getPin()),
+        //    led_state); // Set LED pin state
+        // }
 
         // Update button state
-        lastButtonState = currentButtonState;
+        // lastButtonState = currentButtonState;
 
         // Small delay to prevent busy waiting (ESP32 specific)
         // vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay

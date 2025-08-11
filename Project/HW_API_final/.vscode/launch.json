@@ -86,10 +86,7 @@
         {
             "type": "gdbtarget",
             "request": "attach",
-            "name": "Eclipse CDT GDB Adapter",
-            "configFiles": [
-                "${workspaceFolder}/openocd_debug.cfg"
-            ]
+            "name": "Eclipse CDT GDB Adapter"
         },
         {
             "type": "espidf",

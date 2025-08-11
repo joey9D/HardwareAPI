@@ -1,3 +1,4 @@
+-- ESP-IDF environment detected - defaulting to ESP32
 -- Target Platform: ESP32
 -- ESP32 Config: =build
 -- ESP32 Config: =Debug
@@ -5,15 +6,13 @@
 -- ESP32 Config: =esptool
 -- ESP32 Config: =esp32c6
 -- ESP32 Config: =ESP32C6-DEVKITC-1
--- ESP32 Config: =esp32c6
 -- ESP32 Config: =C:/Espressif/frameworks/esp-idf-v5.3.1
 -- ESP32 Config: =COM8
 -- ESP32 Config: =460800
 -- ESP32 Config: =C:\Espressif\frameworks\esp-idf-v5.3.1\export.bat
 -- Loaded ESP32 configuration:
---   MCU Family: esp32c6
---   MCU Specific: ESP32C6-DEVKITC-1
---   ESP32 IDF Target: esp32c6
+--   IDF Target: esp32c6
+--   Board: ESP32C6-DEVKITC-1
 --   Debug Probe: esptool
 --   ESP32 IDF Path: 
 -- Using ESP-IDF from: C:\Espressif\frameworks\esp-idf-v5.3.1
@@ -22,7 +21,7 @@
 -- Building ESP-IDF components for target esp32c6
 -- Project sdkconfig file C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/sdkconfig
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/riscv/ld/rom.api.ld
--- App "hw_api_esp32" version: db92639-dirty
+-- App "hw_api_esp32" version: 62682af-dirty
 -- Adding linker script C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/esp-idf/esp_system/ld/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32c6/ld/esp32c6.rom.ld
@@ -46,11 +45,11 @@
 -- ESP32 platform: Include directories handled by ESP-IDF component system
 -- ESP32 platform: Using ESP-IDF component system
 -- ESP-IDF components will be loaded automatically from components/ and main/
--- =======================================================
+-- ================================================================================
 -- === Configuration Summary ===
--- =======================================================
+-- =================================================================================
 -- Install prefix: C:/Program Files (x86)/hw_api_esp32
--- =======================================================
+-- ================================================================================
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build

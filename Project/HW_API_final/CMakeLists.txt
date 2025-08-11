@@ -41,16 +41,12 @@ if(TARGET_PLATFORM STREQUAL "ESP32")
     endif()
     
     # Validate required variables from config
-    if(NOT DEFINED MCU_FAMILY)
-        message(FATAL_ERROR "MCU_FAMILY not defined in esp32_config.mk")
+    if(NOT DEFINED IDF_TARGET)
+        message(FATAL_ERROR "IDF_TARGET not defined in esp32_config.mk")
     endif()
     
-    if(NOT DEFINED MCU_SPECIFIC)
-        message(FATAL_ERROR "MCU_SPECIFIC not defined in esp32_config.mk")
-    endif()
-    
-    if(NOT DEFINED ESP32_IDF_TARGET)
-        message(FATAL_ERROR "ESP32_IDF_TARGET not defined in esp32_config.mk")
+    if(NOT DEFINED BOARD)
+        message(FATAL_ERROR "BOARD not defined in esp32_config.mk")
     endif()
     
     if(NOT DEFINED DEBUG_PROBE)
@@ -59,9 +55,8 @@ if(TARGET_PLATFORM STREQUAL "ESP32")
     
     # Display loaded configuration
     message(STATUS "Loaded ESP32 configuration:")
-    message(STATUS "  MCU Family: ${MCU_FAMILY}")
-    message(STATUS "  MCU Specific: ${MCU_SPECIFIC}")
-    message(STATUS "  ESP32 IDF Target: ${ESP32_IDF_TARGET}")
+    message(STATUS "  IDF Target: ${IDF_TARGET}")
+    message(STATUS "  Board: ${BOARD}")
     message(STATUS "  Debug Probe: ${DEBUG_PROBE}")
     message(STATUS "  ESP32 IDF Path: ${ESP32_IDF_PATH}")
     if(DEFINED ESP32_PORT)
@@ -73,7 +68,7 @@ if(TARGET_PLATFORM STREQUAL "ESP32")
         message(STATUS "Using ESP-IDF from: $ENV{IDF_PATH}")
         
         # Set ESP-IDF target BEFORE project() call
-        set(IDF_TARGET ${ESP32_IDF_TARGET})
+        set(IDF_TARGET ${IDF_TARGET})
         message(STATUS "Setting IDF_TARGET to: ${IDF_TARGET}")
         
         # Set component directories for ESP-IDF
@@ -207,9 +202,9 @@ else()
 endif()
 
 # Print final configuration
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 message(STATUS "=== Configuration Summary ===")
-message(STATUS "=======================================================")
+message(STATUS "=================================================================================")
 message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 if(TARGET_PLATFORM STREQUAL "STM32")
@@ -221,17 +216,17 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     endif()
 endif()
 
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 
 # Custom targets for development
 add_custom_target(info
-    COMMAND ${CMAKE_COMMAND} -E echo "============================================="
+    COMMAND ${CMAKE_COMMAND} -E echo "================================================================================"
     COMMAND ${CMAKE_COMMAND} -E echo "=== HW_API Project Information ==="
     COMMAND ${CMAKE_COMMAND} -E echo "Project: ${PROJECT_NAME} v${PROJECT_VERSION}"
     COMMAND ${CMAKE_COMMAND} -E echo "Target Platform: ${TARGET_PLATFORM}"
     COMMAND ${CMAKE_COMMAND} -E echo "Build Type: ${CMAKE_BUILD_TYPE}"
     COMMAND ${CMAKE_COMMAND} -E echo "Source Dir: ${CMAKE_SOURCE_DIR}"
     COMMAND ${CMAKE_COMMAND} -E echo "Binary Dir: ${CMAKE_BINARY_DIR}"
-    COMMAND ${CMAKE_COMMAND} -E echo "=============================================="
+    COMMAND ${CMAKE_COMMAND} -E echo "================================================================================"
     COMMENT "Display project information"
 )

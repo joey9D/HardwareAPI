@@ -1,9 +1,9 @@
 # Define target name as variable for better maintainability
 set(TARGET_NAME hw_api_drivers)
 
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 message(STATUS "=== Configuring HW_API Drivers Module (${TARGET_NAME}) ===")
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Platform-specific driver configuration

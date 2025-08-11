@@ -1,9 +1,9 @@
 # Define target name as variable for better maintainability
 set(TARGET_NAME hw_api_platform)
 
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 message(STATUS "=== Configuring HW_API Platform Module (${TARGET_NAME}) ===")
-message(STATUS "=======================================================")
+message(STATUS "================================================================================")
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Platform-specific files (using centralized configuration)

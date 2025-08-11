@@ -82,7 +82,7 @@ print_os_info()
 -- Executable Suffix: ''
 -- Library Suffix: '.dylib'
 -- Apple Silicon: TRUE
--- =========================================
+-- ================================================================================
 -- Found gcc: /opt/homebrew/bin/arm-none-eabi-gcc
 -- Found g++: /opt/homebrew/bin/arm-none-eabi-g++
 ```

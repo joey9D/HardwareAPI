@@ -15,6 +15,9 @@
 ########################
 
 //No help, variable specified on the command line.
+BOARD:UNINITIALIZED=ESP32C6-DEVKITC-1
+
+//No help, variable specified on the command line.
 CCACHE_ENABLE:UNINITIALIZED=1
 
 //Path to a program.
@@ -311,9 +314,6 @@ ENABLE_PROGRAMS:BOOL=
 ENABLE_TESTING:BOOL=
 
 //No help, variable specified on the command line.
-ESP32_IDF_TARGET:UNINITIALIZED=esp32c6
-
-//No help, variable specified on the command line.
 ESP_PLATFORM:UNINITIALIZED=1
 
 //Generate the auto-generated files as needed
@@ -346,12 +346,6 @@ MBEDTLS_FATAL_WARNINGS:BOOL=ON
 //Mbed TLS user config file (appended to default).
 MBEDTLS_USER_CONFIG_FILE:FILEPATH=
 
-//No help, variable specified on the command line.
-MCU_FAMILY:UNINITIALIZED=esp32c6
-
-//No help, variable specified on the command line.
-MCU_SPECIFIC:UNINITIALIZED=ESP32C6-DEVKITC-1
-
 //Value Computed by CMake
 Mbed TLS_BINARY_DIR:STATIC=C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/esp-idf/mbedtls/mbedtls
 
@@ -366,9 +360,6 @@ PYTHON:UNINITIALIZED=C:\Espressif\python_env\idf5.3_py3.13_env\Scripts\python.ex
 
 //No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
-
-//No help, variable specified on the command line.
-TARGET_PLATFORM:UNINITIALIZED=ESP32
 
 //Allow unsafe builds. These builds ARE NOT SECURE.
 UNSAFE_BUILD:BOOL=OFF

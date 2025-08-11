@@ -25,9 +25,9 @@ all: info
 
 # Platform-specific builds
 stm32:
-	@echo "================================================="
+	@echo "================================================================================"
 	@echo "=== Building STM32 Platform ==="
-	@echo "================================================="
+	@echo "================================================================================"
 	@mkdir -p $(BUILD_DIR)
 	@echo "Configuring build system..."
 	@cmake -S . -B $(BUILD_DIR) -G "Ninja" \
@@ -46,16 +46,15 @@ stm32:
 		-DHAL_PREFIX=$(HAL_PREFIX)
 	@echo "Building project..."
 	@cmake --build $(BUILD_DIR) -j
-# ESP32 Build with ESP-IDF via CMakemake 
+# ESP32 Build with ESP-IDF via CMake 
 esp32: TARGET_PLATFORM=ESP32
 esp32:
-	@echo "================================================="
+	@echo "================================================================================"
 	@echo "=== Building ESP32 Platform (ESP-IDF) ==="
-	@echo "================================================="
+	@echo "================================================================================"
 	@echo "Setting up ESP32 build environment..."
-	@echo "Target: $(ESP32_IDF_TARGET)"
-	@echo "MCU Family: $(MCU_FAMILY)"
-	@echo "MCU Specific: $(MCU_SPECIFIC)"
+	@echo "IDF Target: $(IDF_TARGET)"
+	@echo "Board: $(BOARD)"
 	
 	# Ensure ESP-IDF environment is sourced
 	@if [ -z "$$IDF_PATH" ]; then \
@@ -66,13 +65,12 @@ esp32:
 	# Create build directory
 	@mkdir -p "$(BUILD_DIR)"
 	
-	# Configure ESP32 build via CMake (which will use ESP-IDF)
+	# Configure ESP32 build via CMake (using ESP-IDF standard parameters)
 	@echo "Configuring ESP32 build..."
 	@cd "$(BUILD_DIR)" && cmake .. -G "Ninja" \
-		-DTARGET_PLATFORM=ESP32 \
-		-DMCU_FAMILY=$(MCU_FAMILY) \
-		-DMCU_SPECIFIC=$(MCU_SPECIFIC) \
-		-DESP32_IDF_TARGET=$(ESP32_IDF_TARGET) \
+		-DESP_PLATFORM=1 \
+		-DIDF_TARGET=$(IDF_TARGET) \
+		-DBOARD=$(BOARD) \
 		-DDEBUG_PROBE=$(DEBUG_PROBE) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 	
@@ -84,8 +82,8 @@ esp32:
 	@echo "ESP32 build completed successfully!"
 	@echo "Firmware location: $(BUILD_DIR)"
 	@echo "To flash: make esp32-flash"
-	@echo "To debug: make esp32-debug (full debug session)"
-	@echo "To monitor: make esp32-monitor (serial output only)"
+	@echo "To debug: make esp32-debug"
+	@echo "To monitor: make esp32-monitor"
 	@echo ""
 	@echo "IMPORTANT: For debugging, ensure ESP-IDF environment is loaded:"
 	@echo "  Run: $(ESP32_EXPORT_BAT)"
@@ -164,9 +162,9 @@ dependency:
 
 # Show current configuration
 info:
-	@echo "=================================="
+	@echo "================================================================================"
 	@echo "=== HW_API Build Configuration ==="
-	@echo "=================================="
+	@echo "================================================================================"
 	@echo "Target Platform: $(TARGET_PLATFORM)"
 ifeq ($(TARGET_PLATFORM),STM32)
 	@echo "MCU Family: $(MCU_FAMILY)"
@@ -176,14 +174,13 @@ ifeq ($(TARGET_PLATFORM),STM32)
 	@echo "Debug Probe: $(DEBUG_PROBE)"
 endif
 ifeq ($(TARGET_PLATFORM),ESP32)
-	@echo "ESP32 IDF Target: $(ESP32_IDF_TARGET)"
-	@echo "MCU Family: $(MCU_FAMILY)"
-	@echo "MCU Specific: $(MCU_SPECIFIC)" 
+	@echo "ESP32 IDF Target: $(IDF_TARGET)"
+	@echo "Board: $(BOARD)"
 	@echo "Build Type: $(BUILD_TYPE)"
 	@echo "Build Directory: $(BUILD_DIR)"
 	@echo "Debug Probe: $(DEBUG_PROBE)"
 endif
-	@echo "=================================="
+	@echo "================================================================================"
 help:
 	@echo "HW_API Makefile - Hardware Abstraction Layer Build System"
 	@echo ""
@@ -232,7 +229,9 @@ help:
 	@echo ""
 	@echo "ESP32 Examples:"
 	@echo "  make esp32                             # Build for ESP32-C6 DevKitC-1 (default)"
-	@echo "  make esp32 MCU_FAMILY=esp32c6          # Build for ESP32-C6 DevKitC-1"
+	@echo "  make esp32 IDF_TARGET=esp32c6          # Build for ESP32-C6 DevKitC-1"
+	@echo "  make esp32 IDF_TARGET=esp32c3          # Build for ESP32-C3"
+	@echo "  make esp32 IDF_TARGET=esp32            # Build for ESP32 original"
 	@echo ""
 	@echo "Hardware Operations (use current DEBUG_PROBE):"
 	@echo "  flash            - Flash firmware to target"
