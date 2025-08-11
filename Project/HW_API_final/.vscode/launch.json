@@ -82,6 +82,19 @@
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "type": "gdbtarget",
+            "request": "attach",
+            "name": "Eclipse CDT GDB Adapter",
+            "configFiles": [
+                "${workspaceFolder}/openocd_debug.cfg"
+            ]
+        },
+        {
+            "type": "espidf",
+            "name": "Launch",
+            "request": "launch"
         }
     ]
 }

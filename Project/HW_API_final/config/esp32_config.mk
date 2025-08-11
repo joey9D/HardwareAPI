@@ -4,7 +4,8 @@
 #===============================================================================
 # Default Configuration for ESP32
 #===============================================================================
-BUILD_DIR ?= build-esp32
+# build-esp32
+BUILD_DIR ?= build
 BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= ESP32
 DEBUG_PROBE ?= esptool

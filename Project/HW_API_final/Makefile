@@ -59,12 +59,12 @@ esp32:
 	
 	# Ensure ESP-IDF environment is sourced
 	@if [ -z "$$IDF_PATH" ]; then \
-		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
+		echo "Error: ESP-IDF environment not found. Bitte export.bat im Terminal ausführen!"; \
 		exit 1; \
 	fi
 	
 	# Create build directory
-	@if [ ! -d "$(BUILD_DIR)" ]; then mkdir -p "$(BUILD_DIR)"; fi
+	@mkdir -p "$(BUILD_DIR)"
 	
 	# Configure ESP32 build via CMake (which will use ESP-IDF)
 	@echo "Configuring ESP32 build..."
@@ -101,7 +101,7 @@ esp32-flash:
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) flash
+	@python "$$IDF_PATH/tools/idf.py" -B $(BUILD_DIR) -p $(ESP32_PORT) -b $(ESP32_BAUD) flash
 
 stm32-erase:
 	cmake --build build --target erase
@@ -112,7 +112,7 @@ esp32-erase:
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) -b $(ESP32_BAUD) erase-flash
+	@python "$$IDF_PATH/tools/idf.py" -B $(BUILD_DIR) -p $(ESP32_PORT) -b $(ESP32_BAUD) erase-flash
 
 stm32-reset:
 	cmake --build build --target reset
@@ -123,34 +123,18 @@ esp32-reset:
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) app-flash
+	@python "$$IDF_PATH/tools/idf.py" -B $(BUILD_DIR) -p $(ESP32_PORT) app-flash
 
 stm32-debug:
 	cmake --build build --target debug
 
 esp32-debug:
-	@echo "Starting ESP32 step-by-step debugging session (USB-JTAG)..."
+	@echo "Starting ESP32 debugging session ..."
 	@if [ -z "$$IDF_PATH" ]; then \
 		echo "Error: ESP-IDF environment not found. Please set IDF_PATH environment variable."; \
 		exit 1; \
 	fi
-	@echo ""
-	@echo "=== ESP32-C6 USB-JTAG DEBUGGING ==="
-	@echo "Using integrated USB-JTAG debugger (same USB cable as flashing)"
-	@echo ""
-	@echo "GDB Commands for step-by-step debugging:"
-	@echo "  break app_main           - Set breakpoint at main function"
-	@echo "  break main.cpp:45        - Set breakpoint at specific line"
-	@echo "  continue (or c)          - Continue execution"
-	@echo "  next (or n)              - Step over (next line)"  
-	@echo "  step (or s)              - Step into (inside functions)"
-	@echo "  print variable_name      - Print variable value"
-	@echo "  list                     - Show current code"
-	@echo "  backtrace (or bt)        - Show call stack"
-	@echo "  quit                     - Exit debugger"
-	@echo ""
-	@echo "Starting GDB session now..."
-	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) openocd gdb
+	@python "$$IDF_PATH/tools/idf.py" -B $(BUILD_DIR) -p $(ESP32_PORT) openocd gdb
 
 
 
@@ -160,36 +144,7 @@ esp32-monitor:
 		echo "Error: ESP-IDF environment not found. Please run: $(ESP32_EXPORT_BAT)"; \
 		exit 1; \
 	fi
-	@python "$$IDF_PATH/tools/idf.py" -B "build-esp32" -p $(ESP32_PORT) monitor
-
-# Legacy platform-aware targets (for backwards compatibility)
-flash:
-ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) esp32-flash
-else
-	@$(MAKE) stm32-flash
-endif
-
-erase:
-ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) esp32-erase
-else
-	@$(MAKE) stm32-erase
-endif
-
-reset:
-ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) esp32-reset
-else
-	@$(MAKE) stm32-reset
-endif
-
-debug:
-ifeq ($(TARGET_PLATFORM),ESP32)
-	@$(MAKE) esp32-debug
-else
-	@$(MAKE) stm32-debug
-endif
+	@python "$$IDF_PATH/tools/idf.py" -B $(BUILD_DIR) -p $(ESP32_PORT) monitor
 
 # Utility targets
 clean:

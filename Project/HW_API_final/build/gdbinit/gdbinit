@@ -1,0 +1,4 @@
+
+source C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/gdbinit/py_extensions
+source C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/gdbinit/symbols
+source C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/gdbinit/connect

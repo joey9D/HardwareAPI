@@ -1,0 +1,19 @@
+Open On-Chip Debugger v0.12.0-esp32-20240318 (2024-03-18-18:26)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : only one transport option; autoselecting 'jtag'
+Info : esp_usb_jtag: VID set to 0x303a and PID to 0x1001
+Info : esp_usb_jtag: capabilities descriptor set to 0x2000
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : esp_usb_jtag: serial (7C:2C:67:45:40:A0)
+Info : esp_usb_jtag: Device found. Base speed 24000KHz, div range 1 to 255
+Info : clock speed 24000 kHz
+Info : JTAG tap: esp32c6.cpu tap/device found: 0x0000dc25 (mfg: 0x612 (Espressif Systems), part: 0x000d, ver: 0x0)
+Info : [esp32c6] datacount=2 progbufsize=16
+Info : [esp32c6] Examined RISC-V core; found 2 harts
+Info : [esp32c6]  XLEN=32, misa=0x40903105
+Info : [esp32c6] Examination succeed
+Info : starting gdb server for esp32c6 on 3333
+Info : Listening on port 3333 for gdb connections
