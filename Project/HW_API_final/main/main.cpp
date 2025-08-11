@@ -26,31 +26,19 @@
  */
 extern "C" void app_main(void)
 {
-    ESP_LOGI(TAG, "Starting HW_API ESP32 Application");
-    ESP_LOGI(TAG, "Initializing hardware interface...");
-
     // Create hardware interface using factory pattern
     HardwareInterface *hw = HardwareFactory::create();
-
-    if (!hw)
-    {
-        ESP_LOGE(TAG, "Failed to create hardware interface!");
-        return;
-    }
-
-    ESP_LOGI(TAG, "Hardware interface created successfully");
 
     // Initialize system (HAL, clocks, etc.)
     // hw->init_sys();
 
     // Initialize all pins defined in pin_config.hpp
-    ESP_LOGI(TAG, "Initializing GPIO pins...");
+
     hw->initAllPins();
-    ESP_LOGI(TAG, "GPIO pins initialized successfully");
 
     // Initialize debounce state
     bool lastButtonState = boardPins.button.isDebouncePinOn();
-    ESP_LOGI(TAG, "Starting main loop...");
+    bool led_state = false;
 
     /* Infinite loop */
     while (1)
@@ -66,14 +54,16 @@ extern "C" void app_main(void)
         // Toggle LED on button press (rising edge detection)
         if (!lastButtonState && currentButtonState)
         {
-            boardPins.led.togglePin();
-            ESP_LOGI(TAG, "Button pressed - LED toggled");
+            // boardPins.led.togglePin();
+            led_state = !led_state; // Toggle LED state
+            gpio_set_level(static_cast<gpio_num_t>(boardPins.led.getPin()),
+                           led_state); // Set LED pin state
         }
 
         // Update button state
         lastButtonState = currentButtonState;
 
         // Small delay to prevent busy waiting (ESP32 specific)
-        vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
+        // vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
     }
 }

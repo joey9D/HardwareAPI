@@ -17,8 +17,8 @@
 
 // Platform-specific includes for ESP32
 #ifdef ESP32_PLATFORM
-    #include "esp32_hal_inc.hpp"  // ESP32 HAL wrapper
+#include "esp32_hal_inc.hpp" // ESP32 HAL wrapper
 #endif
 
 // ESP32 logging tag
-static const char *TAG = "HW_API_ESP32";
+// static const char *TAG = "HW_API_ESP32";

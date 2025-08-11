@@ -157,7 +157,7 @@ bool Gpio::isPinInverted() const
 /**
  * @brief Getter functions
  */
-uint64_t Gpio::getPin() const { return (gpio_num_t)_pin; }
+uint64_t Gpio::getPin() const { return _pin; }
 
 Mode Gpio::getMode() const { return _mode; }
 
