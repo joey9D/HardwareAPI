@@ -386,7 +386,7 @@ Mbed TLS_IS_TOP_LEVEL:STATIC=OFF
 Mbed TLS_SOURCE_DIR:STATIC=C:/Espressif/frameworks/esp-idf-v5.3.1/components/mbedtls/mbedtls
 
 //No help, variable specified on the command line.
-PYTHON:UNINITIALIZED=C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe
+PYTHON:UNINITIALIZED=C:\Espressif\python_env\idf5.3_py3.13_env\Scripts\python.exe
 
 //No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
@@ -651,9 +651,9 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
 C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS:INTERNAL=1
 //Details about finding Git
-FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[C:/Espressif/tools/idf-git/2.39.2/cmd/git.exe][v2.39.2.windows.1()]
+FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[C:/Espressif/tools/idf-git/2.39.2/cmd/git.exe][v()]
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[C:/Espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe][cfound components: Interpreter ][v3.11.2()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[C:/Espressif/python_env/idf5.3_py3.13_env/Scripts/python.exe][cfound components: Interpreter ][v3.13.6()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
@@ -662,8 +662,8 @@ GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files/main
-_Python3_EXECUTABLE:INTERNAL=C:/Espressif/python_env/idf5.3_py3.11_env/Scripts/python.exe
+_Python3_EXECUTABLE:INTERNAL=C:/Espressif/python_env/idf5.3_py3.13_env/Scripts/python.exe
 //Python3 Properties
-_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;2;32;;;C:\Espressif\tools\idf-python\3.11.2\Lib;C:\Espressif\tools\idf-python\3.11.2\Lib;C:\Espressif\python_env\idf5.3_py3.11_env\Lib\site-packages;C:\Espressif\python_env\idf5.3_py3.11_env\Lib\site-packages
-_Python3_INTERPRETER_SIGNATURE:INTERNAL=f3e0df63b7888e7a25f6a4f491576b51
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;6;32;;;C:\Users\jan.kristel\AppData\Local\Programs\Python\Python313\Lib;C:\Users\jan.kristel\AppData\Local\Programs\Python\Python313\Lib;C:\Espressif\python_env\idf5.3_py3.13_env\Lib\site-packages;C:\Espressif\python_env\idf5.3_py3.13_env\Lib\site-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=15953b68b7ed4cc12d3597b31d187e11
 

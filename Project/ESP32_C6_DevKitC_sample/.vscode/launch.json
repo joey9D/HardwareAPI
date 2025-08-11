@@ -2,20 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ESP32-C6 JTAG Debug",
+      "type": "gdbtarget",
+      "request": "attach",
+      "name": "Eclipse CDT GDB Adapter"
+    },
+    {
       "type": "espidf",
-      "request": "launch",
-      "program": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
-      "cwd": "${workspaceFolder}",
-      "toolchainPrefix": "riscv32-esp-elf-",
-      "gdb": "${config:idf.riscv32-esp-elf.gdb}",
-      "monitorPort": "COM8",
-      "serialPort": "COM8",
-      "openOcdConfigs": [
-        // "board/esp32c6-bridge.cfg"
-        "board/esp32c6-builtin.cfg"
-      ],
-      "stopOnEntry": true
+      "name": "Launch",
+      "request": "launch"
     }
   ]
 }
