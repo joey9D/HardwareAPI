@@ -21,7 +21,7 @@
 -- Building ESP-IDF components for target esp32c6
 -- Project sdkconfig file C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/sdkconfig
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/riscv/ld/rom.api.ld
--- App "hw_api_esp32" version: 62682af-dirty
+-- App "hw_api_esp32" version: 3350435-dirty
 -- Adding linker script C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/esp-idf/esp_system/ld/memory.ld
 -- Adding linker script C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/esp-idf/esp_system/ld/sections.ld.in
 -- Adding linker script C:/Espressif/frameworks/esp-idf-v5.3.1/components/esp_rom/esp32c6/ld/esp32c6.rom.ld
