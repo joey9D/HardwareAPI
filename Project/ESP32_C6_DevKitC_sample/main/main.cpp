@@ -1,4 +1,5 @@
-extern "C" {
+extern "C"
+{
 #include <stdio.h>
 #include <inttypes.h>
 #include "sdkconfig.h"
@@ -12,12 +13,11 @@ extern "C" {
 #include "gpio.hpp"
 #include "pin_config.hpp"
 
-
 extern "C" void app_main(void)
 {
     printf("Hello world!\n");
 
-    for( auto pin : boardPins.allPins)
+    for (auto pin : boardPins.allPins)
     {
         pin->gpio_init();
     }
@@ -25,12 +25,15 @@ extern "C" void app_main(void)
     bool lastButtonState = boardPins.button.isDebouncePinOn();
     bool led_state = false;
 
-    while (1) {
+    while (1)
+    {
         bool currentButtonState = boardPins.button.isDebouncePinOn();
 
-        if (!lastButtonState && currentButtonState) {
+        if (!lastButtonState && currentButtonState)
+        {
             led_state = !led_state;
-            gpio_set_level((gpio_num_t)boardPins.led.getPin(), led_state);
+            // gpio_set_level((gpio_num_t)boardPins.led.getPin(), led_state);
+            boardPins.led.writePin(led_state);
         }
         lastButtonState = currentButtonState;
         vTaskDelay(pdMS_TO_TICKS(10)); // CPU entlasten
