@@ -13,7 +13,7 @@
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #endif
 
-//#include "hw_interface.hpp"
+// #include "hw_interface.hpp"
 #include "gpio_interface.hpp"
 #include "timer.hpp"
 // Removed stm32c0xx_hw.hpp - not needed in GPIO class
@@ -30,11 +30,11 @@ public:
 		Mode mode,
 		Pull pull,
 		Speed speed,
+		Alternate alternate,
 		bool inverted,
 		uint32_t debounceTime,
 		uint8_t debounceState,
-		ExtiTrigger extiTrigger
-	);
+		ExtiTrigger extiTrigger);
 	// 		- init
 	void gpio_init() override;
 	void port_clock_enable(Port port) const;
@@ -42,26 +42,29 @@ public:
 	bool readPin() const override;
 	void writePin(bool value) const override;
 	void togglePin() const override;
-//    virtual bool lockPin() const = 0;
+	//    virtual bool lockPin() const = 0;
 	//		- getter
 	uint16_t getPin() const override;
-//	virtual uint16_t getPinNumber() const;
-//	virtual Port getPort() const;
+	//	virtual uint16_t getPinNumber() const;
+	//	virtual Port getPort() const;
 	GPIO_TypeDef *get_GPIO_TypeDef_port() const;
 	Mode getMode() const override;
 	Pull getPull() const override;
 	Speed getSpeed() const override;
-//	virtual Pin_State getPinState() const;
+	Alternate getAlternate() const override;
+	//	virtual Pin_State getPinState() const;
 	//		- helper
 	bool isPinOn() const override;
 	bool isDebouncePinOn() override;
 	bool isPinInverted() const override;
+
 private:
 	uint16_t _pin;
 	Port _port;
 	Mode _mode;
 	Pull _pull;
 	Speed _speed;
+	Alternate _alternate;
 	bool _inverted;
 	uint32_t _debounceTime;
 	uint8_t _debounceState;

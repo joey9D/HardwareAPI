@@ -20,6 +20,7 @@ public:
     virtual Mode getMode() const = 0;
     virtual Pull getPull() const = 0;
     virtual Speed getSpeed() const = 0;
+    virtual Alternate getAlternate() const = 0;
 
     // Helper functions
     virtual bool isPinOn() const = 0;
@@ -27,7 +28,7 @@ public:
     virtual bool isPinInverted() const = 0;
 };
 
-// Platform-spezifische Type-Aliases
+// Platform-specific Type-Aliases
 #ifdef STM32_PLATFORM
 using IGpio = IGpioBase<uint16_t>;
 #elif defined(ESP_PLATFORM) || defined(ESP32_PLATFORM)

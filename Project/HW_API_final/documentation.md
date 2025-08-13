@@ -33,7 +33,7 @@ HW_API_final/
 │   │   ├── hw_enum_classes.hpp   # Gemeinsame Enumerationen
 │   │   ├── hw_enum_stm32.hpp     # STM32-spezifische Enumerationen
 │   │   ├── hw_enum_esp32.hpp     # ESP32-spezifische Enumerationen
-│   │   └── pin_config.hpp        # Pin-Konfigurationsstrukturen
+│   │   └── project_config.hpp        # Pin-Konfigurationsstrukturen
 │   ├── drivers/
 │   │   └── stm32_hal_wrapper/    # STM32 HAL Wrapper
 │   │       ├── common/           # Familie-übergreifende Komponenten

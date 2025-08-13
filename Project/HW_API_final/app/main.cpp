@@ -32,7 +32,7 @@ int main(void)
   // Initialize system (HAL, clocks, etc.)
   hw->init_sys();
 
-  // Initialize all pins defined in pin_config.hpp
+  // Initialize all pins defined in project_config.hpp
   hw->initAllPins();
 
   // Initialize debounce state

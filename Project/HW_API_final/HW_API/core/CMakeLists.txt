@@ -24,7 +24,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         hw_interface.hpp
         
         # make pin_config is included
-        pin_config.hpp
+        project_config.hpp
 
         timer.hpp
     )
@@ -47,7 +47,7 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
         hw_interface.hpp
         
         # make pin_config is included
-        pin_config.hpp
+        project_config.hpp
 
         timer.hpp
     )

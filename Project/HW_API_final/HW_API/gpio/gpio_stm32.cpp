@@ -86,6 +86,15 @@ namespace
 			return GPIO_SPEED_FREQ_LOW;
 		}
 	}
+
+	uint32_t alternateToHAL(Alternate alternate)
+	{
+		if (alternate == Alternate::None)
+		{
+			return 0; // Kein Alternate Function
+		}
+		return static_cast<uint32_t>(alternate);
+	}
 }
 
 Gpio::Gpio(
@@ -94,10 +103,11 @@ Gpio::Gpio(
 	Mode mode,
 	Pull pull,
 	Speed speed,
+	Alternate alternate,
 	bool inverted,
 	uint32_t debounceTime,
 	uint8_t debounceState,
-	ExtiTrigger extiTrigger) : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed), _inverted(inverted), _debounceTime(debounceTime), _debounceState(debounceState), _extiTrigger(extiTrigger)
+	ExtiTrigger extiTrigger) : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed), _alternate(alternate), _inverted(inverted), _debounceTime(debounceTime), _debounceState(debounceState), _extiTrigger(extiTrigger)
 {
 }
 
@@ -121,6 +131,13 @@ void Gpio::gpio_init()
 	GPIO_InitStruct.Mode = modeToHAL(_mode);
 	GPIO_InitStruct.Pull = pullToHAL(_pull);
 	GPIO_InitStruct.Speed = speedToHAL(_speed);
+
+	// Alternate Function
+	if (_alternate != Alternate::None &&
+		(_mode == Mode::Alternate_Push_Pull || _mode == Mode::Alternate_Open_Drain))
+	{
+		GPIO_InitStruct.Alternate = alternateToHAL(_alternate);
+	}
 
 	HAL_GPIO_Init(get_GPIO_TypeDef_port(), &GPIO_InitStruct);
 }

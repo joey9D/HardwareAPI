@@ -11,12 +11,12 @@
 #include "../../drivers/esp32_hal_wrapper/esp32_hal_inc.hpp"
 // #include "driver/gpio.h" // Already included in esp32_hal_inc.hpp
 // #include "esp_chip_info.h"  // Not needed anymore
-// #include "esp_flash.h"      // Not needed anymore  
+// #include "esp_flash.h"      // Not needed anymore
 // #include "spi_flash_mmap.h" // Not needed anymore
 // #include "esp_clk_tree.h"   // Not needed anymore
 
 // HW_API includes for pin configuration
-#include "../../../core/pin_config.hpp"
+#include "../../../core/project_config.hpp"
 
 // Logging tag for this module (currently unused)
 // static const char *TAG = "ESP32C6_HW";
@@ -54,11 +54,12 @@ void Esp32c6_hw::delay(uint32_t ms)
 {
     // Use simple esp_timer delay instead of FreeRTOS to avoid dependency issues
     // vTaskDelay(pdMS_TO_TICKS(ms));  // Commented out to avoid FreeRTOS dependency
-    
+
     // Use ESP-IDF's high-resolution timer for delay
-    int64_t start_time = esp_timer_get_time();  // Keep as int64_t to match function return type
-    int64_t delay_us = static_cast<int64_t>(ms * 1000);  // Convert ms to microseconds
-    while ((esp_timer_get_time() - start_time) < delay_us) {
+    int64_t start_time = esp_timer_get_time();          // Keep as int64_t to match function return type
+    int64_t delay_us = static_cast<int64_t>(ms * 1000); // Convert ms to microseconds
+    while ((esp_timer_get_time() - start_time) < delay_us)
+    {
         // Busy wait - not ideal but works without FreeRTOS
     }
 }
@@ -68,7 +69,7 @@ void Esp32c6_hw::delay(uint32_t ms)
 //================================================================================
 
 /**
- * @brief Initialize all Pins defined in BoardPins from pin_config.hpp
+ * @brief Initialize all Pins defined in BoardPins from project_config.hpp
  */
 void Esp32c6_hw::initAllPins()
 {

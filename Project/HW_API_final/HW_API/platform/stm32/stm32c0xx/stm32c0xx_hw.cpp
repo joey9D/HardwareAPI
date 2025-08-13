@@ -11,7 +11,7 @@
 #include "stm32x0_gpio_mapping.hpp"
 // #include "timer.hpp"
 #include "gpio_stm32.hpp"
-#include "pin_config.hpp"
+#include "project_config.hpp"
 
 // Error handler implementation for hardware abstraction layer
 extern "C" void Error_Handler(void)
@@ -79,7 +79,7 @@ void Stm32c0xx_hw::delay(uint32_t ms)
 }
 
 /**
- * @brief Initialize all Pins defined in BoardPins from pin_config.hpp
+ * @brief Initialize all Pins defined in BoardPins from project_config.hpp
  */
 void Stm32c0xx_hw::initAllPins()
 {

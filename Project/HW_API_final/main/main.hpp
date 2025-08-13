@@ -13,7 +13,7 @@
  */
 #include "hw_factory.hpp"
 // hw_interface.hpp is included via hw_factory.hpp - no need to include directly
-#include "pin_config.hpp"
+#include "project_config.hpp"
 
 // Platform-specific includes for ESP32
 #ifdef ESP32_PLATFORM
