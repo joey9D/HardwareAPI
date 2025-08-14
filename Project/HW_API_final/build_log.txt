@@ -176,18 +176,19 @@ Configuring build system...
 -- Target system: Generic
 -- Target processor: arm
 -- ================================================================================
--- Configuring done (124.1s)
--- Generating done (0.3s)
+-- Configuring done (123.7s)
+-- Generating done (0.4s)
 -- Build files have been written to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build
 Building project...
 [1/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal.c.obj
-[2/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_dma.c.obj
+[2/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_gpio.c.obj
 [3/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_cortex.c.obj
-[4/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_gpio.c.obj
-[5/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_flash.c.obj
-[6/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_pwr.c.obj
+[4/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_pwr.c.obj
+[5/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_dma.c.obj
+[6/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_flash.c.obj
 [7/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_pwr_ex.c.obj
-[8/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c.obj
+[8/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim.c.obj
+[9/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c.obj
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c: In function 'HAL_RCC_OscConfig':
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c:687:1: warning: embedding a directive within macro arguments is not portable
   687 | #if defined(RCC_PLLQ_SUPPORT)
@@ -195,10 +196,8 @@ C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_de
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c:689:1: warning: embedding a directive within macro arguments is not portable
   689 | #endif /* RCC_PLLQ_SUPPORT */
       | ^
-[9/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc_ex.c.obj
-[10/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim.c.obj
-[11/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim_ex.c.obj
-[12/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c.obj
+[10/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc_ex.c.obj
+[11/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c.obj
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c: In function 'SPI_2linesRxISR_8BIT':
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c:3469:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
  3469 |     hspi->RxXferCount -= 2U;
@@ -207,23 +206,61 @@ C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_de
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c:3554:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
  3554 |     hspi->TxXferCount -= 2U;
       |                          ^~
+[12/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim_ex.c.obj
 [13/30] Building ASM object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32g071xx.s.obj
 [14/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_uart.c.obj
 [15/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_uart_ex.c.obj
-[16/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32g0xx.c.obj
-[17/30] Building C object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/stm32_hal_wrapper/common/syscalls.c.obj
+[16/30] Building C object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/stm32_hal_wrapper/common/syscalls.c.obj
+[17/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32g0xx.c.obj
 [18/30] Building CXX object HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj
 [19/30] Building C object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32g0xx/stm32g0xx_hal_msp.c.obj
 [20/30] Building CXX object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32g0xx/stm32g0xx_hw.cpp.obj
 [21/30] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj
 [22/30] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj
-[23/30] Linking C static library HW_API\drivers\libstm32_hal_library.a
-[24/30] Building C object app/CMakeFiles/hw_api_app.dir/__/HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c.obj
+[23/30] Building C object app/CMakeFiles/hw_api_app.dir/__/HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c.obj
+[24/30] Linking C static library HW_API\drivers\libstm32_hal_library.a
 [25/30] Linking C static library HW_API\drivers\libhw_api_drivers.a
-[26/30] Linking CXX static library HW_API\spi\libhw_api_spi.a
-[27/30] Linking CXX static library HW_API\gpio\libhw_api_gpio.a
+[26/30] Linking CXX static library HW_API\gpio\libhw_api_gpio.a
+[27/30] Linking CXX static library HW_API\spi\libhw_api_spi.a
 [28/30] Linking CXX static library HW_API\platform\libhw_api_platform.a
 [29/30] Building CXX object app/CMakeFiles/hw_api_app.dir/main.cpp.obj
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp: In function 'int main()':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:106:11: warning: variable 'masterRx2' set but not used [-Wunused-but-set-variable]
+  106 |   uint8_t masterRx2 = 0;   // Master empfängt hier
+      |           ^~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:107:11: warning: variable 'slaveRx1' set but not used [-Wunused-but-set-variable]
+  107 |   uint8_t slaveRx1 = 0;    // Slave empfängt hier
+      |           ^~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:108:11: warning: unused variable 'dummy' [-Wunused-variable]
+  108 |   uint8_t dummy = 0x00;    // Dummy-Byte für einseitige Übertragungen
+      |           ^~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:111:8: warning: variable 'masterTx1Status' set but not used [-Wunused-but-set-variable]
+  111 |   bool masterTx1Status = false;
+      |        ^~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:112:8: warning: variable 'slaveRx1Status' set but not used [-Wunused-but-set-variable]
+  112 |   bool slaveRx1Status = false;
+      |        ^~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:113:8: warning: variable 'slaveTx2Status' set but not used [-Wunused-but-set-variable]
+  113 |   bool slaveTx2Status = false;
+      |        ^~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:114:8: warning: variable 'masterRx2Status' set but not used [-Wunused-but-set-variable]
+  114 |   bool masterRx2Status = false;
+      |        ^~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:121:11: warning: unused variable 'stringDummy' [-Wunused-variable]
+  121 |   uint8_t stringDummy[10] = {0};
+      |           ^~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:123:8: warning: variable 'masterStringTxStatus' set but not used [-Wunused-but-set-variable]
+  123 |   bool masterStringTxStatus = false;
+      |        ^~~~~~~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:124:8: warning: variable 'slaveStringRxStatus' set but not used [-Wunused-but-set-variable]
+  124 |   bool slaveStringRxStatus = false;
+      |        ^~~~~~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:125:8: warning: variable 'slaveStringTxStatus' set but not used [-Wunused-but-set-variable]
+  125 |   bool slaveStringTxStatus = false;
+      |        ^~~~~~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:126:8: warning: variable 'masterStringRxStatus' set but not used [-Wunused-but-set-variable]
+  126 |   bool masterStringRxStatus = false;
+      |        ^~~~~~~~~~~~~~~~~~~~
 [30/30] Linking CXX executable app\main
 C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): in function `_close_r':
 /build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0xc): warning: _close is not implemented and will always fail
@@ -251,5 +288,5 @@ C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.
 C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o): note: the message above does not take linker garbage collection into account
 C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: app\main has a LOAD segment with RWX permissions
 Memory region         Used Size  Region Size  %age Used
-             RAM:        3664 B        36 KB      9.94%
-           FLASH:       13220 B       128 KB     10.09%
+             RAM:        3976 B        36 KB     10.79%
+           FLASH:       27176 B       128 KB     20.73%

@@ -101,9 +101,10 @@ namespace HW_API
 
         enum class SpiDirection
         {
-            FullDuplex = SPI_DIRECTION_2LINES,
-            HalfDuplex = SPI_DIRECTION_2LINES_RXONLY,
-            Simplex = SPI_DIRECTION_1LINE,
+            FullDuplex = SPI_DIRECTION_2LINES,        // 2 Leitungen: MOSI + MISO gleichzeitig aktiv
+            RxOnly = SPI_DIRECTION_2LINES_RXONLY,     // 2 Leitungen: nur MISO aktiv (Receive Only)
+            HalfDuplex = SPI_DIRECTION_1LINE,         // 1 Leitung: bidirektional (Tx ODER Rx)
+            TxOnly = 0x1000,                          // Custom: Transmit Only (implementiert als Half-Duplex mit BIDIOE)
         };
 
         enum class SpiDataSize : uint32_t

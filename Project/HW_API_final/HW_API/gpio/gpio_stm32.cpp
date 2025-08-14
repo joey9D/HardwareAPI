@@ -107,7 +107,17 @@ Gpio::Gpio(
 	bool inverted,
 	uint32_t debounceTime,
 	uint8_t debounceState,
-	ExtiTrigger extiTrigger) : _pin(pin), _port(port), _mode(mode), _pull(pull), _speed(speed), _alternate(alternate), _inverted(inverted), _debounceTime(debounceTime), _debounceState(debounceState), _extiTrigger(extiTrigger)
+	ExtiTrigger extiTrigger)
+	: _pin(pin),
+	  _port(port),
+	  _mode(mode),
+	  _pull(pull),
+	  _speed(speed),
+	  _alternate(alternate),
+	  _inverted(inverted),
+	  _debounceTime(debounceTime),
+	  _debounceState(debounceState),
+	  _extiTrigger(extiTrigger)
 {
 }
 

@@ -24,8 +24,4 @@ public:
     virtual bool transmit_IT(const uint8_t *data, uint16_t length) = 0;
     virtual bool receive_IT(uint8_t *data, uint16_t length) = 0;
     virtual bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length) = 0;
-
-    // Optional: Platform-specific frame size configuration
-    virtual void setFrameSize(uint8_t bits) = 0;
-    virtual uint8_t getFrameSize() const = 0;
 };

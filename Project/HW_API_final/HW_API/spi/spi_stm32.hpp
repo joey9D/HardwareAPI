@@ -55,10 +55,6 @@ public:
     bool receive_IT(uint8_t *data, uint16_t length) override;
     bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
 
-    // Frame size configuration
-    void setFrameSize(uint8_t bits) override;
-    uint8_t getFrameSize() const override;
-
     SPI_HandleTypeDef *get_handle();
 
 private:

@@ -42,11 +42,13 @@ namespace
         switch (dir)
         {
         case SpiDirection::FullDuplex:
-            return SPI_DIRECTION_2LINES;
+            return SPI_DIRECTION_2LINES;        // Full-Duplex: MOSI + MISO gleichzeitig
         case SpiDirection::HalfDuplex:
-            return SPI_DIRECTION_2LINES_RXONLY;
-        case SpiDirection::Simplex:
-            return SPI_DIRECTION_1LINE;
+            return SPI_DIRECTION_1LINE;         // Half-Duplex: Eine Leitung für Tx/Rx
+        case SpiDirection::RxOnly:
+            return SPI_DIRECTION_2LINES_RXONLY; // Rx-Only: Nur MISO aktiv
+        case SpiDirection::TxOnly:
+            return SPI_DIRECTION_1LINE;         // Tx-Only: wie Half-Duplex, aber BIDIOE wird gesetzt
         default:
             return SPI_DIRECTION_2LINES;
         }
@@ -366,6 +368,14 @@ bool Spi::spi_init()
         assert(false && "HAL_SPI_Init failed!");
         return false;
     }
+
+    // Spezielle Behandlung für TxOnly-Modus
+    if (_spiDirection == SpiDirection::TxOnly)
+    {
+        // BIDIOE-Bit setzen für Transmit-Only im Half-Duplex Modus
+        SET_BIT(_hspi.Instance->CR1, SPI_CR1_BIDIOE);
+    }
+
     return true;
 }
 

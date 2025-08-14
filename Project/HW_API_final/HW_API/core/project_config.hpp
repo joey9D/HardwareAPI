@@ -44,13 +44,32 @@ struct BoardPins
 	/**
 	 * @brief STM32 GPIO Configuration
 	 */
-	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
-	// SPI-Pins
-	// Gpio spi1_sck{GPIOA, GPIO_PIN_5, Mode::Alternate_Push_Pull, Pull::None, Speed::High, Alternate::SPI1_SCK};
-	// Gpio spi1_miso{GPIOA, GPIO_PIN_6, Mode::Alternate_Push_Pull, Pull::None, Speed::High, Alternate::SPI1_MISO};
-	// Gpio spi1_mosi{GPIOA, GPIO_PIN_7, Mode::Alternate_Push_Pull, Pull::None, Speed::High, Alternate::SPI1_MOSI};
-	// Gpio spi1_cs{GPIOB, GPIO_PIN_6, Mode::Output_Push_Pull, Pull::Up, Speed::High};
+	// Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+	// Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
+
+	/**
+	 * @brief STM32 SPI Configuration
+	 *
+	 */
+	// SPI1 (Master) Pins konfigurieren - AF0 für SPI1 auf STM32G0
+	Gpio spi1_sck{5, Port::A, Mode::Alternate_Push_Pull,
+				  Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_mosi{7, Port::A, Mode::Alternate_Push_Pull,
+				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_miso{6, Port::A, Mode::Alternate_Push_Pull,
+				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_nss{4, Port::A, Mode::Output_Push_Pull,
+				  Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
+
+	// SPI2 (Slave) Pins konfigurieren - AF1 für SPI2 auf STM32G0
+	Gpio spi2_sck{14, Port::B, Mode::Alternate_Push_Pull,
+				  Pull::None, Speed::Very_High, Alternate::SPI_AF1, false, 0, 0, ExtiTrigger::None};
+	Gpio spi2_mosi{5, Port::B, Mode::Alternate_Push_Pull,
+				   Pull::None, Speed::Very_High, Alternate::SPI_AF1, false, 0, 0, ExtiTrigger::None};
+	Gpio spi2_miso{4, Port::B, Mode::Alternate_Push_Pull,
+				   Pull::None, Speed::Very_High, Alternate::SPI_AF1, false, 0, 0, ExtiTrigger::None};
+	Gpio spi2_nss{3, Port::B, Mode::Alternate_Push_Pull,
+				  Pull::Up, Speed::Very_High, Alternate::SPI_AF1, false, 0, 0, ExtiTrigger::None};
 
 	/**
 	 * @brief ESP32 GPIO Configuration
@@ -58,7 +77,8 @@ struct BoardPins
 	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled};
 	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
-	std::array<Gpio *, 2> allPins{&led, &button};
+	std::array<Gpio *, 8> allPins{&spi1_sck, &spi1_mosi, &spi1_miso, &spi1_nss,
+								  &spi2_sck, &spi2_mosi, &spi2_miso, &spi2_nss};
 };
 inline BoardPins boardPins;
 
