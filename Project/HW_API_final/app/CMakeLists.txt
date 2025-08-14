@@ -110,15 +110,17 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     target_link_libraries(${TARGET_NAME} PRIVATE
         hw_api_core
         hw_api_gpio
+        hw_api_spi
         hw_api_drivers
         hw_api_platform
     )
-    message(STATUS "Linked ${TARGET_NAME} with STM32 HW_API modules (including drivers)")
+    message(STATUS "Linked ${TARGET_NAME} with STM32 HW_API modules (including drivers and SPI)")
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
     # ESP32 doesn't need hw_api_drivers (uses ESP-IDF instead)
     target_link_libraries(${TARGET_NAME} PRIVATE
         hw_api_core
         hw_api_gpio
+        hw_api_spi
         hw_api_platform
     )
     message(STATUS "Linked ${TARGET_NAME} with ESP32 HW_API modules (no drivers needed)")

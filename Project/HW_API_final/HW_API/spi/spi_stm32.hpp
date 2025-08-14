@@ -5,6 +5,11 @@
 #endif
 
 #include "spi_interface.hpp"
+#include "spi_dma_stm32.hpp"
+#include "../gpio/gpio_stm32.hpp"
+
+// Forward declaration is now redundant since we include the header
+// class SpiDMA;
 
 class Spi : public ISpi
 {
@@ -31,27 +36,28 @@ public:
         SpiDMA *dma = nullptr);
 
     // - init
-    bool spi_init()
-    {
-        return (HAL_SPI_Init(&_hspi) == HAL_OK);
-    }
+    bool spi_init() override;
 
-    // Polling
-    bool transmit(const uint16_t *data, size_t length) override;
-    bool receive(uint16_t *data, size_t length) override;
-    bool transmitReceive(const uint16_t *txData, uint16_t *rxData, size_t length) override;
+    // Polling - byte-based interface
+    bool transmit(const uint8_t *data, uint16_t length) override;
+    bool receive(uint8_t *data, uint16_t length) override;
+    bool transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
 
-    // DMA
+    // DMA - byte-based interface
     void set_dma(SpiDMA *dma);
     SpiDMA *get_dma() const;
-    bool transmit_DMA(const uint16_t *data, size_t length) override;
-    bool receive_DMA(uint16_t *data, size_t length) override;
-    bool transmitReceive_DMA(const uint16_t *txData, uint16_t *rxData, size_t length) override;
+    bool transmit_DMA(const uint8_t *data, uint16_t length) override;
+    bool receive_DMA(uint8_t *data, uint16_t length) override;
+    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
 
-    // Interrupt
-    bool transmit_IT(const uint16_t *data, size_t length) override;
-    bool receive_IT(uint16_t *data, size_t length) override;
-    bool transmitReceive_IT(const uint16_t *txData, uint16_t *rxData, size_t length) override;
+    // Interrupt - byte-based interface
+    bool transmit_IT(const uint8_t *data, uint16_t length) override;
+    bool receive_IT(uint8_t *data, uint16_t length) override;
+    bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
+
+    // Frame size configuration
+    void setFrameSize(uint8_t bits) override;
+    uint8_t getFrameSize() const override;
 
     SPI_HandleTypeDef *get_handle();
 
@@ -60,6 +66,8 @@ private:
     Gpio &_miso;
     Gpio &_mosi;
     Gpio &_cs;
+
+    SPI_TypeDef *_instance;
 
     SpiMode _spiMode;
     SpiDirection _spiDirection;

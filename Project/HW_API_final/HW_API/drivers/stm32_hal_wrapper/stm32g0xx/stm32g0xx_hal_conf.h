@@ -57,7 +57,7 @@ extern "C"
 /* #define HAL_RTC_MODULE_ENABLED   */
 /* #define HAL_SMARTCARD_MODULE_ENABLED   */
 /* #define HAL_SMBUS_MODULE_ENABLED   */
-/* #define HAL_SPI_MODULE_ENABLED   */
+#define HAL_SPI_MODULE_ENABLED /* SPI needed for HW_API project */
 /* #define HAL_TIM_MODULE_ENABLED   */
 /* #define HAL_UART_MODULE_ENABLED   */
 /* #define HAL_USART_MODULE_ENABLED   */
@@ -125,9 +125,9 @@ extern "C"
 #endif /* LSI_VALUE */      /*!< Value of the Internal Low Speed oscillator in Hz   \
                                 The real value may vary depending on the variations \
                                 in voltage and temperature. */
-#if !defined(LSI_STARTUP_TIME)
-#define LSI_STARTUP_TIME 85UL /*!< Time out for LSI start up, in ms */
-#endif                        /* LSI_STARTUP_TIME */
+// #if !defined(LSI_STARTUP_TIME)
+// #define LSI_STARTUP_TIME 85UL /*!< Time out for LSI start up, in ms */
+// #endif                        /* LSI_STARTUP_TIME */
 
 /**
  * @brief External Low Speed oscillator (LSE) value.

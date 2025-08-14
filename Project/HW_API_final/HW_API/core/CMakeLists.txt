@@ -22,6 +22,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         hw_enum_stm32.hpp
         hw_factory.hpp
         hw_interface.hpp
+        hw_mapping_stm32.hpp
         
         # make pin_config is included
         project_config.hpp

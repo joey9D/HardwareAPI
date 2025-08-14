@@ -315,3 +315,5 @@ void Gpio::port_clock_enable(Port port) const
 [[nodiscard]] Pull Gpio::getPull() const { return _pull; }
 
 [[nodiscard]] Speed Gpio::getSpeed() const { return _speed; }
+
+[[nodiscard]] Alternate Gpio::getAlternate() const { return _alternate; }

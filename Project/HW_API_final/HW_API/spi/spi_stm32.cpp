@@ -12,6 +12,7 @@
 #include "spi_stm32.hpp"
 
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+#include <cassert>
 
 #include "hw_factory.hpp"
 #include "hw_enum_classes.hpp"
@@ -129,6 +130,8 @@ namespace
 
     uint32_t spiNSSPModeToHAL(SpiNSSPMode nssp)
     {
+        // STM32G0 doesn't support NSSP mode, return safe default
+#ifdef SPI_NSSP_MODE_SOFTWARE
         switch (nssp)
         {
         case SpiNSSPMode::Software:
@@ -138,6 +141,10 @@ namespace
         default:
             return SPI_NSSP_MODE_SOFTWARE;
         }
+#else
+        // STM32G0 fallback - return 0 as it's not supported
+        return 0;
+#endif
     }
 
     uint32_t spiBaudRatePrescalerToHAL(SpiBaudRatePrescaler prescaler)
@@ -206,6 +213,8 @@ namespace
 
     uint32_t spiCRCPolynomialToHAL(SpiCRCPolynomial poly)
     {
+        // STM32G0 doesn't support these specific CRC polynomial constants
+#ifdef SPI_CRC_POLYNOMIAL_7
         switch (poly)
         {
         case SpiCRCPolynomial::Polynomial7:
@@ -217,6 +226,20 @@ namespace
         default:
             return SPI_CRC_POLYNOMIAL_7;
         }
+#else
+        // STM32G0 fallback - use standard polynomial values
+        switch (poly)
+        {
+        case SpiCRCPolynomial::Polynomial7:
+            return 7; // Direct polynomial value
+        case SpiCRCPolynomial::Polynomial8:
+            return 8;
+        case SpiCRCPolynomial::Polynomial16:
+            return 16;
+        default:
+            return 7;
+        }
+#endif
     }
 
     uint32_t spiCRCLengthToHAL(SpiCRCLength len)
@@ -254,7 +277,8 @@ Spi::Spi(
     SpiCRCCalculation crcCalculation,
     SpiCRCPolynomial crcPolynomial,
     SpiCRCLength crcLength,
-    SpiNSSPMode nsspMode)
+    SpiNSSPMode nsspMode,
+    SpiDMA *dma)
     : _sck(sck), _miso(miso), _mosi(mosi), _cs(cs),
       _instance(instance),
       _spiMode(mode), _spiDirection(direction), _spiDataSize(dataSize),
@@ -262,35 +286,51 @@ Spi::Spi(
       _spiBaudRatePrescaler(baudRatePrescaler), _spiFirstBit(firstBit),
       _spiTIMode(tiMode), _spiCRCCalculation(crcCalculation),
       _spiCRCPolynomial(crcPolynomial), _spiCRCLength(crcLength),
-      _spiNSSPMode(nsspMode)
+      _spiNSSPMode(nsspMode), _dma(dma)
 {
     // Nur Member initialisieren, KEINE Hardware-Initialisierung!
 }
 
 bool Spi::spi_init()
 {
-    switch (_instance) // Ignoriere den Fall, dass _instance nicht gesetzt ist
+    // Enable SPI clock based on instance
+    if (_instance == SPI1)
     {
-    case SPI1:
         __HAL_RCC_SPI1_CLK_ENABLE();
-        break;
-    case SPI2:
+    }
+    else if (_instance == SPI2)
+    {
         __HAL_RCC_SPI2_CLK_ENABLE();
-        break;
-    case SPI3:
+    }
+    // STM32G0 supports only SPI1 and SPI2
+#ifdef SPI3
+    else if (_instance == SPI3)
+    {
         __HAL_RCC_SPI3_CLK_ENABLE();
-        break;
-    case SPI4:
+    }
+#endif
+#ifdef SPI4
+    else if (_instance == SPI4)
+    {
         __HAL_RCC_SPI4_CLK_ENABLE();
-        break;
-    case SPI5:
+    }
+#endif
+#ifdef SPI5
+    else if (_instance == SPI5)
+    {
         __HAL_RCC_SPI5_CLK_ENABLE();
-        break;
-    case SPI6:
+    }
+#endif
+#ifdef SPI6
+    else if (_instance == SPI6)
+    {
         __HAL_RCC_SPI6_CLK_ENABLE();
-        break;
-    default:
-        break;
+    }
+#endif
+    else
+    {
+        // Unsupported SPI instance
+        return false;
     }
 
     // GPIO initialisieren
@@ -330,26 +370,26 @@ bool Spi::spi_init()
 }
 
 // Polling
-bool Spi::transmit(const uint8_t *data, size_t length)
+bool Spi::transmit(const uint8_t *data, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_Transmit(&_hspi, (uint8_t *)data, length, HAL_MAX_DELAY);
     return (status == HAL_OK);
 }
 
-bool Spi::receive(const uint8_t *data, size_t length)
+bool Spi::receive(uint8_t *data, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_Receive(&_hspi, (uint8_t *)data, length, HAL_MAX_DELAY);
     return (status == HAL_OK);
 }
 
-bool Spi::transmitReceive(const uint8_t *txData, uint8_t *rxData, size_t length)
+bool Spi::transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(&_hspi, (uint8_t *)txData, rxData, length, HAL_MAX_DELAY);
     return (status == HAL_OK);
 }
 
 // DMA
-bool Spi::transmit_DMA(const uint8_t *data, size_t length)
+bool Spi::transmit_DMA(const uint8_t *data, uint16_t length)
 {
     // Prüfen ob DMA verfügbar
     if (_dma == nullptr || !_dma->isTxReady())
@@ -362,18 +402,20 @@ bool Spi::transmit_DMA(const uint8_t *data, size_t length)
     return (status == HAL_OK);
 }
 
-bool Spi::receive_DMA(uint8_t *data, size_t length)
+bool Spi::receive_DMA(uint8_t *data, uint16_t length)
 {
+    // Prüfen ob DMA verfügbar
     if (_dma == nullptr || !_dma->isRxReady())
     {
         return false;
     }
 
+    // DMA-Transfer starten
     HAL_StatusTypeDef status = HAL_SPI_Receive_DMA(&_hspi, data, length);
     return (status == HAL_OK);
 }
 
-bool Spi::transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, size_t length)
+bool Spi::transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length)
 {
     if (_dma == nullptr || !_dma->areBothReady())
     {
@@ -385,19 +427,19 @@ bool Spi::transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, size_t len
 }
 
 // Interrupt
-bool Spi::transmit_IT(const uint8_t *data, size_t length)
+bool Spi::transmit_IT(const uint8_t *data, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_Transmit_IT(&_hspi, (uint8_t *)data, length);
     return (status == HAL_OK);
 }
 
-bool Spi::receive_IT(uint8_t *data, size_t length)
+bool Spi::receive_IT(uint8_t *data, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_Receive_IT(&_hspi, data, length);
     return (status == HAL_OK);
 }
 
-bool Spi::transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, size_t length)
+bool Spi::transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length)
 {
     HAL_StatusTypeDef status = HAL_SPI_TransmitReceive_IT(&_hspi, (uint8_t *)txData, rxData, length);
     return (status == HAL_OK);

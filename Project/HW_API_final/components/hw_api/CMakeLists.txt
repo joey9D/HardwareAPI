@@ -9,6 +9,9 @@ set(HW_API_SRCS
     # GPIO files  
     "../../HW_API/gpio/gpio_esp32.cpp"
     
+    # SPI files
+    "../../HW_API/spi/spi_esp32.cpp"
+    
     # Platform files
     "../../HW_API/platform/esp32/esp32c6_devkitc/esp32c6_devkitc1_hw.cpp"
 )
@@ -17,6 +20,7 @@ set(HW_API_SRCS
 set(HW_API_INCLUDES
     "../../HW_API/core"
     "../../HW_API/gpio" 
+    "../../HW_API/spi"
     "../../HW_API/platform"
     "../../HW_API/platform/esp32"
     "../../HW_API/platform/esp32/esp32c6_devkitc"

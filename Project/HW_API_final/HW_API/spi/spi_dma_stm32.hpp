@@ -1,18 +1,19 @@
 #pragma once
 
+#include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #include "spi_dma_interface.hpp"
 
 #ifdef STM32_PLATFORM
 
-class SpiDMA : public ISpiDMA // <-- Ohne _STM32!
+class SpiDMA : public ISpiDMA
 {
 public:
     // Konstruktor mit konfigurierbaren DMA-Parametern
     SpiDMA(SPI_HandleTypeDef &hspi, SPI_TypeDef *spiInstance,
-           uint32_t txPriority = DMA_PRIORITY_LOW,
-           uint32_t rxPriority = DMA_PRIORITY_HIGH,
-           uint32_t dmaMode = DMA_NORMAL,
-           uint32_t dataAlignment = DMA_PDATAALIGN_BYTE);
+           uint32_t txPriority,
+           uint32_t rxPriority,
+           uint32_t dmaMode,
+           uint32_t dataAlignment);
 
     // Interface-Implementierung
     bool init_dma_TX() override;
@@ -38,14 +39,16 @@ private:
     SPI_TypeDef *_spiInstance;
     DMA_HandleTypeDef _hdma_spi_tx;
     DMA_HandleTypeDef _hdma_spi_rx;
-    bool _txInitialized;
-    bool _rxInitialized;
 
     // Konfigurierbare Member
     uint32_t _txPriority;
     uint32_t _rxPriority;
     uint32_t _dmaMode;
     uint32_t _dataAlignment;
+
+    // Boolean Member am Ende
+    bool _txInitialized;
+    bool _rxInitialized;
 
     // Private Hilfsmethoden
     bool getDMAChannels(DMA_Channel_TypeDef **txChannel,

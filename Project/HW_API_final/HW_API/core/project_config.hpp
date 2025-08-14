@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <array>
+
 #include "../gpio/gpio_interface.hpp"
 #include "../spi/spi_interface.hpp"
 #include "../spi/spi_dma_interface.hpp"
@@ -26,6 +28,7 @@
 	Mode mode;
 	Pull pull;
 	Speed speed;
+	Alternate alternate;
 	bool invertedPin;
 	uint32_t debounceTime;
 	uint8_t debounceState;
@@ -41,8 +44,8 @@ struct BoardPins
 	/**
 	 * @brief STM32 GPIO Configuration
 	 */
-	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, false, 0, 0, ExtiTrigger::None};
-	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, ExtiTrigger::None};
+	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
 	// SPI-Pins
 	// Gpio spi1_sck{GPIOA, GPIO_PIN_5, Mode::Alternate_Push_Pull, Pull::None, Speed::High, Alternate::SPI1_SCK};
 	// Gpio spi1_miso{GPIOA, GPIO_PIN_6, Mode::Alternate_Push_Pull, Pull::None, Speed::High, Alternate::SPI1_MISO};

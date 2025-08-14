@@ -9,7 +9,7 @@ BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= STM32
 TOOLCHAIN_FILE ?= toolchains/stm32-toolchain.cmake
 MCU_FAMILY ?= stm32g0xx
-MCU_SPECIFIC ?= STM32G0B1RE
+MCU_SPECIFIC ?= STM32G071RB
 DEBUG_PROBE ?= st-link
 
 #===============================================================================

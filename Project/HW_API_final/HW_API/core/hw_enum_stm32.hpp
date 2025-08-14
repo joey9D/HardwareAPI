@@ -60,20 +60,25 @@ namespace HW_API
         enum class Alternate : uint8_t
         {
             None = 0xFF,
-            // SPI
-            SPI_AF0 = GPIO_AF0_SPI1,   // oder GPIO_AF0_SPI2 je nach Pin
-            SPI_AF1 = GPIO_AF1_SPI1,   // oder GPIO_AF1_SPI2 je nach Pin
-            SPI_AF4 = GPIO_AF4_SPI2,   // oder GPIO_AF4_SPI3 je nach Pin
-            SPI_AF5 = GPIO_AF5_SPI1,   // oder GPIO_AF5_SPI2 je nach Pin
-            SPI_AF8 = GPIO_AF8_SPI1,   // nur falls vorhanden
-            SPI_AF9 = GPIO_AF9_SPI3,   // nur falls vorhanden
-            SPI_AF10 = GPIO_AF10_SPI1, // nur falls vorhanden
-            SPI_AF12 = GPIO_AF12_SPI2, // nur falls vorhanden
-            // CAN/FDCAN
-            CAN_AF3 = GPIO_AF3_FDCAN1,  // oder GPIO_AF3_FDCAN2 je nach Pin
-            CAN_AF4 = GPIO_AF4_FDCAN1,  // nur falls vorhanden
-            CAN_AF8 = GPIO_AF8_FDCAN1,  // nur falls vorhanden
-            CAN_AF15 = GPIO_AF15_FDCAN1 // nur falls vorhanden
+            // SPI - Only available alternate functions in STM32G0xx
+            SPI_AF0 = GPIO_AF0_SPI1, // SPI1 on AF0
+            SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+#ifdef GPIO_AF4_SPI2
+            SPI_AF4 = GPIO_AF4_SPI2, // nur falls vorhanden
+#endif
+#ifdef GPIO_AF5_SPI1
+            SPI_AF5 = GPIO_AF5_SPI1, // nur falls vorhanden
+#endif
+        // Higher AF numbers for SPI don't exist in STM32G0xx
+        // CAN/FDCAN - Not available in STM32G0xx, use UCPD instead
+#ifdef GPIO_AF3_FDCAN1
+            CAN_AF3 = GPIO_AF3_FDCAN1, // nur falls vorhanden
+#endif
+            // UCPD (USB-C Power Delivery) available in STM32G0xx
+            UCPD_AF0 = GPIO_AF0_UCPD1,
+            UCPD_AF1 = GPIO_AF1_UCPD1,
+            UCPD_AF3 = GPIO_AF3_UCPD1,
+            UCPD_AF4 = GPIO_AF4_UCPD1
         };
 
         enum class ExtiTrigger : uint32_t
@@ -137,10 +142,17 @@ namespace HW_API
             Hard_Out = SPI_NSS_HARD_OUTPUT,
         };
 
+        // SPI NSSP Mode - Not available in STM32G0xx, so we provide fallback
         enum class SpiNSSPMode
         {
+#ifdef SPI_NSSP_MODE_SOFTWARE
             Software = SPI_NSSP_MODE_SOFTWARE,
             Hardware = SPI_NSSP_MODE_HARDWARE,
+#else
+            // Fallback for STM32G0xx which doesn't have NSSP mode
+            Software = 0,
+            Hardware = 1,
+#endif
         };
 
         enum class SpiBaudRatePrescaler
@@ -175,16 +187,31 @@ namespace HW_API
 
         enum class SpiCRCPolynomial
         {
+#ifdef SPI_CRC_POLYNOMIAL_7
             Polynomial7 = SPI_CRC_POLYNOMIAL_7,
             Polynomial8 = SPI_CRC_POLYNOMIAL_8,
             Polynomial16 = SPI_CRC_POLYNOMIAL_16,
+#else
+            // Fallback values for STM32G0xx which doesn't support configurable CRC polynomials
+            Polynomial7 = 7,
+            Polynomial8 = 8,
+            Polynomial16 = 16,
+#endif
         };
 
+        // CRC Length - Not available in STM32G0xx, provide fallback values
         enum class SpiCRCLength
         {
+#ifdef SPI_CRC_LENGTH_DATASIZE
             Length_Data = SPI_CRC_LENGTH_DATASIZE,
             Length8 = SPI_CRC_LENGTH_8BIT,
             Length16 = SPI_CRC_LENGTH_16BIT,
+#else
+            // Fallback values for STM32G0xx
+            Length_Data = 0,
+            Length8 = 8,
+            Length16 = 16,
+#endif
         };
 
     } // namespace STM32

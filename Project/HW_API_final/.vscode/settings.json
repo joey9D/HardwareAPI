@@ -3,7 +3,10 @@
         "compare": "cpp",
         "cstdint": "cpp",
         "format": "cpp",
-        "stm32c0xx_hal.h": "c"
+        "stm32c0xx_hal.h": "c",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "regex": "cpp"
     },
     
 //     // Debug-spezifische Einstellungen für STM32 Debugging

@@ -1,25 +1,24 @@
 #ifdef STM32_PLATFORM
 
-#include "spi_dma_stm32.hpp"
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+#include "spi_dma_stm32.hpp"
 #include <cassert>
 
 // Konstruktor
-SpiDMA(SPI_HandleTypeDef &hspi,
-       SPI_TypeDef *spiInstance,
-       uint32_t dataAlignment = DMA_PDATAALIGN_BYTE,
-       uint32_t txPriority = DMA_PRIORITY_LOW,
-       uint32_t rxPriority = DMA_PRIORITY_HIGH,
-       uint32_t dmaMode = DMA_NORMAL)
+SpiDMA::SpiDMA(SPI_HandleTypeDef &hspi,
+               SPI_TypeDef *spiInstance,
+               uint32_t txPriority,
+               uint32_t rxPriority,
+               uint32_t dmaMode,
+               uint32_t dataAlignment)
     : _hspi(hspi), _spiInstance(spiInstance),
-      _dataAlignment(dataAlignment),
       _txPriority(txPriority), _rxPriority(rxPriority),
-      _dmaMode(dmaMode),
+      _dmaMode(dmaMode), _dataAlignment(dataAlignment),
       _txInitialized(false), _rxInitialized(false)
 {
 }
 
-bool SpiDMA::initDMA_TX()
+bool SpiDMA::init_dma_TX()
 {
     if (_txInitialized)
     {
@@ -54,7 +53,7 @@ bool SpiDMA::initDMA_TX()
 }
 
 // DMA RX Initialisierung
-bool SpiDMA::initDMA_RX()
+bool SpiDMA::init_dma_RX()
 {
     if (_rxInitialized)
     {
@@ -89,14 +88,14 @@ bool SpiDMA::initDMA_RX()
 }
 
 // Beide DMA initialisieren
-bool SpiDMA::initDMA()
+bool SpiDMA::init_dma()
 {
     enableDMAResources();
-    return initDMA_TX() && initDMA_RX();
+    return init_dma_TX() && init_dma_RX();
 }
 
 // DMA TX De-Initialisierung
-bool SpiDMA::deInitDMA_TX()
+bool SpiDMA::deInit_dma_TX()
 {
     if (!_txInitialized)
     {
@@ -113,7 +112,7 @@ bool SpiDMA::deInitDMA_TX()
 }
 
 // DMA RX De-Initialisierung
-bool SpiDMA::deInitDMA_RX()
+bool SpiDMA::deInit_dma_RX()
 {
     if (!_rxInitialized)
     {
@@ -130,10 +129,10 @@ bool SpiDMA::deInitDMA_RX()
 }
 
 // Beide DMA de-initialisieren
-bool SpiDMA::deInitDMA()
+bool SpiDMA::deInit_dma()
 {
-    bool txOk = deInitDMA_TX();
-    bool rxOk = deInitDMA_RX();
+    bool txOk = deInit_dma_TX();
+    bool rxOk = deInit_dma_RX();
     return txOk && rxOk;
 }
 
@@ -229,13 +228,13 @@ void SpiDMA::configureRxDMA(DMA_Channel_TypeDef *channel, uint32_t request)
 {
     _hdma_spi_rx.Instance = channel;
     _hdma_spi_rx.Init.Request = request;
-    _hdma_spi_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    _hdma_spi_rx.Init.PeriphInc = DMA_PINC_DISABLE;
-    _hdma_spi_rx.Init.MemInc = DMA_MINC_ENABLE;
-    _hdma_spi_rx.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-    _hdma_spi_rx.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
-    _hdma_spi_rx.Init.Mode = DMA_NORMAL;
-    _hdma_spi_rx.Init.Priority = DMA_PRIORITY_HIGH; // RX hat höhere Priorität
+    _hdma_spi_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;     // Kann hardcodiert bleiben
+    _hdma_spi_rx.Init.PeriphInc = DMA_PINC_DISABLE;         // Kann hardcodiert bleiben
+    _hdma_spi_rx.Init.MemInc = DMA_MINC_ENABLE;             // Kann hardcodiert bleiben
+    _hdma_spi_rx.Init.PeriphDataAlignment = _dataAlignment; // Sollte konfigurierbar sein
+    _hdma_spi_rx.Init.MemDataAlignment = _dataAlignment;    // Sollte konfigurierbar sein
+    _hdma_spi_rx.Init.Mode = _dmaMode;                      // Sollte konfigurierbar sein
+    _hdma_spi_rx.Init.Priority = _rxPriority;               // Sollte konfigurierbar sein
 }
 
 #endif // STM32_PLATFORM
