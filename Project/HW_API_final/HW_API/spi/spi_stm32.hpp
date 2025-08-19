@@ -61,6 +61,9 @@ public:
     bool transmit_IT(const uint8_t *data, uint16_t length, uint32_t timeout) override;
     bool receive_IT(uint8_t *data, uint16_t length, uint32_t timeout) override;
     bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
+    
+    // Konfigurieren der SPI-Interrupts
+    bool enableInterrupts(uint32_t priority = 1) override;
 
     SPI_HandleTypeDef *get_handle();
 

@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file           : main.cpp
- * @brief          : Einfacher MISO-Test für Oszilloskop-Beobachtung
+ * @brief          : SPI-Master und Slave-Beispiel zum Senden und Empfangen
  ******************************************************************************
  * @attention
  *
@@ -15,29 +15,96 @@
  ******************************************************************************
  */
 
-/* Includes ------------------------------------------------------------------*/
+/*
+ * WICHTIGER HINWEIS:
+ *
+ * Für den Wechsel zwischen MASTER- und SLAVE-Konfiguration müssen Sie
+ * das Symbol MASTER_CONFIG aktivieren oder deaktivieren, indem Sie die
+ * entsprechende Zeile auskommentieren oder aktivieren.
+ *
+ * MASTER-Konfiguration: MASTER_CONFIG ist definiert
+ * SLAVE-Konfiguration: MASTER_CONFIG ist nicht definiert
+ */
+
+// ========== KONFIGURATION ==========
+// Kommentieren Sie eine der beiden Zeilen aus, je nachdem ob Sie
+// Master oder Slave konfigurieren möchten:
+
+#define MASTER_CONFIG // <-- Aktivieren für MASTER, auskommentieren für SLAVE
+// #undef MASTER_CONFIG // <-- Aktivieren für SLAVE, auskommentieren für MASTER
+// ==================================
+
 #include "main.hpp"
-#include <cstring>
+#include "project_config.hpp"
+#include "hw_factory.hpp"
+#include "hw_interface.hpp"
+#include <string.h>
 
-/**
- * @brief Test-Konfiguration
- */
-#define BUFFER_SIZE 16 // Größe der Sende-/Empfangspuffer
+// Gemeinsame Definitionen für Master und Slave
+#define BUFFER_SIZE 16
+#define TRANSFER_WAIT 0
+#define TRANSFER_COMPLETE 1
+#define TRANSFER_ERROR 2
 
-// Betriebsmodus
-// #define SPI_MODE_MASTER // SPI im Master-Modus
-#define SPI_MODE_SLAVE // SPI im Slave-Modus
+void master_code()
+{
+  // Hardware-Interface für systemweite Initialisierung holen
+  HardwareInterface *hwInterface = HardwareFactory::create();
 
-/**
- * @brief Testmuster für SPI-Übertragung
- * Einfaches 'O' (ASCII 0x4F) als MISO-Nachricht
- */
-const uint8_t TEST_PATTERN[] = {
-    'O', 'O', 'O', 'O', // Einfach nur 'O' als Testmuster
-    'O', 'O', 'O', 'O', // Wiederholt für Zuverlässigkeit
-    'O', 'O', 'O', 'O', // und leichtere Erkennung auf dem Oszilloskop
-    'O', 'O', 'O', 'O'  // Das ASCII 'O' hat den Wert 0x4F
-};
+  // System und Takt initialisieren
+  hwInterface->init_sys();
+  hwInterface->initAllPins();
+
+  // SPI initialisieren
+  peripherals.spi1.spi_init();
+
+  // Puffer für Senden/Empfangen
+  uint8_t txBuffer[BUFFER_SIZE] = {0};
+  uint8_t rxBuffer[BUFFER_SIZE] = {0};
+
+  // Hauptschleife - Kontinuierlich senden und empfangen
+  while (true)
+  {
+    // Sendedaten vorbereiten (immer 'A' senden)
+    txBuffer[0] = peripherals.txData; // 'A' im Master-Modus
+
+    // SPI Transfer durchführen
+    bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+
+    // Kurze Pause zwischen den Transfers
+    hwInterface->delay(100);
+  }
+}
+
+void slave_code()
+{
+  // Hardware-Interface für systemweite Initialisierung holen
+  HardwareInterface *hwInterface = HardwareFactory::create();
+
+  // System und Takt initialisieren
+  hwInterface->init_sys();
+  hwInterface->initAllPins();
+
+  // SPI initialisieren
+  peripherals.spi1.spi_init();
+
+  // Puffer für Senden/Empfangen
+  uint8_t txBuffer[BUFFER_SIZE] = {0};
+  uint8_t rxBuffer[BUFFER_SIZE] = {0};
+
+  // Hauptschleife - Kontinuierlich senden und empfangen
+  while (true)
+  {
+    // Sendedaten vorbereiten (immer 'O' senden)
+    txBuffer[0] = peripherals.txData; // 'O' im Slave-Modus
+
+    // SPI Transfer durchführen (Slave wartet auf Master)
+    bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+
+    // Kurze Pause zwischen den Transfers
+    hwInterface->delay(100);
+  }
+}
 
 /**
  * @brief  The application entry point.
@@ -45,72 +112,9 @@ const uint8_t TEST_PATTERN[] = {
  */
 int main(void)
 {
-  // Definiere Puffer für SPI-Übertragung
-  uint8_t txBuffer[BUFFER_SIZE] = {0};
-  uint8_t rxBuffer[BUFFER_SIZE] = {0};
-
-  // Kopiere Testmuster in den Sendepuffer
-  memcpy(txBuffer, TEST_PATTERN, sizeof(TEST_PATTERN));
-
-  /* === System-Initialisierung === */
-
-  // Hardware-Interface erstellen
-  HardwareInterface *hw = HardwareFactory::create();
-
-  // System initialisieren
-  hw->init_sys();
-
-  // Pins initialisieren
-  hw->initAllPins();
-
-  /* === SPI-Konfiguration === */
-
-#ifdef SPI_MODE_MASTER
-  // Konfiguriere NSS-Pin als Output für Master-Modus
-  boardPins.spi1_nss.setPinMode(Mode::Output_Push_Pull);
-  boardPins.spi1_nss.setPinAlternate(Alternate::None);
-  boardPins.spi1_nss.gpio_init();
-  boardPins.spi1_nss.writePin(true); // Default: CS auf High (deaktiviert)
-#endif
-
-  // SPI initialisieren
-  peripherals.spi1.spi_init();
-
-  // DMA für SPI1 konfigurieren
-  static SpiDMA spi1_dma(
-      *peripherals.spi1.get_handle(),
-      peripherals.spi1.get_handle()->Instance,
-      DMA_PRIORITY_HIGH,
-      DMA_PRIORITY_HIGH,
-      DMA_NORMAL,
-      DMA_PDATAALIGN_BYTE);
-
-  // DMA mit SPI verknüpfen und initialisieren
-  peripherals.spi1_dma = &spi1_dma;
-  peripherals.spi1.set_dma(peripherals.spi1_dma);
-  peripherals.spi1_dma->init_dma();
-
-  // SPI mit aktivierter DMA initialisieren
-  peripherals.spi1.spi_init();
-
-  /* === Hauptschleife für kontinuierlichen MISO-Test === */
-  while (1)
-  {
-#ifdef SPI_MODE_MASTER
-    // Starte SPI-Transaktion im Master-Modus
-    boardPins.spi1_nss.writePin(false); // CS aktivieren (Low)
-    hw->delay(1);
-
-    // Sende Testmuster und empfange gleichzeitig MISO-Daten
-    peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
-
-    boardPins.spi1_nss.writePin(true); // CS deaktivieren (High)
+#ifdef MASTER_CONFIG
+  master_code();
 #else
-    // Slave-Modus: Bereite Antwortdaten vor und warte auf Master
-    peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 5000);
+  slave_code();
 #endif
-
-    // Kurze Pause vor der nächsten Übertragung
-    hw->delay(200);
-  }
 }

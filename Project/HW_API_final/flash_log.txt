@@ -6,7 +6,7 @@ cmake --build build --target flash
 ST-LINK SN  : 066DFF34384B513043011031
 ST-LINK FW  : V2J46M31
 Board       : NUCLEO-C031C6
-Voltage     : 3.22V
+Voltage     : 3.23V
 SWD freq    : 4000 KHz
 Connect mode: Normal
 Reset mode  : Software reset
@@ -23,17 +23,18 @@ Opening and parsing file: HW_API_Project.bin
 
 Memory Programming ...
   File          : HW_API_Project.bin
-  Size          : 31.10 KB 
+  Size          : 27.84 KB 
   Address       : 0x08000000 
 
 
 
 Erasing memory corresponding to sector 0:
+Erasing internal memory sectors [0 13]
 Download in Progress:
-±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± 0%€€€€€€€€€€€€€ 27%€€€€€€€€€€€€€€ 54%€€€€€€€€€€€€€ 81%€€€€€€€€€€ 100%
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± 0%€€€€€€€€€€€€€€€ 30%€€€€€€€€€€€€€€€ 61%€€€€€€€€€€€€€€€ 91%€€€€€ 100%
 
 File download complete
-Time elapsed during download operation: 00:00:00.674
+Time elapsed during download operation: 00:00:00.880
 
 
 

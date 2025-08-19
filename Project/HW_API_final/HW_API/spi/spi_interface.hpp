@@ -32,4 +32,7 @@ public:
     virtual bool transmit_IT(const uint8_t *data, uint16_t length, uint32_t timeout) = 0;
     virtual bool receive_IT(uint8_t *data, uint16_t length, uint32_t timeout) = 0;
     virtual bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) = 0;
+    
+    // Interrupt configuration
+    virtual bool enableInterrupts(uint32_t priority = 1) = 0;
 };

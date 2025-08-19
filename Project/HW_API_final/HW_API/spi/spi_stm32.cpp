@@ -47,8 +47,6 @@ namespace
             return SPI_DIRECTION_1LINE; // Half-Duplex: Eine Leitung für Tx/Rx
         case SpiDirection::RxOnly:
             return SPI_DIRECTION_2LINES_RXONLY; // Rx-Only: Nur MISO aktiv
-        case SpiDirection::TxOnly:
-            return SPI_DIRECTION_1LINE; // Tx-Only: wie Half-Duplex, aber BIDIOE wird gesetzt
         default:
             return SPI_DIRECTION_2LINES;
         }
@@ -132,21 +130,33 @@ namespace
 
     uint32_t spiNSSPModeToHAL(SpiNSSPMode nssp)
     {
-        // STM32G0 doesn't support NSSP mode, return safe default
-#ifdef SPI_NSSP_MODE_SOFTWARE
+        // Plattformunabhängige Implementierung - prüft zur Laufzeit Verfügbarkeit
+        // Auf Plattformen, die NSSP nicht unterstützen, wird 0 zurückgegeben
+        // Auf unterstützten Plattformen die entsprechende Konstante
+        uint32_t result = 0;
+
         switch (nssp)
         {
         case SpiNSSPMode::Software:
-            return SPI_NSSP_MODE_SOFTWARE;
-        case SpiNSSPMode::Hardware:
-            return SPI_NSSP_MODE_HARDWARE;
-        default:
-            return SPI_NSSP_MODE_SOFTWARE;
-        }
-#else
-        // STM32G0 fallback - return 0 as it's not supported
-        return 0;
+#if defined(SPI_NSSP_MODE_SOFTWARE)
+            result = SPI_NSSP_MODE_SOFTWARE;
 #endif
+            break;
+
+        case SpiNSSPMode::Hardware:
+#if defined(SPI_NSSP_MODE_HARDWARE)
+            result = SPI_NSSP_MODE_HARDWARE;
+#endif
+            break;
+
+        default:
+#if defined(SPI_NSSP_MODE_SOFTWARE)
+            result = SPI_NSSP_MODE_SOFTWARE;
+#endif
+            break;
+        }
+
+        return result;
     }
 
     uint32_t spiBaudRatePrescalerToHAL(SpiBaudRatePrescaler prescaler)
@@ -215,33 +225,40 @@ namespace
 
     uint32_t spiCRCPolynomialToHAL(SpiCRCPolynomial poly)
     {
-        // STM32G0 doesn't support these specific CRC polynomial constants
-#ifdef SPI_CRC_POLYNOMIAL_7
+        // Plattformunabhängige Implementierung für CRC Polynomial
+        // Unterstützt sowohl Plattformen mit definierten SPI_CRC_POLYNOMIAL_X Konstanten
+        // als auch solche ohne, indem direkte Werte verwendet werden
+
         switch (poly)
         {
         case SpiCRCPolynomial::Polynomial7:
+#if defined(SPI_CRC_POLYNOMIAL_7)
             return SPI_CRC_POLYNOMIAL_7;
-        case SpiCRCPolynomial::Polynomial8:
-            return SPI_CRC_POLYNOMIAL_8;
-        case SpiCRCPolynomial::Polynomial16:
-            return SPI_CRC_POLYNOMIAL_16;
-        default:
-            return SPI_CRC_POLYNOMIAL_7;
-        }
 #else
-        // STM32G0 fallback - use standard polynomial values
-        switch (poly)
-        {
-        case SpiCRCPolynomial::Polynomial7:
             return 7; // Direct polynomial value
-        case SpiCRCPolynomial::Polynomial8:
-            return 8;
-        case SpiCRCPolynomial::Polynomial16:
-            return 16;
-        default:
-            return 7;
-        }
 #endif
+
+        case SpiCRCPolynomial::Polynomial8:
+#if defined(SPI_CRC_POLYNOMIAL_8)
+            return SPI_CRC_POLYNOMIAL_8;
+#else
+            return 8;
+#endif
+
+        case SpiCRCPolynomial::Polynomial16:
+#if defined(SPI_CRC_POLYNOMIAL_16)
+            return SPI_CRC_POLYNOMIAL_16;
+#else
+            return 16;
+#endif
+
+        default:
+#if defined(SPI_CRC_POLYNOMIAL_7)
+            return SPI_CRC_POLYNOMIAL_7;
+#else
+            return 7;
+#endif
+        }
     }
 
     uint32_t spiCRCLengthToHAL(SpiCRCLength len)
@@ -295,7 +312,8 @@ Spi::Spi(
 
 bool Spi::spi_init()
 {
-    // Enable SPI clock based on instance
+    // Enable SPI clock based on instance - automatische Erkennung und Aktivierung
+    // Die HAL hat alle benötigten Makros ohne plattformspezifische Defines
     if (_instance == SPI1)
     {
         __HAL_RCC_SPI1_CLK_ENABLE();
@@ -306,26 +324,25 @@ bool Spi::spi_init()
         __HAL_RCC_SPI2_CLK_ENABLE();
     }
 #endif
-    // STM32G0 supports SPI1 and SPI2, STM32C0 only SPI1
-#ifdef SPI3
+#if defined(SPI3)
     else if (_instance == SPI3)
     {
         __HAL_RCC_SPI3_CLK_ENABLE();
     }
 #endif
-#ifdef SPI4
+#if defined(SPI4)
     else if (_instance == SPI4)
     {
         __HAL_RCC_SPI4_CLK_ENABLE();
     }
 #endif
-#ifdef SPI5
+#if defined(SPI5)
     else if (_instance == SPI5)
     {
         __HAL_RCC_SPI5_CLK_ENABLE();
     }
 #endif
-#ifdef SPI6
+#if defined(SPI6)
     else if (_instance == SPI6)
     {
         __HAL_RCC_SPI6_CLK_ENABLE();
@@ -362,11 +379,11 @@ bool Spi::spi_init()
     // DMA initialization should be done before HAL_SPI_Init
     if (_dma != nullptr)
     {
+        // Aktiviere DMA-Ressourcen
+        _dma->enableDMAResources();
+
         // Make sure DMA is properly initialized
         _dma->init_dma();
-        
-        // Link DMA resources to SPI
-        _dma->enableDMAResources();
     }
 
     // Initialize HAL SPI
@@ -376,99 +393,80 @@ bool Spi::spi_init()
         assert(false && "HAL_SPI_Init failed!");
         return false;
     }
-    
+
     // Additional configuration for Slave mode
     if (_spiMode == SpiMode::Slave)
     {
         // Ensure CR1 register is properly configured for slave mode
         // This addresses potential issues with certain STM32 devices
-        _instance->CR1 &= ~(SPI_CR1_MSTR);  // Clear master bit to force slave mode
-        
-#if defined(STM32G0xx)
-        // Special handling for STM32G0xx in slave mode
-        _instance->CR2 |= SPI_CR2_RXNEIE;   // Enable RXNE interrupt in slave mode
+        _instance->CR1 &= ~(SPI_CR1_MSTR); // Clear master bit to force slave mode
+
+        // General handling for STM32 in slave mode
+        // Enable RXNE interrupt in slave mode if available in this STM32 family
+        if ((_instance->CR2 & SPI_CR2_RXNEIE) == 0)
+        {
+            _instance->CR2 |= SPI_CR2_RXNEIE;
+        }
+
+        // For FullDuplex or RxOnly direction, ensure the slave is ready to receive
         if (_spiDirection == SpiDirection::FullDuplex || _spiDirection == SpiDirection::RxOnly)
         {
-            // Ensure the slave is ready to receive
-            _instance->CR1 |= SPI_CR1_SSI;   // Set internal slave select
+            _instance->CR1 |= SPI_CR1_SSI; // Set internal slave select
         }
-#endif
     }
 
-    // Spezielle Behandlung für TxOnly-Modus
-    if (_spiDirection == SpiDirection::TxOnly)
+    // Spezielle Behandlung für HalfDuplex-Modus als Transmit-Only
+    if (_spiDirection == SpiDirection::HalfDuplex)
     {
-        // BIDIOE-Bit setzen für Transmit-Only im Half-Duplex Modus
+        // In HalfDuplex-Modus kann das BIDIOE-Bit gesetzt werden, um Transmit-Only zu aktivieren
         SET_BIT(_hspi.Instance->CR1, SPI_CR1_BIDIOE);
     }
-    
+
+    // SPI explizit aktivieren (SPE-Bit setzen)
+    // SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
+
     // Überprüfen und korrigieren der Register-Konfiguration nach der HAL-Initialisierung
-#if defined(STM32G0xx)
+    // Diese Konfiguration ist für alle STM32-Plattformen allgemein gültig
     if (_spiMode == SpiMode::Slave)
     {
-        // Für Slave-Modus auf dem G0: Explizit CR1 konfigurieren
+        // Für Slave-Modus: Explizit CR1 konfigurieren
         // Stelle sicher, dass das MSTR-Bit für Slave-Modus gelöscht ist
         CLEAR_BIT(_hspi.Instance->CR1, SPI_CR1_MSTR);
-        
+
         // Bei Problemen mit NSS im Hard-Input-Modus kann das SSI-Bit gelöscht werden
-        if (_spiNSS == SpiNSS::Hard_In) 
+        if (_spiNSS == SpiNSS::Hard_In)
         {
             CLEAR_BIT(_hspi.Instance->CR1, SPI_CR1_SSI);
         }
-        
+
         // CR1 konfigurieren mit relevanten Einstellungen
         uint32_t cr1Config = 0;
-        
+
         // Richtungseinstellung
         cr1Config |= spiDirectionToHAL(_spiDirection);
-        
+
         // Taktpolarität und -phase
         cr1Config |= spiClockPolarityToHAL(_spiClockPolarity);
         cr1Config |= spiClockPhaseToHAL(_spiClockPhase);
-        
+
         // NSS-Management (für Software NSS)
-        if (_spiNSS == SpiNSS::Soft) {
+        if (_spiNSS == SpiNSS::Soft)
+        {
             cr1Config |= SPI_CR1_SSM;
         }
-        
+
         // Andere Einstellungen beibehalten
         cr1Config |= spiFirstBitToHAL(_spiFirstBit);
-        
+
         // Aktuelle CR1-Konfiguration sichern
         uint32_t currentCR1 = _hspi.Instance->CR1;
-        
+
         // CR1 aktualisieren - bestimmte Bits beibehalten, andere ersetzen
         _hspi.Instance->CR1 = (currentCR1 & ~(SPI_CR1_MSTR | SPI_CR1_SSI)) | cr1Config;
-        
+
         // SPI aktivieren
         SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
     }
-#endif
-
-    // WICHTIG: SPI explizit aktivieren, da HAL dies nicht automatisch macht
-    // Wenn dieser Teil später auskommentiert wird, wird die HAL den SPI
-    // automatisch während des ersten Übertragungs-/Empfangsvorgangs aktivieren
-    // AUSKOMMENTIEREN FÜR HAL-STANDARD-VERHALTEN: ↓
-    // SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
-
-    // Überprüfen und korrigieren der CR1/CR2-Register nach HAL-Initialisierung
-    // if (_spiMode == SpiMode::Slave)
-    // {
-    //     // Für Slave-Modus: Überprüfen, ob Konfiguration korrekt ist
-    //     // Wenn CR1 vollständig 0 ist, könnte ein HAL-Initialisierungsproblem vorliegen
-    //     if ((_hspi.Instance->CR1 & (SPI_CR1_MSTR)) == 0)
-    //     {
-    //         // Für Slave: Explizit nur die benötigten Bits setzen
-    //         // Nicht MSTR-Bit setzen, da wir im Slave-Modus sind
-    //         // SSI-Bit nicht setzen für Hardware NSS (falls relevant)
-
-    //         // Baudrate-Einstellungen beibehalten, auch wenn sie für Slave ignoriert werden
-    //         uint32_t baudrate = spiBaudRatePrescalerToHAL(_spiBaudRatePrescaler);
-    //         MODIFY_REG(_hspi.Instance->CR1, SPI_CR1_BR, baudrate);
-
-    //         // Weitere spezifische Slave-Konfigurationen hier ...
-    //     }
-    // }
 
     return true;
 }
@@ -756,4 +754,46 @@ bool Spi::abortDmaTransfer()
         return false;
     }
     return _dma->abortTransfer();
+}
+
+bool Spi::enableInterrupts(uint32_t priority)
+{
+    // Aktiviere die Interrupt-Register für SPI
+    // RXNE (Receive buffer not empty) und TXE (Transmit buffer empty) Interrupts aktivieren
+    SET_BIT(_hspi.Instance->CR2, SPI_CR2_RXNEIE | SPI_CR2_TXEIE);
+    
+    // Error-Interrupt aktivieren
+    SET_BIT(_hspi.Instance->CR2, SPI_CR2_ERRIE);
+    
+    // Bestimme die IRQ-Nummer basierend auf dem SPI-Instance
+    IRQn_Type spiIRQn = SPI1_IRQn; // Standard: SPI1
+    
+    if (_instance == SPI1)
+    {
+        spiIRQn = SPI1_IRQn;
+    }
+#if defined(SPI2)
+    else if (_instance == SPI2)
+    {
+        spiIRQn = SPI2_IRQn;
+    }
+#endif
+#if defined(SPI3)
+    else if (_instance == SPI3)
+    {
+        spiIRQn = SPI3_IRQn;
+    }
+#endif
+#if defined(SPI4)
+    else if (_instance == SPI4)
+    {
+        spiIRQn = SPI4_IRQn;
+    }
+#endif
+    
+    // NVIC für SPI aktivieren
+    HAL_NVIC_SetPriority(spiIRQn, priority, 0);
+    HAL_NVIC_EnableIRQ(spiIRQn);
+    
+    return true;
 }

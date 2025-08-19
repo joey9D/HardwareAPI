@@ -396,6 +396,21 @@ void SpiDMA::configureRxDMA(DMA_Channel_TypeDef *channel, uint32_t request)
     _hdma_spi_rx.Init.Priority = _rxPriority;                     // Konfigurierbar
 }
 
+// Implementation der enableDMAResources Methode
+void SpiDMA::enableDMAResources()
+{
+    // Aktiviere DMA-Clock basierend auf dem SPI-Instance
+    __HAL_RCC_DMA1_CLK_ENABLE();
+    
+    // Aktiviere DMA2 Clock falls verfügbar und benötigt
+#ifdef DMA2
+    __HAL_RCC_DMA2_CLK_ENABLE();
+#endif
+    
+    // Konfiguriere DMA-Interrupts mit Standard-Prioritäten
+    configureDMAInterrupts(_txPriority, _rxPriority);
+}
+
 // HAL-kompatible Callback-Funktionen
 extern "C"
 {

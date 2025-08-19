@@ -19,19 +19,6 @@
 #include "../spi/spi_stm32.hpp"
 #include "../spi/spi_dma_stm32.hpp"
 
-// MCU-Familien-Definitionen für bedingte Kompilierung
-#if defined(STM32C0xx)
-#define IS_STM32C0 1
-#define IS_STM32G0 0
-#define SUPPORTS_SPI2 0 // STM32C0 unterstützt nur SPI1
-#elif defined(STM32G0xx)
-#define IS_STM32C0 0
-#define IS_STM32G0 1
-#define SUPPORTS_SPI2 1 // STM32G0 unterstützt SPI2
-#else
-#error "Unsupported STM32 family, only STM32C0xx and STM32G0xx are supported"
-#endif
-
 #endif
 
 /**
@@ -59,178 +46,102 @@ struct BoardPins
 	 * @brief STM32 GPIO Configuration
 	 */
 	// Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	// Gpio button{13, Port::C, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
-	Gpio led{0, Port::B, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	Gpio button{13, Port::C, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
+	// Gpio button{13, Port::A, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
 
 	/**
-	 * @brief STM32 SPI Configuration
-	 *
-	 */
-#if defined(STM32C0xx)
-	// SPI1 (Master) Pins konfigurieren für STM32C0xx
-	Gpio spi1_sck{3, Port::B, Mode::Alternate_Push_Pull,
-				  Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_nss{15, Port::A, Mode::Output_Push_Pull,
-				  Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
-#elif defined(STM32G0xx)
-	// SPI1 Pins konfigurieren für STM32G0xx
-	Gpio spi1_sck{3, Port::B, Mode::Alternate_Push_Pull,
-				  Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-
-	// HINWEIS: NSS-Pin-Konfiguration je nach Modus (Master/Slave) anpassen
-	// Für den SLAVE-Modus (Standard):
-	Gpio spi1_nss{8, Port::A, Mode::Alternate_Push_Pull, // Als Alternate Function für Hardware-NSS im Slave-Modus
-				  Pull::Up, Speed::High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-
-	// Für den MASTER-Modus (auskommentiert):
-	/*
-	Gpio spi1_nss{15, Port::A, Mode::Output_Push_Pull,    // Als Output für Software-NSS im Master-Modus
-				  Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	*/
-#endif
-
-#if SUPPORTS_SPI2
-	// SPI2 (Slave) Pins konfigurieren - nur für STM32G0 (verwendet AF1 für SPI2)
-	Gpio spi2_sck{5, Port::A, Mode::Alternate_Push_Pull,
-				  Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi2_mosi{7, Port::A, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi2_miso{6, Port::A, Mode::Alternate_Push_Pull,
-				   Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi2_nss{0, Port::B, Mode::Input, // Input-Modus für Software-NSS im Slave-Modus
-				  Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
-#endif
-
-	/**
-	 * @brief ESP32 GPIO Configuration
+	 * @brief ESP32 GPIO Configuration (falls benötigt)
 	 */
 	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled};
 	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
-#if SUPPORTS_SPI2
-	std::array<Gpio *, 10> allPins{&led, &button,
-								   &spi1_sck, &spi1_mosi, &spi1_miso, &spi1_nss,
-								   &spi2_sck, &spi2_mosi, &spi2_miso, &spi2_nss};
-#else
-	std::array<Gpio *, 6> allPins{&led, &button,
-								  &spi1_sck, &spi1_mosi, &spi1_miso, &spi1_nss};
-#endif
+	// Die LED für Master-Mode wird an PB6 angeschlossen (geändert von PB0, da PB0 bereits für SPI NSS verwendet wird)
+	Gpio masterLedPin{6, Port::B, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+
+	// Die LED für Slave-Mode wird an PB7 angeschlossen
+	Gpio slaveLedPin{7, Port::B, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+
+	// Der Button wird an PC13 angeschlossen
+	Gpio buttonPin{13, Port::C, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+
+	/**
+	 * @brief SPI Pins (PB3, PB4, PB5 und PB0 für NSS)
+	 *
+	 */
+	Gpio spi1_sck{3, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
+
+	// Array mit allen GPIO-Pins (SPI, LEDs, Button)
+	std::array<Gpio *, 7> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss, &masterLedPin, &slaveLedPin, &buttonPin};
 };
+// Globale Instanz der Board-Pins
 inline BoardPins boardPins;
+
+// SPI1 DMA-Objekt deklarieren
+// Hinweis: Die SpiDMA-Klasse erwartet einen SPI_HandleTypeDef-Referenz als ersten Parameter
+// Da das SPI-Handle erst nach der Initialisierung des SPI-Objekts existiert,
+// müssen wir die DMA später im Code zuweisen
+
+// Ein SpiDMA-Objekt zur Verwendung mit unserer SPI-Instanz
+inline SpiDMA *spi1_dma = nullptr;
 
 // Definition der Peripherie-Objekte
 struct BoardPeripherals
 {
-	// DMA-Pointer (wird in der Initialisierungsfunktion gesetzt)
-	SpiDMA *spi1_dma = nullptr;
+#ifdef MASTER_CONFIG
+	// SPI1 als Master konfigurieren für FullDuplex Betrieb ('A' senden und auf 'O' warten)
+	Spi spi1{
+		boardPins.spi1_sck,
+		boardPins.spi1_miso,
+		boardPins.spi1_mosi,
+		boardPins.spi1_nss,
+		SPI1,
+		SpiMode::Master,
+		SpiDirection::FullDuplex, // Full-Duplex für Senden und Empfangen
+		SpiDataSize::Bits8,		  // 8-Bit für ASCII-Zeichen
+		SpiClockPolarity::Low,
+		SpiClockPhase::FirstEdge,
+		SpiNSS::Soft, // Software NSS im Master-Modus
+		SpiBaudRatePrescaler::Prescaler32,
+		SpiFirstBit::MSB,
+		SpiTIMode::Disable,
+		SpiCRCCalculation::Disable,
+		SpiCRCPolynomial::Polynomial7,
+		SpiCRCLength::Length8,
+		SpiNSSPMode::Software,
+		nullptr}; // DMA wird später zugewiesen
 
-#if defined(STM32C0xx)
-	// SPI1 Konfiguration für STM32C0xx (typischerweise Master)
-	Spi spi1{boardPins.spi1_sck,
-			 boardPins.spi1_miso,
-			 boardPins.spi1_mosi,
-			 boardPins.spi1_nss,
-			 SPI1,
-			 SpiMode::Master,
-			 SpiDirection::FullDuplex,
-			 SpiDataSize::Bits8,
-			 SpiClockPolarity::Low,
-			 SpiClockPhase::FirstEdge,
-			 SpiNSS::Soft,
-			 SpiBaudRatePrescaler::Prescaler32,
-			 SpiFirstBit::MSB,
-			 SpiTIMode::Disable,
-			 SpiCRCCalculation::Disable,
-			 SpiCRCPolynomial::Polynomial7,
-			 SpiCRCLength::Length8,
-			 SpiNSSPMode::Software,
-			 nullptr}; // DMA wird später gesetzt
-#elif defined(STM32G0xx)
-	// SPI1 Konfiguration für STM32G0xx
-	// HINWEIS: Wechseln Sie zwischen den beiden Konfigurationen entsprechend des gewünschten Modus
+	// Master sendet 'A'
+	const uint8_t txData = 'A'; // ASCII-Zeichen 'A' (0x41)
 
-	// SLAVE-MODUS KONFIGURATION - Standard für den Test
-	Spi spi1{boardPins.spi1_sck,
-			 boardPins.spi1_miso,
-			 boardPins.spi1_mosi,
-			 boardPins.spi1_nss,
-			 SPI1,
-			 SpiMode::Slave, // Slave-Modus
-			 SpiDirection::FullDuplex,
-			 SpiDataSize::Bits8,
-			 SpiClockPolarity::Low,
-			 SpiClockPhase::FirstEdge,
-			 SpiNSS::Hard_In, // Hardware NSS im Slave-Modus
-			 SpiBaudRatePrescaler::Prescaler32,
-			 SpiFirstBit::MSB,
-			 SpiTIMode::Disable,
-			 SpiCRCCalculation::Disable,
-			 SpiCRCPolynomial::Polynomial7,
-			 SpiCRCLength::Length8,
-			 SpiNSSPMode::Software,
-			 nullptr}; // DMA wird später gesetzt
+#else // SLAVE_CONFIG
+	// SPI1 als Slave konfigurieren für FullDuplex Betrieb ('O' senden und auf 'A' warten)
+	Spi spi1{
+		boardPins.spi1_sck,
+		boardPins.spi1_miso,
+		boardPins.spi1_mosi,
+		boardPins.spi1_nss,
+		SPI1,
+		SpiMode::Slave,
+		SpiDirection::FullDuplex, // Full-Duplex für Senden und Empfangen
+		SpiDataSize::Bits8,		  // 8-Bit für ASCII-Zeichen
+		SpiClockPolarity::Low,
+		SpiClockPhase::FirstEdge,
+		SpiNSS::Hard_In, // Hardware NSS im Slave-Modus
+		SpiBaudRatePrescaler::Prescaler32,
+		SpiFirstBit::MSB,
+		SpiTIMode::Disable,
+		SpiCRCCalculation::Disable,
+		SpiCRCPolynomial::Polynomial7,
+		SpiCRCLength::Length8,
+		SpiNSSPMode::Hardware,
+		nullptr}; // DMA wird später zugewiesen
 
-	// MASTER-MODUS KONFIGURATION - Auskommentiert, bei Bedarf tauschen
-	/*
-	Spi spi1{boardPins.spi1_sck,
-			 boardPins.spi1_miso,
-			 boardPins.spi1_mosi,
-			 boardPins.spi1_nss,
-			 SPI1,
-			 SpiMode::Master,              // Master-Modus
-			 SpiDirection::FullDuplex,
-			 SpiDataSize::Bits8,
-			 SpiClockPolarity::Low,
-			 SpiClockPhase::FirstEdge,
-			 SpiNSS::Soft,                 // Software NSS im Master-Modus
-			 SpiBaudRatePrescaler::Prescaler32,
-			 SpiFirstBit::MSB,
-			 SpiTIMode::Disable,
-			 SpiCRCCalculation::Disable,
-			 SpiCRCPolynomial::Polynomial7,
-			 SpiCRCLength::Length8,
-			 SpiNSSPMode::Software,
-			 nullptr}; // DMA wird später gesetzt
-	*/
-#endif
-
-#if SUPPORTS_SPI2
-	// DMA-Pointer für SPI2 (wird in der Initialisierungsfunktion gesetzt)
-	SpiDMA *spi2_dma = nullptr;
-
-	// SPI2 nur für MCU-Familien mit SPI2-Unterstützung (z.B. STM32G0)
-	Spi spi2{boardPins.spi2_sck,
-			 boardPins.spi2_miso,
-			 boardPins.spi2_mosi,
-			 boardPins.spi2_nss,
-			 SPI2,
-			 SpiMode::Slave,
-			 SpiDirection::FullDuplex,
-			 SpiDataSize::Bits8,
-			 SpiClockPolarity::Low,
-			 SpiClockPhase::FirstEdge,
-			 SpiNSS::Soft,
-			 SpiBaudRatePrescaler::Prescaler32,
-			 SpiFirstBit::MSB,
-			 SpiTIMode::Disable,
-			 SpiCRCCalculation::Disable,
-			 SpiCRCPolynomial::Polynomial7,
-			 SpiCRCLength::Length8,
-			 SpiNSSPMode::Software,
-			 nullptr}; // DMA wird später gesetzt
+	// Slave sendet 'O'
+	const uint8_t txData = 'O'; // ASCII-Zeichen 'O' (0x4F)
 #endif
 };
 
-// Globale Instanz
+// Globale Instanz der Peripherie
 inline BoardPeripherals peripherals;
-
-// Keine vorgezogene DMA-Instanzierung hier, das muss in der main.cpp erfolgen

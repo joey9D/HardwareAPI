@@ -45,6 +45,7 @@ public:
     DMA_HandleTypeDef *getTxHandle() override { return &_hdma_spi_tx; }
     DMA_HandleTypeDef *getRxHandle() override { return &_hdma_spi_rx; }
 
+    void enableDMAResources() override;
     // Neue Interface-Methode für Interrupt-Konfiguration
     void configureDMAInterrupts(uint32_t txPriority = 0, uint32_t rxPriority = 0) override;
 

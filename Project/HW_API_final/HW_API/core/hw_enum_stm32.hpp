@@ -136,16 +136,18 @@ namespace HW_API
          */
         enum class SpiDirection
         {
-            2Lines = SPI_DIRECTION_2LINES,              ///< 2 Leitungen: MOSI + MISO gleichzeitig aktiv
-            2LinesRxOnly = SPI_DIRECTION_2LINES_RXONLY, ///< 2 Leitungen: nur MISO aktiv (Receive Only)
-            1Line = SPI_DIRECTION_1LINE,                ///< 1 Leitung: bidirektional (Tx ODER Rx)
+            FullDuplex = SPI_DIRECTION_2LINES,        ///< 2 Leitungen: MOSI + MISO gleichzeitig aktiv
+            RxOnly = SPI_DIRECTION_2LINES_RXONLY,     ///< 2 Leitungen: nur MISO aktiv (Receive Only)
+            HalfDuplex = SPI_DIRECTION_1LINE,         ///< 1 Leitung: bidirektional (Tx ODER Rx)
         };
 
         /**
-         * @brief
-         *
+         * @brief SPI-Datengröße (4-16 Bits pro Frame)
+         * 
+         * Definiert die Anzahl der Bits pro SPI-Datenframe.
+         * Die meisten Anwendungen verwenden 8-Bit (Byte) oder 16-Bit (Halbwort).
          */
-        **Definiert die Anzahl der Bits pro SPI - Datenframe.*Die meisten Anwendungen verwenden 8 - Bit(Byte) oder 16 - Bit(Halbwort).* / enum class SpiDataSize : uint32_t {
+        enum class SpiDataSize : uint32_t {
             Bits4 = SPI_DATASIZE_4BIT,   ///< 4-Bit pro Frame
             Bits5 = SPI_DATASIZE_5BIT,   ///< 5-Bit pro Frame
             Bits6 = SPI_DATASIZE_6BIT,   ///< 6-Bit pro Frame
