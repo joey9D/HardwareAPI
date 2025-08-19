@@ -1,10 +1,20 @@
 #pragma once
 
+/**
+ * @file hw_enum_stm32.hpp
+ * @brief Platform-spezifische Enum-Definitionen für STM32-MCUs
+ *
+ * Dieser Header definiert typsichere enum class Werte, die die HAL-Makros kapseln.
+ * Die Enums sind in Namespaces organisiert und unterstützen verschiedene STM32-Familien
+ * mit Fallback-Werten für nicht unterstützte Features.
+ */
+
 // Platform-specific GPIO enums for STM32
 #ifdef STM32_PLATFORM
 
 // Use our central HAL include that handles family detection
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+#include <cstdint>
 
 namespace HW_API
 {
@@ -60,25 +70,37 @@ namespace HW_API
         enum class Alternate : uint8_t
         {
             None = 0xFF,
-            // SPI - Only available alternate functions in STM32G0xx
+            // SPI - Common for all STM32 series
             SPI_AF0 = GPIO_AF0_SPI1, // SPI1 on AF0
-            SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+
+#ifdef GPIO_AF1_SPI2
+            SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (für STM32G0)
+#endif
 #ifdef GPIO_AF4_SPI2
-            SPI_AF4 = GPIO_AF4_SPI2, // nur falls vorhanden
+            SPI_AF4 = GPIO_AF4_SPI2, // für andere STM32-Familien
 #endif
 #ifdef GPIO_AF5_SPI1
-            SPI_AF5 = GPIO_AF5_SPI1, // nur falls vorhanden
+            SPI_AF5 = GPIO_AF5_SPI1, // für andere STM32-Familien
 #endif
-        // Higher AF numbers for SPI don't exist in STM32G0xx
-        // CAN/FDCAN - Not available in STM32G0xx, use UCPD instead
+
+        // CAN/FDCAN - Nur verfügbar wenn definiert
 #ifdef GPIO_AF3_FDCAN1
-            CAN_AF3 = GPIO_AF3_FDCAN1, // nur falls vorhanden
+            CAN_AF3 = GPIO_AF3_FDCAN1,
 #endif
-            // UCPD (USB-C Power Delivery) available in STM32G0xx
+
+        // UCPD (USB-C Power Delivery) - Nur verfügbar wenn definiert
+#ifdef GPIO_AF0_UCPD1
             UCPD_AF0 = GPIO_AF0_UCPD1,
+#endif
+#ifdef GPIO_AF1_UCPD1
             UCPD_AF1 = GPIO_AF1_UCPD1,
+#endif
+#ifdef GPIO_AF3_UCPD1
             UCPD_AF3 = GPIO_AF3_UCPD1,
-            UCPD_AF4 = GPIO_AF4_UCPD1
+#endif
+#ifdef GPIO_AF4_UCPD1
+            UCPD_AF4 = GPIO_AF4_UCPD1,
+#endif
         };
 
         enum class ExtiTrigger : uint32_t
@@ -93,35 +115,50 @@ namespace HW_API
         // SPI Enums
         // ============================================================================
 
+        /**
+         * @brief SPI-Betriebsmodus (Master oder Slave)
+         *
+         * Definiert, ob das SPI-Interface als Master oder Slave arbeitet.
+         * - Master: Generiert den Clock und kontrolliert NSS
+         * - Slave: Empfängt Clock und NSS vom Master
+         */
         enum class SpiMode
         {
-            Master = SPI_MODE_MASTER,
-            Slave = SPI_MODE_SLAVE,
+            Master = SPI_MODE_MASTER, ///< SPI arbeitet als Master (generiert Clock)
+            Slave = SPI_MODE_SLAVE,   ///< SPI arbeitet als Slave (empfängt Clock)
         };
 
+        /**
+         * @brief SPI-Datenrichtung (Vollduplex/Halbduplex/Nur-RX)
+         *
+         * Bestimmt die Richtung der Datenübertragung und welche Leitungen verwendet werden.
+         * Hinweis: Für Transmit-Only wird HalfDuplex mit gesetztem BIDIOE-Bit verwendet.
+         */
         enum class SpiDirection
         {
-            FullDuplex = SPI_DIRECTION_2LINES,        // 2 Leitungen: MOSI + MISO gleichzeitig aktiv
-            RxOnly = SPI_DIRECTION_2LINES_RXONLY,     // 2 Leitungen: nur MISO aktiv (Receive Only)
-            HalfDuplex = SPI_DIRECTION_1LINE,         // 1 Leitung: bidirektional (Tx ODER Rx)
-            TxOnly = 0x1000,                          // Custom: Transmit Only (implementiert als Half-Duplex mit BIDIOE)
+            2Lines = SPI_DIRECTION_2LINES,              ///< 2 Leitungen: MOSI + MISO gleichzeitig aktiv
+            2LinesRxOnly = SPI_DIRECTION_2LINES_RXONLY, ///< 2 Leitungen: nur MISO aktiv (Receive Only)
+            1Line = SPI_DIRECTION_1LINE,                ///< 1 Leitung: bidirektional (Tx ODER Rx)
         };
 
-        enum class SpiDataSize : uint32_t
-        {
-            Bits4 = SPI_DATASIZE_4BIT,
-            Bits5 = SPI_DATASIZE_5BIT,
-            Bits6 = SPI_DATASIZE_6BIT,
-            Bits7 = SPI_DATASIZE_7BIT,
-            Bits8 = SPI_DATASIZE_8BIT,
-            Bits9 = SPI_DATASIZE_9BIT,
-            Bits10 = SPI_DATASIZE_10BIT,
-            Bits11 = SPI_DATASIZE_11BIT,
-            Bits12 = SPI_DATASIZE_12BIT,
-            Bits13 = SPI_DATASIZE_13BIT,
-            Bits14 = SPI_DATASIZE_14BIT,
-            Bits15 = SPI_DATASIZE_15BIT,
-            Bits16 = SPI_DATASIZE_16BIT
+        /**
+         * @brief
+         *
+         */
+        **Definiert die Anzahl der Bits pro SPI - Datenframe.*Die meisten Anwendungen verwenden 8 - Bit(Byte) oder 16 - Bit(Halbwort).* / enum class SpiDataSize : uint32_t {
+            Bits4 = SPI_DATASIZE_4BIT,   ///< 4-Bit pro Frame
+            Bits5 = SPI_DATASIZE_5BIT,   ///< 5-Bit pro Frame
+            Bits6 = SPI_DATASIZE_6BIT,   ///< 6-Bit pro Frame
+            Bits7 = SPI_DATASIZE_7BIT,   ///< 7-Bit pro Frame
+            Bits8 = SPI_DATASIZE_8BIT,   ///< 8-Bit pro Frame (Standard für die meisten Anwendungen)
+            Bits9 = SPI_DATASIZE_9BIT,   ///< 9-Bit pro Frame
+            Bits10 = SPI_DATASIZE_10BIT, ///< 10-Bit pro Frame
+            Bits11 = SPI_DATASIZE_11BIT, ///< 11-Bit pro Frame
+            Bits12 = SPI_DATASIZE_12BIT, ///< 12-Bit pro Frame
+            Bits13 = SPI_DATASIZE_13BIT, ///< 13-Bit pro Frame
+            Bits14 = SPI_DATASIZE_14BIT, ///< 14-Bit pro Frame
+            Bits15 = SPI_DATASIZE_15BIT, ///< 15-Bit pro Frame
+            Bits16 = SPI_DATASIZE_16BIT  ///< 16-Bit pro Frame (Halbwort)
         };
 
         enum class SpiClockPolarity
@@ -218,41 +255,110 @@ namespace HW_API
         // ============================================================================
         // DMA Enums
         // ============================================================================
-        
-        enum class DmaDirection : uint32_t
+
+        /**
+         * @brief DMA Transfer-Richtung
+         *
+         * Definiert die Richtung des DMA-Transfers: von Peripherie zu Speicher,
+         * von Speicher zu Peripherie oder von Speicher zu Speicher.
+         */
+        enum class SpiDmaDirection : uint32_t
         {
-            PeriphToMem = DMA_PERIPH_TO_MEMORY,
-            MemToPeriph = DMA_MEMORY_TO_PERIPH,
-            MemToMem = DMA_MEMORY_TO_MEMORY,
+            PeriphToMem = DMA_PERIPH_TO_MEMORY, ///< Transfer von Peripherie zu Speicher (RX)
+            MemToPeriph = DMA_MEMORY_TO_PERIPH, ///< Transfer von Speicher zu Peripherie (TX)
+            MemToMem = DMA_MEMORY_TO_MEMORY,    ///< Transfer von Speicher zu Speicher (Spezialmodus)
         };
-        
-        enum class DmaMode : uint32_t
+
+        /**
+         * @brief DMA Betriebsmodus
+         *
+         * Definiert, ob der DMA-Kanal im normalen oder zirkulären Modus arbeitet.
+         * Zirkulärer Modus startet automatisch neu nach Transfer-Ende.
+         */
+        enum class SpiDmaMode : uint32_t
         {
-            Normal = DMA_NORMAL,
-            Circular = DMA_CIRCULAR,
+            Normal = DMA_NORMAL,     ///< Einmaliger Transfer, dann Stopp
+            Circular = DMA_CIRCULAR, ///< Kontinuierlicher Transfer, Neustart nach Abschluss
         };
-        
-        enum class DmaPriority : uint32_t
+
+        /**
+         * @brief DMA Kanal-Priorität
+         *
+         * Bestimmt die Priorität des DMA-Kanals bei Konflikten mit anderen Kanälen.
+         */
+        enum class SpiDmaPriority : uint32_t
         {
-            Low = DMA_PRIORITY_LOW,
-            Medium = DMA_PRIORITY_MEDIUM,
-            High = DMA_PRIORITY_HIGH,
-            VeryHigh = DMA_PRIORITY_VERY_HIGH,
+            Low = DMA_PRIORITY_LOW,           ///< Niedrige Priorität
+            Medium = DMA_PRIORITY_MEDIUM,     ///< Mittlere Priorität
+            High = DMA_PRIORITY_HIGH,         ///< Hohe Priorität
+            VeryHigh = DMA_PRIORITY_VERY_HIGH ///< Höchste Priorität
         };
-        
-        enum class DmaIncrementMode : uint32_t
+
+        /**
+         * @brief DMA Adress-Inkrement-Modus
+         *
+         * Bestimmt, ob die Adresse bei jedem Transfer-Schritt erhöht wird.
+         */
+        enum class SpiDmaIncrementMode : uint32_t
         {
-            Enable = DMA_MINC_ENABLE,
-            Disable = DMA_PINC_DISABLE,
+            Enable = DMA_MINC_ENABLE,   ///< Adresse wird nach jedem Transfer erhöht
+            Disable = DMA_PINC_DISABLE, ///< Adresse bleibt konstant (für z.B. periphere Register)
         };
-        
-        enum class DmaDataAlignment : uint32_t
+
+        /**
+         * @brief DMA Daten-Ausrichtung
+         *
+         * Bestimmt die Größe der Daten, die bei jedem Transfer übertragen werden.
+         */
+        enum class SpiDmaDataAlignment : uint32_t
         {
-            Byte = DMA_PDATAALIGN_BYTE,
-            HalfWord = DMA_PDATAALIGN_HALFWORD,
-            Word = DMA_PDATAALIGN_WORD,
-        };
-        
+            Byte = DMA_PDATAALIGN_BYTE,         ///< 8-Bit Daten (uint8_t)
+            HalfWord = DMA_PDATAALIGN_HALFWORD, ///< 16-Bit Daten (uint16_t)
+            Word = DMA_PDATAALIGN_WORD,         ///< 32-Bit Daten (uint32_t)
+        }; // ============================================================================
+        // Hilfsfunktionen zur Konvertierung (constexpr für Compile-Time-Optimierung)
+        // ============================================================================
+
+        /**
+         * @brief Konvertiert einen SpiMode-Enum-Wert in den entsprechenden HAL-Wert
+         * @param mode Der zu konvertierende SpiMode-Enum-Wert
+         * @return Der entsprechende HAL-Wert für die Konfiguration
+         */
+        constexpr uint32_t toHal(SpiMode mode)
+        {
+            return static_cast<uint32_t>(mode);
+        }
+
+        /**
+         * @brief Konvertiert einen SpiDirection-Enum-Wert in den entsprechenden HAL-Wert
+         * @param dir Der zu konvertierende SpiDirection-Enum-Wert
+         * @return Der entsprechende HAL-Wert für die Konfiguration
+         */
+        constexpr uint32_t toHal(SpiDirection dir)
+        {
+            return static_cast<uint32_t>(dir);
+        }
+
+        /**
+         * @brief Konvertiert einen SpiDataSize-Enum-Wert in den entsprechenden HAL-Wert
+         * @param size Der zu konvertierende SpiDataSize-Enum-Wert
+         * @return Der entsprechende HAL-Wert für die Konfiguration
+         */
+        constexpr uint32_t toHal(SpiDataSize size)
+        {
+            return static_cast<uint32_t>(size);
+        }
+
+        /**
+         * @brief Konvertiert einen SpiDmaPriority-Enum-Wert in den entsprechenden HAL-Wert
+         * @param priority Der zu konvertierende SpiDmaPriority-Enum-Wert
+         * @return Der entsprechende HAL-Wert für die Konfiguration
+         */
+        constexpr uint32_t toHal(SpiDmaPriority priority)
+        {
+            return static_cast<uint32_t>(priority);
+        }
+
     } // namespace STM32
 } // namespace HW_API
 

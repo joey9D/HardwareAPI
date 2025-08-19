@@ -8,12 +8,16 @@
 class SpiDMA : public ISpiDMA
 {
 public:
-    // Konstruktor mit konfigurierbaren DMA-Parametern
+    // Konstruktor mit allen DMA_InitTypeDef-Parametern
     SpiDMA(SPI_HandleTypeDef &hspi, SPI_TypeDef *spiInstance,
            uint32_t txPriority,
            uint32_t rxPriority,
            uint32_t dmaMode,
-           uint32_t dataAlignment);
+           uint32_t periphDataAlignment,
+           uint32_t memDataAlignment,
+           uint32_t periphInc = DMA_PINC_DISABLE,
+           uint32_t memInc = DMA_MINC_ENABLE,
+           uint32_t direction = DMA_PERIPH_TO_MEMORY);
 
     // Interface-Implementierung
     bool init_dma_TX() override;
@@ -27,12 +31,12 @@ public:
     bool isTxReady() const override;
     bool isRxReady() const override;
     bool areBothReady() const override;
-    
+
     // Neue Interface-Methoden für Transfer-Status
     bool isTransferInProgress_TX() const override;
     bool isTransferInProgress_RX() const override;
     bool isAnyTransferInProgress() const override;
-    
+
     // Neue Interface-Methoden für Transfer-Abbruch
     bool abortTransfer_TX() override;
     bool abortTransfer_RX() override;
@@ -41,8 +45,6 @@ public:
     DMA_HandleTypeDef *getTxHandle() override { return &_hdma_spi_tx; }
     DMA_HandleTypeDef *getRxHandle() override { return &_hdma_spi_rx; }
 
-    void enableDMAResources() override;
-    
     // Neue Interface-Methode für Interrupt-Konfiguration
     void configureDMAInterrupts(uint32_t txPriority = 0, uint32_t rxPriority = 0) override;
 
@@ -53,11 +55,15 @@ private:
     DMA_HandleTypeDef _hdma_spi_tx;
     DMA_HandleTypeDef _hdma_spi_rx;
 
-    // Konfigurierbare Member
+    // Konfigurierbare Member - vollständig nach DMA_InitTypeDef
     uint32_t _txPriority;
     uint32_t _rxPriority;
-    uint32_t _dmaMode;
-    uint32_t _dataAlignment;
+    uint32_t _dmaMode;             // DMA_Mode (Normal/Circular)
+    uint32_t _periphDataAlignment; // Peripherie-Datengröße (Byte/HalfWord/Word)
+    uint32_t _memDataAlignment;    // Speicher-Datengröße (Byte/HalfWord/Word)
+    uint32_t _periphInc;           // Peripherie-Adress-Increment (Enable/Disable)
+    uint32_t _memInc;              // Speicher-Adress-Increment (Enable/Disable)
+    uint32_t _direction;           // Transferrichtung
 
     // Boolean Member am Ende
     bool _txInitialized;

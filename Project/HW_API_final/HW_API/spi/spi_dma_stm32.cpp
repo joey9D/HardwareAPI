@@ -4,11 +4,15 @@
 #include "spi_dma_stm32.hpp"
 #include <cassert>
 
-// Globale DMA Handles für Interrupt-System (extern Deklarationen in stm32g0xx_it.h)
+// Globale DMA Handles für Interrupt-System (extern Deklarationen in stm32xx_it.h)
 DMA_HandleTypeDef hdma_spi1_tx;
-DMA_HandleTypeDef hdma_spi1_rx; 
+DMA_HandleTypeDef hdma_spi1_rx;
+
+// SPI2 DMA-Handles nur wenn SPI2 unterstützt wird
+#if defined(SPI2)
 DMA_HandleTypeDef hdma_spi2_tx;
 DMA_HandleTypeDef hdma_spi2_rx;
+#endif
 
 // Konstruktor
 SpiDMA::SpiDMA(SPI_HandleTypeDef &hspi,
@@ -16,10 +20,19 @@ SpiDMA::SpiDMA(SPI_HandleTypeDef &hspi,
                uint32_t txPriority,
                uint32_t rxPriority,
                uint32_t dmaMode,
-               uint32_t dataAlignment)
+               uint32_t periphDataAlignment,
+               uint32_t memDataAlignment,
+               uint32_t periphInc,
+               uint32_t memInc,
+               uint32_t direction)
     : _hspi(hspi), _spiInstance(spiInstance),
       _txPriority(txPriority), _rxPriority(rxPriority),
-      _dmaMode(dmaMode), _dataAlignment(dataAlignment),
+      _dmaMode(dmaMode),
+      _periphDataAlignment(periphDataAlignment),
+      _memDataAlignment(memDataAlignment),
+      _periphInc(periphInc),
+      _memInc(memInc),
+      _direction(direction),
       _txInitialized(false), _rxInitialized(false)
 {
 }
@@ -96,8 +109,16 @@ bool SpiDMA::init_dma_RX()
 // Beide DMA initialisieren
 bool SpiDMA::init_dma()
 {
-    enableDMAResources();
-    return init_dma_TX() && init_dma_RX();
+    __HAL_RCC_DMA1_CLK_ENABLE();
+
+// Falls DMA2 vorhanden und benötigt
+#ifdef DMA2
+    __HAL_RCC_DMA2_CLK_ENABLE();
+#endif
+
+    init_dma_TX();
+    init_dma_RX();
+    return (_txInitialized && _rxInitialized);
 }
 
 // DMA TX De-Initialisierung
@@ -181,7 +202,7 @@ bool SpiDMA::abortTransfer_TX()
     {
         return true; // Nichts abzubrechen
     }
-    
+
     HAL_StatusTypeDef status = HAL_DMA_Abort(&_hdma_spi_tx);
     return (status == HAL_OK);
 }
@@ -192,7 +213,7 @@ bool SpiDMA::abortTransfer_RX()
     {
         return true; // Nichts abzubrechen
     }
-    
+
     HAL_StatusTypeDef status = HAL_DMA_Abort(&_hdma_spi_rx);
     return (status == HAL_OK);
 }
@@ -203,17 +224,6 @@ bool SpiDMA::abortTransfer()
     bool txOk = abortTransfer_TX();
     bool rxOk = abortTransfer_RX();
     return txOk && rxOk;
-}
-
-// DMA-Resources aktivieren (Clock Enable)
-void SpiDMA::enableDMAResources()
-{
-    __HAL_RCC_DMA1_CLK_ENABLE();
-
-// Falls DMA2 vorhanden und benötigt
-#ifdef DMA2
-    __HAL_RCC_DMA2_CLK_ENABLE();
-#endif
 }
 
 // Neue Methode: Interrupt-Konfiguration
@@ -229,18 +239,18 @@ void SpiDMA::configureDMAInterrupts(uint32_t txPriority, uint32_t rxPriority)
     {
         return;
     }
-    
+
     // IRQn bestimmen basierend auf dem DMA-Channel
     IRQn_Type txIRQn = getIRQFromDMAChannel(txChannel);
     IRQn_Type rxIRQn = getIRQFromDMAChannel(rxChannel);
-    
+
     // Interrupts konfigurieren
     if (txIRQn != static_cast<IRQn_Type>(0))
     {
         HAL_NVIC_SetPriority(txIRQn, txPriority, 0);
         HAL_NVIC_EnableIRQ(txIRQn);
     }
-    
+
     if (rxIRQn != static_cast<IRQn_Type>(0))
     {
         HAL_NVIC_SetPriority(rxIRQn, rxPriority, 0);
@@ -252,22 +262,22 @@ void SpiDMA::configureDMAInterrupts(uint32_t txPriority, uint32_t rxPriority)
 IRQn_Type SpiDMA::getIRQFromDMAChannel(DMA_Channel_TypeDef *channel)
 {
     // STM32C0/G0-spezifisches Mapping: DMA-Channels → IRQn
-    
+
     // DMA1 Channel 1
     if (channel == DMA1_Channel1)
     {
         return DMA1_Channel1_IRQn;
     }
-    
+
     // DMA1 Channel 2 & 3 teilen sich einen IRQ in STM32C0/G0
     if (channel == DMA1_Channel2 || channel == DMA1_Channel3)
     {
         return DMA1_Channel2_3_IRQn;
     }
-    
+
     // Für weitere Channels je nach MCU-Familie
 #ifdef DMA1_Channel4_5_6_7_IRQn
-    if (channel == DMA1_Channel4 || channel == DMA1_Channel5 || 
+    if (channel == DMA1_Channel4 || channel == DMA1_Channel5 ||
         channel == DMA1_Channel6 || channel == DMA1_Channel7)
     {
         return DMA1_Channel4_5_6_7_IRQn;
@@ -287,7 +297,7 @@ IRQn_Type SpiDMA::getIRQFromDMAChannel(DMA_Channel_TypeDef *channel)
     {
         return DMA2_Channel1_IRQn;
     }
-    
+
     // Je nach MCU-Familie weitere Mappings
 #endif
 
@@ -310,13 +320,29 @@ bool SpiDMA::getDMAChannels(DMA_Channel_TypeDef **txChannel,
         *rxRequest = DMA_REQUEST_SPI1_RX;
         return true;
 
+#if defined(SPI2_BASE)
     case SPI2_BASE:
+#if defined(DMA1_Channel3) && defined(DMA1_Channel4)
         // Korrekte STM32G071RB Channel-Zuordnung
         *txChannel = DMA1_Channel3;
         *rxChannel = DMA1_Channel4;
+#else
+        // Fallback für andere MCUs oder Familien
+        *txChannel = DMA1_Channel1; // Annahme: erster verfügbarer Kanal
+        *rxChannel = DMA1_Channel2; // Annahme: zweiter verfügbarer Kanal
+#endif
+
+#if defined(DMA_REQUEST_SPI2_TX) && defined(DMA_REQUEST_SPI2_RX)
         *txRequest = DMA_REQUEST_SPI2_TX;
         *rxRequest = DMA_REQUEST_SPI2_RX;
+#else
+        // Fallback für ältere HAL-Versionen ohne Request-Definitionen
+        *txRequest = 1; // Annahme: Request IDs für SPI2
+        *rxRequest = 1;
+#endif
+
         return true;
+#endif
 
 #ifdef SPI3_BASE
     case SPI3_BASE:
@@ -347,13 +373,13 @@ void SpiDMA::configureTxDMA(DMA_Channel_TypeDef *channel, uint32_t request)
 {
     _hdma_spi_tx.Instance = channel;
     _hdma_spi_tx.Init.Request = request;
-    _hdma_spi_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
-    _hdma_spi_tx.Init.PeriphInc = DMA_PINC_DISABLE;
-    _hdma_spi_tx.Init.MemInc = DMA_MINC_ENABLE;
-    _hdma_spi_tx.Init.PeriphDataAlignment = _dataAlignment; // <-- Konfigurierbar
-    _hdma_spi_tx.Init.MemDataAlignment = _dataAlignment;    // <-- Konfigurierbar
-    _hdma_spi_tx.Init.Mode = _dmaMode;                      // <-- Konfigurierbar
-    _hdma_spi_tx.Init.Priority = _txPriority;               // <-- Konfigurierbar
+    _hdma_spi_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;           // TX ist immer Memory zu Peripherie
+    _hdma_spi_tx.Init.PeriphInc = _periphInc;                     // Konfigurierbar
+    _hdma_spi_tx.Init.MemInc = _memInc;                           // Konfigurierbar
+    _hdma_spi_tx.Init.PeriphDataAlignment = _periphDataAlignment; // Konfigurierbar
+    _hdma_spi_tx.Init.MemDataAlignment = _memDataAlignment;       // Konfigurierbar
+    _hdma_spi_tx.Init.Mode = _dmaMode;                            // Konfigurierbar
+    _hdma_spi_tx.Init.Priority = _txPriority;                     // Konfigurierbar
 }
 
 // Private: RX DMA konfigurieren
@@ -361,57 +387,58 @@ void SpiDMA::configureRxDMA(DMA_Channel_TypeDef *channel, uint32_t request)
 {
     _hdma_spi_rx.Instance = channel;
     _hdma_spi_rx.Init.Request = request;
-    _hdma_spi_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;     // Kann hardcodiert bleiben
-    _hdma_spi_rx.Init.PeriphInc = DMA_PINC_DISABLE;         // Kann hardcodiert bleiben
-    _hdma_spi_rx.Init.MemInc = DMA_MINC_ENABLE;             // Kann hardcodiert bleiben
-    _hdma_spi_rx.Init.PeriphDataAlignment = _dataAlignment; // Sollte konfigurierbar sein
-    _hdma_spi_rx.Init.MemDataAlignment = _dataAlignment;    // Sollte konfigurierbar sein
-    _hdma_spi_rx.Init.Mode = _dmaMode;                      // Sollte konfigurierbar sein
-    _hdma_spi_rx.Init.Priority = _rxPriority;               // Sollte konfigurierbar sein
+    _hdma_spi_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;           // RX ist immer Peripherie zu Memory
+    _hdma_spi_rx.Init.PeriphInc = _periphInc;                     // Konfigurierbar
+    _hdma_spi_rx.Init.MemInc = _memInc;                           // Konfigurierbar
+    _hdma_spi_rx.Init.PeriphDataAlignment = _periphDataAlignment; // Konfigurierbar
+    _hdma_spi_rx.Init.MemDataAlignment = _memDataAlignment;       // Konfigurierbar
+    _hdma_spi_rx.Init.Mode = _dmaMode;                            // Konfigurierbar
+    _hdma_spi_rx.Init.Priority = _rxPriority;                     // Konfigurierbar
 }
 
 // HAL-kompatible Callback-Funktionen
-extern "C" {
-    
-/**
- * @brief SPI TX DMA Transfer Complete Callback
- * Wird von der HAL nach erfolgreichem DMA TX Transfer aufgerufen
- */
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+extern "C"
 {
-    // Optional: Custom handling nach TX completion
-    // Aktuell keine zusätzliche Logik erforderlich
-}
 
-/**
- * @brief SPI RX DMA Transfer Complete Callback  
- * Wird von der HAL nach erfolgreichem DMA RX Transfer aufgerufen
- */
-void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
-{
-    // Optional: Custom handling nach RX completion
-    // Aktuell keine zusätzliche Logik erforderlich
-}
+    /**
+     * @brief SPI TX DMA Transfer Complete Callback
+     * Wird von der HAL nach erfolgreichem DMA TX Transfer aufgerufen
+     */
+    void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+    {
+        // Optional: Custom handling nach TX completion
+        // Aktuell keine zusätzliche Logik erforderlich
+    }
 
-/**
- * @brief SPI TX/RX DMA Transfer Complete Callback
- * Wird von der HAL nach erfolgreichem DMA TX/RX Transfer aufgerufen
- */
-void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
-{
-    // Optional: Custom handling nach TX/RX completion
-    // Aktuell keine zusätzliche Logik erforderlich
-}
+    /**
+     * @brief SPI RX DMA Transfer Complete Callback
+     * Wird von der HAL nach erfolgreichem DMA RX Transfer aufgerufen
+     */
+    void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
+    {
+        // Optional: Custom handling nach RX completion
+        // Aktuell keine zusätzliche Logik erforderlich
+    }
 
-/**
- * @brief SPI DMA Transfer Error Callback
- * Wird von der HAL bei DMA-Fehlern aufgerufen
- */
-void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
-{
-    // Optional: Error handling
-    // Aktuell keine zusätzliche Logik erforderlich
-}
+    /**
+     * @brief SPI TX/RX DMA Transfer Complete Callback
+     * Wird von der HAL nach erfolgreichem DMA TX/RX Transfer aufgerufen
+     */
+    void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+    {
+        // Optional: Custom handling nach TX/RX completion
+        // Aktuell keine zusätzliche Logik erforderlich
+    }
+
+    /**
+     * @brief SPI DMA Transfer Error Callback
+     * Wird von der HAL bei DMA-Fehlern aufgerufen
+     */
+    void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+    {
+        // Optional: Error handling
+        // Aktuell keine zusätzliche Logik erforderlich
+    }
 
 } // extern "C"
 

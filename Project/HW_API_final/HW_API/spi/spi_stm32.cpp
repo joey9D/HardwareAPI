@@ -300,11 +300,13 @@ bool Spi::spi_init()
     {
         __HAL_RCC_SPI1_CLK_ENABLE();
     }
+#if defined(SPI2)
     else if (_instance == SPI2)
     {
         __HAL_RCC_SPI2_CLK_ENABLE();
     }
-    // STM32G0 supports only SPI1 and SPI2
+#endif
+    // STM32G0 supports SPI1 and SPI2, STM32C0 only SPI1
 #ifdef SPI3
     else if (_instance == SPI3)
     {
@@ -357,16 +359,40 @@ bool Spi::spi_init()
     _hspi.Init.CRCLength = spiCRCLengthToHAL(_spiCRCLength);
     _hspi.Init.NSSPMode = spiNSSPModeToHAL(_spiNSSPMode);
 
+    // DMA initialization should be done before HAL_SPI_Init
     if (_dma != nullptr)
     {
+        // Make sure DMA is properly initialized
         _dma->init_dma();
+        
+        // Link DMA resources to SPI
+        _dma->enableDMAResources();
     }
 
+    // Initialize HAL SPI
     HAL_StatusTypeDef status = HAL_SPI_Init(&_hspi);
     if (status != HAL_OK)
     {
         assert(false && "HAL_SPI_Init failed!");
         return false;
+    }
+    
+    // Additional configuration for Slave mode
+    if (_spiMode == SpiMode::Slave)
+    {
+        // Ensure CR1 register is properly configured for slave mode
+        // This addresses potential issues with certain STM32 devices
+        _instance->CR1 &= ~(SPI_CR1_MSTR);  // Clear master bit to force slave mode
+        
+#if defined(STM32G0xx)
+        // Special handling for STM32G0xx in slave mode
+        _instance->CR2 |= SPI_CR2_RXNEIE;   // Enable RXNE interrupt in slave mode
+        if (_spiDirection == SpiDirection::FullDuplex || _spiDirection == SpiDirection::RxOnly)
+        {
+            // Ensure the slave is ready to receive
+            _instance->CR1 |= SPI_CR1_SSI;   // Set internal slave select
+        }
+#endif
     }
 
     // Spezielle Behandlung für TxOnly-Modus
@@ -375,12 +401,49 @@ bool Spi::spi_init()
         // BIDIOE-Bit setzen für Transmit-Only im Half-Duplex Modus
         SET_BIT(_hspi.Instance->CR1, SPI_CR1_BIDIOE);
     }
-
-    // MSTR explizit für Master setzen (Absicherung gegen HAL-Inkonsistenzen)
-    if (_spiMode == SpiMode::Master)
+    
+    // Überprüfen und korrigieren der Register-Konfiguration nach der HAL-Initialisierung
+#if defined(STM32G0xx)
+    if (_spiMode == SpiMode::Slave)
     {
-        // SET_BIT(_hspi.Instance->CR1, SPI_CR1_MSTR);
+        // Für Slave-Modus auf dem G0: Explizit CR1 konfigurieren
+        // Stelle sicher, dass das MSTR-Bit für Slave-Modus gelöscht ist
+        CLEAR_BIT(_hspi.Instance->CR1, SPI_CR1_MSTR);
+        
+        // Bei Problemen mit NSS im Hard-Input-Modus kann das SSI-Bit gelöscht werden
+        if (_spiNSS == SpiNSS::Hard_In) 
+        {
+            CLEAR_BIT(_hspi.Instance->CR1, SPI_CR1_SSI);
+        }
+        
+        // CR1 konfigurieren mit relevanten Einstellungen
+        uint32_t cr1Config = 0;
+        
+        // Richtungseinstellung
+        cr1Config |= spiDirectionToHAL(_spiDirection);
+        
+        // Taktpolarität und -phase
+        cr1Config |= spiClockPolarityToHAL(_spiClockPolarity);
+        cr1Config |= spiClockPhaseToHAL(_spiClockPhase);
+        
+        // NSS-Management (für Software NSS)
+        if (_spiNSS == SpiNSS::Soft) {
+            cr1Config |= SPI_CR1_SSM;
+        }
+        
+        // Andere Einstellungen beibehalten
+        cr1Config |= spiFirstBitToHAL(_spiFirstBit);
+        
+        // Aktuelle CR1-Konfiguration sichern
+        uint32_t currentCR1 = _hspi.Instance->CR1;
+        
+        // CR1 aktualisieren - bestimmte Bits beibehalten, andere ersetzen
+        _hspi.Instance->CR1 = (currentCR1 & ~(SPI_CR1_MSTR | SPI_CR1_SSI)) | cr1Config;
+        
+        // SPI aktivieren
+        SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
     }
+#endif
 
     // WICHTIG: SPI explizit aktivieren, da HAL dies nicht automatisch macht
     // Wenn dieser Teil später auskommentiert wird, wird die HAL den SPI

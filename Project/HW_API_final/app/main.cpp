@@ -1,8 +1,7 @@
-/* USER CODE BEGIN Header */
 /**
  ******************************************************************************
  * @file           : main.cpp
- * @brief          : Main program body for HW_API
+ * @brief          : Einfacher MISO-Test für Oszilloskop-Beobachtung
  ******************************************************************************
  * @attention
  *
@@ -15,22 +14,30 @@
  *
  ******************************************************************************
  */
-/* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.hpp"
 #include <cstring>
 
-// Konfiguration: Aktivieren Sie entweder MASTER_MODE, SLAVE_MODE oder beide
-#define MASTER_MODE
-#define SLAVE_MODE
+/**
+ * @brief Test-Konfiguration
+ */
+#define BUFFER_SIZE 16 // Größe der Sende-/Empfangspuffer
 
-#define BUFFER_SIZE 16
+// Betriebsmodus
+// #define SPI_MODE_MASTER // SPI im Master-Modus
+#define SPI_MODE_SLAVE // SPI im Slave-Modus
 
-// Transfer Status-Definitionen
-#define TRANSFER_WAIT 0
-#define TRANSFER_COMPLETE 1
-#define TRANSFER_ERROR 2
+/**
+ * @brief Testmuster für SPI-Übertragung
+ * Einfaches 'O' (ASCII 0x4F) als MISO-Nachricht
+ */
+const uint8_t TEST_PATTERN[] = {
+    'O', 'O', 'O', 'O', // Einfach nur 'O' als Testmuster
+    'O', 'O', 'O', 'O', // Wiederholt für Zuverlässigkeit
+    'O', 'O', 'O', 'O', // und leichtere Erkennung auf dem Oszilloskop
+    'O', 'O', 'O', 'O'  // Das ASCII 'O' hat den Wert 0x4F
+};
 
 /**
  * @brief  The application entry point.
@@ -38,93 +45,72 @@
  */
 int main(void)
 {
-  // Create hardware interface using factory pattern
+  // Definiere Puffer für SPI-Übertragung
+  uint8_t txBuffer[BUFFER_SIZE] = {0};
+  uint8_t rxBuffer[BUFFER_SIZE] = {0};
+
+  // Kopiere Testmuster in den Sendepuffer
+  memcpy(txBuffer, TEST_PATTERN, sizeof(TEST_PATTERN));
+
+  /* === System-Initialisierung === */
+
+  // Hardware-Interface erstellen
   HardwareInterface *hw = HardwareFactory::create();
 
-  // Initialize system (HAL, clocks, etc.)
+  // System initialisieren
   hw->init_sys();
 
-  // Initialize all pins defined in project_config.hpp
+  // Pins initialisieren
   hw->initAllPins();
 
-  // Initialize User Button for manual trigger
-  // boardPins.button.gpio_init();
+  /* === SPI-Konfiguration === */
 
-  // Initialize debounce state
-  // bool lastButtonState = false;
-  // bool buttonPressed = false;
+#ifdef SPI_MODE_MASTER
+  // Konfiguriere NSS-Pin als Output für Master-Modus
+  boardPins.spi1_nss.setPinMode(Mode::Output_Push_Pull);
+  boardPins.spi1_nss.setPinAlternate(Alternate::None);
+  boardPins.spi1_nss.gpio_init();
+  boardPins.spi1_nss.writePin(true); // Default: CS auf High (deaktiviert)
+#endif
 
-  // ===== SPI TEST CODE BEGINS =====
+  // SPI initialisieren
+  peripherals.spi1.spi_init();
 
-  // SPI initialisieren - Master und Slave für echte Kommunikation
-  peripherals.spi1.spi_init(); // Master
-  peripherals.spi2.spi_init(); // Slave
+  // DMA für SPI1 konfigurieren
+  static SpiDMA spi1_dma(
+      *peripherals.spi1.get_handle(),
+      peripherals.spi1.get_handle()->Instance,
+      DMA_PRIORITY_HIGH,
+      DMA_PRIORITY_HIGH,
+      DMA_NORMAL,
+      DMA_PDATAALIGN_BYTE);
 
-  // ===== SPI TIMEOUT KONFIGURATION =====
-  const uint32_t SPI_DMA_TIMEOUT_MS = 1000; // 1 Sekunde für DMA
+  // DMA mit SPI verknüpfen und initialisieren
+  peripherals.spi1_dma = &spi1_dma;
+  peripherals.spi1.set_dma(peripherals.spi1_dma);
+  peripherals.spi1_dma->init_dma();
 
-  // Test-/Response-Daten für bidirektionale SPI-Kommunikation mit DMA
-  uint8_t aTxBuffer[BUFFER_SIZE] = 'A'; // Sendedaten
-  uint8_t aRxBuffer[BUFFER_SIZE] = {0}; // Empfangsdaten
+  // SPI mit aktivierter DMA initialisieren
+  peripherals.spi1.spi_init();
 
-  // Blink-LED während auf Taste gedrückt wird
-  while (boardPins.button.readPin() == true)
-  {
-    boardPins.led.togglePin();
-    hw->delay(100);
-  }
-  boardPins.led.writePin(false); // LED ausschalten
-
-  // Status-Variablen für Transfer
-  uint32_t wTransferState = TRANSFER_WAIT;
-
-  // Start SPI FullDuplex DMA transfer
-  wTransferState = TRANSFER_WAIT;
-
-  // NSS aktivieren (LOW) für SPI-Transfer
-  boardPins.spi1_nss.writePin(false);
-
-  // Starte DMA-Transfer (nicht-blockierend mit timeout=0)
-  if (!peripherals.spi1.transmitReceive_DMA(aTxBuffer, aRxBuffer, BUFFER_SIZE, 0))
-  {
-    wTransferState = TRANSFER_ERROR;
-  }
-
-  /* Infinite loop */
+  /* === Hauptschleife für kontinuierlichen MISO-Test === */
   while (1)
   {
-    // Prüfe den Status des DMA-Transfers
-    if (peripherals.spi1.isDmaTransmitReceiveComplete())
-    {
-      // Transfer abgeschlossen
-      wTransferState = TRANSFER_COMPLETE;
+#ifdef SPI_MODE_MASTER
+    // Starte SPI-Transaktion im Master-Modus
+    boardPins.spi1_nss.writePin(false); // CS aktivieren (Low)
+    hw->delay(1);
 
-      // NSS deaktivieren (HIGH) nach Transfer
-      boardPins.spi1_nss.writePin(true);
-    }
+    // Sende Testmuster und empfange gleichzeitig MISO-Daten
+    peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
-    // Verarbeite Ergebnisse basierend auf Transfer-Status
-    if (wTransferState == TRANSFER_COMPLETE)
-    {
-      // Vergleiche Sende- und Empfangspuffer
-      if (memcmp(aTxBuffer, aRxBuffer, BUFFER_SIZE) == 0)
-      {
-        // Erfolg: LED einschalten
-        boardPins.led.writePin(true);
-      }
-      else
-      {
-        // Fehler: LED langsam blinken
-        boardPins.led.togglePin();
-        hw->delay(500);
-      }
-    }
-    else if (wTransferState == TRANSFER_ERROR)
-    {
-      // Fehler: LED langsam blinken
-      boardPins.led.togglePin();
-      hw->delay(500);
-    }
-    // Sonst: Warten, LED aus
+    boardPins.spi1_nss.writePin(true); // CS deaktivieren (High)
+#else
+    // Slave-Modus: Bereite Antwortdaten vor und warte auf Master
+    peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 5000);
+#endif
+
+    // Kurze Pause vor der nächsten Übertragung
+    hw->delay(200);
   }
 }
