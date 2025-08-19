@@ -215,6 +215,44 @@ namespace HW_API
 #endif
         };
 
+        // ============================================================================
+        // DMA Enums
+        // ============================================================================
+        
+        enum class DmaDirection : uint32_t
+        {
+            PeriphToMem = DMA_PERIPH_TO_MEMORY,
+            MemToPeriph = DMA_MEMORY_TO_PERIPH,
+            MemToMem = DMA_MEMORY_TO_MEMORY,
+        };
+        
+        enum class DmaMode : uint32_t
+        {
+            Normal = DMA_NORMAL,
+            Circular = DMA_CIRCULAR,
+        };
+        
+        enum class DmaPriority : uint32_t
+        {
+            Low = DMA_PRIORITY_LOW,
+            Medium = DMA_PRIORITY_MEDIUM,
+            High = DMA_PRIORITY_HIGH,
+            VeryHigh = DMA_PRIORITY_VERY_HIGH,
+        };
+        
+        enum class DmaIncrementMode : uint32_t
+        {
+            Enable = DMA_MINC_ENABLE,
+            Disable = DMA_PINC_DISABLE,
+        };
+        
+        enum class DmaDataAlignment : uint32_t
+        {
+            Byte = DMA_PDATAALIGN_BYTE,
+            HalfWord = DMA_PDATAALIGN_HALFWORD,
+            Word = DMA_PDATAALIGN_WORD,
+        };
+        
     } // namespace STM32
 } // namespace HW_API
 

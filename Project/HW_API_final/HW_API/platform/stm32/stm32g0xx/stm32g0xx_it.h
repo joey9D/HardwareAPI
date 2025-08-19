@@ -27,6 +27,17 @@ extern "C"
     void PendSV_Handler(void);
     void SysTick_Handler(void);
 
+    /* DMA Interrupt Handlers für SPI */
+    void DMA1_Channel1_IRQHandler(void);
+    void DMA1_Channel2_3_IRQHandler(void);
+    void DMA1_Ch4_7_DMA2_Ch1_5_DMAMUX1_OVR_IRQHandler(void);
+
+    /* Externe DMA Handles für Interrupt Handler */
+    extern DMA_HandleTypeDef hdma_spi1_tx;
+    extern DMA_HandleTypeDef hdma_spi1_rx;
+    extern DMA_HandleTypeDef hdma_spi2_tx;
+    extern DMA_HandleTypeDef hdma_spi2_rx;
+
 #ifdef __cplusplus
 }
 #endif

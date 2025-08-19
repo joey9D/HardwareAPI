@@ -20,6 +20,16 @@ public:
     virtual bool isTxReady() const = 0;
     virtual bool isRxReady() const = 0;
     virtual bool areBothReady() const = 0;
+    
+    // Transfer-Status
+    virtual bool isTransferInProgress_TX() const = 0;
+    virtual bool isTransferInProgress_RX() const = 0;
+    virtual bool isAnyTransferInProgress() const = 0;
+    
+    // Transfer-Abbruch
+    virtual bool abortTransfer_TX() = 0;
+    virtual bool abortTransfer_RX() = 0;
+    virtual bool abortTransfer() = 0;
 
     // Platform-spezifische Handle-Getter
     virtual PlatformDMAHandle *getTxHandle() = 0;
@@ -27,6 +37,9 @@ public:
 
     // Clock/Resource Management
     virtual void enableDMAResources() = 0;
+    
+    // Interrupt-Konfiguration
+    virtual void configureDMAInterrupts(uint32_t txPriority = 0, uint32_t rxPriority = 0) = 0;
 };
 
 // Platform-spezifische Type-Aliases - HIER passiert die Auswahl!

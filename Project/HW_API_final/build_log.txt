@@ -29,8 +29,8 @@ Configuring build system...
 -- Check for working CXX compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-g++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- MCU Family: stm32g0xx
--- MCU Specific: STM32G071RB
+-- MCU Family: stm32c0xx
+-- MCU Specific: STM32C031C6
 -- Debug Probe: st-link
 -- Adding subdirectories for STM32...
 -- =======================================================
@@ -42,11 +42,11 @@ Configuring build system...
 -- C++ Compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-g++.exe
 -- Enabled HW_API-specific warnings: -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion
 -- Configuring for STM32 platform
--- Using MCU family from Makefile: stm32g0xx
--- MCU Family: stm32g0xx
--- Added STM32G0xx family compile definitions
--- STM32 Platform Path: stm32/stm32g0xx
--- STM32 HW File Base: stm32g0xx_hw
+-- Using MCU family from Makefile: stm32c0xx
+-- MCU Family: stm32c0xx
+-- Added STM32C0xx family compile definitions
+-- STM32 Platform Path: stm32/stm32c0xx
+-- STM32 HW File Base: stm32c0xx_hw
 -- STM32 compile definitions applied globally
 -- Adding core module...
 -- =======================================================
@@ -69,28 +69,28 @@ Configuring build system...
 -- === Configuring HW_API Drivers Module (hw_api_drivers) ===
 -- ================================================================================
 -- Configuring STM32 drivers...
--- STM32 HAL Repository: https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
--- STM32 HAL Tag: v1.4.4
--- STM32 CMSIS Repository: https://github.com/STMicroelectronics/cmsis_device_g0.git
--- STM32 CMSIS Tag: v1.4.2
+-- STM32 HAL Repository: https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
+-- STM32 HAL Tag: v1.4.0
+-- STM32 CMSIS Repository: https://github.com/STMicroelectronics/cmsis_device_c0.git
+-- STM32 CMSIS Tag: v1.3.0
 -- ARM CMSIS Repository: https://github.com/ARM-software/CMSIS_5.git
 -- ARM CMSIS Tag: 5.9.0
--- HAL Prefix: STM32G0xx
+-- HAL Prefix: STM32C0xx
 -- STM32 HAL Driver fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src
 -- STM32 CMSIS Device fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src
 -- ARM CMSIS Core fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src
--- MCU_FAMILY in drivers: stm32g0xx
--- Configuring for STM32G0xx family...
+-- MCU_FAMILY in drivers: stm32c0xx
+-- Configuring for STM32C0xx family...
 -- Using STM32 HAL with wrapper
 -- Driver source files for STM32:
---   - C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32g071xx.s
+--   - C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32c031xx.s
 --   - stm32_hal_wrapper/common/syscalls.c
 -- Driver header files for STM32:
 --   - stm32_hal_wrapper/common/stm32_hal_inc.hpp
---   - stm32_hal_wrapper/stm32g0xx/stm32g0xx_hal_conf.h
+--   - stm32_hal_wrapper/stm32c0xx/stm32c0xx_hal_conf.h
 -- Created hw_api_drivers library with source files
 -- Linked hw_api_drivers with hw_api_core and stm32_hal_library
--- Added STM32 HAL compile definitions: USE_HAL_DRIVER, STM32G0xx_HAL_DRIVER
+-- Added STM32 HAL compile definitions: USE_HAL_DRIVER, STM32C0xx_HAL_DRIVER
 -- === HW_API Drivers Module Configuration Complete ===
 -- Adding GPIO module...
 -- =======================================================
@@ -112,16 +112,16 @@ Configuring build system...
 -- === Configuring HW_API Platform Module (hw_api_platform) ===
 -- ================================================================================
 -- Configuring for STM32 platform...
--- Using MCU family: stm32g0xx
--- Using platform path: stm32/stm32g0xx
+-- Using MCU family: stm32c0xx
+-- Using platform path: stm32/stm32c0xx
 -- Using STM32-specific platform files
 -- Platform source files for STM32:
---   - stm32/stm32g0xx/stm32g0xx_hw.cpp
---   - stm32/stm32g0xx/stm32g0xx_hal_msp.c
+--   - stm32/stm32c0xx/stm32c0xx_hw.cpp
+--   - stm32/stm32c0xx/stm32c0xx_hal_msp.c
 -- Platform header files for STM32:
 --   - stm32/stm32x0_gpio_mapping.hpp
---   - stm32/stm32g0xx/stm32g0xx_hw.hpp
---   - stm32/stm32g0xx/stm32g0xx_it.h
+--   - stm32/stm32c0xx/stm32c0xx_hw.hpp
+--   - stm32/stm32c0xx/stm32c0xx_it.h
 -- Created hw_api_platform library with source files
 -- Linked hw_api_platform with hw_api_core
 -- Linked hw_api_platform with hw_api_drivers for HAL access
@@ -153,15 +153,15 @@ Configuring build system...
 -- =======================================================
 -- === Configuring Application (hw_api_app) ===
 -- =======================================================
--- Added STM32G0xx interrupt handlers directly to application
+-- Added STM32C0xx interrupt handlers directly to application
 -- Application source files:
 --   - main.cpp
---   - ../HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c
+--   - ../HW_API/platform/stm32/stm32c0xx/stm32c0xx_it.c
 -- Application header files:
 --   - main.hpp
--- Using STM32G071RB linker script
+-- Using STM32C031C6 linker script
 -- Added STM32 compile definitions to hw_api_app
--- Using linker script: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/../HW_API/platform/stm32/stm32g0xx/STM32G071RBTx_FLASH.ld
+-- Using linker script: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/../HW_API/platform/stm32/stm32c0xx/STM32C031C6Tx_FLASH.ld
 -- Created hw_api_app executable
 -- Linked hw_api_app with STM32 HW_API modules (including drivers and SPI)
 -- Will generate HW_API_Project.bin for flashing
@@ -176,117 +176,212 @@ Configuring build system...
 -- Target system: Generic
 -- Target processor: arm
 -- ================================================================================
--- Configuring done (123.7s)
--- Generating done (0.4s)
+-- Configuring done (100.6s)
+-- Generating done (0.2s)
 -- Build files have been written to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build
 Building project...
-[1/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal.c.obj
-[2/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_gpio.c.obj
-[3/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_cortex.c.obj
-[4/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_pwr.c.obj
-[5/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_dma.c.obj
-[6/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_flash.c.obj
-[7/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_pwr_ex.c.obj
-[8/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim.c.obj
-[9/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c.obj
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c: In function 'HAL_RCC_OscConfig':
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c:687:1: warning: embedding a directive within macro arguments is not portable
-  687 | #if defined(RCC_PLLQ_SUPPORT)
-      | ^
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc.c:689:1: warning: embedding a directive within macro arguments is not portable
-  689 | #endif /* RCC_PLLQ_SUPPORT */
-      | ^
-[10/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_rcc_ex.c.obj
-[11/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c.obj
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c: In function 'SPI_2linesRxISR_8BIT':
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c:3469:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
- 3469 |     hspi->RxXferCount -= 2U;
+[1/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal.c.obj
+[2/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_cortex.c.obj
+[3/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_flash.c.obj
+[4/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_pwr.c.obj
+[5/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_gpio.c.obj
+[6/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_dma.c.obj
+[7/26] Building ASM object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32c031xx.s.obj
+[8/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_uart.c.obj
+[9/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_rcc.c.obj
+[10/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_tim.c.obj
+[11/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32c0xx.c.obj
+[12/26] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c.obj
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c: In function 'HAL_SPI_Transmit':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:940:30: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+  940 |         hspi->TxXferCount -= 2U;
+      |                              ^~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:959:32: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+  959 |           hspi->TxXferCount -= 2U;
+      |                                ^~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c: In function 'HAL_SPI_TransmitReceive':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:1450:30: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+ 1450 |         hspi->TxXferCount -= 2U;
+      |                              ^~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:1481:32: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+ 1481 |           hspi->TxXferCount -= 2U;
+      |                                ^~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:1513:32: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+ 1513 |           hspi->RxXferCount -= 2U;
+      |                                ^~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c: In function 'SPI_2linesRxISR_8BIT':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:3597:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+ 3597 |     hspi->RxXferCount -= 2U;
       |                          ^~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c: In function 'SPI_2linesTxISR_8BIT':
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32g0xx_hal_spi.c:3554:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
- 3554 |     hspi->TxXferCount -= 2U;
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c: In function 'SPI_2linesTxISR_8BIT':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:3682:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
+ 3682 |     hspi->TxXferCount -= 2U;
       |                          ^~
-[12/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_tim_ex.c.obj
-[13/30] Building ASM object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32g071xx.s.obj
-[14/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_uart.c.obj
-[15/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32g0xx_hal_uart_ex.c.obj
-[16/30] Building C object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/stm32_hal_wrapper/common/syscalls.c.obj
-[17/30] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32g0xx.c.obj
-[18/30] Building CXX object HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj
-[19/30] Building C object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32g0xx/stm32g0xx_hal_msp.c.obj
-[20/30] Building CXX object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32g0xx/stm32g0xx_hw.cpp.obj
-[21/30] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj
-[22/30] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj
-[23/30] Building C object app/CMakeFiles/hw_api_app.dir/__/HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c.obj
-[24/30] Linking C static library HW_API\drivers\libstm32_hal_library.a
-[25/30] Linking C static library HW_API\drivers\libhw_api_drivers.a
-[26/30] Linking CXX static library HW_API\gpio\libhw_api_gpio.a
-[27/30] Linking CXX static library HW_API\spi\libhw_api_spi.a
-[28/30] Linking CXX static library HW_API\platform\libhw_api_platform.a
-[29/30] Building CXX object app/CMakeFiles/hw_api_app.dir/main.cpp.obj
+[13/26] Building C object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/stm32_hal_wrapper/common/syscalls.c.obj
+[14/26] Building C object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hal_msp.c.obj
+[15/26] Building CXX object HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj
+FAILED: HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj 
+C:\ST\STM32CubeCLT_1.18.0\GNU-tools-for-STM32\bin\arm-none-eabi-g++.exe -DDEBUG=1 -DSTM32C031x6=1 -DSTM32C031xx=1 -DSTM32C0xx=1 -DSTM32C0xx_HAL_DRIVER=1 -DSTM32_FAMILY_stm32c0xx=1 -DSTM32_PLATFORM=1 -DUSE_HAL_DRIVER -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32 -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/.. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/common -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Inc -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src/CMSIS/Core/Include -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -ffunction-sections -fdata-sections -Wall -Wextra -std=c++17 -fno-rtti -fno-exceptions -g -O0 -g -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g -O0 -Wconversion -Wsign-conversion -MD -MT HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj -MF HW_API\gpio\CMakeFiles\hw_api_gpio.dir\gpio_stm32.cpp.obj.d -o HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/gpio_stm32.cpp
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_classes.hpp:5,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/gpio_interface.hpp:3,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/gpio_stm32.hpp:17,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio/gpio_stm32.cpp:7:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:65:23: error: 'GPIO_AF1_SPI2' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   65 |             SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+      |                       ^~~~~~~~~~~~~
+      |                       GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:78:24: error: 'GPIO_AF0_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   78 |             UCPD_AF0 = GPIO_AF0_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:79:24: error: 'GPIO_AF1_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   79 |             UCPD_AF1 = GPIO_AF1_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:80:24: error: 'GPIO_AF3_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   80 |             UCPD_AF3 = GPIO_AF3_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:81:24: error: 'GPIO_AF4_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   81 |             UCPD_AF4 = GPIO_AF4_UCPD1
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+[16/26] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj
+FAILED: HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj 
+C:\ST\STM32CubeCLT_1.18.0\GNU-tools-for-STM32\bin\arm-none-eabi-g++.exe -DDEBUG=1 -DSTM32C031x6=1 -DSTM32C031xx=1 -DSTM32C0xx=1 -DSTM32C0xx_HAL_DRIVER=1 -DSTM32_FAMILY_stm32c0xx=1 -DSTM32_PLATFORM=1 -DUSE_HAL_DRIVER -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32 -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/.. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/common -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Inc -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src/CMSIS/Core/Include -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -ffunction-sections -fdata-sections -Wall -Wextra -std=c++17 -fno-rtti -fno-exceptions -g -O0 -g -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g -O0 -Wconversion -Wsign-conversion -MD -MT HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj -MF HW_API\spi\CMakeFiles\hw_api_spi.dir\spi_stm32.cpp.obj.d -o HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_classes.hpp:5,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_interface.hpp:3,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.hpp:7,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp:12:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_stm32.hpp:65:23: error: 'GPIO_AF1_SPI2' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   65 |             SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+      |                       ^~~~~~~~~~~~~
+      |                       GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_stm32.hpp:78:24: error: 'GPIO_AF0_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   78 |             UCPD_AF0 = GPIO_AF0_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_stm32.hpp:79:24: error: 'GPIO_AF1_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   79 |             UCPD_AF1 = GPIO_AF1_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_stm32.hpp:80:24: error: 'GPIO_AF3_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   80 |             UCPD_AF3 = GPIO_AF3_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/../core/hw_enum_stm32.hpp:81:24: error: 'GPIO_AF4_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   81 |             UCPD_AF4 = GPIO_AF4_UCPD1
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp: In member function 'virtual bool Spi::spi_init()':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp:303:27: error: 'SPI2' was not declared in this scope; did you mean 'SPI1'?
+  303 |     else if (_instance == SPI2)
+      |                           ^~~~
+      |                           SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp:305:9: error: '__HAL_RCC_SPI2_CLK_ENABLE' was not declared in this scope
+  305 |         __HAL_RCC_SPI2_CLK_ENABLE();
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~
+[17/26] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj
+FAILED: HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj 
+C:\ST\STM32CubeCLT_1.18.0\GNU-tools-for-STM32\bin\arm-none-eabi-g++.exe -DDEBUG=1 -DSTM32C031x6=1 -DSTM32C031xx=1 -DSTM32C0xx=1 -DSTM32C0xx_HAL_DRIVER=1 -DSTM32_FAMILY_stm32c0xx=1 -DSTM32_PLATFORM=1 -DUSE_HAL_DRIVER -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32 -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/.. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/common -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Inc -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src/CMSIS/Core/Include -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -ffunction-sections -fdata-sections -Wall -Wextra -std=c++17 -fno-rtti -fno-exceptions -g -O0 -g -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g -O0 -Wconversion -Wsign-conversion -MD -MT HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj -MF HW_API\spi\CMakeFiles\hw_api_spi.dir\spi_dma_stm32.cpp.obj.d -o HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_dma_stm32.cpp.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp: In member function 'bool SpiDMA::getDMAChannels(DMA_Channel_TypeDef**, DMA_Channel_TypeDef**, uint32_t*, uint32_t*)':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp:188:10: error: 'SPI2_BASE' was not declared in this scope; did you mean 'SPI1_BASE'?
+  188 |     case SPI2_BASE:
+      |          ^~~~~~~~~
+      |          SPI1_BASE
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp:191:22: error: 'DMA1_Channel4' was not declared in this scope; did you mean 'DMA1_Channel1'?
+  191 |         *rxChannel = DMA1_Channel4;
+      |                      ^~~~~~~~~~~~~
+      |                      DMA1_Channel1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp:192:22: error: 'DMA_REQUEST_SPI2_TX' was not declared in this scope; did you mean 'DMA_REQUEST_SPI1_TX'?
+  192 |         *txRequest = DMA_REQUEST_SPI2_TX;
+      |                      ^~~~~~~~~~~~~~~~~~~
+      |                      DMA_REQUEST_SPI1_TX
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_dma_stm32.cpp:193:22: error: 'DMA_REQUEST_SPI2_RX' was not declared in this scope; did you mean 'DMA_REQUEST_SPI1_RX'?
+  193 |         *rxRequest = DMA_REQUEST_SPI2_RX;
+      |                      ^~~~~~~~~~~~~~~~~~~
+      |                      DMA_REQUEST_SPI1_RX
+[18/26] Building CXX object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hw.cpp.obj
+FAILED: HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hw.cpp.obj 
+C:\ST\STM32CubeCLT_1.18.0\GNU-tools-for-STM32\bin\arm-none-eabi-g++.exe -DDEBUG=1 -DSTM32C031x6=1 -DSTM32C031xx=1 -DSTM32C0xx=1 -DSTM32C0xx_HAL_DRIVER=1 -DSTM32_FAMILY_stm32c0xx=1 -DSTM32_PLATFORM=1 -DUSE_HAL_DRIVER -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32 -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/.. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/common -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Inc -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src/CMSIS/Core/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -ffunction-sections -fdata-sections -Wall -Wextra -std=c++17 -fno-rtti -fno-exceptions -g -O0 -g -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g -O0 -Wconversion -Wsign-conversion -MD -MT HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hw.cpp.obj -MF HW_API\platform\CMakeFiles\hw_api_platform.dir\stm32\stm32c0xx\stm32c0xx_hw.cpp.obj.d -o HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hw.cpp.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx/stm32c0xx_hw.cpp
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_classes.hpp:5,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_interface.hpp:18,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx/stm32c0xx_hw.hpp:17,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx/stm32c0xx_hw.cpp:10:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:65:23: error: 'GPIO_AF1_SPI2' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   65 |             SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+      |                       ^~~~~~~~~~~~~
+      |                       GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:78:24: error: 'GPIO_AF0_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   78 |             UCPD_AF0 = GPIO_AF0_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:79:24: error: 'GPIO_AF1_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   79 |             UCPD_AF1 = GPIO_AF1_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:80:24: error: 'GPIO_AF3_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   80 |             UCPD_AF3 = GPIO_AF3_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:81:24: error: 'GPIO_AF4_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   81 |             UCPD_AF4 = GPIO_AF4_UCPD1
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform/stm32/stm32c0xx/stm32c0xx_hw.cpp:14:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/project_config.hpp:121:26: error: 'SPI2' was not declared in this scope; did you mean 'SPI1'?
+  121 |                          SPI2,
+      |                          ^~~~
+      |                          SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/project_config.hpp:135:33: error: could not convert '{boardPins.BoardPins::spi2_sck, boardPins.BoardPins::spi2_miso, boardPins.BoardPins::spi2_mosi, boardPins.BoardPins::spi2_nss, <expression error>, HW_API::STM32::SpiMode::Slave, HW_API::STM32::SpiDirection::FullDuplex, HW_API::STM32::SpiDataSize::Bits8, HW_API::STM32::SpiClockPolarity::Low, HW_API::STM32::SpiClockPhase::FirstEdge, HW_API::STM32::SpiNSS::Soft, HW_API::STM32::SpiBaudRatePrescaler::Prescaler32, HW_API::STM32::SpiFirstBit::MSB, HW_API::STM32::SpiTIMode::Disable, HW_API::STM32::SpiCRCCalculation::Disable, HW_API::STM32::SpiCRCPolynomial::Polynomial7, HW_API::STM32::SpiCRCLength::Length8, HW_API::STM32::SpiNSSPMode::Software, nullptr}' from '<brace-enclosed initializer list>' to 'Spi'
+  135 |                          nullptr};
+      |                                 ^
+      |                                 |
+      |                                 <brace-enclosed initializer list>
+[19/26] Linking C static library HW_API\drivers\libstm32_hal_library.a
+[20/26] Building CXX object app/CMakeFiles/hw_api_app.dir/main.cpp.obj
+FAILED: app/CMakeFiles/hw_api_app.dir/main.cpp.obj 
+C:\ST\STM32CubeCLT_1.18.0\GNU-tools-for-STM32\bin\arm-none-eabi-g++.exe -DDEBUG=1 -DSTM32C031x6=1 -DSTM32C031xx=1 -DSTM32C0xx=1 -DSTM32C0xx_HAL_DRIVER=1 -DSTM32_FAMILY_stm32c0xx=1 -DSTM32_PLATFORM=1 -DUSE_HAL_DRIVER -DUSE_HAL_DRIVER=1 -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/.. -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/gpio -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/common -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/drivers/stm32_hal_wrapper/stm32c0xx -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Inc -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src/CMSIS/Core/Include -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi -IC:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/platform -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -ffunction-sections -fdata-sections -Wall -Wextra -std=c++17 -fno-rtti -fno-exceptions -g -O0 -g -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g -O0 -MD -MT app/CMakeFiles/hw_api_app.dir/main.cpp.obj -MF app\CMakeFiles\hw_api_app.dir\main.cpp.obj.d -o app/CMakeFiles/hw_api_app.dir/main.cpp.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_classes.hpp:5,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_interface.hpp:18,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_factory.hpp:4,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.hpp:19,
+                 from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:21:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:65:23: error: 'GPIO_AF1_SPI2' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   65 |             SPI_AF1 = GPIO_AF1_SPI2, // SPI2 on AF1 (STM32G0 uses AF1 for SPI2)
+      |                       ^~~~~~~~~~~~~
+      |                       GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:78:24: error: 'GPIO_AF0_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   78 |             UCPD_AF0 = GPIO_AF0_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:79:24: error: 'GPIO_AF1_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   79 |             UCPD_AF1 = GPIO_AF1_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:80:24: error: 'GPIO_AF3_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   80 |             UCPD_AF3 = GPIO_AF3_UCPD1,
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/hw_enum_stm32.hpp:81:24: error: 'GPIO_AF4_UCPD1' was not declared in this scope; did you mean 'GPIO_AF0_SPI1'?
+   81 |             UCPD_AF4 = GPIO_AF4_UCPD1
+      |                        ^~~~~~~~~~~~~~
+      |                        GPIO_AF0_SPI1
+In file included from C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.hpp:21:
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/project_config.hpp:121:26: error: 'SPI2' was not declared in this scope; did you mean 'SPI1'?
+  121 |                          SPI2,
+      |                          ^~~~
+      |                          SPI1
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/core/project_config.hpp:135:33: error: could not convert '{boardPins.BoardPins::spi2_sck, boardPins.BoardPins::spi2_miso, boardPins.BoardPins::spi2_mosi, boardPins.BoardPins::spi2_nss, <expression error>, HW_API::STM32::SpiMode::Slave, HW_API::STM32::SpiDirection::FullDuplex, HW_API::STM32::SpiDataSize::Bits8, HW_API::STM32::SpiClockPolarity::Low, HW_API::STM32::SpiClockPhase::FirstEdge, HW_API::STM32::SpiNSS::Soft, HW_API::STM32::SpiBaudRatePrescaler::Prescaler32, HW_API::STM32::SpiFirstBit::MSB, HW_API::STM32::SpiTIMode::Disable, HW_API::STM32::SpiCRCCalculation::Disable, HW_API::STM32::SpiCRCPolynomial::Polynomial7, HW_API::STM32::SpiCRCLength::Length8, HW_API::STM32::SpiNSSPMode::Software, nullptr}' from '<brace-enclosed initializer list>' to 'Spi'
+  135 |                          nullptr};
+      |                                 ^
+      |                                 |
+      |                                 <brace-enclosed initializer list>
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp: In function 'int main()':
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:106:11: warning: variable 'masterRx2' set but not used [-Wunused-but-set-variable]
-  106 |   uint8_t masterRx2 = 0;   // Master empfängt hier
-      |           ^~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:107:11: warning: variable 'slaveRx1' set but not used [-Wunused-but-set-variable]
-  107 |   uint8_t slaveRx1 = 0;    // Slave empfängt hier
-      |           ^~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:108:11: warning: unused variable 'dummy' [-Wunused-variable]
-  108 |   uint8_t dummy = 0x00;    // Dummy-Byte für einseitige Übertragungen
-      |           ^~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:111:8: warning: variable 'masterTx1Status' set but not used [-Wunused-but-set-variable]
-  111 |   bool masterTx1Status = false;
-      |        ^~~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:112:8: warning: variable 'slaveRx1Status' set but not used [-Wunused-but-set-variable]
-  112 |   bool slaveRx1Status = false;
-      |        ^~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:113:8: warning: variable 'slaveTx2Status' set but not used [-Wunused-but-set-variable]
-  113 |   bool slaveTx2Status = false;
-      |        ^~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:114:8: warning: variable 'masterRx2Status' set but not used [-Wunused-but-set-variable]
-  114 |   bool masterRx2Status = false;
-      |        ^~~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:121:11: warning: unused variable 'stringDummy' [-Wunused-variable]
-  121 |   uint8_t stringDummy[10] = {0};
-      |           ^~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:123:8: warning: variable 'masterStringTxStatus' set but not used [-Wunused-but-set-variable]
-  123 |   bool masterStringTxStatus = false;
-      |        ^~~~~~~~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:124:8: warning: variable 'slaveStringRxStatus' set but not used [-Wunused-but-set-variable]
-  124 |   bool slaveStringRxStatus = false;
-      |        ^~~~~~~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:125:8: warning: variable 'slaveStringTxStatus' set but not used [-Wunused-but-set-variable]
-  125 |   bool slaveStringTxStatus = false;
-      |        ^~~~~~~~~~~~~~~~~~~
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:126:8: warning: variable 'masterStringRxStatus' set but not used [-Wunused-but-set-variable]
-  126 |   bool masterStringRxStatus = false;
-      |        ^~~~~~~~~~~~~~~~~~~~
-[30/30] Linking CXX executable app\main
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): in function `_close_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0xc): warning: _close is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-fstatr.o): in function `_fstat_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/fstatr.c:55:(.text._fstat_r+0xe): warning: _fstat is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-fstatr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): in function `_getpid_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/signalr.c:83:(.text._getpid_r+0x2): warning: _getpid is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-isattyr.o): in function `_isatty_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/isattyr.c:52:(.text._isatty_r+0xc): warning: _isatty is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-isattyr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): in function `_kill_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/signalr.c:53:(.text._kill_r+0xe): warning: _kill is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o): in function `_lseek_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x10): warning: _lseek is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o): in function `_read_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/readr.c:49:(.text._read_r+0x10): warning: _read is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o): in function `_write_r':
-/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/writer.c:49:(.text._write_r+0x10): warning: _write is not implemented and will always fail
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o): note: the message above does not take linker garbage collection into account
-C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: app\main has a LOAD segment with RWX permissions
-Memory region         Used Size  Region Size  %age Used
-             RAM:        3976 B        36 KB     10.79%
-           FLASH:       27176 B       128 KB     20.73%
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:194:54: error: 'class HardwareInterface' has no member named 'get_tick'
+  194 |     if (masterTransferState != TRANSFER_WAIT && (hw->get_tick() - lastTransferTime) > 1000)
+      |                                                      ^~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:197:30: error: 'class HardwareInterface' has no member named 'get_tick'
+  197 |       lastTransferTime = hw->get_tick();
+      |                              ^~~~~~~~
+ninja: build stopped: subcommand failed.

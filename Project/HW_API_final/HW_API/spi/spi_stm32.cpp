@@ -29,7 +29,7 @@ namespace
         switch (mode)
         {
         case SpiMode::Master:
-            return SPI_MODE_MASTER;
+            return SPI_MODE_MASTER; // Dies ist (SPI_CR1_MSTR | SPI_CR1_SSI) in der HAL
         case SpiMode::Slave:
             return SPI_MODE_SLAVE;
         default:
@@ -42,13 +42,13 @@ namespace
         switch (dir)
         {
         case SpiDirection::FullDuplex:
-            return SPI_DIRECTION_2LINES;        // Full-Duplex: MOSI + MISO gleichzeitig
+            return SPI_DIRECTION_2LINES; // Full-Duplex: MOSI + MISO gleichzeitig
         case SpiDirection::HalfDuplex:
-            return SPI_DIRECTION_1LINE;         // Half-Duplex: Eine Leitung für Tx/Rx
+            return SPI_DIRECTION_1LINE; // Half-Duplex: Eine Leitung für Tx/Rx
         case SpiDirection::RxOnly:
             return SPI_DIRECTION_2LINES_RXONLY; // Rx-Only: Nur MISO aktiv
         case SpiDirection::TxOnly:
-            return SPI_DIRECTION_1LINE;         // Tx-Only: wie Half-Duplex, aber BIDIOE wird gesetzt
+            return SPI_DIRECTION_1LINE; // Tx-Only: wie Half-Duplex, aber BIDIOE wird gesetzt
         default:
             return SPI_DIRECTION_2LINES;
         }
@@ -376,81 +376,321 @@ bool Spi::spi_init()
         SET_BIT(_hspi.Instance->CR1, SPI_CR1_BIDIOE);
     }
 
+    // MSTR explizit für Master setzen (Absicherung gegen HAL-Inkonsistenzen)
+    if (_spiMode == SpiMode::Master)
+    {
+        // SET_BIT(_hspi.Instance->CR1, SPI_CR1_MSTR);
+    }
+
+    // WICHTIG: SPI explizit aktivieren, da HAL dies nicht automatisch macht
+    // Wenn dieser Teil später auskommentiert wird, wird die HAL den SPI
+    // automatisch während des ersten Übertragungs-/Empfangsvorgangs aktivieren
+    // AUSKOMMENTIEREN FÜR HAL-STANDARD-VERHALTEN: ↓
+    // SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
+
+    // Überprüfen und korrigieren der CR1/CR2-Register nach HAL-Initialisierung
+    // if (_spiMode == SpiMode::Slave)
+    // {
+    //     // Für Slave-Modus: Überprüfen, ob Konfiguration korrekt ist
+    //     // Wenn CR1 vollständig 0 ist, könnte ein HAL-Initialisierungsproblem vorliegen
+    //     if ((_hspi.Instance->CR1 & (SPI_CR1_MSTR)) == 0)
+    //     {
+    //         // Für Slave: Explizit nur die benötigten Bits setzen
+    //         // Nicht MSTR-Bit setzen, da wir im Slave-Modus sind
+    //         // SSI-Bit nicht setzen für Hardware NSS (falls relevant)
+
+    //         // Baudrate-Einstellungen beibehalten, auch wenn sie für Slave ignoriert werden
+    //         uint32_t baudrate = spiBaudRatePrescalerToHAL(_spiBaudRatePrescaler);
+    //         MODIFY_REG(_hspi.Instance->CR1, SPI_CR1_BR, baudrate);
+
+    //         // Weitere spezifische Slave-Konfigurationen hier ...
+    //     }
+    // }
+
     return true;
 }
 
 // Polling
-bool Spi::transmit(const uint8_t *data, uint16_t length)
+bool Spi::transmit(const uint8_t *data, uint16_t length, uint32_t timeout)
 {
-    HAL_StatusTypeDef status = HAL_SPI_Transmit(&_hspi, (uint8_t *)data, length, HAL_MAX_DELAY);
+    HAL_StatusTypeDef status = HAL_SPI_Transmit(&_hspi, (uint8_t *)data, length, timeout);
     return (status == HAL_OK);
 }
 
-bool Spi::receive(uint8_t *data, uint16_t length)
+bool Spi::receive(uint8_t *data, uint16_t length, uint32_t timeout)
 {
-    HAL_StatusTypeDef status = HAL_SPI_Receive(&_hspi, (uint8_t *)data, length, HAL_MAX_DELAY);
+    HAL_StatusTypeDef status = HAL_SPI_Receive(&_hspi, (uint8_t *)data, length, timeout);
     return (status == HAL_OK);
 }
 
-bool Spi::transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length)
+bool Spi::transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout)
 {
-    HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(&_hspi, (uint8_t *)txData, rxData, length, HAL_MAX_DELAY);
+    HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(&_hspi, (uint8_t *)txData, rxData, length, timeout);
     return (status == HAL_OK);
 }
 
 // DMA
-bool Spi::transmit_DMA(const uint8_t *data, uint16_t length)
+bool Spi::transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout)
 {
-    // Prüfen ob DMA verfügbar
-    if (_dma == nullptr || !_dma->isTxReady())
+    // Prüfen ob DMA verfügbar und initialisiert
+    if (_dma == nullptr)
     {
         return false;
+    }
+
+    // DMA TX-Kanal initialisieren, falls noch nicht geschehen
+    if (!_dma->isTxReady())
+    {
+        if (!_dma->init_dma_TX())
+        {
+            return false;
+        }
     }
 
     // DMA-Transfer starten
     HAL_StatusTypeDef status = HAL_SPI_Transmit_DMA(&_hspi, (uint8_t *)data, length);
-    return (status == HAL_OK);
-}
-
-bool Spi::receive_DMA(uint8_t *data, uint16_t length)
-{
-    // Prüfen ob DMA verfügbar
-    if (_dma == nullptr || !_dma->isRxReady())
+    if (status != HAL_OK)
     {
         return false;
+    }
+
+    // Wenn timeout = 0, sofort zurückkehren (nicht-blockierend)
+    if (timeout == 0)
+    {
+        return true;
+    }
+
+    // Warten auf DMA-Completion mit Timeout (blockierend)
+    uint32_t startTime = HAL_GetTick();
+    while (_dma->isTransferInProgress_TX())
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            _dma->abortTransfer_TX();
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Spi::receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout)
+{
+    // Prüfen ob DMA verfügbar und initialisiert
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+
+    // DMA RX-Kanal initialisieren, falls noch nicht geschehen
+    if (!_dma->isRxReady())
+    {
+        if (!_dma->init_dma_RX())
+        {
+            return false;
+        }
     }
 
     // DMA-Transfer starten
     HAL_StatusTypeDef status = HAL_SPI_Receive_DMA(&_hspi, data, length);
-    return (status == HAL_OK);
-}
-
-bool Spi::transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length)
-{
-    if (_dma == nullptr || !_dma->areBothReady())
+    if (status != HAL_OK)
     {
         return false;
     }
 
+    // Wenn timeout = 0, sofort zurückkehren (nicht-blockierend)
+    if (timeout == 0)
+    {
+        return true;
+    }
+
+    // Warten auf DMA-Completion mit Timeout (blockierend)
+    uint32_t startTime = HAL_GetTick();
+    while (_dma->isTransferInProgress_RX())
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            _dma->abortTransfer_RX();
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Spi::transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout)
+{
+    // Prüfen ob DMA verfügbar und initialisiert
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+
+    // Beide DMA-Kanäle initialisieren, falls noch nicht geschehen
+    if (!_dma->areBothReady())
+    {
+        if (!_dma->init_dma())
+        {
+            return false;
+        }
+    }
+
+    // DMA-Transfer starten
     HAL_StatusTypeDef status = HAL_SPI_TransmitReceive_DMA(&_hspi, (uint8_t *)txData, rxData, length);
-    return (status == HAL_OK);
+    if (status != HAL_OK)
+    {
+        return false;
+    }
+
+    // Wenn timeout = 0, sofort zurückkehren (nicht-blockierend)
+    if (timeout == 0)
+    {
+        return true;
+    }
+
+    // Warten auf DMA-Completion mit Timeout (blockierend)
+    uint32_t startTime = HAL_GetTick();
+    while (_dma->isAnyTransferInProgress())
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            _dma->abortTransfer();
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // Interrupt
-bool Spi::transmit_IT(const uint8_t *data, uint16_t length)
+bool Spi::transmit_IT(const uint8_t *data, uint16_t length, uint32_t timeout)
 {
     HAL_StatusTypeDef status = HAL_SPI_Transmit_IT(&_hspi, (uint8_t *)data, length);
-    return (status == HAL_OK);
+    if (status != HAL_OK)
+    {
+        return false;
+    }
+
+    // Warten auf Interrupt-Completion mit Timeout
+    uint32_t startTime = HAL_GetTick();
+    while (HAL_SPI_GetState(&_hspi) != HAL_SPI_STATE_READY)
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            HAL_SPI_Abort_IT(&_hspi);
+            return false;
+        }
+    }
+
+    return true;
 }
 
-bool Spi::receive_IT(uint8_t *data, uint16_t length)
+bool Spi::receive_IT(uint8_t *data, uint16_t length, uint32_t timeout)
 {
     HAL_StatusTypeDef status = HAL_SPI_Receive_IT(&_hspi, data, length);
-    return (status == HAL_OK);
+    if (status != HAL_OK)
+    {
+        return false;
+    }
+
+    // Warten auf Interrupt-Completion mit Timeout
+    uint32_t startTime = HAL_GetTick();
+    while (HAL_SPI_GetState(&_hspi) != HAL_SPI_STATE_READY)
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            HAL_SPI_Abort_IT(&_hspi);
+            return false;
+        }
+    }
+
+    return true;
 }
 
-bool Spi::transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length)
+bool Spi::transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout)
 {
     HAL_StatusTypeDef status = HAL_SPI_TransmitReceive_IT(&_hspi, (uint8_t *)txData, rxData, length);
-    return (status == HAL_OK);
+    if (status != HAL_OK)
+    {
+        return false;
+    }
+
+    // Warten auf Interrupt-Completion mit Timeout
+    uint32_t startTime = HAL_GetTick();
+    while (HAL_SPI_GetState(&_hspi) != HAL_SPI_STATE_READY)
+    {
+        if ((HAL_GetTick() - startTime) > timeout)
+        {
+            // Timeout erreicht - Transfer abbrechen
+            HAL_SPI_Abort_IT(&_hspi);
+            return false;
+        }
+    }
+
+    return true;
+}
+
+SPI_HandleTypeDef *Spi::get_handle()
+{
+    return &_hspi;
+}
+
+void Spi::set_dma(SpiDMA *dma)
+{
+    _dma = dma;
+}
+
+SpiDMA *Spi::get_dma() const
+{
+    return _dma;
+}
+
+bool Spi::isDmaTransmitComplete()
+{
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+    return !_dma->isTransferInProgress_TX();
+}
+
+bool Spi::isDmaReceiveComplete()
+{
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+    return !_dma->isTransferInProgress_RX();
+}
+
+bool Spi::isDmaTransmitReceiveComplete()
+{
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+    return !_dma->isAnyTransferInProgress();
+}
+
+bool Spi::isDmaTransferInProgress()
+{
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+    return _dma->isAnyTransferInProgress();
+}
+
+bool Spi::abortDmaTransfer()
+{
+    if (_dma == nullptr)
+    {
+        return false;
+    }
+    return _dma->abortTransfer();
 }

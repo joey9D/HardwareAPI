@@ -27,11 +27,24 @@ public:
     bool isTxReady() const override;
     bool isRxReady() const override;
     bool areBothReady() const override;
+    
+    // Neue Interface-Methoden für Transfer-Status
+    bool isTransferInProgress_TX() const override;
+    bool isTransferInProgress_RX() const override;
+    bool isAnyTransferInProgress() const override;
+    
+    // Neue Interface-Methoden für Transfer-Abbruch
+    bool abortTransfer_TX() override;
+    bool abortTransfer_RX() override;
+    bool abortTransfer() override;
 
     DMA_HandleTypeDef *getTxHandle() override { return &_hdma_spi_tx; }
     DMA_HandleTypeDef *getRxHandle() override { return &_hdma_spi_rx; }
 
     void enableDMAResources() override;
+    
+    // Neue Interface-Methode für Interrupt-Konfiguration
+    void configureDMAInterrupts(uint32_t txPriority = 0, uint32_t rxPriority = 0) override;
 
 private:
     // STM32-spezifische Member
@@ -57,6 +70,7 @@ private:
                         uint32_t *rxRequest);
     void configureTxDMA(DMA_Channel_TypeDef *channel, uint32_t request);
     void configureRxDMA(DMA_Channel_TypeDef *channel, uint32_t request);
+    IRQn_Type getIRQFromDMAChannel(DMA_Channel_TypeDef *channel);
 
     // Copy/Assignment verhindern
     SpiDMA(const SpiDMA &) = delete;

@@ -39,21 +39,28 @@ public:
     bool spi_init() override;
 
     // Polling - byte-based interface
-    bool transmit(const uint8_t *data, uint16_t length) override;
-    bool receive(uint8_t *data, uint16_t length) override;
-    bool transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
+    bool transmit(const uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool receive(uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
 
     // DMA - byte-based interface
     void set_dma(SpiDMA *dma);
     SpiDMA *get_dma() const;
-    bool transmit_DMA(const uint8_t *data, uint16_t length) override;
-    bool receive_DMA(uint8_t *data, uint16_t length) override;
-    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
+    bool transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
+    
+    // DMA Status-Prüfung für nicht-blockierende Transfers
+    bool isDmaTransmitComplete() override;
+    bool isDmaReceiveComplete() override;
+    bool isDmaTransmitReceiveComplete() override;
+    bool isDmaTransferInProgress() override;
+    bool abortDmaTransfer() override;
 
-    // Interrupt - byte-based interface
-    bool transmit_IT(const uint8_t *data, uint16_t length) override;
-    bool receive_IT(uint8_t *data, uint16_t length) override;
-    bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length) override;
+    // Interrupt - byte-based interface with configurable timeout
+    bool transmit_IT(const uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool receive_IT(uint8_t *data, uint16_t length, uint32_t timeout) override;
+    bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
 
     SPI_HandleTypeDef *get_handle();
 

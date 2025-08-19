@@ -1,0 +1,92 @@
+Auflistung der Ordnerpfade fr Volume Windows
+Volumeseriennummer : 460F-9B5A
+C:.
+³   CMakeLists.txt
+³   hw_api_tree.txt
+³   
+ÃÄÄÄcore
+³       CMakeLists.txt
+³       core_test.cpp
+³       core_test.hpp
+³       hw_enum_classes.hpp
+³       hw_enum_esp32.hpp
+³       hw_enum_stm32.hpp
+³       hw_factory.hpp
+³       hw_interface.hpp
+³       hw_mapping_stm32.hpp
+³       project_config.hpp
+³       timer.hpp
+³       
+ÃÄÄÄdebug_probes
+³       esptool.cmake
+³       jlink.cmake
+³       openocd.cmake
+³       st-link.cmake
+³       uf2-bootloader.cmake
+³       
+ÃÄÄÄdrivers
+³   ³   CMakeLists.txt
+³   ³   
+³   ÃÄÄÄesp32_hal_wrapper
+³   ³       esp32_hal_inc.hpp
+³   ³       FreeRTOSConfig.h
+³   ³       
+³   ÀÄÄÄstm32_hal_wrapper
+³       ÃÄÄÄcommon
+³       ³       stm32_hal_inc.hpp
+³       ³       syscalls.c
+³       ³       
+³       ÃÄÄÄstm32c0xx
+³       ³       stm32c0xx_hal_conf.h
+³       ³       
+³       ÀÄÄÄstm32g0xx
+³               stm32g0xx_hal_conf.h
+³               
+ÃÄÄÄgpio
+³       CMakeLists.txt
+³       gpio_esp32.cpp
+³       gpio_esp32.hpp
+³       gpio_interface.hpp
+³       gpio_stm32.cpp
+³       gpio_stm32.hpp
+³       gpio_test.cpp
+³       gpio_test.hpp
+³       
+ÃÄÄÄplatform
+³   ³   CMakeLists.txt
+³   ³   
+³   ÃÄÄÄesp32
+³   ³   ÀÄÄÄesp32c6_devkitc
+³   ³           esp32c6_devkitc1_hw.cpp
+³   ³           esp32c6_devkitc1_hw.hpp
+³   ³           
+³   ÀÄÄÄstm32
+³       ³   stm32x0_gpio_mapping.hpp
+³       ³   
+³       ÃÄÄÄstm32c0xx
+³       ³       STM32C031C6Tx_FLASH.ld
+³       ³       stm32c0xx_hal_msp.c
+³       ³       stm32c0xx_hw.cpp
+³       ³       stm32c0xx_hw.hpp
+³       ³       stm32c0xx_it.c
+³       ³       stm32c0xx_it.h
+³       ³       
+³       ÀÄÄÄstm32g0xx
+³               STM32G071RBTx_FLASH.ld
+³               stm32g0xx_hal_msp.c
+³               stm32g0xx_hw.cpp
+³               stm32g0xx_hw.hpp
+³               stm32g0xx_it.c
+³               stm32g0xx_it.h
+³               
+ÀÄÄÄspi
+        CMakeLists.txt
+        spi_dma_interface.hpp
+        spi_dma_stm32.cpp
+        spi_dma_stm32.hpp
+        spi_interface.hpp
+        spi_stm32.cpp
+        spi_stm32.hpp
+        spi_test.cpp
+        spi_test.hpp
+        

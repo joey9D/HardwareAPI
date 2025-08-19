@@ -24,7 +24,7 @@ all: info
 	cmake --build $(BUILD_DIR) -j
 
 # Platform-specific builds
-stm32:
+stm32-build:
 	@echo "================================================================================"
 	@echo "=== Building STM32 Platform ==="
 	@echo "================================================================================"
@@ -48,7 +48,7 @@ stm32:
 	@cmake --build $(BUILD_DIR) -j
 # ESP32 Build with ESP-IDF via CMake 
 esp32: TARGET_PLATFORM=ESP32
-esp32:
+esp32-build:
 	@echo "================================================================================"
 	@echo "=== Building ESP32 Platform (ESP-IDF) ==="
 	@echo "================================================================================"

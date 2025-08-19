@@ -3,39 +3,38 @@ cmake --build build --target flash
                        STM32CubeProgrammer v2.19.0                  
       -------------------------------------------------------------------
 
-ST-LINK SN  : 066FFF484971754867093322
+ST-LINK SN  : 066FFF343433464757202544
 ST-LINK FW  : V2J46M31
-Board       : NUCLEO-G071RB
-Voltage     : 3.24V
+Board       : NUCLEO-G0B1RE
+Voltage     : 3.23V
 SWD freq    : 4000 KHz
 Connect mode: Normal
 Reset mode  : Software reset
-Device ID   : 0x460
-Revision ID : Rev B
-Device name : STM32G07x/STM32G08x
-Flash size  : 128 KBytes
+Device ID   : 0x467
+Revision ID : Rev Z
+Device name : STM32G0B0xx/B1xx/C1xx
+Flash size  : 512 KBytes
 Device type : MCU
 Device CPU  : Cortex-M0+
-BL Version  : 0xB2
-Debug in Low Power mode enabled
+BL Version  : 0x92
 
 Opening and parsing file: HW_API_Project.bin
 
 
 Memory Programming ...
   File          : HW_API_Project.bin
-  Size          : 26.54 KB 
+  Size          : 28.67 KB 
   Address       : 0x08000000 
 
 
 
 Erasing memory corresponding to sector 0:
-Erasing internal memory sectors [0 13]
+Erasing internal memory sectors [0 14]
 Download in Progress:
 北北北北北北北北北北北北北北北北北北北北北北北北北 0%圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹 100%
 
 File download complete
-Time elapsed during download operation: 00:00:01.022
+Time elapsed during download operation: 00:00:00.943
 
 
 

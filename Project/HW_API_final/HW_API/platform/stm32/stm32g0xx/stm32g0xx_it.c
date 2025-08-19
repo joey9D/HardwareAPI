@@ -66,6 +66,53 @@ void SysTick_Handler(void)
 }
 
 /******************************************************************************/
+/*                       DMA Interrupt Handlers für SPI                     */
+/******************************************************************************/
+
+/**
+ * @brief This function handles DMA1 channel 1 global interrupt (SPI1 TX)
+ */
+void DMA1_Channel1_IRQHandler(void)
+{
+    // Verwende externe Handle-Referenzen für SPI1
+    extern DMA_HandleTypeDef hdma_spi1_tx;
+    HAL_DMA_IRQHandler(&hdma_spi1_tx);
+}
+
+/**
+ * @brief This function handles DMA1 channel 2 global interrupt (SPI1 RX)  
+ */
+void DMA1_Channel2_3_IRQHandler(void)
+{
+    // Check which channel triggered the interrupt
+    extern DMA_HandleTypeDef hdma_spi1_rx;
+    extern DMA_HandleTypeDef hdma_spi2_tx;
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_spi1_rx, DMA_FLAG_TC2))
+    {
+        HAL_DMA_IRQHandler(&hdma_spi1_rx);  // SPI1 RX (Channel 2)
+    }
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_spi2_tx, DMA_FLAG_TC3))
+    {
+        HAL_DMA_IRQHandler(&hdma_spi2_tx);  // SPI2 TX (Channel 3)
+    }
+}
+
+/**
+ * @brief This function handles DMA1 channel 4-7 global interrupt (SPI2 RX)
+ */
+void DMA1_Ch4_7_DMA2_Ch1_5_DMAMUX1_OVR_IRQHandler(void)
+{
+    extern DMA_HandleTypeDef hdma_spi2_rx;
+    
+    if (__HAL_DMA_GET_FLAG(&hdma_spi2_rx, DMA_FLAG_TC4))
+    {
+        HAL_DMA_IRQHandler(&hdma_spi2_rx);  // SPI2 RX (Channel 4)  
+    }
+}
+
+/******************************************************************************/
 /* STM32G0xx Peripheral Interrupt Handlers                                   */
 /* Add here the Interrupt Handlers for the used peripherals.                */
 /* For the available peripheral interrupt handler names,                     */
