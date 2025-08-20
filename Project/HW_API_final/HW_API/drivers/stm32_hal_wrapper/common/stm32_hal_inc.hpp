@@ -16,13 +16,14 @@ extern "C"
 
 // Step 2: Family-specific includes based on compile-time definitions
 #if defined(STM32C0xx) || defined(STM32C031xx)
-    // STM32C0xx family - proper include order
-    #include <stm32c0xx_hal.h>      // Main HAL header includes config and all modules
+// STM32C0xx family - proper include order
+#include <stm32c0xx_hal.h> // Main HAL header includes config and all modules
+#include "stm32c0xx_hal_conf.h"
 #elif defined(STM32G0xx) || defined(STM32G071xx) || defined(STM32G0B1xx)
-    // STM32G0xx family - proper include order  
-    #include <stm32g0xx_hal.h>      // Main HAL header includes config and all modules
+// STM32G0xx family - proper include order
+#include <stm32g0xx_hal.h> // Main HAL header includes config and all modules
 #else
-    #error "Unsupported STM32 family. Please define STM32C0xx, STM32G0xx, or add support for your family."
+#error "Unsupported STM32 family. Please define STM32C0xx, STM32G0xx, or add support for your family."
 #endif
 
 #ifdef __cplusplus

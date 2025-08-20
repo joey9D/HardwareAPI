@@ -11,13 +11,13 @@
 
 #include "../gpio/gpio_interface.hpp"
 #include "../spi/spi_interface.hpp"
-#include "../spi/spi_dma_interface.hpp"
+#include "../spi/dma_interface.hpp"
 
 // Platform-spezifische Includes
 #ifdef STM32_PLATFORM
 #include "../gpio/gpio_stm32.hpp"
 #include "../spi/spi_stm32.hpp"
-#include "../spi/spi_dma_stm32.hpp"
+#include "../spi/dma_stm32.hpp"
 
 #endif
 
@@ -38,8 +38,6 @@
 };
  */
 
-// class Gpio;
-
 struct BoardPins
 {
 	/**
@@ -54,15 +52,6 @@ struct BoardPins
 	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled};
 	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
-	// Die LED für Master-Mode wird an PB6 angeschlossen (geändert von PB0, da PB0 bereits für SPI NSS verwendet wird)
-	Gpio masterLedPin{6, Port::B, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-
-	// Die LED für Slave-Mode wird an PB7 angeschlossen
-	Gpio slaveLedPin{7, Port::B, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-
-	// Der Button wird an PC13 angeschlossen
-	Gpio buttonPin{13, Port::C, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-
 	/**
 	 * @brief SPI Pins (PB3, PB4, PB5 und PB0 für NSS)
 	 *
@@ -73,20 +62,11 @@ struct BoardPins
 	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
 
 	// Array mit allen GPIO-Pins (SPI, LEDs, Button)
-	std::array<Gpio *, 7> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss, &masterLedPin, &slaveLedPin, &buttonPin};
+	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
 };
 // Globale Instanz der Board-Pins
 inline BoardPins boardPins;
 
-// SPI1 DMA-Objekt deklarieren
-// Hinweis: Die SpiDMA-Klasse erwartet einen SPI_HandleTypeDef-Referenz als ersten Parameter
-// Da das SPI-Handle erst nach der Initialisierung des SPI-Objekts existiert,
-// müssen wir die DMA später im Code zuweisen
-
-// Ein SpiDMA-Objekt zur Verwendung mit unserer SPI-Instanz
-inline SpiDMA *spi1_dma = nullptr;
-
-// Definition der Peripherie-Objekte
 struct BoardPeripherals
 {
 #ifdef MASTER_CONFIG
@@ -141,6 +121,17 @@ struct BoardPeripherals
 	// Slave sendet 'O'
 	const uint8_t txData = 'O'; // ASCII-Zeichen 'O' (0x4F)
 #endif
+
+	Dma dma1{
+		DmaRequest::SPI1_TX,
+		DmaRequest::SPI1_RX,
+		DmaDirection::MemToPeriph,
+		DmaPeriphInc::Disable,
+		DmaMemInc::Enable,
+		DmaPeriphDataSizeAlignment::Word,
+		DmaMemDataSizeAlignment::Byte,
+		DmaMode::Normal,
+		DmaPriority::High};
 };
 
 // Globale Instanz der Peripherie

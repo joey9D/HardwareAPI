@@ -294,60 +294,59 @@ Spi::Spi(
     SpiFirstBit firstBit,
     SpiTIMode tiMode,
     SpiCRCCalculation crcCalculation,
-    SpiCRCPolynomial crcPolynomial,
+    // SpiCRCPolynomial crcPolynomial,
+    uint32_t crcPolynomial,
     SpiCRCLength crcLength,
-    SpiNSSPMode nsspMode,
-    SpiDMA *dma)
-    : _sck(sck), _miso(miso), _mosi(mosi), _cs(cs),
+    SpiNSSPMode nsspMode)
+    : _sck(sck),
+      _miso(miso),
+      _mosi(mosi),
+      _cs(cs),
       _instance(instance),
-      _spiMode(mode), _spiDirection(direction), _spiDataSize(dataSize),
-      _spiClockPolarity(clkPolarity), _spiClockPhase(clkPhase), _spiNSS(nss),
-      _spiBaudRatePrescaler(baudRatePrescaler), _spiFirstBit(firstBit),
-      _spiTIMode(tiMode), _spiCRCCalculation(crcCalculation),
-      _spiCRCPolynomial(crcPolynomial), _spiCRCLength(crcLength),
-      _spiNSSPMode(nsspMode), _dma(dma)
+      _spiMode(mode),
+      _spiDirection(direction),
+      _spiDataSize(dataSize),
+      _spiClockPolarity(clkPolarity),
+      _spiClockPhase(clkPhase),
+      _spiNSS(nss),
+      _spiBaudRatePrescaler(baudRatePrescaler),
+      _spiFirstBit(firstBit),
+      _spiTIMode(tiMode),
+      _spiCRCCalculation(crcCalculation),
+      _spiCRCPolynomial(crcPolynomial),
+      _spiCRCLength(crcLength),
+      _spiNSSPMode(nsspMode)
 {
     // Nur Member initialisieren, KEINE Hardware-Initialisierung!
 }
 
 bool Spi::spi_init()
 {
+    RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
     // Enable SPI clock based on instance - automatische Erkennung und Aktivierung
     // Die HAL hat alle benötigten Makros ohne plattformspezifische Defines
     if (_instance == SPI1)
     {
+#ifdef STM32C0xx
+        PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_SPI1;
+        PeriphClkInit.I2s1ClockSelection = RCC_I2S1CLKSOURCE_SYSCLK;
+#endif
         __HAL_RCC_SPI1_CLK_ENABLE();
     }
-#if defined(SPI2)
     else if (_instance == SPI2)
     {
         __HAL_RCC_SPI2_CLK_ENABLE();
     }
-#endif
-#if defined(SPI3)
     else if (_instance == SPI3)
     {
         __HAL_RCC_SPI3_CLK_ENABLE();
     }
-#endif
-#if defined(SPI4)
-    else if (_instance == SPI4)
-    {
-        __HAL_RCC_SPI4_CLK_ENABLE();
-    }
-#endif
-#if defined(SPI5)
-    else if (_instance == SPI5)
-    {
-        __HAL_RCC_SPI5_CLK_ENABLE();
-    }
-#endif
-#if defined(SPI6)
-    else if (_instance == SPI6)
-    {
-        __HAL_RCC_SPI6_CLK_ENABLE();
-    }
-#endif
+
+    // TODO: Peripheral clock configuration for SPIx
+    //     else if (_instance == SPI4)
+    //     {
+    //         __HAL_RCC_SPI4_CLK_ENABLE();
+    //     }
     else
     {
         // Unsupported SPI instance
@@ -375,16 +374,6 @@ bool Spi::spi_init()
     _hspi.Init.CRCPolynomial = spiCRCPolynomialToHAL(_spiCRCPolynomial);
     _hspi.Init.CRCLength = spiCRCLengthToHAL(_spiCRCLength);
     _hspi.Init.NSSPMode = spiNSSPModeToHAL(_spiNSSPMode);
-
-    // DMA initialization should be done before HAL_SPI_Init
-    if (_dma != nullptr)
-    {
-        // Aktiviere DMA-Ressourcen
-        _dma->enableDMAResources();
-
-        // Make sure DMA is properly initialized
-        _dma->init_dma();
-    }
 
     // Initialize HAL SPI
     HAL_StatusTypeDef status = HAL_SPI_Init(&_hspi);
@@ -421,9 +410,6 @@ bool Spi::spi_init()
         // In HalfDuplex-Modus kann das BIDIOE-Bit gesetzt werden, um Transmit-Only zu aktivieren
         SET_BIT(_hspi.Instance->CR1, SPI_CR1_BIDIOE);
     }
-
-    // SPI explizit aktivieren (SPE-Bit setzen)
-    // SET_BIT(_hspi.Instance->CR1, SPI_CR1_SPE);
 
     // Überprüfen und korrigieren der Register-Konfiguration nach der HAL-Initialisierung
     // Diese Konfiguration ist für alle STM32-Plattformen allgemein gültig
@@ -701,12 +687,12 @@ SPI_HandleTypeDef *Spi::get_handle()
     return &_hspi;
 }
 
-void Spi::set_dma(SpiDMA *dma)
+void Spi::set_dma(Dma *dma)
 {
     _dma = dma;
 }
 
-SpiDMA *Spi::get_dma() const
+Dma *Spi::get_dma() const
 {
     return _dma;
 }
@@ -761,13 +747,13 @@ bool Spi::enableInterrupts(uint32_t priority)
     // Aktiviere die Interrupt-Register für SPI
     // RXNE (Receive buffer not empty) und TXE (Transmit buffer empty) Interrupts aktivieren
     SET_BIT(_hspi.Instance->CR2, SPI_CR2_RXNEIE | SPI_CR2_TXEIE);
-    
+
     // Error-Interrupt aktivieren
     SET_BIT(_hspi.Instance->CR2, SPI_CR2_ERRIE);
-    
+
     // Bestimme die IRQ-Nummer basierend auf dem SPI-Instance
     IRQn_Type spiIRQn = SPI1_IRQn; // Standard: SPI1
-    
+
     if (_instance == SPI1)
     {
         spiIRQn = SPI1_IRQn;
@@ -790,10 +776,10 @@ bool Spi::enableInterrupts(uint32_t priority)
         spiIRQn = SPI4_IRQn;
     }
 #endif
-    
+
     // NVIC für SPI aktivieren
     HAL_NVIC_SetPriority(spiIRQn, priority, 0);
     HAL_NVIC_EnableIRQ(spiIRQn);
-    
+
     return true;
 }

@@ -3,27 +3,6 @@
  * @file           : main.cpp
  * @brief          : SPI-Master und Slave-Beispiel zum Senden und Empfangen
  ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
-
-/*
- * WICHTIGER HINWEIS:
- *
- * Für den Wechsel zwischen MASTER- und SLAVE-Konfiguration müssen Sie
- * das Symbol MASTER_CONFIG aktivieren oder deaktivieren, indem Sie die
- * entsprechende Zeile auskommentieren oder aktivieren.
- *
- * MASTER-Konfiguration: MASTER_CONFIG ist definiert
- * SLAVE-Konfiguration: MASTER_CONFIG ist nicht definiert
  */
 
 // ========== KONFIGURATION ==========
@@ -49,24 +28,27 @@
 void master_code()
 {
   // Hardware-Interface für systemweite Initialisierung holen
-  HardwareInterface *hwInterface = HardwareFactory::create();
+  HardwareInterface *hw = HardwareFactory::create();
 
   // System und Takt initialisieren
-  hwInterface->init_sys();
-  hwInterface->initAllPins();
+  hw->init_sys();
+  hw->initAllPins();
 
   // SPI initialisieren
   peripherals.spi1.spi_init();
+
+  linkSpiWithDma(peripherals.spi1, peripherals.dma1);
+
+  peripherals.dma1.dma1_init();
 
   // Puffer für Senden/Empfangen
   uint8_t txBuffer[BUFFER_SIZE] = {0};
   uint8_t rxBuffer[BUFFER_SIZE] = {0};
 
-  // Hauptschleife - Kontinuierlich senden und empfangen
   while (true)
   {
     // Sendedaten vorbereiten (immer 'A' senden)
-    txBuffer[0] = peripherals.txData; // 'A' im Master-Modus
+    txBuffer[0] = peripherals.txData;
 
     // SPI Transfer durchführen
     bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
@@ -79,14 +61,18 @@ void master_code()
 void slave_code()
 {
   // Hardware-Interface für systemweite Initialisierung holen
-  HardwareInterface *hwInterface = HardwareFactory::create();
+  HardwareInterface *hw = HardwareFactory::create();
 
   // System und Takt initialisieren
-  hwInterface->init_sys();
-  hwInterface->initAllPins();
+  hw->init_sys();
+  hw->initAllPins();
 
   // SPI initialisieren
   peripherals.spi1.spi_init();
+
+  linkSpiWithDma(peripherals.spi1, peripherals.dma1);
+
+  peripherals.dma1.dma_init();
 
   // Puffer für Senden/Empfangen
   uint8_t txBuffer[BUFFER_SIZE] = {0};
@@ -96,7 +82,7 @@ void slave_code()
   while (true)
   {
     // Sendedaten vorbereiten (immer 'O' senden)
-    txBuffer[0] = peripherals.txData; // 'O' im Slave-Modus
+    txBuffer[0] = peripherals.txData;
 
     // SPI Transfer durchführen (Slave wartet auf Master)
     bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);

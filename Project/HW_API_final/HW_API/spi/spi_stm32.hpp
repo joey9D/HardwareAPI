@@ -5,11 +5,11 @@
 #endif
 
 #include "spi_interface.hpp"
-#include "spi_dma_stm32.hpp"
+#include "dma_stm32.hpp"
 #include "../gpio/gpio_stm32.hpp"
 
 // Forward declaration is now redundant since we include the header
-// class SpiDMA;
+// class Dma;
 
 class Spi : public ISpi
 {
@@ -30,10 +30,10 @@ public:
         SpiFirstBit firstBit,
         SpiTIMode tiMode,
         SpiCRCCalculation crcCalculation,
-        SpiCRCPolynomial crcPolynomial,
+        // SpiCRCPolynomial crcPolynomial,
+        uint32_t crcPolynomial,
         SpiCRCLength crcLength,
-        SpiNSSPMode nsspMode,
-        SpiDMA *dma = nullptr);
+        SpiNSSPMode nsspMode);
 
     // - init
     bool spi_init() override;
@@ -43,29 +43,7 @@ public:
     bool receive(uint8_t *data, uint16_t length, uint32_t timeout) override;
     bool transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
 
-    // DMA - byte-based interface
-    void set_dma(SpiDMA *dma);
-    SpiDMA *get_dma() const;
-    bool transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout) override;
-    bool receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout) override;
-    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
-    
-    // DMA Status-Prüfung für nicht-blockierende Transfers
-    bool isDmaTransmitComplete() override;
-    bool isDmaReceiveComplete() override;
-    bool isDmaTransmitReceiveComplete() override;
-    bool isDmaTransferInProgress() override;
-    bool abortDmaTransfer() override;
-
-    // Interrupt - byte-based interface with configurable timeout
-    bool transmit_IT(const uint8_t *data, uint16_t length, uint32_t timeout) override;
-    bool receive_IT(uint8_t *data, uint16_t length, uint32_t timeout) override;
-    bool transmitReceive_IT(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
-    
-    // Konfigurieren der SPI-Interrupts
-    bool enableInterrupts(uint32_t priority = 1) override;
-
-    SPI_HandleTypeDef *get_handle();
+    // SPI_HandleTypeDef *get_handle();
 
 private:
     Gpio &_sck;
@@ -85,10 +63,10 @@ private:
     SpiFirstBit _spiFirstBit;
     SpiTIMode _spiTIMode;
     SpiCRCCalculation _spiCRCCalculation;
-    SpiCRCPolynomial _spiCRCPolynomial;
+    // SpiCRCPolynomial _spiCRCPolynomial;
+    uint32_t _spiCRCPolynomial;
     SpiCRCLength _spiCRCLength;
     SpiNSSPMode _spiNSSPMode;
 
     SPI_HandleTypeDef _hspi;
-    SpiDMA *_dma;
 };

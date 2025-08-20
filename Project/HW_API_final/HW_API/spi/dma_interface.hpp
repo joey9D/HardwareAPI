@@ -1,0 +1,23 @@
+#pragma once
+
+template <typename PlatformDMAHandle>
+class IDmaBase
+{
+public:
+    virtual ~IDmaBase() = default;
+
+    // DMA Initialisierung
+    virtual bool dma_init_TX() = 0;
+    virtual bool dma_init_RX() = 0;
+    virtual bool dma_init() = 0;
+    virtual bool dma_interrupts(uint32_t priority = 0) = 0;
+};
+
+// Platform-spezifische Type-Aliases - HIER passiert die Auswahl!
+#ifdef STM32_PLATFORM
+#include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+using IDma = IDmaBase<DMA_HandleTypeDef>;
+#elif defined(ESP_PLATFORM) || defined(ESP32_PLATFORM)
+#include "driver/spi_master.h"
+using IDma = IDmaBase<spi_dma_chan_t>;
+#endif
