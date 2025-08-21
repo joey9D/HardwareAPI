@@ -8,6 +8,8 @@ public:
 
     // DMA Initialisierung
     virtual bool dma_init() = 0;
+    virtual bool dma_init_tx(void *spi_instance) = 0;
+    virtual bool dma_init_rx(void *spi_instance) = 0;
     virtual bool dma_interrupts(uint32_t priority = 0) = 0;
     virtual bool isTransferComplete() const = 0;
     virtual bool isTransferBusy() const = 0;

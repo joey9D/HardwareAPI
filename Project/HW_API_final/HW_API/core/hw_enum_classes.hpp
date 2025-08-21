@@ -25,7 +25,7 @@ namespace HW_API
     using SpiFirstBit = STM32::SpiFirstBit;
     using SpiTIMode = STM32::SpiTIMode;
     using SpiCRCCalculation = STM32::SpiCRCCalculation;
-    using SpiCRCPolynomial = STM32::SpiCRCPolynomial;
+    // using SpiCRCPolynomial = STM32::SpiCRCPolynomial;
     using SpiCRCLength = STM32::SpiCRCLength;
 }
 // ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD

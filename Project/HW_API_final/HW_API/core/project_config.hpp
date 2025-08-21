@@ -19,6 +19,7 @@
 #include "../spi/spi_stm32.hpp"
 #include "../spi/dma_stm32.hpp"
 
+using namespace HW_API::STM32;
 #endif
 
 /**
@@ -70,7 +71,7 @@ inline BoardPins boardPins;
 struct BoardPeripherals
 {
 #ifdef MASTER_CONFIG
-	Spi spi1{
+	Spi spi_master{
 		boardPins.spi1_sck,
 		boardPins.spi1_miso,
 		boardPins.spi1_mosi,
@@ -88,12 +89,25 @@ struct BoardPeripherals
 		SpiCRCCalculation::Disable,
 		7,
 		SpiCRCLength::Length8,
-		SpiNSSPMode::Software};
+		SpiNSSPMode::Disable};
 
 	const uint8_t txData = 'A'; // ASCII-Zeichen 'A' (0x41)
 
+	Dma dma_master{
+		// DMA1_Channel3, // TX-channel
+		// DMA1_Channel2, // RX-channel
+		DmaRequest::SPI1_TX,
+		DmaRequest::SPI1_RX,
+		// DmaDirection::MemToPeriph,
+		DmaPeriphInc::Disable,
+		DmaMemInc::Enable,
+		DmaPeriphDataSizeAlignment::Byte,
+		DmaMemDataSizeAlignment::Byte,
+		DmaMode::Normal,
+		DmaPriority::High};
+
 #else // SLAVE_CONFIG
-	Spi spi1{
+	Spi spi_slave{
 		boardPins.spi1_sck,
 		boardPins.spi1_miso,
 		boardPins.spi1_mosi,
@@ -111,12 +125,13 @@ struct BoardPeripherals
 		SpiCRCCalculation::Disable,
 		7,
 		SpiCRCLength::Length8,
-		SpiNSSPMode::Hardware};
+		SpiNSSPMode::Disable};
 
 	const uint8_t txData = 'O'; // ASCII-Zeichen 'O' (0x4F)
-#endif
 
-	Dma dma1{
+	Dma dma_slave{
+		// DMA1_Channel3, // TX-channel
+		// DMA1_Channel2, // RX-channel
 		DmaRequest::SPI1_TX,
 		DmaRequest::SPI1_RX,
 		// DmaDirection::MemToPeriph,
@@ -126,6 +141,8 @@ struct BoardPeripherals
 		DmaMemDataSizeAlignment::Byte,
 		DmaMode::Normal,
 		DmaPriority::High};
+
+#endif
 };
 
 // Globale Instanz der Peripherie

@@ -9,8 +9,8 @@
 // Kommentieren Sie eine der beiden Zeilen aus, je nachdem ob Sie
 // Master oder Slave konfigurieren möchten:
 
-#define MASTER_CONFIG // <-- Aktivieren für MASTER, auskommentieren für SLAVE
-// #undef MASTER_CONFIG // <-- Aktivieren für SLAVE, auskommentieren für MASTER
+// #define MASTER_CONFIG
+#define SLAVE_CONFIG
 // ==================================
 
 #include "main.hpp"
@@ -25,6 +25,7 @@
 #define TRANSFER_COMPLETE 1
 #define TRANSFER_ERROR 2
 
+#ifdef MASTER_CONFIG
 void master_code()
 {
   // Hardware-Interface für systemweite Initialisierung holen
@@ -35,11 +36,11 @@ void master_code()
   hw->initAllPins();
 
   // SPI initialisieren
-  peripherals.spi1.spi_init();
+  peripherals.spi_master.spi_init();
 
-  linkSpiWithDma(peripherals.spi1, peripherals.dma1);
+  linkSpiWithDma(peripherals.spi_master, peripherals.dma_master);
 
-  peripherals.dma1.dma_init();
+  peripherals.dma_master.dma_init();
 
   // Puffer für Senden/Empfangen
   uint8_t txBuffer[BUFFER_SIZE] = {0};
@@ -51,13 +52,15 @@ void master_code()
     txBuffer[0] = peripherals.txData;
 
     // SPI Transfer durchführen
-    bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+    bool transferSuccess = peripherals.spi_master.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
     // Kurze Pause zwischen den Transfers
     hw->delay(100);
   }
 }
+#endif
 
+#ifdef SLAVE_CONFIG
 void slave_code()
 {
   // Hardware-Interface für systemweite Initialisierung holen
@@ -68,11 +71,11 @@ void slave_code()
   hw->initAllPins();
 
   // SPI initialisieren
-  peripherals.spi1.spi_init();
+  peripherals.spi_slave.spi_init();
 
-  linkSpiWithDma(peripherals.spi1, peripherals.dma1);
+  linkSpiWithDma(peripherals.spi_slave, peripherals.dma_slave);
 
-  peripherals.dma1.dma_init();
+  peripherals.dma_slave.dma_init();
 
   // Puffer für Senden/Empfangen
   uint8_t txBuffer[BUFFER_SIZE] = {0};
@@ -85,13 +88,13 @@ void slave_code()
     txBuffer[0] = peripherals.txData;
 
     // SPI Transfer durchführen (Slave wartet auf Master)
-    bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+    bool transferSuccess = peripherals.spi_slave.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
     // Kurze Pause zwischen den Transfers
     hw->delay(100);
   }
 }
-
+#endif
 /**
  * @brief  The application entry point.
  * @retval int
@@ -100,7 +103,7 @@ int main(void)
 {
 #ifdef MASTER_CONFIG
   master_code();
-#else
+#elif defined(SLAVE_CONFIG)
   slave_code();
 #endif
 }

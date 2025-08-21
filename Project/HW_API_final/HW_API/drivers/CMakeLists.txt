@@ -97,6 +97,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_gpio.c
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_pwr.c
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_rcc.c
+            ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_rcc_ex.c
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_spi.c
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_tim.c
             ${stm32_hal_SOURCE_DIR}/Src/stm32c0xx_hal_uart.c

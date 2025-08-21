@@ -185,8 +185,8 @@ namespace HW_API
 
         enum class SpiNSSPMode : uint32_t
         {
-            Software = SPI_NSSP_MODE_SOFTWARE,
-            Hardware = SPI_NSSP_MODE_HARDWARE
+            Enable = SPI_NSS_PULSE_ENABLE,
+            Disable = SPI_NSS_PULSE_DISABLE
         };
 
         enum class SpiBaudRatePrescaler : uint32_t

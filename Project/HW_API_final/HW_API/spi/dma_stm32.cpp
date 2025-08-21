@@ -1,61 +1,87 @@
 #ifdef STM32_PLATFORM
 
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
+#include "hw_enum_stm32.hpp"
 #include "dma_stm32.hpp"
 #include <cassert>
 
 // Globale DMA Handles für Interrupt-System (extern Deklarationen in stm32xx_it.h)
 DMA_HandleTypeDef hdma_spi1_tx;
 DMA_HandleTypeDef hdma_spi1_rx;
-
 #if defined(SPI2)
 DMA_HandleTypeDef hdma_spi2_tx;
 DMA_HandleTypeDef hdma_spi2_rx;
 #endif
+#if defined(SPI3)
+DMA_HandleTypeDef hdma_spi3_tx;
+DMA_HandleTypeDef hdma_spi3_rx;
+#endif
+#if defined(SPI4)
+DMA_HandleTypeDef hdma_spi4_tx;
+DMA_HandleTypeDef hdma_spi4_rx;
+#endif
 
-// Basisdefinition
-template <SPI_TypeDef *SPIx>
-struct SPIDmaHandlers
+DMA_HandleTypeDef *getTxHandle(SPI_TypeDef *SPIx)
 {
-    static DMA_HandleTypeDef &getTxHandle();
-    static DMA_HandleTypeDef &getRxHandle();
-};
-
-template <>
-struct SPIDmaHandlers<SPI1>
-{
-    static DMA_HandleTypeDef &getTxHandle() { return hdma_spi1_tx; }
-    static DMA_HandleTypeDef &getRxHandle() { return hdma_spi1_rx; }
-};
-
+    if (SPIx == SPI1)
+    {
+        return &hdma_spi1_tx;
+    }
 #if defined(SPI2)
-template <>
-struct SPIDmaHandlers<SPI2>
+    else if (SPIx == SPI2)
+    {
+        return &hdma_spi2_tx;
+    }
+#endif
+#if defined(SPI3)
+    else if (SPIx == SPI3)
+    {
+        return &hdma_spi3_tx;
+    }
+#endif
+#if defined(SPI4)
+    else if (SPIx == SPI4)
+    {
+        return &hdma_spi4_tx;
+    }
+#endif
+    else
+    {
+        assert(false && "Unbekannte SPI-Instanz");
+        return nullptr;
+    }
+}
+
+DMA_HandleTypeDef *getRxHandle(SPI_TypeDef *SPIx)
 {
-    static DMA_HandleTypeDef &getTxHandle() { return hdma_spi2_tx; }
-    static DMA_HandleTypeDef &getRxHandle() { return hdma_spi2_rx; }
-};
+    if (SPIx == SPI1)
+    {
+        return &hdma_spi1_rx;
+    }
+#if defined(SPI2)
+    else if (SPIx == SPI2)
+    {
+        return &hdma_spi2_rx;
+    }
 #endif
-
-/**
- * @brief template instanciation
- *
- */
-
-template bool Dma::dma_init_TX<SPI1>();
-template bool Dma::dma_init_RX<SPI1>();
-#ifdef SPI2
-template bool Dma::dma_init_TX<SPI2>();
-template bool Dma::dma_init_RX<SPI2>();
+#if defined(SPI3)
+    else if (SPIx == SPI3)
+    {
+        return &hdma_spi3_rx;
+    }
 #endif
-#ifdef SPI3
-template bool Dma::dma_init_TX<SPI3>();
-template bool Dma::dma_init_RX<SPI3>();
+#if defined(SPI4)
+    else if (SPIx == SPI4)
+    {
+        return &hdma_spi4_rx;
+    }
 #endif
-#ifdef SPI4
-template bool Dma::dma_init_TX<SPI4>();
-template bool Dma::dma_init_RX<SPI4>();
-#endif
+    else
+    {
+        assert(false && "Unbekannte SPI-Instanz");
+        return nullptr;
+    }
+}
 
 /**
  * @brief toHal helper functions
@@ -113,11 +139,11 @@ namespace
         switch (alignment)
         {
         case DmaPeriphDataSizeAlignment::Byte:
-            return DMA_PDATAALIGN_SIZE_BYTE;
+            return DMA_PDATAALIGN_BYTE;
         case DmaPeriphDataSizeAlignment::HalfWord:
-            return DMA_PDATAALIGN_SIZE_HALFWORD;
+            return DMA_PDATAALIGN_HALFWORD;
         case DmaPeriphDataSizeAlignment::Word:
-            return DMA_PDATAALIGN_SIZE_WORD;
+            return DMA_PDATAALIGN_WORD;
         default:
             assert(false && "Unrichtige DMA-Peripherie-Datenausrichtung");
             return 0;
@@ -129,11 +155,11 @@ namespace
         switch (alignment)
         {
         case DmaMemDataSizeAlignment::Byte:
-            return DMA_MDATAALIGN_SIZE_BYTE;
+            return DMA_MDATAALIGN_BYTE;
         case DmaMemDataSizeAlignment::HalfWord:
-            return DMA_MDATAALIGN_SIZE_HALFWORD;
+            return DMA_MDATAALIGN_HALFWORD;
         case DmaMemDataSizeAlignment::Word:
-            return DMA_MDATAALIGN_SIZE_WORD;
+            return DMA_MDATAALIGN_WORD;
         default:
             assert(false && "Unrichtige DMA-Speicher-Datenausrichtung");
             return 0;
@@ -183,8 +209,12 @@ Dma::Dma(
     DmaPeriphDataSizeAlignment periphDataAlignment,
     DmaMemDataSizeAlignment memDataAlignment,
     DmaMode mode,
-    DmaPriority priority)
+    DmaPriority priority,
+    DMA_Channel_TypeDef *instance_tx,
+    DMA_Channel_TypeDef *instance_rx)
     : _hspi(nullptr),
+      _instance_tx(instance_tx),
+      _instance_rx(instance_rx),
       _request_tx(request_tx),
       _request_rx(request_rx),
       //   _direction(direction),
@@ -201,54 +231,125 @@ Dma::Dma(
 void Dma::setSpiHandle(SPI_HandleTypeDef *hspi)
 {
     _hspi = hspi;
+
+    if (_instance_tx == nullptr)
+    {
+        _instance_tx = getDefaultTxChannel(hspi->Instance);
+    }
+    if (_instance_rx == nullptr)
+    {
+        _instance_rx = getDefaultRxChannel(hspi->Instance);
+    }
 }
 
-// Beide DMA initialisieren
+DMA_Channel_TypeDef *Dma::getDefaultTxChannel(SPI_TypeDef *spiInstance)
+{
+    if (spiInstance == SPI1)
+    {
+        return DMA1_Channel3;
+    }
+#if defined(SPI2)
+    else if (spiInstance == SPI2)
+    {
+        return DMA1_Channel5; // Default für SPI2 TX
+    }
+#endif
+#if defined(SPI3)
+    else if (spiInstance == SPI3)
+    {
+        return DMA2_Channel2; // Default für SPI3 TX (je nach MCU)
+    }
+#endif
+
+    assert(false && "Unsupported SPI instance for default TX channel");
+    return nullptr;
+}
+
+DMA_Channel_TypeDef *Dma::getDefaultRxChannel(SPI_TypeDef *spiInstance)
+{
+    if (spiInstance == SPI1)
+    {
+        return DMA1_Channel2; // Default für SPI1 RX
+    }
+#if defined(SPI2)
+    else if (spiInstance == SPI2)
+    {
+        return DMA1_Channel4; // Default für SPI2 RX
+    }
+#endif
+#if defined(SPI3)
+    else if (spiInstance == SPI3)
+    {
+        return DMA2_Channel1; // Default für SPI3 RX (je nach MCU)
+    }
+#endif
+
+    assert(false && "Unsupported SPI instance for default RX channel");
+    return nullptr;
+}
+
 bool Dma::dma_init()
 {
-    // Prüfen, ob ein SPI-Handle gesetzt wurde
     if (_hspi == nullptr || _hspi->Instance == nullptr)
     {
         assert(false && "SPI handle not set. Call setSpiHandle() before dma_init()");
         return false;
     }
 
+    if (_instance_tx == nullptr && _instance_rx == nullptr)
+    {
+        return true;
+    }
+
     __HAL_RCC_DMA1_CLK_ENABLE();
 
-    bool tx_init = false;
-    bool rx_init = false;
+// dma2
+#if defined(DMA2)
+    if ((_instance_tx && _instance_tx >= DMA2_Channel1) ||
+        (_instance_rx && _instance_rx >= DMA2_Channel1))
+    {
+        __HAL_RCC_DMA2_CLK_ENABLE();
+    }
+#endif
 
-    if (_hspi->Instance == SPI1)
+    bool success = true;
+
+    // case 10 or 11: TX-channel
+    if (_instance_tx != nullptr)
     {
-        tx_init = dma_init_TX<SPI1>();
-        rx_init = dma_init_RX<SPI1>();
-    }
-    else if (_hspi->Instance == SPI2)
-    {
-        tx_init = dma_init_TX<SPI2>();
-        rx_init = dma_init_RX<SPI2>();
-    }
-    else if (_hspi->Instance == SPI3)
-    {
-        tx_init = dma_init_TX<SPI3>();
-        rx_init = dma_init_RX<SPI3>();
-    }
-    else if (_hspi->Instance == SPI4)
-    {
-        tx_init = dma_init_TX<SPI4>();
-        rx_init = dma_init_TX<SPI4>();
-    }
-    else
-    {
-        assert(false && "Unsupported SPI instance for DMA");
-        return false;
+        if (!dma_init_tx(_hspi->Instance))
+        {
+            assert(false && "DMA TX initialization failed");
+            success = false;
+        }
     }
 
-    return tx_init && rx_init;
+    // case 01 or 11: RX-channel
+    if (_instance_rx != nullptr)
+    {
+        if (!dma_init_rx(_hspi->Instance))
+        {
+            assert(false && "DMA RX initialization failed");
+            success = false;
+        }
+    }
+
+    return success;
 }
 
-template <SPI_TypeDef *SPIx>
-bool Dma::dma_init_TX()
+bool Dma::dma_init_tx(void *spi_instance)
+{
+    SPI_TypeDef *SPIx = static_cast<SPI_TypeDef *>(spi_instance);
+    return stm32_dma_init_tx(SPIx);
+}
+
+bool Dma::dma_init_rx(void *spi_instance)
+{
+    SPI_TypeDef *SPIx = static_cast<SPI_TypeDef *>(spi_instance);
+    return stm32_dma_init_rx(SPIx);
+}
+
+bool Dma::stm32_dma_init_tx(SPI_TypeDef *SPIx)
 {
     if (_hspi == nullptr || _hspi->Instance == nullptr)
     {
@@ -256,32 +357,36 @@ bool Dma::dma_init_TX()
         return false;
     }
 
-    DMA_HandleTypeDef &dma_handle_Tx = SPIDmaHandlers<SPIx>::getTxHandle();
+    DMA_HandleTypeDef *dma_handle_tx = getTxHandle(SPIx);
+    if (dma_handle_tx == nullptr) // HINZUGEFÜGT: Null-Check
+    {
+        assert(false && "Failed to get TX DMA handle");
+        return false;
+    }
 
-    dma_handle_Tx.Instance = DMA1_Channel3;
-    dma_handle_Tx.Init.Request = requestToHal(_request_tx);
-    dma_handle_Tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
-    dma_handle_Tx.Init.PeriphInc = periphIncToHal(_periphInc);
-    dma_handle_Tx.Init.MemInc = memIncToHal(_memInc);
-    dma_handle_Tx.Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
-    dma_handle_Tx.Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
-    dma_handle_Tx.Init.Mode = modeToHal(_mode);
-    dma_handle_Tx.Init.Priority = priorityToHal(_priority);
+    dma_handle_tx->Instance = _instance_tx;
+    dma_handle_tx->Init.Request = requestToHal(_request_tx);
+    dma_handle_tx->Init.Direction = DMA_MEMORY_TO_PERIPH;
+    dma_handle_tx->Init.PeriphInc = periphIncToHal(_periphInc);
+    dma_handle_tx->Init.MemInc = memIncToHal(_memInc);
+    dma_handle_tx->Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
+    dma_handle_tx->Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
+    dma_handle_tx->Init.Mode = modeToHal(_mode);
+    dma_handle_tx->Init.Priority = priorityToHal(_priority);
 
     // HAL DMA Initialisierung
-    if (HAL_DMA_Init(&dma_handle_Tx) != HAL_OK)
+    if (HAL_DMA_Init(dma_handle_tx) != HAL_OK)
     {
         return false;
     }
 
     // DMA mit SPI Handle verknüpfen
-    __HAL_LINKDMA(_hspi, hdmatx, dma_handle_Tx);
+    __HAL_LINKDMA(_hspi, hdmatx, *dma_handle_tx);
 
     return true;
 }
 
-template <SPI_TypeDef *SPIx>
-bool Dma::dma_init_RX()
+bool Dma::stm32_dma_init_rx(SPI_TypeDef *SPIx)
 {
     // Prüfen, ob ein SPI-Handle gesetzt wurde
     if (_hspi == nullptr || _hspi->Instance == nullptr)
@@ -290,26 +395,31 @@ bool Dma::dma_init_RX()
         return false;
     }
 
-    DMA_HandleTypeDef &dma_handle_Rx = SPIDmaHandlers<SPIx>::getRxHandle();
+    DMA_HandleTypeDef *dma_handle_rx = getRxHandle(SPIx);
+    if (dma_handle_rx == nullptr) // HINZUGEFÜGT: Null-Check
+    {
+        assert(false && "Failed to get RX DMA handle");
+        return false;
+    }
 
-    dma_handle_Rx.Instance = DMA1_Channel2;
-    dma_handle_Rx.Init.Request = requestToHal(_request_rx);
-    dma_handle_Rx.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    dma_handle_Rx.Init.PeriphInc = periphIncToHal(_periphInc);
-    dma_handle_Rx.Init.MemInc = memIncToHal(_memInc);
-    dma_handle_Rx.Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
-    dma_handle_Rx.Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
-    dma_handle_Rx.Init.Mode = modeToHal(_mode);
-    dma_handle_Rx.Init.Priority = priorityToHal(_priority);
+    dma_handle_rx->Instance = _instance_rx;
+    dma_handle_rx->Init.Request = requestToHal(_request_rx);
+    dma_handle_rx->Init.Direction = DMA_PERIPH_TO_MEMORY;
+    dma_handle_rx->Init.PeriphInc = periphIncToHal(_periphInc);
+    dma_handle_rx->Init.MemInc = memIncToHal(_memInc);
+    dma_handle_rx->Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
+    dma_handle_rx->Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
+    dma_handle_rx->Init.Mode = modeToHal(_mode);
+    dma_handle_rx->Init.Priority = priorityToHal(_priority);
 
     // HAL DMA Initialisierung
-    if (HAL_DMA_Init(&dma_handle_Rx) != HAL_OK)
+    if (HAL_DMA_Init(dma_handle_rx) != HAL_OK)
     {
         return false;
     }
 
     // DMA mit SPI Handle verknüpfen
-    __HAL_LINKDMA(_hspi, hdmarx, dma_handle_Rx);
+    __HAL_LINKDMA(_hspi, hdmarx, *dma_handle_rx);
 
     return true;
 }

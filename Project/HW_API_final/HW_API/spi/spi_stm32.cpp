@@ -17,6 +17,7 @@
 #include "hw_factory.hpp"
 #include "hw_enum_classes.hpp"
 #include "hw_enum_stm32.hpp"
+#include "stm32_error_handle.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
 namespace
@@ -130,33 +131,15 @@ namespace
 
     uint32_t spiNSSPModeToHAL(SpiNSSPMode nssp)
     {
-        // Plattformunabhängige Implementierung - prüft zur Laufzeit Verfügbarkeit
-        // Auf Plattformen, die NSSP nicht unterstützen, wird 0 zurückgegeben
-        // Auf unterstützten Plattformen die entsprechende Konstante
-        uint32_t result = 0;
-
         switch (nssp)
         {
-        case SpiNSSPMode::Software:
-#if defined(SPI_NSSP_MODE_SOFTWARE)
-            result = SPI_NSSP_MODE_SOFTWARE;
-#endif
-            break;
-
-        case SpiNSSPMode::Hardware:
-#if defined(SPI_NSSP_MODE_HARDWARE)
-            result = SPI_NSSP_MODE_HARDWARE;
-#endif
-            break;
-
+        case SpiNSSPMode::Enable:
+            return SPI_NSS_PULSE_ENABLE;
+        case SpiNSSPMode::Disable:
+            return SPI_NSS_PULSE_DISABLE;
         default:
-#if defined(SPI_NSSP_MODE_SOFTWARE)
-            result = SPI_NSSP_MODE_SOFTWARE;
-#endif
-            break;
+            return SPI_NSS_PULSE_DISABLE;
         }
-
-        return result;
     }
 
     uint32_t spiBaudRatePrescalerToHAL(SpiBaudRatePrescaler prescaler)
@@ -284,13 +267,17 @@ Spi::Spi(
 
 bool Spi::spi_init()
 {
-    RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+    RCC_PeriphCLKInitTypeDef PeriphClkInit{};
 
     if (_instance == SPI1)
     {
 #ifdef STM32C0xx
-        PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_SPI1;
+        PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2S1;
         PeriphClkInit.I2s1ClockSelection = RCC_I2S1CLKSOURCE_SYSCLK;
+        if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+        {
+            Error_Handler();
+        }
 #endif
         __HAL_RCC_SPI1_CLK_ENABLE();
     }
