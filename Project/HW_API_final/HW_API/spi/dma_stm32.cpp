@@ -37,33 +37,6 @@ struct SPIDmaHandlers<SPI2>
 };
 #endif
 
-// Globale Instanzen-Tracking für Callbacks
-Dma *g_spi1DmaInstance = nullptr;
-#if defined(SPI2)
-Dma *g_spi2DmaInstance = nullptr;
-#endif
-
-// Hilfsfunktion für Callbacks
-Dma *FindDmaInstanceBySpiHandle(SPI_HandleTypeDef *hspi)
-{
-    if (hspi == nullptr || hspi->Instance == nullptr)
-    {
-        return nullptr;
-    }
-
-    if (hspi->Instance == SPI1)
-    {
-        return g_spi1DmaInstance;
-    }
-#if defined(SPI2)
-    else if (hspi->Instance == SPI2)
-    {
-        return g_spi2DmaInstance;
-    }
-#endif
-    return nullptr;
-}
-
 /**
  * @brief toHal helper functions
  *
@@ -209,12 +182,6 @@ Dma::Dma(
 void Dma::setSpiHandle(SPI_HandleTypeDef *hspi)
 {
     _hspi = hspi;
-
-    // for callbacks
-    if (hspi->Instance == SPI1)
-    {
-        /* code */
-    }
 }
 
 // Beide DMA initialisieren
@@ -251,73 +218,6 @@ bool Dma::dma_init()
     return tx_init && rx_init;
 }
 
-template <SPI_TypeDef *SPIx>
-bool Dma::dma_init_TX()
-{
-    if (_hspi == nullptr || _hspi->Instance == nullptr)
-    {
-        assert(false && "SPI handle not set. Call setSpiHandle() before dma_init_TX()");
-        return false;
-    }
-
-    DMA_HandleTypeDef &dma_handle_Tx = SPIDmaHandlers<SPIx>::getTxHandle();
-
-    dma_handle_Tx.Instance = DMA1_Channel3;
-    dma_handle_Tx.Init.Request = requestToHal(_request_tx);
-    dma_handle_Tx.Init.Direction = DMA_DIRECTION_MEMORY_TO_PERIPH;
-    dma_handle_Tx.Init.PeriphInc = periphIncToHal(_periphInc);
-    dma_handle_Tx.Init.MemInc = memIncToHal(_memInc);
-    dma_handle_Tx.Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
-    dma_handle_Tx.Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
-    dma_handle_Tx.Init.Mode = modeToHal(_mode);
-    dma_handle_Tx.Init.Priority = priorityToHal(_priority);
-
-    // HAL DMA Initialisierung
-    if (HAL_DMA_Init(&dma_handle_Tx) != HAL_OK)
-    {
-        return false;
-    }
-
-    // DMA mit SPI Handle verknüpfen
-    __HAL_LINKDMA(_hspi, hdmatx, dma_handle_Tx);
-
-    return true;
-}
-
-template <SPI_TypeDef *SPIx>
-bool Dma::dma_init_RX()
-{
-    // Prüfen, ob ein SPI-Handle gesetzt wurde
-    if (_hspi == nullptr || _hspi->Instance == nullptr)
-    {
-        assert(false && "SPI handle not set. Call setSpiHandle() before dma_init_RX()");
-        return false;
-    }
-
-    DMA_HandleTypeDef &dma_handle_Rx = SPIDmaHandlers<SPIx>::getRxHandle();
-
-    dma_handle_Rx.Instance = DMA1_Channel2;
-    dma_handle_Rx.Init.Request = requestToHal(_request_rx);
-    dma_handle_Rx.Init.Direction = DMA_DIRECTION_PERIPH_TO_MEMORY;
-    dma_handle_Rx.Init.PeriphInc = periphIncToHal(_periphInc);
-    dma_handle_Rx.Init.MemInc = memIncToHal(_memInc);
-    dma_handle_Rx.Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
-    dma_handle_Rx.Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
-    dma_handle_Rx.Init.Mode = modeToHal(_mode);
-    dma_handle_Rx.Init.Priority = priorityToHal(_priority);
-
-    // HAL DMA Initialisierung
-    if (HAL_DMA_Init(&dma_handle_Rx) != HAL_OK)
-    {
-        return false;
-    }
-
-    // DMA mit SPI Handle verknüpfen
-    __HAL_LINKDMA(_hspi, hdmarx, dma_handle_Rx);
-
-    return true;
-}
-
 bool Dma::dma_interrupts(uint32_t priority)
 {
     if (!__HAL_RCC_DMA1_CLK_ENABLE())
@@ -328,14 +228,14 @@ bool Dma::dma_interrupts(uint32_t priority)
 
     if (_hspi->Instance == SPI1)
     {
-        HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQHandler, priority, 0);
+        HAL_NVIC_SetPriority(DMA1_Channel2_3_IRQHn, priority, 0);
         HAL_NVIC_EnableIRQ(DMA1_Channel2_3_IRQn);
     }
 #ifdef SPI2
     else if (_hspi->Instance == SPI2)
     {
 #ifdef DMA1_Channel4_5_IRQn
-        HAL_NVIC_SetPriority(DMA1_Channel4_5_IRQHandler, priority, 0);
+        HAL_NVIC_SetPriority(DMA1_Channel4_5_IRQn, priority, 0);
         HAL_NVIC_EnableIRQ(DMA1_Channel4_5_IRQn);
 
 #elif defined(DMA1_Channel4_5_6_7_IRQn)
@@ -352,63 +252,41 @@ bool Dma::dma_interrupts(uint32_t priority)
     return true;
 }
 
-DmaTxState Dma::getTxState() const
+bool Dma::isTransferComplete() const
 {
-    return _txState;
-}
-
-void Dma::setTxState(DmaTxState state)
-{
-    _txState = state;
-}
-
-bool Dma::isTxComplete() const
-{
-    return _txState == DmaTxState::COMPLETE;
-}
-
-bool Dma::isTxError() const
-{
-    return _txState == DmaTxState::ERROR;
-}
-
-// HAL-kompatible Callback-Funktionen
-extern "C"
-{
-    void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+    if (_hspi == nullptr || _hspi->Instance == nullptr)
     {
-        Dma *dma = FindDmaInstanceBySpiHandle(hspi);
-        if (dma)
-        {
-            dma->setTransferState(DmaTxState::COMPLETE);
-        }
+        assert(false && "SPI handle not set. Call setSpiHandle() before isTransferComplete()");
+        return false;
     }
 
-    void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
-    {
-        Dma *dma = FindDmaInstanceBySpiHandle(hspi);
-        if (dma)
-        {
-            dma->setTransferState(DmaTxState::COMPLETE);
-        }
-    }
-
-    void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
-    {
-        Dma *dma = FindDmaInstanceBySpiHandle(hspi);
-        if (dma)
-        {
-            dma->setTransferState(DmaTxState::COMPLETE);
-        }
-    }
-
-    void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
-    {
-        Dma *dma = FindDmaInstanceBySpiHandle(hspi);
-        if (dma)
-        {
-            dma->setTransferState(DmaTxState::ERROR);
-        }
-    }
+    return (HAL_SPI_GetState(_hspi) == HAL_SPI_STATE_READY);
 }
+
+bool Dma::isTransferBusy() const
+{
+    if (_hspi == nullptr || _hspi->Instance == nullptr)
+    {
+        assert(false && "SPI handle not set. Call setSpiHandle() before isTransferBusy()");
+        return false;
+    }
+
+    HAL_SPI_StateTypeDef state = HAL_SPI_GetState(_hspi);
+    return (
+        state == HAL_SPI_STATE_BUSY_TX ||
+        state == HAL_SPI_STATE_BUSY_RX ||
+        state == HAL_SPI_STATE_BUSY_TX_RX);
+}
+
+bool Dma::isTransferError() const
+{
+    if (_hspi == nullptr || _hspi->Instance == nullptr)
+    {
+        assert(false && "SPI handle not set. Call setSpiHandle() before isTransferError()");
+        return false;
+    }
+
+    return (HAL_SPI_GetState(_hspi) != HAL_SPI_ERROR_NONE);
+}
+
 #endif // STM32_PLATFORM

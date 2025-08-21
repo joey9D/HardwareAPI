@@ -338,13 +338,6 @@ namespace HW_API
             VeryHigh = DMA_PRIORITY_VERY_HIGH
         };
 
-        enum class DmaTxState
-        {
-            READY,
-            BUSY,
-            COMPLETE,
-            ERROR
-        }
     } // namespace STM32
 } // namespace HW_API
 

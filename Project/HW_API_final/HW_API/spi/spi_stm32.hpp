@@ -38,12 +38,19 @@ public:
     // - init
     bool spi_init() override;
 
-    // Polling - byte-based interface
+    // Polling
     bool transmit(const uint8_t *data, uint16_t length, uint32_t timeout) override;
     bool receive(uint8_t *data, uint16_t length, uint32_t timeout) override;
     bool transmitReceive(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout) override;
 
-    // SPI_HandleTypeDef *get_handle();
+    // Dma
+    SPI_HandleTypeDef *get_handle();
+    void set_dma(Dma *dma);
+    Dma *get_dma() const;
+
+    bool transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout = 0);
+    bool receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout = 0);
+    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout = 0);
 
 private:
     Gpio &_sck;
@@ -69,4 +76,5 @@ private:
     SpiNSSPMode _spiNSSPMode;
 
     SPI_HandleTypeDef _hspi;
+    Dma *_dma = nullptr;
 };
