@@ -39,7 +39,7 @@ void master_code()
 
   linkSpiWithDma(peripherals.spi1, peripherals.dma1);
 
-  peripherals.dma1.dma1_init();
+  peripherals.dma1.dma_init();
 
   // Puffer für Senden/Empfangen
   uint8_t txBuffer[BUFFER_SIZE] = {0};
@@ -54,7 +54,7 @@ void master_code()
     bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
     // Kurze Pause zwischen den Transfers
-    hwInterface->delay(100);
+    hw->delay(100);
   }
 }
 
@@ -88,7 +88,7 @@ void slave_code()
     bool transferSuccess = peripherals.spi1.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
     // Kurze Pause zwischen den Transfers
-    hwInterface->delay(100);
+    hw->delay(100);
   }
 }
 

@@ -10,7 +10,9 @@
         "cassert": "cpp",
         "array": "cpp",
         "string": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp"
     },
     
 //     // Debug-spezifische Einstellungen für STM32 Debugging

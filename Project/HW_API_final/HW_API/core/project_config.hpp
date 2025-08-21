@@ -70,7 +70,6 @@ inline BoardPins boardPins;
 struct BoardPeripherals
 {
 #ifdef MASTER_CONFIG
-	// SPI1 als Master konfigurieren für FullDuplex Betrieb ('A' senden und auf 'O' warten)
 	Spi spi1{
 		boardPins.spi1_sck,
 		boardPins.spi1_miso,
@@ -87,16 +86,13 @@ struct BoardPeripherals
 		SpiFirstBit::MSB,
 		SpiTIMode::Disable,
 		SpiCRCCalculation::Disable,
-		SpiCRCPolynomial::Polynomial7,
+		7,
 		SpiCRCLength::Length8,
-		SpiNSSPMode::Software,
-		nullptr}; // DMA wird später zugewiesen
+		SpiNSSPMode::Software};
 
-	// Master sendet 'A'
 	const uint8_t txData = 'A'; // ASCII-Zeichen 'A' (0x41)
 
 #else // SLAVE_CONFIG
-	// SPI1 als Slave konfigurieren für FullDuplex Betrieb ('O' senden und auf 'A' warten)
 	Spi spi1{
 		boardPins.spi1_sck,
 		boardPins.spi1_miso,
@@ -113,22 +109,20 @@ struct BoardPeripherals
 		SpiFirstBit::MSB,
 		SpiTIMode::Disable,
 		SpiCRCCalculation::Disable,
-		SpiCRCPolynomial::Polynomial7,
+		7,
 		SpiCRCLength::Length8,
-		SpiNSSPMode::Hardware,
-		nullptr}; // DMA wird später zugewiesen
+		SpiNSSPMode::Hardware};
 
-	// Slave sendet 'O'
 	const uint8_t txData = 'O'; // ASCII-Zeichen 'O' (0x4F)
 #endif
 
 	Dma dma1{
 		DmaRequest::SPI1_TX,
 		DmaRequest::SPI1_RX,
-		DmaDirection::MemToPeriph,
+		// DmaDirection::MemToPeriph,
 		DmaPeriphInc::Disable,
 		DmaMemInc::Enable,
-		DmaPeriphDataSizeAlignment::Word,
+		DmaPeriphDataSizeAlignment::Byte,
 		DmaMemDataSizeAlignment::Byte,
 		DmaMode::Normal,
 		DmaPriority::High};

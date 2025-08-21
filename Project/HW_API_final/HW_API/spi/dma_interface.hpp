@@ -7,8 +7,6 @@ public:
     virtual ~IDmaBase() = default;
 
     // DMA Initialisierung
-    virtual bool dma_init_TX() = 0;
-    virtual bool dma_init_RX() = 0;
     virtual bool dma_init() = 0;
     virtual bool dma_interrupts(uint32_t priority = 0) = 0;
     virtual bool isTransferComplete() const = 0;

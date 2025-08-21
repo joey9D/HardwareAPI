@@ -48,9 +48,9 @@ public:
     void set_dma(Dma *dma);
     Dma *get_dma() const;
 
-    bool transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout = 0);
-    bool receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout = 0);
-    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout = 0);
+    bool transmit_DMA(const uint8_t *data, uint16_t length, uint32_t timeout = 0) override;
+    bool receive_DMA(uint8_t *data, uint16_t length, uint32_t timeout = 0) override;
+    bool transmitReceive_DMA(const uint8_t *txData, uint8_t *rxData, uint16_t length, uint32_t timeout = 0) override;
 
 private:
     Gpio &_sck;
@@ -60,20 +60,20 @@ private:
 
     SPI_TypeDef *_instance;
 
-    SpiMode _spiMode;
-    SpiDirection _spiDirection;
-    SpiDataSize _spiDataSize;
-    SpiClockPolarity _spiClockPolarity;
-    SpiClockPhase _spiClockPhase;
-    SpiNSS _spiNSS;
-    SpiBaudRatePrescaler _spiBaudRatePrescaler;
-    SpiFirstBit _spiFirstBit;
-    SpiTIMode _spiTIMode;
-    SpiCRCCalculation _spiCRCCalculation;
-    // SpiCRCPolynomial _spiCRCPolynomial;
-    uint32_t _spiCRCPolynomial;
-    SpiCRCLength _spiCRCLength;
-    SpiNSSPMode _spiNSSPMode;
+    SpiMode _mode;
+    SpiDirection _direction;
+    SpiDataSize _dataSize;
+    SpiClockPolarity _clockPolarity;
+    SpiClockPhase _clockPhase;
+    SpiNSS _nss;
+    SpiBaudRatePrescaler _baudRatePrescaler;
+    SpiFirstBit _firstBit;
+    SpiTIMode _tiMode;
+    SpiCRCCalculation _crcCalculation;
+    // SpiCRCPolynomial _crcPolynomial;
+    uint32_t _crcPolynomial;
+    SpiCRCLength _crcLength;
+    SpiNSSPMode _nsspMode;
 
     SPI_HandleTypeDef _hspi;
     Dma *_dma = nullptr;
