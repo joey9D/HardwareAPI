@@ -60,7 +60,7 @@ struct BoardPins
 	Gpio spi1_sck{3, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::None, false, 0, 0, ExtiTrigger::None};
+	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 
 	// Array mit allen GPIO-Pins (SPI, LEDs, Button)
 	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
@@ -82,7 +82,7 @@ struct BoardPeripherals
 		SpiDataSize::Bits8,		  // 8-Bit für ASCII-Zeichen
 		SpiClockPolarity::Low,
 		SpiClockPhase::FirstEdge,
-		SpiNSS::Soft, // Software NSS im Master-Modus
+		SpiNSS::Soft,
 		SpiBaudRatePrescaler::Prescaler32,
 		SpiFirstBit::MSB,
 		SpiTIMode::Disable,
@@ -118,7 +118,7 @@ struct BoardPeripherals
 		SpiDataSize::Bits8,		  // 8-Bit für ASCII-Zeichen
 		SpiClockPolarity::Low,
 		SpiClockPhase::FirstEdge,
-		SpiNSS::Hard_In, // Hardware NSS im Slave-Modus
+		SpiNSS::Soft,
 		SpiBaudRatePrescaler::Prescaler32,
 		SpiFirstBit::MSB,
 		SpiTIMode::Disable,

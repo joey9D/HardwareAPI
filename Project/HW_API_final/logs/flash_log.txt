@@ -3,20 +3,20 @@ cmake --build build --target flash
                        STM32CubeProgrammer v2.19.0                  
       -------------------------------------------------------------------
 
-ST-LINK SN  : 066FFF343433464757202544
+ST-LINK SN  : 066DFF34384B513043011031
 ST-LINK FW  : V2J46M31
-Board       : NUCLEO-G0B1RE
+Board       : NUCLEO-C031C6
 Voltage     : 3.23V
 SWD freq    : 4000 KHz
 Connect mode: Normal
 Reset mode  : Software reset
-Device ID   : 0x467
+Device ID   : 0x453
 Revision ID : Rev Z
-Device name : STM32G0B0xx/B1xx/C1xx
-Flash size  : 512 KBytes
+Device name : STM32C03x
+Flash size  : 32 KBytes
 Device type : MCU
 Device CPU  : Cortex-M0+
-BL Version  : 0x92
+BL Version  : 0x52
 
 Opening and parsing file: HW_API_Project.bin
 
@@ -31,10 +31,10 @@ Memory Programming ...
 Erasing memory corresponding to sector 0:
 Erasing internal memory sectors [0 14]
 Download in Progress:
-北北北北北北北北北北北北北北北北北北北北北北北北北 0%圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹圹 100%
+北北北北北北北北北北北北北北北北北北北北北北北北北 0%圹圹圹圹圹圹圹 28%圹圹圹圹圹圹圹 57%圹圹圹圹圹圹圹 85%圹圹圹圹 100%
 
 File download complete
-Time elapsed during download operation: 00:00:01.026
+Time elapsed during download operation: 00:00:00.971
 
 
 

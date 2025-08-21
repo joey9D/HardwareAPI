@@ -176,21 +176,22 @@ Configuring build system...
 -- Target system: Generic
 -- Target processor: arm
 -- ================================================================================
--- Configuring done (156.8s)
--- Generating done (0.4s)
+-- Configuring done (109.9s)
+-- Generating done (0.2s)
 -- Build files have been written to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build
 Building project...
 [1/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal.c.obj
-[2/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_cortex.c.obj
-[3/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_flash.c.obj
-[4/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_dma.c.obj
-[5/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_pwr.c.obj
-[6/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_gpio.c.obj
-[7/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_rcc.c.obj
-[8/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_tim.c.obj
-[9/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_rcc_ex.c.obj
+[2/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_flash.c.obj
+[3/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_pwr.c.obj
+[4/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_gpio.c.obj
+[5/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_cortex.c.obj
+[6/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_dma.c.obj
+[7/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_rcc_ex.c.obj
+[8/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_rcc.c.obj
+[9/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_tim.c.obj
 [10/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_uart.c.obj
-[11/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c.obj
+[11/27] Building ASM object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32c031xx.s.obj
+[12/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c.obj
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c: In function 'HAL_SPI_Transmit':
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:940:30: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
   940 |         hspi->TxXferCount -= 2U;
@@ -216,8 +217,7 @@ C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_de
 C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src/Src/stm32c0xx_hal_spi.c:3682:26: warning: conversion from 'unsigned int' to 'uint16_t' {aka 'short unsigned int'} may change value [-Wconversion]
  3682 |     hspi->TxXferCount -= 2U;
       |                          ^~
-[12/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32c0xx.c.obj
-[13/27] Building ASM object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32c031xx.s.obj
+[13/27] Building C object HW_API/drivers/CMakeFiles/stm32_hal_library.dir/__/__/_deps/stm32_cmsis-src/Source/Templates/system_stm32c0xx.c.obj
 [14/27] Building C object HW_API/drivers/CMakeFiles/hw_api_drivers.dir/stm32_hal_wrapper/common/syscalls.c.obj
 [15/27] Building C object HW_API/platform/CMakeFiles/hw_api_platform.dir/stm32/stm32c0xx/stm32c0xx_hal_msp.c.obj
 [16/27] Building CXX object HW_API/gpio/CMakeFiles/hw_api_gpio.dir/gpio_stm32.cpp.obj
@@ -231,10 +231,10 @@ C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_de
 [24/27] Linking CXX static library HW_API\gpio\libhw_api_gpio.a
 [25/27] Linking CXX static library HW_API\platform\libhw_api_platform.a
 [26/27] Building CXX object app/CMakeFiles/hw_api_app.dir/main.cpp.obj
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp: In function 'void slave_code()':
-C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:91:10: warning: unused variable 'transferSuccess' [-Wunused-variable]
-   91 |     bool transferSuccess = peripherals.spi_slave.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
-      |          ^~~~~~~~~~~~~~~
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp: In function 'void master_code()':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:85:12: warning: unused variable 'transferSuccess' [-Wunused-variable]
+   85 |       bool transferSuccess = peripherals.spi_master.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+      |            ^~~~~~~~~~~~~~~
 [27/27] Linking CXX executable app\main
 C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): in function `_close_r':
 /build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0xc): warning: _close is not implemented and will always fail
@@ -263,4 +263,4 @@ C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.
 C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: app\main has a LOAD segment with RWX permissions
 Memory region         Used Size  Region Size  %age Used
              RAM:        2656 B        12 KB     21.61%
-           FLASH:       30372 B        32 KB     92.69%
+           FLASH:       30376 B        32 KB     92.70%
