@@ -10,9 +10,16 @@ Gpio::Gpio(
     bool inverted,
     uint32_t debounceTime,
     uint8_t debounceState,
-    Interrupt intr) : _pin(pin), _mode(mode), _pull(pull), _speed(speed),
-                      _inverted(inverted), _debounceTime(debounceTime),
-                      _debounceState(debounceState), _intr(intr)
+    Interrupt intr,
+    Alternate alternate) : _pin(pin),
+                           _mode(mode),
+                           _pull(pull),
+                           _speed(speed),
+                           _inverted(inverted),
+                           _debounceTime(debounceTime),
+                           _debounceState(debounceState),
+                           _intr(intr),
+                           _alternate(alternate)
 {
     // Initialization code can be added here if needed
 }
@@ -164,3 +171,5 @@ Mode Gpio::getMode() const { return _mode; }
 Pull Gpio::getPull() const { return _pull; }
 
 Speed Gpio::getSpeed() const { return _speed; }
+
+Alternate Gpio::getAlternate() const { return Alternate::None; } // ESP32 does not use Alternate

@@ -23,18 +23,18 @@ Opening and parsing file: HW_API_Project.bin
 
 Memory Programming ...
   File          : HW_API_Project.bin
-  Size          : 29.66 KB 
+  Size          : 12.11 KB 
   Address       : 0x08000000 
 
 
 
 Erasing memory corresponding to sector 0:
-Erasing internal memory sectors [0 14]
+Erasing internal memory sectors [0 6]
 Download in Progress:
-±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± 0%€€€€€€€€€€€€€€ 28%€€€€€€€€€€€€€€ 57%€€€€€€€€€€€€€€ 85%€€€€€€€€ 100%
+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± 0%€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ 70%€€€€€€€€€€€€€€€ 100%
 
 File download complete
-Time elapsed during download operation: 00:00:00.971
+Time elapsed during download operation: 00:00:00.533
 
 
 

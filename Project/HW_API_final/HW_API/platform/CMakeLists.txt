@@ -35,15 +35,15 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     
     # Use centrally configured ESP32 variables from parent CMakeLists.txt
     message(STATUS "Using ESP32 family: ${ESP32_FAMILY}")
-    message(STATUS "Using platform path: ${ESP32_PLATFORM_PATH}")
+    message(STATUS "Using platform path: ${ESP_PLATFORM_PATH}")
     
     # Build file paths using central configuration
     set(FILTERED_SOURCES
-        ${ESP32_PLATFORM_PATH}/${ESP32_HW_FILE}.cpp
+        ${ESP_PLATFORM_PATH}/${ESP32_HW_FILE}.cpp
     )
     
     set(FILTERED_HEADERS
-        ${ESP32_PLATFORM_PATH}/esp32c6_devkitc1_hw.hpp
+        ${ESP_PLATFORM_PATH}/esp32c6_devkitc1_hw.hpp
     )
        
     message(STATUS "Using ESP32-specific platform files")

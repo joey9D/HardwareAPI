@@ -20,7 +20,7 @@ public:
 #ifdef STM32_PLATFORM
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 using IDma = IDmaBase<DMA_HandleTypeDef>;
-#elif defined(ESP_PLATFORM) || defined(ESP32_PLATFORM)
+#elif defined(ESP_PLATFORM)
 #include "driver/spi_master.h"
 using IDma = IDmaBase<spi_dma_chan_t>;
 #endif

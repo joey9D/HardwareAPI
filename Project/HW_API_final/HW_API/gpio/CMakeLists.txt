@@ -129,7 +129,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     )
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
     target_compile_definitions(${TARGET_NAME} PUBLIC
-        ESP32_PLATFORM=1
+        ESP_PLATFORM=1
     )
 #     )
 else()

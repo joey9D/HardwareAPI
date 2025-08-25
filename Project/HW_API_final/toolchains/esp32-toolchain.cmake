@@ -132,7 +132,6 @@ set(CMAKE_EXE_LINKER_FLAGS_INIT "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,--print-memo
 # ESP32-specific defines
 add_compile_definitions(
     ESP_PLATFORM=1
-    ESP32_PLATFORM=1
     ESP32C6=1
     RISCV=1
     WITH_POSIX=1

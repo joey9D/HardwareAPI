@@ -31,6 +31,6 @@ public:
 // Platform-specific Type-Aliases
 #ifdef STM32_PLATFORM
 using IGpio = IGpioBase<uint16_t>;
-#elif defined(ESP_PLATFORM) || defined(ESP32_PLATFORM)
+#elif defined(ESP_PLATFORM)
 using IGpio = IGpioBase<uint64_t>;
 #endif

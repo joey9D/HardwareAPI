@@ -154,7 +154,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
     # ESP32-specific definitions handled by ESP-IDF
     add_compile_definitions(
-        ESP32_PLATFORM=1
+        ESP_PLATFORM=1
     )
     
     # Optional: Enable C++ exceptions for ESP32 (uncomment if needed)

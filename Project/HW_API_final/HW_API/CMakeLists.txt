@@ -122,7 +122,7 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     
     # ESP32-specific compile definitions
     add_compile_definitions(
-        ESP32_PLATFORM=1
+        ESP_PLATFORM=1
         ESP32_FAMILY_${MCU_FAMILY}=1
     )
     
@@ -138,10 +138,10 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     endif()
     
     # ESP32 platform paths
-    set(ESP32_PLATFORM_PATH "esp32/${MCU_FAMILY}_devkitc" CACHE INTERNAL "ESP32 platform path")
+    set(ESP_PLATFORM_PATH "esp32/${MCU_FAMILY}_devkitc" CACHE INTERNAL "ESP32 platform path")
     set(ESP32_HW_FILE "${MCU_FAMILY}_devkitc1_hw" CACHE INTERNAL "ESP32 hardware file base name")
-    
-    message(STATUS "ESP32 Platform Path: ${ESP32_PLATFORM_PATH}")
+
+    message(STATUS "ESP32 Platform Path: ${ESP_PLATFORM_PATH}")
     message(STATUS "ESP32 HW File Base: ${ESP32_HW_FILE}")
     
 else()
@@ -187,7 +187,7 @@ add_subdirectory(platform)
 # Add SPI module
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 message(STATUS "Adding SPI module...")
-add_subdirectory(spi)
+# add_subdirectory(spi)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Debug probes configuration (only for STM32 platform)

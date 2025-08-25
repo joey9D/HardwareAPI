@@ -10,16 +10,23 @@
 #include <array>
 
 #include "../gpio/gpio_interface.hpp"
-#include "../spi/spi_interface.hpp"
-#include "../spi/dma_interface.hpp"
+// #include "../spi/spi_interface.hpp"
+// #include "../spi/dma_interface.hpp"
 
 // Platform-spezifische Includes
 #ifdef STM32_PLATFORM
 #include "../gpio/gpio_stm32.hpp"
-#include "../spi/spi_stm32.hpp"
-#include "../spi/dma_stm32.hpp"
+// #include "../spi/spi_stm32.hpp"
+// #include "../spi/dma_stm32.hpp"
 
 using namespace HW_API::STM32;
+
+#elif defined(ESP_PLATFORM)
+#include "../gpio/gpio_esp32.hpp"
+// #include "../spi/spi_esp32.hpp"
+// #include "../spi/dma_esp32.hpp"
+
+using namespace HW_API::ESP32;
 #endif
 
 /**
@@ -45,14 +52,15 @@ struct BoardPins
 	 * @brief STM32 GPIO Configuration
 	 */
 	// Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	// Gpio button{13, Port::A, Mode::Input, Pull::None, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
+	// Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
 
 	/**
 	 * @brief ESP32 GPIO Configuration (falls benötigt)
 	 */
-	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled};
-	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
+	Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
+	Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
+#if defined(MASTER_CONFIG) || defined(SLAVE_CONFIG)
 	/**
 	 * @brief SPI Pins (PB3, PB4, PB5 und PB0 für NSS)
 	 *
@@ -61,9 +69,10 @@ struct BoardPins
 	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-
+#endif
 	// Array mit allen GPIO-Pins (SPI, LEDs, Button)
-	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
+	// std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
+	std::array<Gpio *, 2> allPins{&led, &button};
 };
 // Globale Instanz der Board-Pins
 inline BoardPins boardPins;
@@ -105,8 +114,8 @@ struct BoardPeripherals
 		DmaMemDataSizeAlignment::Byte,
 		DmaMode::Normal,
 		DmaPriority::High};
-
-#else // SLAVE_CONFIG
+#endif
+#ifdef SLAVE_CONFIG
 	Spi spi_slave{
 		boardPins.spi1_sck,
 		boardPins.spi1_miso,
