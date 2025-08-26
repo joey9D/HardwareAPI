@@ -6,8 +6,8 @@
  */
 
 // ========== KONFIGURATION ==========
-// #define GPIO_CODE
-#define MASTER_CONFIG
+#define GPIO_CODE
+// #define MASTER_CONFIG
 // #define SLAVE_CONFIG
 // ==================================
 
@@ -29,116 +29,111 @@ void gpio_code()
   HardwareInterface *hw = HardwareFactory::create();
 
   hw->init_sys();
-  hw->initAllPins();
+  // hw->initAllPins();
 
-  //	led.gpio_init();
-  //	button.gpio_init();
+  boardPins.led.gpio_init();
+  boardPins.button.gpio_init();
 
-  //	bool lastButtonState = buttonisDebouncePinOn();
   bool lastButtonState = boardPins.button.isDebouncePinOn();
 
   /* Infinite loop */
   while (1)
   {
-    while (1)
-    {
-      //	  hw->togglePin();
-      //	  hw->delay(500);
-      bool currentButtonState = boardPins.button.isDebouncePinOn();
+    //	  hw->togglePin();
+    //	  hw->delay(500);
+    bool currentButtonState = boardPins.button.isDebouncePinOn();
 
-      if (!lastButtonState && currentButtonState)
-      {
-        boardPins.led.togglePin();
-      }
-      lastButtonState = currentButtonState;
+    if (!lastButtonState && currentButtonState)
+    {
+      boardPins.led.togglePin();
     }
+    lastButtonState = currentButtonState;
   }
+}
 #endif
 
 #ifdef MASTER_CONFIG
-  void master_code()
+void master_code()
+{
+  // Hardware-Interface für systemweite Initialisierung holen
+  HardwareInterface *hw = HardwareFactory::create();
+
+  // System und Takt initialisieren
+  hw->init_sys();
+  hw->initAllPins();
+
+  // SPI initialisieren
+  peripherals.spi_master.spi_init();
+
+  linkSpiWithDma(peripherals.spi_master, peripherals.dma_master);
+
+  peripherals.dma_master.dma_init();
+
+  // Puffer für Senden/Empfangen
+  uint8_t txBuffer[BUFFER_SIZE] = {0};
+  uint8_t rxBuffer[BUFFER_SIZE] = {0};
+
+  while (true)
   {
-    // Hardware-Interface für systemweite Initialisierung holen
-    HardwareInterface *hw = HardwareFactory::create();
+    // Sendedaten vorbereiten (immer 'A' senden)
+    txBuffer[0] = peripherals.txData;
 
-    // System und Takt initialisieren
-    hw->init_sys();
-    hw->initAllPins();
+    // SPI Transfer durchführen
+    bool transferSuccess = peripherals.spi_master.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
-    // SPI initialisieren
-    peripherals.spi_master.spi_init();
-
-    linkSpiWithDma(peripherals.spi_master, peripherals.dma_master);
-
-    peripherals.dma_master.dma_init();
-
-    // Puffer für Senden/Empfangen
-    uint8_t txBuffer[BUFFER_SIZE] = {0};
-    uint8_t rxBuffer[BUFFER_SIZE] = {0};
-
-    while (true)
-    {
-      // Sendedaten vorbereiten (immer 'A' senden)
-      txBuffer[0] = peripherals.txData;
-
-      // SPI Transfer durchführen
-      bool transferSuccess = peripherals.spi_master.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
-
-      // Kurze Pause zwischen den Transfers
-      hw->delay(100);
-    }
+    // Kurze Pause zwischen den Transfers
+    hw->delay(100);
   }
+}
 #endif
 
 #ifdef SLAVE_CONFIG
-  void slave_code()
+void slave_code()
+{
+  // Hardware-Interface für systemweite Initialisierung holen
+  HardwareInterface *hw = HardwareFactory::create();
+
+  // System und Takt initialisieren
+  hw->init_sys();
+  hw->initAllPins();
+
+  // SPI initialisieren
+  peripherals.spi_slave.spi_init();
+
+  linkSpiWithDma(peripherals.spi_slave, peripherals.dma_slave);
+
+  peripherals.dma_slave.dma_init();
+
+  // Puffer für Senden/Empfangen
+  uint8_t txBuffer[BUFFER_SIZE] = {0};
+  uint8_t rxBuffer[BUFFER_SIZE] = {0};
+
+  // Hauptschleife - Kontinuierlich senden und empfangen
+  while (true)
   {
-    // Hardware-Interface für systemweite Initialisierung holen
-    HardwareInterface *hw = HardwareFactory::create();
+    // Sendedaten vorbereiten (immer 'O' senden)
+    txBuffer[0] = peripherals.txData;
 
-    // System und Takt initialisieren
-    hw->init_sys();
-    hw->initAllPins();
+    // SPI Transfer durchführen (Slave wartet auf Master)
+    bool transferSuccess = peripherals.spi_slave.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
 
-    // SPI initialisieren
-    peripherals.spi_slave.spi_init();
-
-    linkSpiWithDma(peripherals.spi_slave, peripherals.dma_slave);
-
-    peripherals.dma_slave.dma_init();
-
-    // Puffer für Senden/Empfangen
-    uint8_t txBuffer[BUFFER_SIZE] = {0};
-    uint8_t rxBuffer[BUFFER_SIZE] = {0};
-
-    // Hauptschleife - Kontinuierlich senden und empfangen
-    while (true)
-    {
-      // Sendedaten vorbereiten (immer 'O' senden)
-      txBuffer[0] = peripherals.txData;
-
-      // SPI Transfer durchführen (Slave wartet auf Master)
-      bool transferSuccess = peripherals.spi_slave.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
-
-      // Kurze Pause zwischen den Transfers
-      hw->delay(100);
-    }
+    // Kurze Pause zwischen den Transfers
+    hw->delay(100);
   }
+}
 #endif
-  /**
-   * @brief  The application entry point.
-   * @retval int
-   */
-  int main(void)
-  {
+/**
+ * @brief  The application entry point.
+ * @retval int
+ */
+int main(void)
+{
 
 #ifdef GPIO_CODE
-    gpio_code();
-#endif
-
-#ifdef MASTER_CONFIG
-    master_code();
+  gpio_code();
+#elif defined(MASTER_CONFIG)
+  master_code();
 #elif defined(SLAVE_CONFIG)
   slave_code();
 #endif
-  }
+}

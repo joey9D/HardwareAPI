@@ -1,7 +1,7 @@
 #pragma once
 
 // ESP32-IDF include file for C++ projects
-#ifdef ESP32_PLATFORM
+#ifdef ESP_PLATFORM
 
 // Step 1: Include standard C types BEFORE any ESP-IDF headers
 #ifdef __cplusplus
@@ -24,4 +24,4 @@ extern "C"
 }
 #endif
 
-#endif // ESP32_PLATFORM
+#endif // ESP_PLATFORM

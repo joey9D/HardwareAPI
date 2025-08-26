@@ -29,7 +29,7 @@ namespace HW_API
     using SpiCRCLength = STM32::SpiCRCLength;
 }
 // ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
-#elif ESP32_PLATFORM
+#elif ESP_PLATFORM
 #include "hw_enum_esp32.hpp"
 namespace HW_API
 {
@@ -37,6 +37,7 @@ namespace HW_API
     using Mode = ESP32::Mode;
     using Pull = ESP32::Pull;
     using Speed = ESP32::Speed;
+    using Alternate = ESP32::Alternate;
     using Interrupt = ESP32::Interrupt;
 
     // ESP32 doesn't have Port concept, provide dummy

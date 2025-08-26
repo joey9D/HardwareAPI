@@ -117,7 +117,6 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     if(FILTERED_SOURCES)
         target_compile_definitions(${TARGET_NAME} PUBLIC
             STM32_PLATFORM=1
-            # HW_CORE_STM32=1
         )
         # Add STM32 family-specific definitions
         if(MCU_FAMILY STREQUAL "stm32c0xx")
@@ -128,7 +127,6 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     else()
         target_compile_definitions(${TARGET_NAME} INTERFACE
             STM32_PLATFORM=1
-            # HW_CORE_STM32=1
         )
         # Add STM32 family-specific definitions
         if(MCU_FAMILY STREQUAL "stm32c0xx")
@@ -141,7 +139,7 @@ if(TARGET_PLATFORM STREQUAL "STM32")
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
     if(FILTERED_SOURCES)
         target_compile_definitions(${TARGET_NAME} PUBLIC
-            ESP32_PLATFORM=1
+            ESP_PLATFORM=1
         )
         # Add ESP32 family-specific definitions
         if(ESP32_FAMILY STREQUAL "esp32c6")
@@ -149,7 +147,7 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
         endif()
     else()
         target_compile_definitions(${TARGET_NAME} INTERFACE
-            ESP32_PLATFORM=1
+            ESP_PLATFORM=1
         )
         # Add ESP32 family-specific definitions
         if(ESP32_FAMILY STREQUAL "esp32c6")

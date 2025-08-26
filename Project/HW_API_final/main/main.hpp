@@ -16,7 +16,7 @@
 #include "project_config.hpp"
 
 // Platform-specific includes for ESP32
-#ifdef ESP32_PLATFORM
+#ifdef ESP_PLATFORM
 #include "esp32_hal_inc.hpp" // ESP32 HAL wrapper
 #endif
 
