@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/CMakeFiles/stm32_hal-populate"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/CMakeFiles/stm32_hal-populate.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/CMakeFiles/stm32_hal-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/src/stm32_hal-populate-stamp/stm32_hal-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"stm32_hal-populate"
+		],
+		"name" : "stm32_hal-populate"
+	}
+}

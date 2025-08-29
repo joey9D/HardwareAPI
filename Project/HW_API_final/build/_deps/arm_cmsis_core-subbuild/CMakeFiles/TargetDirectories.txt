@@ -1,0 +1,3 @@
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/arm_cmsis_core-populate.dir
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/rebuild_cache.dir

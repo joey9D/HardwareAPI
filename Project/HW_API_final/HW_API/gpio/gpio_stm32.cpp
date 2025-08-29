@@ -14,88 +14,89 @@
 #include "hw_enum_classes.hpp"
 #include "stm32x0_gpio_mapping.hpp"
 
+// helper can be deleted
 // Mapping functions to convert enum classes to HAL constants
-namespace
-{
-	uint32_t modeToHAL(Mode mode)
-	{
-		switch (mode)
-		{
-		case Mode::Input:
-			return GPIO_MODE_INPUT;
-		case Mode::Output_Push_Pull:
-			return GPIO_MODE_OUTPUT_PP;
-		case Mode::Output_Open_Drain:
-			return GPIO_MODE_OUTPUT_OD;
-		case Mode::Alternate_Push_Pull:
-			return GPIO_MODE_AF_PP;
-		case Mode::Alternate_Open_Drain:
-			return GPIO_MODE_AF_OD;
-		case Mode::Analog:
-			return GPIO_MODE_ANALOG;
-		case Mode::Interrupt_Rising:
-			return GPIO_MODE_IT_RISING;
-		case Mode::Interrupt_Falling:
-			return GPIO_MODE_IT_FALLING;
-		case Mode::Interrupt_RisingFalling:
-			return GPIO_MODE_IT_RISING_FALLING;
-		case Mode::Event_Rising:
-			return GPIO_MODE_EVT_RISING;
-		case Mode::Event_Falling:
-			return GPIO_MODE_EVT_FALLING;
-		case Mode::Event_RisingFalling:
-			return GPIO_MODE_EVT_RISING_FALLING;
-		default:
-			return GPIO_MODE_INPUT;
-		}
-	}
+// namespace
+// {
+// 	uint32_t modeToHAL(Mode mode)
+// 	{
+// 		switch (mode)
+// 		{
+// 		case Mode::Input:
+// 			return GPIO_MODE_INPUT;
+// 		case Mode::Output_Push_Pull:
+// 			return GPIO_MODE_OUTPUT_PP;
+// 		case Mode::Output_Open_Drain:
+// 			return GPIO_MODE_OUTPUT_OD;
+// 		case Mode::Alternate_Push_Pull:
+// 			return GPIO_MODE_AF_PP;
+// 		case Mode::Alternate_Open_Drain:
+// 			return GPIO_MODE_AF_OD;
+// 		case Mode::Analog:
+// 			return GPIO_MODE_ANALOG;
+// 		case Mode::Interrupt_Rising:
+// 			return GPIO_MODE_IT_RISING;
+// 		case Mode::Interrupt_Falling:
+// 			return GPIO_MODE_IT_FALLING;
+// 		case Mode::Interrupt_RisingFalling:
+// 			return GPIO_MODE_IT_RISING_FALLING;
+// 		case Mode::Event_Rising:
+// 			return GPIO_MODE_EVT_RISING;
+// 		case Mode::Event_Falling:
+// 			return GPIO_MODE_EVT_FALLING;
+// 		case Mode::Event_RisingFalling:
+// 			return GPIO_MODE_EVT_RISING_FALLING;
+// 		default:
+// 			return GPIO_MODE_INPUT;
+// 		}
+// 	}
 
-	uint32_t pullToHAL(Pull pull)
-	{
-		switch (pull)
-		{
-		case Pull::None:
-			return GPIO_NOPULL;
-		case Pull::Up:
-			return GPIO_PULLUP;
-		case Pull::Down:
-			return GPIO_PULLDOWN;
-		default:
-			return GPIO_NOPULL;
-		}
-	}
+// 	uint32_t pullToHAL(Pull pull)
+// 	{
+// 		switch (pull)
+// 		{
+// 		case Pull::None:
+// 			return GPIO_NOPULL;
+// 		case Pull::Up:
+// 			return GPIO_PULLUP;
+// 		case Pull::Down:
+// 			return GPIO_PULLDOWN;
+// 		default:
+// 			return GPIO_NOPULL;
+// 		}
+// 	}
 
-	uint32_t speedToHAL(Speed speed)
-	{
-		switch (speed)
-		{
-		case Speed::Low:
-			return GPIO_SPEED_FREQ_LOW;
-		case Speed::Medium:
-			return GPIO_SPEED_FREQ_MEDIUM;
-		case Speed::High:
-			return GPIO_SPEED_FREQ_HIGH;
-#ifdef GPIO_SPEED_FREQ_VERY_HIGH // Nicht alle STM32 haben Very_High
-		case Speed::Very_High:
-			return GPIO_SPEED_FREQ_VERY_HIGH;
-#else
-		case Speed::Very_High:
-			return GPIO_SPEED_FREQ_HIGH; // Fallback für ältere STM32
-#endif
-		default:
-			return GPIO_SPEED_FREQ_LOW;
-		}
-	}
+// 	uint32_t speedToHAL(Speed speed)
+// 	{
+// 		switch (speed)
+// 		{
+// 		case Speed::Low:
+// 			return GPIO_SPEED_FREQ_LOW;
+// 		case Speed::Medium:
+// 			return GPIO_SPEED_FREQ_MEDIUM;
+// 		case Speed::High:
+// 			return GPIO_SPEED_FREQ_HIGH;
+// #ifdef GPIO_SPEED_FREQ_VERY_HIGH // Nicht alle STM32 haben Very_High
+// 		case Speed::Very_High:
+// 			return GPIO_SPEED_FREQ_VERY_HIGH;
+// #else
+// 		case Speed::Very_High:
+// 			return GPIO_SPEED_FREQ_HIGH; // Fallback für ältere STM32
+// #endif
+// 		default:
+// 			return GPIO_SPEED_FREQ_LOW;
+// 		}
+// 	}
 
-	uint32_t alternateToHAL(Alternate alternate)
-	{
-		if (alternate == Alternate::None)
-		{
-			return 0; // Kein Alternate Function
-		}
-		return static_cast<uint32_t>(alternate);
-	}
-}
+// 	uint32_t alternateToHAL(Alternate alternate)
+// 	{
+// 		if (alternate == Alternate::None)
+// 		{
+// 			return 0; // Kein Alternate Function
+// 		}
+// 		return static_cast<uint32_t>(alternate);
+// 	}
+// }
 
 Gpio::Gpio(
 	uint16_t pin,
@@ -138,15 +139,15 @@ void Gpio::gpio_init()
 	}
 
 	GPIO_InitStruct.Pin = pin_msk;
-	GPIO_InitStruct.Mode = modeToHAL(_mode);
-	GPIO_InitStruct.Pull = pullToHAL(_pull);
-	GPIO_InitStruct.Speed = speedToHAL(_speed);
+	GPIO_InitStruct.Mode = static_cast<uint32_t>(_mode);   // modeToHAL(_mode);
+	GPIO_InitStruct.Pull = static_cast<uint32_t>(_pull);   // pullToHAL(_pull);
+	GPIO_InitStruct.Speed = static_cast<uint32_t>(_speed); // speedToHAL(_speed);
 
 	// Alternate Function
 	if (_alternate != Alternate::None &&
 		(_mode == Mode::Alternate_Push_Pull || _mode == Mode::Alternate_Open_Drain))
 	{
-		GPIO_InitStruct.Alternate = alternateToHAL(_alternate);
+		GPIO_InitStruct.Alternate = static_cast<uint32_t>(_alternate);
 	}
 
 	HAL_GPIO_Init(get_GPIO_TypeDef_port(), &GPIO_InitStruct);

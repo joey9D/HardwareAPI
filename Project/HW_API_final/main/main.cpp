@@ -20,6 +20,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.hpp"
 
+static const char *TAG = "example";
+
 /**
  * @brief  ESP32 application entry point (replaces main() for ESP-IDF)
  * @retval void
@@ -66,6 +68,8 @@ extern "C" void app_main(void)
         lastButtonState = currentButtonState;
 
         // Small delay to prevent busy waiting (ESP32 specific)
-        // vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
+        vTaskDelay(pdMS_TO_TICKS(10)); // 10ms delay
+
+        ESP_LOGI(TAG, "LED State: %s", led_state ? "ON" : "OFF");
     }
 }
