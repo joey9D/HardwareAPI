@@ -144,3 +144,60 @@ clang version 16.0.1 (https://github.com/espressif/llvm-project.git fe4f10a80970
 Target: x86_64-w64-windows-gnu
 Thread model: posix
 InstalledDir: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is Clang, found in "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.24.0/CompilerIdC/CMakeCCompilerId.o"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+
+The CXX compiler identification is Clang, found in "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.24.0/CompilerIdCXX/CMakeCXXCompilerId.o"
+
+Checking whether the ASM compiler is Clang using "--version" matched "(clang version)":
+clang version 16.0.1 (https://github.com/espressif/llvm-project.git fe4f10a809705c2ddbed62145616bb9c85c499c0)
+Target: x86_64-w64-windows-gnu
+Thread model: posix
+InstalledDir: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is Clang, found in "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.24.0/CompilerIdC/CMakeCCompilerId.o"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang++.exe 
+Build flags: 
+Id flags: -c 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+
+The CXX compiler identification is Clang, found in "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.24.0/CompilerIdCXX/CMakeCXXCompilerId.o"
+

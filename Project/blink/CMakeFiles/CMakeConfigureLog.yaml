@@ -524,3 +524,176 @@ events:
         
       exitCode: 1
 ...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      lld: error: unable to find library -lunwind
+      lld: error: unable to find library -lunwind
+      clang: error: linker command failed with exit code 1 (use -v to see invocation)
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is Clang, found in:
+        C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang++.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      lld: error: unable to find library -lc++
+      lld: error: unable to find library -lunwind
+      lld: error: unable to find library -lunwind
+      clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang++.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is Clang, found in:
+        C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/3.28.1/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-97o7yt"
+      binary: "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-97o7yt"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang-scan-deps.exe"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-97o7yt'
+        
+        Run Build Command(s): C:/Espressif/tools/ninja/1.11.1/ninja.exe -v cmTC_80593
+        [1/2] C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe   -v -MD -MT CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -MF CMakeFiles\\cmTC_80593.dir\\CMakeCCompilerABI.c.obj.d -o CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -c C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        clang version 16.0.1 (https://github.com/espressif/llvm-project.git fe4f10a809705c2ddbed62145616bb9c85c499c0)
+        Target: x86_64-w64-windows-gnu
+        Thread model: posix
+        InstalledDir: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin
+         (in-process)
+         "C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe" -cc1 -triple x86_64-w64-windows-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -mms-bitfields -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-97o7yt -resource-dir C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/lib/clang/16 -dependency-file "CMakeFiles\\\\cmTC_80593.dir\\\\CMakeCCompilerABI.c.obj.d" -MT CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -sys-header-deps -internal-isystem C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/lib/clang/16/include -internal-isystem C:/msys64/ucrt64/x86_64-w64-mingw32/include -internal-isystem C:/msys64/ucrt64/x86_64-w64-mingw32/usr/include -internal-isystem C:/msys64/ucrt64/include -fdebug-compilation-dir=C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-97o7yt -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -exception-model=seh -faddrsig -o CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -x c C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeCCompilerABI.c\x0d
+        clang -cc1 version 16.0.1 based upon LLVM 16.0.1 default target x86_64-w64-mingw32\x0d
+        ignoring nonexistent directory "C:/msys64/ucrt64/x86_64-w64-mingw32/include"\x0d
+        ignoring nonexistent directory "C:/msys64/ucrt64/x86_64-w64-mingw32/usr/include"\x0d
+        #include "..." search starts here:\x0d
+        #include <...> search starts here:\x0d
+         C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/lib/clang/16/include\x0d
+         C:/msys64/ucrt64/include\x0d
+        End of search list.\x0d
+        [2/2] cmd.exe /C "cd . && C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe  -v CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -o cmTC_80593.exe -Wl,--out-implib,libcmTC_80593.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && cd ."
+        FAILED: cmTC_80593.exe 
+        cmd.exe /C "cd . && C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe  -v CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj -o cmTC_80593.exe -Wl,--out-implib,libcmTC_80593.dll.a -Wl,--major-image-version,0,--minor-image-version,0   && cd ."
+        clang version 16.0.1 (https://github.com/espressif/llvm-project.git fe4f10a809705c2ddbed62145616bb9c85c499c0)
+        Target: x86_64-w64-windows-gnu
+        Thread model: posix
+        InstalledDir: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin
+         "C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/ld.lld" -m i386pep -Bdynamic -o cmTC_80593.exe C:/msys64/ucrt64/lib/crt2.o C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/crtbegin.o -LC:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0 -LC:/msys64/ucrt64/x86_64-w64-mingw32/lib -LC:/msys64/ucrt64/x86_64-w64-mingw32/mingw/lib -LC:/msys64/ucrt64/lib CMakeFiles/cmTC_80593.dir/CMakeCCompilerABI.c.obj --out-implib libcmTC_80593.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/lib/clang/16/lib/windows/libclang_rt.builtins-x86_64.a -lunwind -lmoldname -lmingwex -lmsvcrt -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/lib/clang/16/lib/windows/libclang_rt.builtins-x86_64.a -lunwind -lmoldname -lmingwex -lmsvcrt -lkernel32 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/14.2.0/crtend.o\x0d
+        lld: error: unable to find library -lunwind\x0d
+        lld: error: unable to find library -lunwind\x0d
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/ST/STM32CubeCLT_1.18.0/CMake/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Check for working C compiler: C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang.exe"
+    directories:
+      source: "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-r94v4k"
+      binary: "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-r94v4k"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/Espressif/tools/esp-clang/16.0.1-fe4f10a809/esp-clang/bin/clang-scan-deps.exe"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-r94v4k'
+        
+        Run Build Command(s): C:/Espressif/tools/ninja/1.11.1/ninja.exe -v cmTC_3b03d
+        [1/2] C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe    -MD -MT CMakeFiles/cmTC_3b03d.dir/testCCompiler.c.obj -MF CMakeFiles\\cmTC_3b03d.dir\\testCCompiler.c.obj.d -o CMakeFiles/cmTC_3b03d.dir/testCCompiler.c.obj -c C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/blink/CMakeFiles/CMakeScratch/TryCompile-r94v4k/testCCompiler.c
+        [2/2] cmd.exe /C "cd . && C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe   CMakeFiles/cmTC_3b03d.dir/testCCompiler.c.obj -o cmTC_3b03d.exe -Wl,--out-implib,libcmTC_3b03d.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        FAILED: cmTC_3b03d.exe 
+        cmd.exe /C "cd . && C:\\Espressif\\tools\\esp-clang\\16.0.1-fe4f10a809\\esp-clang\\bin\\clang.exe   CMakeFiles/cmTC_3b03d.dir/testCCompiler.c.obj -o cmTC_3b03d.exe -Wl,--out-implib,libcmTC_3b03d.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+        lld: error: unable to find library -lunwind\x0d
+        lld: error: unable to find library -lunwind\x0d
+        clang: error: linker command failed with exit code 1 (use -v to see invocation)\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...
