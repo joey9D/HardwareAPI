@@ -1,12 +1,7 @@
 #pragma once
 
-#ifdef STM32_PLATFORM
-#include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
-#endif
-
-#include "spi_interface.hpp"
-#include "dma_stm32.hpp"
-#include "../gpio/gpio_stm32.hpp"
+#ifdef ESP_PLATFORM
+#include "../core/hw_enum_classes.hpp"
 
 class Spi : public ISpi
 {
@@ -54,7 +49,7 @@ private:
     Gpio &_mosi;
     Gpio &_cs;
 
-    SPI_TypeDef *_instance;
+    SPI_TypeDef *_instance; // Wie wird Spi fuer esp32 gehandelt?
 
     SpiMode _mode;
     SpiDirection _direction;
@@ -70,6 +65,6 @@ private:
     SpiCRCLength _crcLength;
     SpiNSSPMode _nsspMode;
 
-    SPI_HandleTypeDef _hspi;
-    Dma *_dma = nullptr;
+    SPI_HandleTypeDef _hspi; // Wie wird Spi fuer esp32 gehandelt?
+    Dma *_dma = nullptr;     // Wie wird Spi fuer esp32 gehandelt?
 };
