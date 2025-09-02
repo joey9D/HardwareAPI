@@ -187,7 +187,7 @@ add_subdirectory(platform)
 # Add SPI module
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 message(STATUS "Adding SPI module...")
-# add_subdirectory(spi)
+add_subdirectory(spi)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Debug probes configuration (only for STM32 platform)

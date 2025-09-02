@@ -14,13 +14,11 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     # Only include STM32-specific files for STM32 build
     set(FILTERED_SOURCES
         gpio_stm32.cpp
-        # gpio_test.cpp only included if tests are enabled
     )
     
     set(FILTERED_HEADERS
         gpio_interface.hpp
         gpio_stm32.hpp
-        # gpio_test.hpp only included if tests are enabled
     )
        
     message(STATUS "Using STM32-specific GPIO files")
@@ -31,13 +29,11 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     # Only include ESP32-specific files for ESP32 build
     set(FILTERED_SOURCES
         gpio_esp32.cpp
-        # gpio_test.cpp only included if tests are enabled
     )
     
     set(FILTERED_HEADERS
         gpio_interface.hpp
         gpio_esp32.hpp
-        # gpio_test.hpp only included if tests are enabled
     )
        
     message(STATUS "Using ESP32-specific GPIO files")

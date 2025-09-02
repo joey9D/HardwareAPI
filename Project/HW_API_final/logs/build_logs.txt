@@ -1,0 +1,203 @@
+================================================================================
+=== Building STM32 Platform ===
+================================================================================
+Configuring build system...
+-- Target Platform: STM32
+-- Using STM32 toolchain file: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/toolchains/stm32-toolchain.cmake
+-- Target Platform: STM32
+-- Found STM32 ARM GCC Toolchain at: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin
+-- Using ARM GCC Toolchain:
+--   C Compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gcc.exe
+--   CXX Compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-g++.exe
+--   ASM Compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-gcc.exe
+-- MCU Family: stm32g0xx
+-- MCU Specific: STM32G0B1RE
+-- Debug Probe: st-link
+-- Adding subdirectories for STM32...
+-- =======================================================
+-- === HW_API Module Configuration ===
+-- =======================================================
+-- Configuring Hardware Abstraction Layer...
+-- HW_API C++ Standard: 17
+-- C++ Compiler ID: GNU
+-- C++ Compiler: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/arm-none-eabi-g++.exe
+-- Enabled HW_API-specific warnings: -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion
+-- Configuring for STM32 platform
+-- Using MCU family from Makefile: stm32g0xx
+-- MCU Family: stm32g0xx
+-- Added STM32G0xx family compile definitions
+-- STM32 Platform Path: stm32/stm32g0xx
+-- STM32 HW File Base: stm32g0xx_hw
+-- STM32 compile definitions applied globally
+-- Adding core module...
+-- =======================================================
+-- === Configuring HW_API Core Module (hw_api_core) ===
+-- =======================================================
+-- Configuring for STM32 platform...
+-- Using STM32-specific core files
+-- Core source files for STM32:
+-- Core header files for STM32:
+--   - hw_enum_classes.hpp
+--   - hw_enum_stm32.hpp
+--   - hw_factory.hpp
+--   - hw_interface.hpp
+--   - hw_mapping_stm32.hpp
+--   - project_config.hpp
+--   - timer.hpp
+-- Created hw_api_core as header-only interface library
+-- Adding drivers module...
+-- ================================================================================
+-- === Configuring HW_API Drivers Module (hw_api_drivers) ===
+-- ================================================================================
+-- Configuring STM32 drivers...
+-- STM32 HAL Repository: https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
+-- STM32 HAL Tag: v1.4.4
+-- STM32 CMSIS Repository: https://github.com/STMicroelectronics/cmsis_device_g0.git
+-- STM32 CMSIS Tag: v1.4.2
+-- ARM CMSIS Repository: https://github.com/ARM-software/CMSIS_5.git
+-- ARM CMSIS Tag: 5.9.0
+-- HAL Prefix: STM32G0xx
+-- STM32 HAL Driver fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src
+-- STM32 CMSIS Device fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src
+-- ARM CMSIS Core fetched to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src
+-- MCU_FAMILY in drivers: stm32g0xx
+-- Configuring for STM32G0xx family...
+-- Using STM32 HAL with wrapper
+-- Driver source files for STM32:
+--   - C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src/Source/Templates/gcc/startup_stm32g071xx.s
+--   - stm32_hal_wrapper/common/syscalls.c
+-- Driver header files for STM32:
+--   - stm32_hal_wrapper/common/stm32_hal_inc.hpp
+--   - stm32_hal_wrapper/stm32g0xx/stm32g0xx_hal_conf.h
+-- Created hw_api_drivers library with source files
+-- Linked hw_api_drivers with hw_api_core and stm32_hal_library
+-- Added STM32 HAL compile definitions: USE_HAL_DRIVER, STM32G0xx_HAL_DRIVER
+-- === HW_API Drivers Module Configuration Complete ===
+-- Adding GPIO module...
+-- =======================================================
+-- === Configuring HW_API GPIO Module (hw_api_gpio) ===
+-- =======================================================
+-- Configuring for STM32 platform...
+-- Using STM32-specific GPIO files
+-- GPIO source files for STM32:
+--   - gpio_stm32.cpp
+-- GPIO header files for STM32:
+--   - gpio_interface.hpp
+--   - gpio_stm32.hpp
+-- Created hw_api_gpio library with source files
+-- Linked hw_api_gpio with hw_api_core
+-- Linked hw_api_gpio with hw_api_drivers for HAL access
+-- === HW_API GPIO Module Configuration Complete ===
+-- Adding platform module...
+-- ================================================================================
+-- === Configuring HW_API Platform Module (hw_api_platform) ===
+-- ================================================================================
+-- Configuring for STM32 platform...
+-- Using MCU family: stm32g0xx
+-- Using platform path: stm32/stm32g0xx
+-- Using STM32-specific platform files
+-- Platform source files for STM32:
+--   - stm32/stm32g0xx/stm32g0xx_hw.cpp
+--   - stm32/stm32g0xx/stm32g0xx_hal_msp.c
+-- Platform header files for STM32:
+--   - stm32/stm32x0_gpio_mapping.hpp
+--   - stm32/stm32g0xx/stm32g0xx_hw.hpp
+--   - stm32/stm32g0xx/stm32g0xx_it.h
+-- Created hw_api_platform library with source files
+-- Linked hw_api_platform with hw_api_core
+-- Linked hw_api_platform with hw_api_drivers for HAL access
+-- Linked hw_api_platform with hw_api_gpio for GPIO access
+-- === HW_API Platform Module Configuration Complete ===
+-- Adding SPI module...
+-- =======================================================
+-- === Configuring HW_API SPI Module (hw_api_spi) ===
+-- =======================================================
+-- Configuring for STM32 platform...
+-- Using STM32-specific SPI files
+-- SPI source files for STM32:
+--   - spi_stm32.cpp
+--   - dma_stm32.cpp
+-- SPI header files for STM32:
+--   - spi_interface.hpp
+--   - spi_stm32.hpp
+--   - dma_interface.hpp
+--   - dma_stm32.hpp
+-- Created hw_api_spi library with source files
+-- Linked hw_api_spi with hw_api_core
+-- Linked hw_api_spi with hw_api_drivers for HAL access
+-- === HW_API SPI Module Configuration Complete ===
+-- Configuring debug probes...
+-- Selected debug probe: st-link
+-- Including debug probe config: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/debug_probes/st-link.cmake
+-- Creating HW_API library target...
+-- === HW_API Module Configuration Complete ===
+-- =======================================================
+-- === Configuring Application (hw_api_app) ===
+-- =======================================================
+-- Added STM32G0xx interrupt handlers directly to application
+-- Application source files:
+--   - main.cpp
+--   - ../HW_API/platform/stm32/stm32g0xx/stm32g0xx_it.c
+-- Application header files:
+--   - main.hpp
+-- Using STM32G071RB linker script
+-- Added STM32 compile definitions to hw_api_app
+-- Using linker script: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/../HW_API/platform/stm32/stm32g0xx/STM32G071RBTx_FLASH.ld
+-- Created hw_api_app executable
+-- Linked hw_api_app with STM32 HW_API modules (including drivers and SPI)
+-- Will generate HW_API_Project.bin for flashing
+-- === Application Configuration Complete ===
+-- Added STM32 app directory
+-- ================================================================================
+-- === Configuration Summary ===
+-- =================================================================================
+-- Install prefix: C:/Program Files (x86)/HW_API_Project
+-- Toolchain file: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/toolchains/stm32-toolchain.cmake
+-- Cross-compiling: TRUE
+-- Target system: Generic
+-- Target processor: arm
+-- ================================================================================
+-- Configuring done (17.7s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build
+Building project...
+[1/4] Building CXX object HW_API/spi/CMakeFiles/hw_api_spi.dir/spi_stm32.cpp.obj
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp: In member function 'virtual bool Spi::spi_init()':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/HW_API/spi/spi_stm32.cpp:67:30: warning: unused variable 'PeriphClkInit' [-Wunused-variable]
+   67 |     RCC_PeriphCLKInitTypeDef PeriphClkInit{};
+      |                              ^~~~~~~~~~~~~
+[2/4] Linking CXX static library HW_API\spi\libhw_api_spi.a
+[3/4] Building CXX object app/CMakeFiles/hw_api_app.dir/main.cpp.obj
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp: In function 'void slave_code()':
+C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/app/main.cpp:118:10: warning: unused variable 'transferSuccess' [-Wunused-variable]
+  118 |     bool transferSuccess = peripherals.spi_slave.transmitReceive(txBuffer, rxBuffer, BUFFER_SIZE, 1000);
+      |          ^~~~~~~~~~~~~~~
+[4/4] Linking CXX executable app\main
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): in function `_close_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/closer.c:47:(.text._close_r+0xc): warning: _close is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-closer.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-fstatr.o): in function `_fstat_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/fstatr.c:55:(.text._fstat_r+0xe): warning: _fstat is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-fstatr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): in function `_getpid_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/signalr.c:83:(.text._getpid_r+0x2): warning: _getpid is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-isattyr.o): in function `_isatty_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/isattyr.c:52:(.text._isatty_r+0xc): warning: _isatty is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-isattyr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): in function `_kill_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/signalr.c:53:(.text._kill_r+0xe): warning: _kill is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o): in function `_lseek_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x10): warning: _lseek is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-lseekr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o): in function `_read_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/readr.c:49:(.text._read_r+0x10): warning: _read is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-readr.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o): in function `_write_r':
+/build/gnu-tools-for-stm32_13.3.rel1.20240926-1715/src/newlib/newlib/libc/reent/writer.c:49:(.text._write_r+0x10): warning: _write is not implemented and will always fail
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg_nano.a(libc_a-writer.o): note: the message above does not take linker garbage collection into account
+C:/ST/STM32CubeCLT_1.18.0/GNU-tools-for-STM32/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: app\main has a LOAD segment with RWX permissions
+Memory region         Used Size  Region Size  %age Used
+             RAM:        4376 B        36 KB     11.87%
+           FLASH:       27788 B       128 KB     21.20%

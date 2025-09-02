@@ -13,18 +13,15 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     
     # Remove ESP32-specific files for STM32 build
     set(FILTERED_SOURCES
-        # core_test.cpp
     )
     
     set(FILTERED_HEADERS
-        # core_test.hpp
         hw_enum_classes.hpp
         hw_enum_stm32.hpp
         hw_factory.hpp
         hw_interface.hpp
         hw_mapping_stm32.hpp
         
-        # make pin_config is included
         project_config.hpp
 
         timer.hpp
@@ -37,17 +34,14 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
 
     # ESP32-specific core files
     set(FILTERED_SOURCES
-        # core_test.cpp
     )
     
     set(FILTERED_HEADERS
-        # core_test.hpp
         hw_enum_classes.hpp
         hw_enum_esp32.hpp
         hw_factory.hpp
         hw_interface.hpp
         
-        # make pin_config is included
         project_config.hpp
 
         timer.hpp

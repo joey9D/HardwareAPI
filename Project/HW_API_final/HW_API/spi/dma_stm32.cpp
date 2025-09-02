@@ -83,122 +83,6 @@ DMA_HandleTypeDef *getRxHandle(SPI_TypeDef *SPIx)
     }
 }
 
-/**
- * @brief toHal helper functions
- *
- */
-// namespace
-// {
-//     using namespace HW_API::STM32;
-
-//     uint32_t requestToHal(DmaRequest request)
-//     {
-//         switch (request)
-//         {
-//         case DmaRequest::SPI1_TX:
-//             return DMA_REQUEST_SPI1_TX;
-//         case DmaRequest::SPI1_RX:
-//             return DMA_REQUEST_SPI1_RX;
-//         // Fügen Sie hier weitere Fälle für andere SPI-Instanzen hinzu
-//         default:
-//             assert(false && "Unbekannte DMA-Anforderung");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t periphIncToHal(DmaPeriphInc inc)
-//     {
-//         switch (inc)
-//         {
-//         case DmaPeriphInc::Enable:
-//             return DMA_PINC_ENABLE;
-//         case DmaPeriphInc::Disable:
-//             return DMA_PINC_DISABLE;
-//         default:
-//             assert(false && "Unrichtige DMA-Peripherie-Inkrementierung");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t memIncToHal(DmaMemInc inc)
-//     {
-//         switch (inc)
-//         {
-//         case DmaMemInc::Enable:
-//             return DMA_MINC_ENABLE;
-//         case DmaMemInc::Disable:
-//             return DMA_MINC_DISABLE;
-//         default:
-//             assert(false && "Unrichtige DMA-Speicher-Inkrementierung");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t periphDataAlignmentToHal(DmaPeriphDataSizeAlignment alignment)
-//     {
-//         switch (alignment)
-//         {
-//         case DmaPeriphDataSizeAlignment::Byte:
-//             return DMA_PDATAALIGN_BYTE;
-//         case DmaPeriphDataSizeAlignment::HalfWord:
-//             return DMA_PDATAALIGN_HALFWORD;
-//         case DmaPeriphDataSizeAlignment::Word:
-//             return DMA_PDATAALIGN_WORD;
-//         default:
-//             assert(false && "Unrichtige DMA-Peripherie-Datenausrichtung");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t memDataAlignmentToHal(DmaMemDataSizeAlignment alignment)
-//     {
-//         switch (alignment)
-//         {
-//         case DmaMemDataSizeAlignment::Byte:
-//             return DMA_MDATAALIGN_BYTE;
-//         case DmaMemDataSizeAlignment::HalfWord:
-//             return DMA_MDATAALIGN_HALFWORD;
-//         case DmaMemDataSizeAlignment::Word:
-//             return DMA_MDATAALIGN_WORD;
-//         default:
-//             assert(false && "Unrichtige DMA-Speicher-Datenausrichtung");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t modeToHal(DmaMode mode)
-//     {
-//         switch (mode)
-//         {
-//         case DmaMode::Normal:
-//             return DMA_NORMAL;
-//         case DmaMode::Circular:
-//             return DMA_CIRCULAR;
-//         default:
-//             assert(false && "Unrichtiger DMA-Modus");
-//             return 0;
-//         }
-//     }
-
-//     uint32_t priorityToHal(DmaPriority priority)
-//     {
-//         switch (priority)
-//         {
-//         case DmaPriority::Low:
-//             return DMA_PRIORITY_LOW;
-//         case DmaPriority::Medium:
-//             return DMA_PRIORITY_MEDIUM;
-//         case DmaPriority::High:
-//             return DMA_PRIORITY_HIGH;
-//         case DmaPriority::VeryHigh:
-//             return DMA_PRIORITY_VERY_HIGH;
-//         default:
-//             assert(false && "Unrichtige DMA-Priorität");
-//             return 0;
-//         }
-//     }
-// }
-
 // Konstruktor ohne SPI-Handle
 Dma::Dma(
     DmaRequest request_tx,
@@ -403,14 +287,14 @@ bool Dma::stm32_dma_init_rx(SPI_TypeDef *SPIx)
     }
 
     dma_handle_rx->Instance = _instance_rx;
-    dma_handle_rx->Init.Request = requestToHal(_request_rx);
+    dma_handle_rx->Init.Request = static_cast<uint32_t>(_request_rx);
     dma_handle_rx->Init.Direction = DMA_PERIPH_TO_MEMORY;
-    dma_handle_rx->Init.PeriphInc = periphIncToHal(_periphInc);
-    dma_handle_rx->Init.MemInc = memIncToHal(_memInc);
-    dma_handle_rx->Init.PeriphDataAlignment = periphDataAlignmentToHal(_periphDataAlignment);
-    dma_handle_rx->Init.MemDataAlignment = memDataAlignmentToHal(_memDataAlignment);
-    dma_handle_rx->Init.Mode = modeToHal(_mode);
-    dma_handle_rx->Init.Priority = priorityToHal(_priority);
+    dma_handle_rx->Init.PeriphInc = static_cast<uint32_t>(_periphInc);
+    dma_handle_rx->Init.MemInc = static_cast<uint32_t>(_memInc);
+    dma_handle_rx->Init.PeriphDataAlignment = static_cast<uint32_t>(_periphDataAlignment);
+    dma_handle_rx->Init.MemDataAlignment = static_cast<uint32_t>(_memDataAlignment);
+    dma_handle_rx->Init.Mode = static_cast<uint32_t>(_mode);
+    dma_handle_rx->Init.Priority = static_cast<uint32_t>(_priority);
 
     // HAL DMA Initialisierung
     if (HAL_DMA_Init(dma_handle_rx) != HAL_OK)

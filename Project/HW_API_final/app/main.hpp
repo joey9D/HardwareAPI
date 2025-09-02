@@ -22,9 +22,10 @@
 // Platform-specific includes
 #ifdef STM32_PLATFORM
 #include "../HW_API/drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
-// #include "hw_linker.hpp"
-// #include "spi_stm32.hpp"
-// #include "dma_stm32.hpp"
+// #include "../HW_API/spi/hw_linker.hpp"
+#include "hw_linker.hpp"
+#include "spi_stm32.hpp"
+#include "dma_stm32.hpp"
 #include "gpio_stm32.hpp"
 #elif ESP_PLATFORM
 #include "../HW_API/drivers/esp32_hal_wrapper/esp32_hal_inc.hpp"

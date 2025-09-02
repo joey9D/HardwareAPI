@@ -25,8 +25,8 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe" 
-            clone --no-checkout --depth 1 --no-single-branch --config "advice.detachedHead=false" "https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git" "stm32_hal-src"
+    COMMAND "C:/Program Files/Git/cmd/git.exe"
+            clone --no-checkout --depth 1 --no-single-branch --config "advice.detachedHead=false" "https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git" "stm32_hal-src"
     WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps"
     RESULT_VARIABLE error_code
   )
@@ -36,17 +36,17 @@ if(number_of_tries GREATER 1)
   message(STATUS "Had to git clone more than once: ${number_of_tries} times.")
 endif()
 if(error_code)
-  message(FATAL_ERROR "Failed to clone repository: 'https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git'")
+  message(FATAL_ERROR "Failed to clone repository: 'https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git'")
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe" 
-          checkout "v1.4.0" --
+  COMMAND "C:/Program Files/Git/cmd/git.exe"
+          checkout "v1.4.4" --
   WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src"
   RESULT_VARIABLE error_code
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to checkout tag: 'v1.4.0'")
+  message(FATAL_ERROR "Failed to checkout tag: 'v1.4.4'")
 endif()
 
 set(init_submodules TRUE)

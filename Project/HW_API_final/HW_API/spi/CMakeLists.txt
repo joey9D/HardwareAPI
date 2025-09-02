@@ -15,7 +15,6 @@ if(TARGET_PLATFORM STREQUAL "STM32")
     set(FILTERED_SOURCES
         spi_stm32.cpp
         dma_stm32.cpp
-        # spi_test.cpp only included if tests are enabled
     )
     
     set(FILTERED_HEADERS
@@ -23,7 +22,6 @@ if(TARGET_PLATFORM STREQUAL "STM32")
         spi_stm32.hpp
         dma_interface.hpp
         dma_stm32.hpp
-        # spi_test.hpp only included if tests are enabled
     )
        
     message(STATUS "Using STM32-specific SPI files")
@@ -34,13 +32,11 @@ elseif(TARGET_PLATFORM STREQUAL "ESP32")
     # Only include ESP32-specific files for ESP32 build
     set(FILTERED_SOURCES
         spi_esp32.cpp
-        # spi_test.cpp only included if tests are enabled
     )
     
     set(FILTERED_HEADERS
         spi_interface.hpp
         spi_esp32.hpp
-        # spi_test.hpp only included if tests are enabled
     )
        
     message(STATUS "Using ESP32-specific SPI files")

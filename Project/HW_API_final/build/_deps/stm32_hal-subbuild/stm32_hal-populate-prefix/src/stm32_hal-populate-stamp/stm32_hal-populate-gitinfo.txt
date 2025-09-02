@@ -3,10 +3,10 @@
 # No other meaning or use of this file is supported.
 
 method=git
-command=C:/Espressif/tools/cmake/3.24.0/bin/cmake.exe;-P;C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/tmp/stm32_hal-populate-gitclone.cmake
+command=C:/ST/STM32CubeCLT_1.18.0/CMake/bin/cmake.exe;-P;C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-subbuild/stm32_hal-populate-prefix/tmp/stm32_hal-populate-gitclone.cmake
 source_dir=C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_hal-src
 work_dir=C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps
-repository=https://github.com/STMicroelectronics/stm32c0xx_hal_driver.git
+repository=https://github.com/STMicroelectronics/stm32g0xx_hal_driver.git
 remote=origin
 init_submodules=TRUE
 recurse_submodules=--recursive

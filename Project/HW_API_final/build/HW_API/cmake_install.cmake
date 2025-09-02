@@ -57,3 +57,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/HW_API/platform/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/HW_API/spi/cmake_install.cmake")
+endif()
+

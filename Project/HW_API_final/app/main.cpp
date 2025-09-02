@@ -6,9 +6,9 @@
  */
 
 // ========== KONFIGURATION ==========
-#define GPIO_CODE
+// #define GPIO_CODE
 // #define MASTER_CONFIG
-// #define SLAVE_CONFIG
+#define SLAVE_CONFIG
 // ==================================
 
 #include "main.hpp"
