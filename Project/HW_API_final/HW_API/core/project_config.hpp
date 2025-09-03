@@ -56,13 +56,20 @@ struct BoardPins
 	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
 	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
-	// #if defined(MASTER_CONFIG) || defined(SLAVE_CONFIG)
+#ifdef STM32_PLATFORM
 	// SPI Pins
 	Gpio spi1_sck{3, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_miso{4, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_mosi{5, Port::B, Mode::Alternate_Push_Pull, Pull::None, Speed::Very_High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
-	// #endif
+#endif
+
+#ifdef ESP_PLATFORM
+	Gpio sck;
+	Gpio miso;
+	Gpio mosi;
+	Gpio cs;
+#endif
 	// Array mit allen GPIO-Pins
 	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
 	// std::array<Gpio *, 2> allPins{&led, &button};
