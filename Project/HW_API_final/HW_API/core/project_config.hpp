@@ -65,10 +65,10 @@ struct BoardPins
 #endif
 
 #ifdef ESP_PLATFORM
-	Gpio sck;
-	Gpio miso;
-	Gpio mosi;
-	Gpio cs;
+	Gpio spi_esp_sck{15, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	Gpio spi_esp_miso{13, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
+	Gpio spi_esp_mosi{12, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	Gpio spi_esp_cs{10, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
 #endif
 	// Array mit allen GPIO-Pins
 	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
@@ -85,7 +85,7 @@ struct BoardPeripherals
 		boardPins.spi1_miso,
 		boardPins.spi1_mosi,
 		boardPins.spi1_nss,
-		SPI1,
+		SPI1, // instance
 		SpiMode::Master,
 		SpiDirection::FullDuplex, // Full-Duplex für Senden und Empfangen
 		SpiDataSize::Bits8,		  // 8-Bit für ASCII-Zeichen

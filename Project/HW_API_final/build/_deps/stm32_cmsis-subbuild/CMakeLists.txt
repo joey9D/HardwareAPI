@@ -1,13 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.28.1)
-
-# Reject any attempt to use a toolchain file. We must not use one because
-# we could be downloading it here. If the CMAKE_TOOLCHAIN_FILE environment
-# variable is set, the cache variable will have been initialized from it.
-unset(CMAKE_TOOLCHAIN_FILE CACHE)
-unset(ENV{CMAKE_TOOLCHAIN_FILE})
+cmake_minimum_required(VERSION 3.24.0)
 
 # We name the project and the target for the ExternalProject_Add() call
 # to something that will highlight to the user what we are working on if
@@ -27,7 +21,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(stm32_cmsis-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/STMicroelectronics/cmsis_device_g0.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v1.4.2" "GIT_SHALLOW" "TRUE"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/STMicroelectronics/cmsis_device_g0.git" "GIT_TAG" "v1.4.2" "GIT_SHALLOW" "TRUE"
                     SOURCE_DIR          "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src"
                     BINARY_DIR          "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-build"
                     CONFIGURE_COMMAND   ""

@@ -25,7 +25,7 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" 
             clone --no-checkout --depth 1 --no-single-branch --config "advice.detachedHead=false" "https://github.com/ARM-software/CMSIS_5.git" "arm_cmsis_core-src"
     WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps"
     RESULT_VARIABLE error_code
@@ -40,7 +40,7 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe"
+  COMMAND "C:/Program Files/Git/cmd/git.exe" 
           checkout "5.9.0" --
   WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-src"
   RESULT_VARIABLE error_code

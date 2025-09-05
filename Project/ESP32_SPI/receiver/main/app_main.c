@@ -43,19 +43,19 @@ sending a transaction. As soon as the transaction is done, the line gets set low
 #define GPIO_MOSI 12
 #define GPIO_MISO 13
 #define GPIO_SCLK 15
-#define GPIO_CS 14
+#define GPIO_CS 10
 
 // Called after a transaction is queued and ready for pickup by master. We use this to set the handshake line high.
-void my_post_setup_cb(spi_slave_transaction_t *trans)
-{
-    gpio_set_level(GPIO_HANDSHAKE, 1);
-}
+// void my_post_setup_cb(spi_slave_transaction_t *trans)
+// {
+//     gpio_set_level(GPIO_HANDSHAKE, 1);
+// }
 
 // Called after transaction is sent/received. We use this to set the handshake line low.
-void my_post_trans_cb(spi_slave_transaction_t *trans)
-{
-    gpio_set_level(GPIO_HANDSHAKE, 0);
-}
+// void my_post_trans_cb(spi_slave_transaction_t *trans)
+// {
+//     gpio_set_level(GPIO_HANDSHAKE, 0);
+// }
 
 // Main application
 void app_main(void)
@@ -78,8 +78,9 @@ void app_main(void)
         .spics_io_num = GPIO_CS,
         .queue_size = 3,
         .flags = 0,
-        .post_setup_cb = my_post_setup_cb,
-        .post_trans_cb = my_post_trans_cb};
+        // .post_setup_cb = my_post_setup_cb,
+        // .post_trans_cb = my_post_trans_cb
+    };
 
     // Configuration for the handshake line
     // gpio_config_t io_conf = {
@@ -109,7 +110,7 @@ void app_main(void)
     {
         // Clear receive buffer, set send buffer to something sane
         memset(recvbuf, 0xA5, 129);
-        sprintf(sendbuf, "This is the receiver, sending data for transmission number %04d.", n);
+        sprintf(sendbuf, "O %04d.", n);
 
         // Set up a transaction of 128 bytes to send/receive
         t.length = 128 * 8;

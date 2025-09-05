@@ -25,7 +25,7 @@ set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
-    COMMAND "C:/Program Files/Git/cmd/git.exe"
+    COMMAND "C:/Program Files/Git/cmd/git.exe" 
             clone --no-checkout --depth 1 --no-single-branch --config "advice.detachedHead=false" "https://github.com/STMicroelectronics/cmsis_device_g0.git" "stm32_cmsis-src"
     WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps"
     RESULT_VARIABLE error_code
@@ -40,7 +40,7 @@ if(error_code)
 endif()
 
 execute_process(
-  COMMAND "C:/Program Files/Git/cmd/git.exe"
+  COMMAND "C:/Program Files/Git/cmd/git.exe" 
           checkout "v1.4.2" --
   WORKING_DIRECTORY "C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-src"
   RESULT_VARIABLE error_code
