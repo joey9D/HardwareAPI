@@ -1,7 +1,34 @@
 #pragma once
 
-#ifdef ESP_PLATFORM
+// #ifdef ESP_PLATFORM
 #include "../core/hw_enum_classes.hpp"
+
+class SpiBase : public ISpi
+{
+public:
+    virtual ~SpiBase() = default;
+};
+
+// Init spi bus for ESP32 master
+class SpiBus : public SpiBase
+{
+public:
+    virtual ~SpiBus() = default;
+};
+
+// ESP32 is master, external device is slave
+class SpiMaster : public SpiBase
+{
+public:
+    virtual ~SpiMaster() = default;
+};
+
+// ESP32 is slave
+class SpiSlave : public SpiBase
+{
+public:
+    virtual ~SpiSlave() = default;
+};
 
 class Spi : public ISpi
 {
@@ -56,3 +83,5 @@ private:
 
     spi_device_handle_t _handle = nullptr; // spi_master.h
 };
+
+#endif // ESP_PLATFORM
