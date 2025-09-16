@@ -4,7 +4,7 @@
 # Sammle alle Quelldateien für ESP32
 set(HW_API_SRCS
     # Core files
-    "../../HW_API/core/core_test.cpp"
+
     
     # GPIO files  
     "../../HW_API/gpio/gpio_esp32.cpp"

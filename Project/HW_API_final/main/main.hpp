@@ -12,7 +12,7 @@
  * include HW_API headers - updated for ESP32 structure
  */
 #include "hw_factory.hpp"
-// hw_interface.hpp is included via hw_factory.hpp - no need to include directly
+// hw_interface.hpp is included via hw_factory.hpp
 #include "project_config.hpp"
 
 // Platform-specific includes for ESP32

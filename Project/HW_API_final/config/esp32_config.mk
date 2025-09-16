@@ -6,7 +6,7 @@
 #================================================================================
 # build-esp32
 BUILD_DIR ?= build
-BUILD_TYPE ?= Release
+BUILD_TYPE ?= Debug
 TARGET_PLATFORM ?= ESP32
 DEBUG_PROBE ?= esptool
 

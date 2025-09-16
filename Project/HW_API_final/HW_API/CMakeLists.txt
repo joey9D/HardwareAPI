@@ -161,9 +161,6 @@ message(STATUS "Adding drivers module...")
 if(TARGET_PLATFORM STREQUAL "STM32")
     add_subdirectory(drivers)
 elseif(TARGET_PLATFORM STREQUAL "ESP32")
-    # ESP32 drivers will be added when ESP32 HAL wrapper is implemented
-    message(STATUS "ESP32 drivers module will be added in future implementation")
-    
     # Add ESP32-specific include path for sdkconfig.h
     include_directories(SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/drivers/esp32_hal_wrapper")
     message(STATUS "Added ESP32 sdkconfig.h include path: ${CMAKE_CURRENT_SOURCE_DIR}/drivers/esp32_hal_wrapper")
@@ -186,8 +183,8 @@ add_subdirectory(platform)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Add SPI module
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-message(STATUS "Adding SPI module...")
-add_subdirectory(spi)
+# message(STATUS "Adding SPI module...")
+# add_subdirectory(spi)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # Debug probes configuration (only for STM32 platform)

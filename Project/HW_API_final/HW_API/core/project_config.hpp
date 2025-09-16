@@ -53,8 +53,8 @@ struct BoardPins
 	// Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
 
 	// ESP32 GPIO Config
-	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
-	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
+	Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
+	Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
 #ifdef STM32_PLATFORM
 	// SPI Pins
@@ -64,15 +64,15 @@ struct BoardPins
 	Gpio spi1_nss{0, Port::B, Mode::Output_Push_Pull, Pull::Up, Speed::High, Alternate::SPI_AF0, false, 0, 0, ExtiTrigger::None};
 #endif
 
-#ifdef ESP_PLATFORM
-	Gpio spi_esp_sck{15, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
-	Gpio spi_esp_miso{13, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
-	Gpio spi_esp_mosi{12, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
-	Gpio spi_esp_cs{10, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
-#endif
+	// #ifdef ESP_PLATFORM
+	// 	Gpio spi_esp_sck{15, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	// 	Gpio spi_esp_miso{13, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
+	// 	Gpio spi_esp_mosi{12, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	// 	Gpio spi_esp_cs{10, Mode::Output, Pull::Up, Speed::Low, false, 0, 0, Interrupt::Disabled};
+	// #endif
 	// Array mit allen GPIO-Pins
-	std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
-	// std::array<Gpio *, 2> allPins{&led, &button};
+	// std::array<Gpio *, 4> allPins{&spi1_sck, &spi1_miso, &spi1_mosi, &spi1_nss};
+	std::array<Gpio *, 2> allPins{&led, &button};
 };
 // Globale Instanz der Board-Pins
 inline BoardPins boardPins;
