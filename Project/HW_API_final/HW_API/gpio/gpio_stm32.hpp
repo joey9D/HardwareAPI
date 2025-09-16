@@ -8,7 +8,6 @@
 #ifndef GPIO_GPIO_STM32_HPP_
 #define GPIO_GPIO_STM32_HPP_
 
-// Need HAL types for GPIO_TypeDef
 #ifdef STM32_PLATFORM
 #include "../drivers/stm32_hal_wrapper/common/stm32_hal_inc.hpp"
 #endif
@@ -16,7 +15,6 @@
 // #include "hw_interface.hpp"
 #include "gpio_interface.hpp"
 #include "timer.hpp"
-// Removed stm32c0xx_hw.hpp - not needed in GPIO class
 // #include "hw_enum_classes.hpp"
 
 #ifdef __cplusplus

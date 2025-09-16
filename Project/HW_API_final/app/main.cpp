@@ -6,15 +6,15 @@
  */
 
 // ========== KONFIGURATION ==========
-// #define GPIO_CODE
-#define MASTER_CONFIG
+#define GPIO_CODE
+// #define MASTER_CONFIG
 // #define SLAVE_CONFIG
 // ==================================
 
 #include "main.hpp"
-#include "project_config.hpp"
 #include "hw_factory.hpp"
 #include "hw_interface.hpp"
+#include "project_config.hpp"
 #include <string.h>
 
 // Gemeinsame Definitionen für Master und Slave

@@ -113,6 +113,7 @@ namespace HW_API
 
         // ============================================================================
         // SPI Enums
+#ifdef HAL_SPI_MODULE_ENABLED
         // ============================================================================
 
         /**
@@ -337,6 +338,7 @@ namespace HW_API
             High = DMA_PRIORITY_HIGH,
             VeryHigh = DMA_PRIORITY_VERY_HIGH
         };
+#endif // HAL_SPI_MODULE_ENABLED
 
     } // namespace STM32
 } // namespace HW_API

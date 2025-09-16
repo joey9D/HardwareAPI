@@ -1,0 +1,21 @@
+# ninja log v5
+8	319	7797289407371546	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-mkdir	6a5f5d6b88663ecf
+8	319	7797289407371546	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-mkdir	6a5f5d6b88663ecf
+321	7808	7797289482231567	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-download	2d75739ba320cdf
+321	7808	7797289482231567	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-download	2d75739ba320cdf
+7809	8414	0	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-update	b966e2aa9c451d86
+7809	8414	0	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-update	b966e2aa9c451d86
+8414	8642	7797289490721561	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-patch	5b571c0d63dda5cb
+8414	8642	7797289490721561	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-patch	5b571c0d63dda5cb
+8642	8850	7797289492801561	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-configure	e04542d03ef62967
+8642	8850	7797289492801561	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-configure	e04542d03ef62967
+8850	9041	7797289494701570	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-build	5fc3e95a56852f3f
+8850	9041	7797289494701570	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-build	5fc3e95a56852f3f
+9042	9241	7797289496691578	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-install	bced12547d24d8c6
+9042	9241	7797289496691578	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-install	bced12547d24d8c6
+9241	9455	7797289498851551	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-test	972d0c4565273bef
+9241	9455	7797289498851551	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-test	972d0c4565273bef
+9456	9731	7797289501631555	CMakeFiles/stm32_cmsis-populate-complete	b22ecb5168c7f078
+9456	9731	7797289501631555	stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-done	b22ecb5168c7f078
+9456	9731	7797289501631555	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/CMakeFiles/stm32_cmsis-populate-complete	b22ecb5168c7f078
+9456	9731	7797289501631555	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/stm32_cmsis-subbuild/stm32_cmsis-populate-prefix/src/stm32_cmsis-populate-stamp/stm32_cmsis-populate-done	b22ecb5168c7f078

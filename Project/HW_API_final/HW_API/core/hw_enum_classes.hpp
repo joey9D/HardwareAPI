@@ -13,6 +13,7 @@ namespace HW_API
     using Alternate = STM32::Alternate;
     using ExtiTrigger = STM32::ExtiTrigger;
 
+#ifdef HAL_SPI_MODULE_ENABLED
     // Use STM32 enums as default - SPI enums
     using SpiMode = STM32::SpiMode;
     using SpiDirection = STM32::SpiDirection;
@@ -27,6 +28,7 @@ namespace HW_API
     using SpiCRCCalculation = STM32::SpiCRCCalculation;
     // using SpiCRCPolynomial = STM32::SpiCRCPolynomial;
     using SpiCRCLength = STM32::SpiCRCLength;
+#endif
 }
 // ESP32 PLATFORM DISABLED FOR STM32-ONLY BUILD
 #elif ESP_PLATFORM

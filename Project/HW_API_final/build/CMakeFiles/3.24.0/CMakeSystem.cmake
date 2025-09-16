@@ -3,12 +3,12 @@ set(CMAKE_HOST_SYSTEM_NAME "Windows")
 set(CMAKE_HOST_SYSTEM_VERSION "10.0.19045")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
 
-include("C:/Espressif/frameworks/esp-idf-v5.3.1/tools/cmake/toolchain-esp32c6.cmake")
+include("C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/toolchains/stm32-toolchain.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")
 set(CMAKE_SYSTEM_VERSION "")
-set(CMAKE_SYSTEM_PROCESSOR "")
+set(CMAKE_SYSTEM_PROCESSOR "arm")
 
 set(CMAKE_CROSSCOMPILING "TRUE")
 

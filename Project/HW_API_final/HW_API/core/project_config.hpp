@@ -10,14 +10,14 @@
 #include <array>
 
 #include "../gpio/gpio_interface.hpp"
-#include "../spi/spi_interface.hpp"
-#include "../spi/dma_interface.hpp"
+// #include "../spi/spi_interface.hpp"
+// #include "../spi/dma_interface.hpp"
 
 // Platform-spezifische Includes
 #ifdef STM32_PLATFORM
 #include "../gpio/gpio_stm32.hpp"
-#include "../spi/spi_stm32.hpp"
-#include "../spi/dma_stm32.hpp"
+// #include "../spi/spi_stm32.hpp"
+// #include "../spi/dma_stm32.hpp"
 
 using namespace HW_API::STM32;
 
@@ -49,12 +49,12 @@ using namespace HW_API::ESP32;
 struct BoardPins
 {
 	// STM32 GPIO Config
-	// Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
-	// Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
+	Gpio led{10, Port::A, Mode::Output_Push_Pull, Pull::None, Speed::Low, Alternate::None, false, 0, 0, ExtiTrigger::None};
+	Gpio button{9, Port::A, Mode::Input, Pull::Up, Speed::Low, Alternate::None, false, 50, 0, ExtiTrigger::None};
 
 	// ESP32 GPIO Config
-	Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
-	Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
+	// Gpio led{15, Mode::Output, Pull::None, Speed::Low, false, 0, 0, Interrupt::Disabled}; // Alternate::None is default set in header.
+	// Gpio button{9, Mode::Input, Pull::Up, Speed::Low, false, 50, 0, Interrupt::Disabled};
 
 #ifdef STM32_PLATFORM
 	// SPI Pins

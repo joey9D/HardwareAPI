@@ -15,8 +15,8 @@ extern "C"
 
 // stm32c0xx
 #if defined(STM32C0xx) || defined(STM32C031xx)
-#include "stm32c0xx_hal_conf.h"
 #include <stm32c0xx_hal.h>
+#include "../stm32c0xx/stm32c0xx_hal_conf.h"
 #include <stm32c0xx_hal_rcc_ex.h>
 // stm32g0xx
 #elif defined(STM32G0xx) || defined(STM32G071xx) || defined(STM32G0B1xx)

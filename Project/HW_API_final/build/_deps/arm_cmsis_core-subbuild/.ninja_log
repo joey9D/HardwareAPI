@@ -1,0 +1,21 @@
+# ninja log v5
+7	185	7797289509541556	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-mkdir	2a1ac0d7d1c97ba6
+7	185	7797289509541556	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-mkdir	2a1ac0d7d1c97ba6
+187	63971	7797290147313540	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-download	33a02b646f5e0828
+187	63971	7797290147313540	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-download	33a02b646f5e0828
+63972	64938	0	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-update	1f61f92493a69872
+63972	64938	0	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-update	1f61f92493a69872
+64939	65153	7797290159183548	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-patch	dd3b7416e3cd06d6
+64939	65153	7797290159183548	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-patch	dd3b7416e3cd06d6
+65153	65368	7797290161343534	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-configure	abe168492a5abbcf
+65153	65368	7797290161343534	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-configure	abe168492a5abbcf
+65369	65584	7797290163493540	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-build	1b49aa196e7868d5
+65369	65584	7797290163493540	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-build	1b49aa196e7868d5
+65584	65804	7797290165693536	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-install	fca7e4bff383bb35
+65584	65804	7797290165693536	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-install	fca7e4bff383bb35
+65804	66026	7797290167913535	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-test	3e1ab6fc582510c9
+65804	66026	7797290167913535	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-test	3e1ab6fc582510c9
+66026	66356	7797290171223554	CMakeFiles/arm_cmsis_core-populate-complete	324b8ebe393e48ea
+66026	66356	7797290171223554	arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-done	324b8ebe393e48ea
+66026	66356	7797290171223554	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/CMakeFiles/arm_cmsis_core-populate-complete	324b8ebe393e48ea
+66026	66356	7797290171223554	C:/Users/jan.kristel/Documents/Thesis/HardwareAPI/Project/HW_API_final/build/_deps/arm_cmsis_core-subbuild/arm_cmsis_core-populate-prefix/src/arm_cmsis_core-populate-stamp/arm_cmsis_core-populate-done	324b8ebe393e48ea
